@@ -1,0 +1,24 @@
+name: normalizer
+version: v1
+role: system
+description: Normalize raw extracted document text into structured JSON blocks.
+
+model_notes:
+  preferred_models:
+    - gpt-5
+    - gpt-4.1
+
+tags:
+  - normalization
+  - extraction
+  - document
+
+variables:
+  - SOURCE_TEXT
+
+constraints:
+  - Do not summarize
+  - Do not interpret meaning
+  - Preserve original meaning
+
+output_format: json

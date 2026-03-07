@@ -1,0 +1,14 @@
+[project]
+name = "linkverse-prompt-bank"
+version = "0.1.0"
+description = "Reusable prompt assets for LinkVerse agents and workflows"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "openai>=2.20.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.0.0",
+]
