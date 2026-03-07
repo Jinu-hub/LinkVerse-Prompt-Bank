@@ -1,0 +1,15 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8; date-time in ISO 8601.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not summarize or paraphrase the source; normalize only.

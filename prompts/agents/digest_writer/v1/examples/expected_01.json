@@ -1,0 +1,8 @@
+{
+  "title": "Sample document",
+  "normalized_at": "2025-03-07T00:00:00Z",
+  "fields": {
+    "author": "Example",
+    "date": "2025-03-07"
+  }
+}
