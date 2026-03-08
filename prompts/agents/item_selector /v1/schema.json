@@ -2,12 +2,50 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "title": { "type": "string" },
-    "normalized_at": { "type": "string", "format": "date-time" },
-    "fields": {
-      "type": "object",
-      "additionalProperties": true
+    "input_date": {
+      "type": "string",
+      "description": "Copy from input; anchor date of the digest"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Copy from input; digest topic"
+    },
+    "item_count": {
+      "type": "integer",
+      "description": "Expected item count from input"
+    },
+    "actual_item_count": {
+      "type": "integer",
+      "description": "Actual number of valid items after splitting by delimiter"
+    },
+    "highlight_count": {
+      "type": "integer",
+      "description": "Number of highlights (1 if ≤5 items, 2 if ≤10, 3 if >10)"
+    },
+    "highlights": {
+      "type": "array",
+      "description": "Top-ranked items as highlight set",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rank": { "type": "integer" },
+          "raw_text": { "type": "string" }
+        },
+        "required": ["rank", "raw_text"]
+      }
+    },
+    "items": {
+      "type": "array",
+      "description": "Remaining items after highlights",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rank": { "type": "integer" },
+          "raw_text": { "type": "string" }
+        },
+        "required": ["rank", "raw_text"]
+      }
     }
   },
-  "required": ["title", "normalized_at"]
+  "required": ["input_date", "topic", "item_count", "actual_item_count", "highlight_count", "highlights", "items"]
 }

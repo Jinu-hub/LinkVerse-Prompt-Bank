@@ -5,11 +5,14 @@ output_format: JSON
 implementation:
   - Output must validate against schema.json.
   - Use the examples in examples/ as the canonical format.
+  - Split detail by delimiter "====="; rank by importance; group into highlights and items per highlight-count rule.
 
 format_rules:
   - Return only valid JSON; no markdown code fence or extra text.
-  - Use UTF-8; date-time in ISO 8601.
+  - Use UTF-8; preserve raw_text with minimal trimming only.
+  - Copy input_date, topic, item_count from input; set actual_item_count and highlight_count from split/rule.
 
 prohibitions:
   - Do not add fields not in the schema.
-  - Do not summarize or paraphrase the source; normalize only.
+  - Do not summarize, rewrite, translate, or generate titles/summary/ending/why_it_matters.
+  - Do not invent information; preserve raw text from the source only.
