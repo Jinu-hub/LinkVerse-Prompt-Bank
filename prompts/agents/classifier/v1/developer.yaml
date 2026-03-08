@@ -1,0 +1,28 @@
+# Classifier agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/classifier/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Produce exactly one classifications object for the entire digest (no per-item or per-highlight classification).
+  - Assign exactly one official category; assign 0 to 5 subcategories.
+  - Extract numeric and time expressions as raw_text exactly as written in the input; do not rephrase or convert.
+  - Use normalized region values (US, CHINA, JAPAN, KOREA, EUROPE, GLOBAL, UNKNOWN) when applicable.
+  - When classification is uncertain, set category to null and explain briefly in confidence_note.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text before or after.
+  - Use UTF-8.
+  - input_date: preserve as provided (e.g. YYYY-MM-DD).
+  - main_entities: all eight keys (companies, persons, institutions, countries, industries, products, technologies, indicators) must be present; use empty arrays when none apply.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not rewrite, summarize, or translate the digest.
+  - Do not invent numbers, convert currencies, or estimate growth rates not stated in the text.
+  - Do not change the wording of extracted numeric or time expressions.
+  - Do not add facts from outside the provided input.
+  - Do not output per-highlight or per-item classifications; only one digest-level classifications object.

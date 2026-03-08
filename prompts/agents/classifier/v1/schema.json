@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "input_date": {
+      "type": "string",
+      "description": "Anchor date of the digest (e.g. YYYY-MM-DD)"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Topic or title of the digest"
+    },
+    "classifications": {
+      "type": "object",
+      "description": "Single classification object for the entire digest",
+      "properties": {
+        "category": {
+          "type": ["string", "null"],
+          "description": "Exactly one official category: foundation, issue, research, market, trend, deep-dive, column, narrative-analysis"
+        },
+        "subcategories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "0 to 5 subcategory labels (e.g. ai, semiconductor, macro)"
+        },
+        "regions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Regions/countries mentioned or implied (e.g. US, CHINA, GLOBAL)"
+        },
+        "asset_classes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Digest-level asset classes when relevant (e.g. equity, crypto, rates)"
+        },
+        "main_entities": {
+          "type": "object",
+          "description": "Digest-level entities: companies, persons, institutions, countries, industries, products, technologies, indicators",
+          "properties": {
+            "companies": { "type": "array", "items": { "type": "string" }, "description": "Company names (기업명)" },
+            "persons": { "type": "array", "items": { "type": "string" }, "description": "Named individuals (인물)" },
+            "institutions": { "type": "array", "items": { "type": "string" }, "description": "Organizations, agencies (기관)" },
+            "countries": { "type": "array", "items": { "type": "string" }, "description": "Countries / regions (국가·지역)" },
+            "industries": { "type": "array", "items": { "type": "string" }, "description": "Industry sectors (산업군)" },
+            "products": { "type": "array", "items": { "type": "string" }, "description": "Product / service names" },
+            "technologies": { "type": "array", "items": { "type": "string" }, "description": "Technologies, models (기술·모델명)" },
+            "indicators": { "type": "array", "items": { "type": "string" }, "description": "Indices, metrics (지표명)" }
+          },
+          "required": ["companies", "persons", "institutions", "countries", "industries", "products", "technologies", "indicators"]
+        },
+        "numeric_data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "raw_text": { "type": "string", "description": "Numeric expression exactly as written in source" },
+              "value_type": { "type": "string", "description": "e.g. amount, percentage, ratio, count" },
+              "context": { "type": "string", "description": "Brief context for the value" }
+            },
+            "required": ["raw_text", "value_type", "context"]
+          }
+        },
+        "time_data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "raw_text": { "type": "string", "description": "Time expression exactly as written in source" },
+              "time_type": { "type": "string", "description": "e.g. date, week_range, year, quarter" },
+              "context": { "type": "string", "description": "Brief context for the time expression" }
+            },
+            "required": ["raw_text", "time_type", "context"]
+          }
+        },
+        "confidence_note": {
+          "type": ["string", "null"],
+          "description": "Optional note when classification is uncertain"
+        }
+      },
+      "required": [
+        "category",
+        "subcategories",
+        "regions",
+        "asset_classes",
+        "main_entities",
+        "numeric_data",
+        "time_data",
+        "confidence_note"
+      ]
+    }
+  },
+  "required": ["input_date", "topic", "classifications"]
+}

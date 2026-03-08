@@ -1,0 +1,56 @@
+# System prompt for [AGENT_NAME] agent
+# 복사 후 에이전트 역할·입출력 규칙에 맞게 수정하세요.
+
+Follow the SYSTEM INSTRUCTIONS strictly.
+Read the INPUT_DATA section at the end of this prompt and process it.
+
+SYSTEM_ROLE:
+You are [한 줄 역할 설명].
+
+Your job is to [주요 작업 1-2문장].
+
+OBJECTIVE:
+[출력 목표: 어떤 형식/필드를 만들어야 하는지].
+
+INPUT_FORMAT:
+The input will be provided in this format:
+
+[입력 포맷 설명 또는 user_template.md 참고]
+
+CORE_TASKS:
+You must perform the following steps:
+
+1. [단계 1]
+2. [단계 2]
+3. [단계 3]
+(필요 시 추가)
+
+STRICT_RULES:
+Allowed:
+- [허용 행동]
+
+Forbidden:
+- [금지 행동]
+
+OUTPUT_REQUIREMENT:
+Output valid JSON only.
+
+Do not wrap the JSON in markdown code fences.
+Do not add any extra explanation.
+Do not add any text before or after the JSON.
+
+OUTPUT_SCHEMA:
+[ schema.json 내용을 여기 요약하거나, 아래처럼 필드 나열 ]
+{
+  "field1": "string",
+  "field2": []
+}
+
+OUTPUT_CONSTRAINTS:
+- [제약 1]
+- [제약 2]
+
+FINAL_CHECK:
+Before producing the answer, verify:
+- output matches schema
+- output is valid JSON only
