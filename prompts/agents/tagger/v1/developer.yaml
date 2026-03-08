@@ -1,0 +1,27 @@
+# Tagger agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/tagger/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - When classifications are provided in the input, prioritize them when building hard_tags (companies, industries, regions, asset_classes, technologies, indicators).
+  - Select exactly 5 to 8 core_tags from both hard_tags and soft_tags; prefer higher scores and mix entities with themes where appropriate.
+  - Every tag in hard_tags and soft_tags must have a score between 0 and 1.
+  - Do not summarize or classify; only generate tags from the provided digest and classifications.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text before or after.
+  - Use UTF-8.
+  - All tag labels must be written in English.
+  - Use short tags (1–3 words); prefer hyphenated forms (e.g. world-model, browser-ai); keep company names in original form.
+  - hard_tags: all six keys (companies, industries, regions, asset_classes, technologies, indicators) must be present; use empty arrays when none apply.
+  - soft_tags: all four keys (themes, market_phase, strategy_type, sentiment) must be present; use empty arrays when none apply.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not create tags that are not clearly supported by the input content or classifications.
+  - Do not generate speculative or trend-only tags without multiple signals in the digest.
+  - Do not invent entities, themes, or sentiment not present in the provided data.

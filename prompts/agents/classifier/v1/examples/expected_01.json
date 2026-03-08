@@ -1,3 +1,131 @@
 {
-  "result": "Placeholder: replace with your schema-based expected output for input_01"
+  "input_date": "2026-02-08",
+  "topic": "AI 주간 이슈 다이제스트 ( 260202 ~ 260208 )",
+  "classifications": {
+    "category": "issue",
+    "subcategories": [
+      "ai",
+      "world-model",
+      "browser",
+      "platform",
+      "robotics"
+    ],
+    "regions": [
+      "US"
+    ],
+    "asset_classes": [
+      "none"
+    ],
+    "main_entities": {
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Tesla",
+        "Apple",
+        "엔비디아",
+        "어도비"
+      ],
+      "persons": [],
+      "institutions": [
+        "Google AI"
+      ],
+      "countries": [
+        "US"
+      ],
+      "industries": [
+        "gaming",
+        "cloud",
+        "robotics",
+        "media",
+        "ai"
+      ],
+      "products": [
+        "Genie3",
+        "Gemini",
+        "Chrome",
+        "Google AI Ultra",
+        "AI Pro·Ultra",
+        "Document AI"
+      ],
+      "technologies": [
+        "world-model",
+        "실시간 영상",
+        "multimodal",
+        "World Sketching"
+      ],
+      "indicators": []
+    },
+    "numeric_data": [
+      {
+        "raw_text": "18세 이상",
+        "value_type": "age_requirement",
+        "context": "Genie3는 미국의 Google AI Ultra 구독자(18세 이상)를 대상으로 공개된 실시간 월드모델"
+      },
+      {
+        "raw_text": "2,000억달러",
+        "value_type": "amount",
+        "context": "대형 기술기업들의 AI 투자 예산: 아마존 2,000억달러"
+      },
+      {
+        "raw_text": "1,800억달러",
+        "value_type": "amount",
+        "context": "대형 기술기업들의 AI 투자 예산: 구글 1,800억달러"
+      },
+      {
+        "raw_text": "1,250억달러",
+        "value_type": "amount",
+        "context": "대형 기술기업들의 AI 투자 예산: 메타 1,250억달러"
+      },
+      {
+        "raw_text": "1,175억달러",
+        "value_type": "amount",
+        "context": "대형 기술기업들의 AI 투자 예산: 마이크로소프트 1,175억달러"
+      },
+      {
+        "raw_text": "200억달러",
+        "value_type": "amount",
+        "context": "대형 기술기업들의 AI 투자 예산: 테슬라 200억달러"
+      },
+      {
+        "raw_text": "130억달러",
+        "value_type": "amount",
+        "context": "대형 기술기업들의 AI 투자 예산: 애플 130억달러"
+      }
+    ],
+    "time_data": [
+      {
+        "raw_text": "2026-02-08",
+        "time_type": "date",
+        "context": "input_date"
+      },
+      {
+        "raw_text": "260202 ~ 260208",
+        "time_type": "week_range",
+        "context": "topic"
+      },
+      {
+        "raw_text": "2026년",
+        "time_type": "year",
+        "context": "대형 기술기업들이 2026년 AI 관련 투자 예산을 크게 늘리고 있다는 요약"
+      },
+      {
+        "raw_text": "이번 주",
+        "time_type": "relative_period",
+        "context": "이번 주 다이제스트"
+      },
+      {
+        "raw_text": "이 시점",
+        "time_type": "relative_period",
+        "context": "요약하면 이 시점의 AI 흐름은..."
+      },
+      {
+        "raw_text": "현재",
+        "time_type": "relative_period",
+        "context": "현재는 미국의 AI Pro·Ultra 이용자 일부에 제공되고 있다."
+      }
+    ],
+    "confidence_note": "High confidence: digest is a weekly news-style report summarizing recent AI developments and announcements."
+  }
 }

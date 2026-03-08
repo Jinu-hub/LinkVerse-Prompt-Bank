@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "hard_tags": {
+      "type": "object",
+      "description": "Objective tags with importance score 0–1",
+      "properties": {
+        "companies": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "industries": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "regions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "asset_classes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "technologies": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "indicators": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        }
+      },
+      "required": ["companies", "industries", "regions", "asset_classes", "technologies", "indicators"]
+    },
+    "soft_tags": {
+      "type": "object",
+      "description": "Interpretive tags with importance score 0–1",
+      "properties": {
+        "themes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "market_phase": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "strategy_type": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        },
+        "sentiment": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tagged_score" }
+        }
+      },
+      "required": ["themes", "market_phase", "strategy_type", "sentiment"]
+    },
+    "core_tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "5 to 8 core tags selected from hard_tags and soft_tags for indexing and search",
+      "minItems": 5,
+      "maxItems": 8
+    }
+  },
+  "required": ["hard_tags", "soft_tags", "core_tags"],
+  "definitions": {
+    "tagged_score": {
+      "type": "object",
+      "properties": {
+        "tag": { "type": "string" },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "required": ["tag", "score"]
+    }
+  }
+}

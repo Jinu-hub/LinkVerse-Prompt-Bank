@@ -54,3 +54,6 @@ FINAL_CHECK:
 Before producing the answer, verify:
 - output matches schema
 - output is valid JSON only
+
+INPUT_DATA: |
+  reference user_template.md for input data

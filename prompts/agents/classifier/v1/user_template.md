@@ -7,3 +7,4 @@
 | summary | {{$json.summary}} |
 | highlights | {{ $json.highlights_json }} |
 | ending | {{$json.ending}} |
+| classifications | {{$json.classifications}} |
