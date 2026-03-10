@@ -1,24 +1,36 @@
-# Classifier v1
+# [AGENT_NAME] v1
 
 ## Agent metadata
 
 | key | value |
 |-----|-------|
-| id | classifier |
+| id | [agent-id] |
 | version | 0.1.0 |
 | status | active |
 | scope | shared |
-| owner | marketmemory |
-| name | Classifier Agent |
-| description | Classifies multi-item digest (one category, subcategories), extracts regions/asset classes/entities and raw numeric/time expressions |
-
-**tags:** classification, digest, metadata, extraction
+| owner | [owner] |
+| name | [Agent Display Name] |
+| description | [한 줄 설명] |
 
 | contract | detail |
 |----------|--------|
-| input_contract.required_fields | input_date, topic, summary, highlights, items, ending (or equivalent digest content) |
+| input_contract.required_fields | [필드 나열] |
 | output_contract.type | json |
 | model_hints.temperature | 0.3 |
+
+
+### Tags
+- [tag1]
+- [tag2]
+
+
+# Input_DATA
+
+| key | value |
+|-----|-------|
+| input_key_1 | {{$json.input_key_1}} |
+| input_key_2 | {{$json.input_key_2}} |
+
 
 ## 변경 이력
 

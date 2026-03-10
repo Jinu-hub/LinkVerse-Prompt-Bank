@@ -12,13 +12,28 @@
 | name | Tagger Agent |
 | description | Generates search and discovery tags (hard_tags, soft_tags, core_tags) from a structured digest and optional classifications |
 
-**tags:** tagging, search, discovery, indexing
-
 | contract | detail |
 |----------|--------|
 | input_contract.required_fields | topic, summary, highlights, items, ending; classifications recommended when available |
 | output_contract.type | json |
 | model_hints.temperature | 0.3 |
+
+### tags
+- tagging
+- search
+- discovery
+- indexing
+
+
+# INPUT_DATA
+| key | value |
+|-----|-------|
+| input_date | {{$json.input_date}} |
+| topic | {{$json.topic}} |
+| summary | {{$json.summary}} |
+| highlights | {{$json.highlights}} |
+| ending | {{$json.ending}} |
+| classifications | {{$json.classifications}} |
 
 ## 변경 이력
 
