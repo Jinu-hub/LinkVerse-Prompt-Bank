@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "final_document_md": {
+      "type": "string",
+      "description": "Finalized digest document in Markdown format"
+    },
+    "final_metadata": {
+      "type": "object",
+      "description": "Document-level structural metadata about the finalized digest",
+      "properties": {
+        "input_date": {
+          "type": "string",
+          "description": "Anchor date of the digest (e.g. YYYY-MM-DD)"
+        },
+        "topic": {
+          "type": "string",
+          "description": "Topic or title of the digest"
+        },
+        "highlight_count": {
+          "type": "integer",
+          "description": "Number of highlight entries in the digest"
+        },
+        "item_count": {
+          "type": "integer",
+          "description": "Number of regular item entries in the digest"
+        },
+        "has_summary": {
+          "type": "boolean",
+          "description": "Whether the digest contains an overview/summary section"
+        },
+        "has_ending": {
+          "type": "boolean",
+          "description": "Whether the digest contains a closing/ending section"
+        },
+        "formatting_version": {
+          "type": "string",
+          "description": "Formatting version of the final document (e.g. v1)"
+        },
+        "carried_metadata": {
+          "type": "object",
+          "description": "Optional metadata carried through from earlier pipeline stages",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "input_date",
+        "topic",
+        "highlight_count",
+        "item_count",
+        "has_summary",
+        "has_ending",
+        "formatting_version"
+      ]
+    }
+  },
+  "required": ["final_document_md", "final_metadata"]
+}

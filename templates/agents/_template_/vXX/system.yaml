@@ -56,4 +56,4 @@ Before producing the answer, verify:
 - output is valid JSON only
 
 INPUT_DATA: |
-  reference user_template.md for input data
+  reference agent_meta.md for input data

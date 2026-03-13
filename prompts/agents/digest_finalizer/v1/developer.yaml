@@ -1,0 +1,25 @@
+# Digest Finalizer agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/digest_finalizer/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical output format.
+  - Preserve all factual content, insights, and section boundaries from the input digest.
+  - Normalize structure into: Title, Date line, Overview, Highlights, Items, Closing.
+  - Improve readability, flow, and Markdown consistency without changing meaning.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text before or after.
+  - final_document_md must be a single Markdown string.
+  - Use one H1 for the title, H2 for major sections, H3 for each highlight and each item.
+  - Keep paragraphs short and spacing consistent.
+
+prohibitions:
+  - Do not add new claims, facts, or examples beyond the input.
+  - Do not change the meaning, confidence, or emphasis of any statement.
+  - Do not re-rank, drop, or merge highlights or items.
+  - Do not introduce new tags, categories, or analytical metadata.
+  - Do not output fields that are not defined in schema.json.
