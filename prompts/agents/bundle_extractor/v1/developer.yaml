@@ -1,0 +1,29 @@
+# Metric Bundle Extractor agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/bundle_extractor/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical output format.
+  - Extract only metric bundles where multiple entities share the same metric, clear meaning, common time period, and comparable values.
+  - Normalize all output to English (labels, metric types, entity names, units, raw numeric expressions, context).
+  - Normalize numeric values: Korean/other localized expressions → English (e.g. "2,000억달러" → raw "200 billion USD", normalized number).
+  - Reject candidates that are age requirements, document metadata, title numbering, relative time only, or single-entity / non-comparable metrics.
+  - metric_key: lowercase, snake_case, short and descriptive (e.g. ai_investment_budget).
+  - Entity keys in values: canonical lowercase identifiers (e.g. amazon, google).
+  - period: normalized when possible (e.g. type "year", value 2026).
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text before or after.
+  - Use UTF-8.
+  - All user-facing text in output (label, context, raw, rejection_reason, etc.) must be in English.
+  - Numeric normalized values must be numbers (e.g. 200000000000), not strings.
+
+prohibitions:
+  - Do not add fields that are not defined in schema.json.
+  - Do not invent metrics or create bundles not clearly supported by the input numeric_data/time_data.
+  - Do not create bundles with only one entity.
+  - Do not mix different metrics or time periods into one bundle.
+  - Do not output Korean, Japanese, or Chinese in metric bundles or rejected_candidates; convert to English.

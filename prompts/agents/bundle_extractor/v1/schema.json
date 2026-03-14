@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "extraction_summary": {
+      "type": "object",
+      "description": "Summary counts of extraction run",
+      "properties": {
+        "numeric_candidates_detected": {
+          "type": "integer",
+          "description": "Number of numeric expressions considered as candidates"
+        },
+        "bundles_created": {
+          "type": "integer",
+          "description": "Number of metric bundles created"
+        },
+        "rejected_numeric_candidates": {
+          "type": "integer",
+          "description": "Number of numeric candidates rejected (with reason in rejected_candidates)"
+        }
+      },
+      "required": [
+        "numeric_candidates_detected",
+        "bundles_created",
+        "rejected_numeric_candidates"
+      ]
+    },
+    "metric_bundles": {
+      "type": "array",
+      "description": "Extracted metric bundles suitable for structured storage",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric_key": {
+            "type": "string",
+            "description": "Lowercase snake_case identifier (e.g. ai_investment_budget)"
+          },
+          "metric_data": {
+            "type": "object",
+            "description": "Structured metric definition and entity values",
+            "properties": {
+              "label": { "type": "string", "description": "Human-readable metric label in English" },
+              "metric_type": { "type": "string", "description": "e.g. investment_budget, revenue, market_share" },
+              "period": {
+                "type": "object",
+                "description": "Common time period for the metric",
+                "properties": {
+                  "type": { "type": "string", "description": "e.g. year, quarter" },
+                  "value": { "type": "number", "description": "e.g. 2026" }
+                },
+                "required": ["type", "value"]
+              },
+              "unit": { "type": "string", "description": "e.g. USD" },
+              "values": {
+                "type": "object",
+                "description": "Entity key -> { display_name, raw, normalized }",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "display_name": { "type": "string" },
+                    "raw": { "type": "string", "description": "English normalized expression (e.g. 200 billion USD)" },
+                    "normalized": { "type": "number", "description": "Numeric value for comparison" }
+                  },
+                  "required": ["display_name", "raw", "normalized"]
+                }
+              },
+              "context": { "type": "string", "description": "Brief context in English" },
+              "confidence": { "type": "number", "description": "Confidence score 0–1" }
+            },
+            "required": ["label", "metric_type", "period", "unit", "values", "context", "confidence"]
+          }
+        },
+        "required": ["metric_key", "metric_data"]
+      }
+    },
+    "rejected_candidates": {
+      "type": "array",
+      "description": "Numeric expressions considered but rejected with reason",
+      "items": {
+        "type": "object",
+        "properties": {
+          "raw_text": { "type": "string", "description": "Original or normalized text of the rejected expression" },
+          "context": { "type": "string", "description": "Context in English" },
+          "rejection_reason": { "type": "string", "description": "Reason for rejection in English" }
+        },
+        "required": ["raw_text", "context", "rejection_reason"]
+      }
+    }
+  },
+  "required": ["extraction_summary", "metric_bundles", "rejected_candidates"]
+}

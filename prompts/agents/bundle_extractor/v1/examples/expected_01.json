@@ -1,0 +1,62 @@
+{
+  "extraction_summary": {
+    "numeric_candidates_detected": 7,
+    "bundles_created": 1,
+    "rejected_numeric_candidates": 1
+  },
+  "metric_bundles": [
+    {
+      "metric_key": "ai_investment_budget",
+      "metric_data": {
+        "label": "AI-related investment budget",
+        "metric_type": "investment_budget",
+        "period": {
+          "type": "year",
+          "value": 2026
+        },
+        "unit": "USD",
+        "values": {
+          "amazon": {
+            "display_name": "amazon",
+            "raw": "200 billion USD",
+            "normalized": 200000000000
+          },
+          "google": {
+            "display_name": "google",
+            "raw": "180 billion USD",
+            "normalized": 180000000000
+          },
+          "meta": {
+            "display_name": "meta",
+            "raw": "125 billion USD",
+            "normalized": 125000000000
+          },
+          "microsoft": {
+            "display_name": "microsoft",
+            "raw": "117.5 billion USD",
+            "normalized": 117500000000
+          },
+          "tesla": {
+            "display_name": "tesla",
+            "raw": "20 billion USD",
+            "normalized": 20000000000
+          },
+          "apple": {
+            "display_name": "apple",
+            "raw": "13 billion USD",
+            "normalized": 13000000000
+          }
+        },
+        "context": "Reported 2026 AI-related investment budgets for major technology companies (figures presented as company 2026 AI investment budgets).",
+        "confidence": 0.9
+      }
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "raw_text": "18 years or older",
+      "context": "Genie3 disclosure target (US Google AI Ultra subscribers aged 18 years or older)",
+      "rejection_reason": "Age requirement — numeric is an age constraint, not a comparable metric across entities."
+    }
+  ]
+}
