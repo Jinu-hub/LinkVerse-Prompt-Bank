@@ -21,7 +21,17 @@
         "subcategories": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "0 to 5 subcategory labels (e.g. ai, semiconductor, macro)"
+          "description": "0 to 5 subcategory labels (e.g. ai, world-model, platform, browser, ai-infra)"
+        },
+        "difficulty": {
+          "type": "object",
+          "description": "Reading difficulty and target audience for the digest",
+          "properties": {
+            "level": { "type": "string", "description": "e.g. beginner, intermediate, advanced" },
+            "target_reader": { "type": "string", "description": "e.g. general-reader, domain-interested-reader" },
+            "reason": { "type": "string", "description": "Brief rationale for the difficulty assessment" }
+          },
+          "required": ["level", "target_reader", "reason"]
         },
         "regions": {
           "type": "array",
@@ -54,7 +64,7 @@
             "type": "object",
             "properties": {
               "raw_text": { "type": "string", "description": "Numeric expression exactly as written in source" },
-              "value_type": { "type": "string", "description": "e.g. amount, percentage, ratio, count" },
+              "value_type": { "type": "string", "description": "e.g. amount, percentage, ratio, count, year, age_requirement, other" },
               "context": { "type": "string", "description": "Brief context for the value" }
             },
             "required": ["raw_text", "value_type", "context"]
@@ -66,7 +76,7 @@
             "type": "object",
             "properties": {
               "raw_text": { "type": "string", "description": "Time expression exactly as written in source" },
-              "time_type": { "type": "string", "description": "e.g. date, week_range, year, quarter" },
+              "time_type": { "type": "string", "description": "e.g. date, week_range, year, quarter, relative_period" },
               "context": { "type": "string", "description": "Brief context for the time expression" }
             },
             "required": ["raw_text", "time_type", "context"]
@@ -80,6 +90,7 @@
       "required": [
         "category",
         "subcategories",
+        "difficulty",
         "regions",
         "asset_classes",
         "main_entities",
