@@ -1,68 +1,235 @@
 {
   "hard_tags": {
     "companies": [
-      { "tag": "Google", "score": 1 },
-      { "tag": "Microsoft", "score": 0.85 },
-      { "tag": "Meta", "score": 0.8 },
-      { "tag": "Amazon", "score": 0.8 },
-      { "tag": "NVIDIA", "score": 0.75 },
-      { "tag": "Adobe", "score": 0.6 },
-      { "tag": "Apple", "score": 0.5 },
-      { "tag": "Tesla", "score": 0.45 }
+      {
+        "tag": "Google",
+        "score": 0.95
+      },
+      {
+        "tag": "Amazon",
+        "score": 0.88
+      },
+      {
+        "tag": "Meta",
+        "score": 0.82
+      },
+      {
+        "tag": "Microsoft",
+        "score": 0.82
+      },
+      {
+        "tag": "Tesla",
+        "score": 0.62
+      },
+      {
+        "tag": "Apple",
+        "score": 0.62
+      },
+      {
+        "tag": "Nvidia",
+        "score": 0.87
+      },
+      {
+        "tag": "Adobe",
+        "score": 0.62
+      }
     ],
     "industries": [
-      { "tag": "ai", "score": 0.95 },
-      { "tag": "gaming", "score": 0.9 },
-      { "tag": "media", "score": 0.9 },
-      { "tag": "cloud", "score": 0.85 },
-      { "tag": "robotics", "score": 0.8 }
+      {
+        "tag": "platform",
+        "score": 0.92
+      },
+      {
+        "tag": "cloud",
+        "score": 0.88
+      },
+      {
+        "tag": "games",
+        "score": 0.8
+      },
+      {
+        "tag": "hardware",
+        "score": 0.8
+      },
+      {
+        "tag": "robotics",
+        "score": 0.8
+      },
+      {
+        "tag": "entertainment",
+        "score": 0.75
+      },
+      {
+        "tag": "e-commerce",
+        "score": 0.7
+      }
     ],
     "regions": [
-      { "tag": "US", "score": 1 }
+      {
+        "tag": "US",
+        "score": 1
+      }
     ],
-    "asset_classes": [],
+    "asset_classes": [
+      {
+        "tag": "ai-infra",
+        "score": 0.9
+      }
+    ],
     "technologies": [
-      { "tag": "world-model", "score": 1 },
-      { "tag": "real-time-video", "score": 0.9 },
-      { "tag": "multimodal", "score": 0.9 },
-      { "tag": "browser-ai", "score": 0.9 },
-      { "tag": "world-sketching", "score": 0.7 }
+      {
+        "tag": "world-model",
+        "score": 0.95
+      },
+      {
+        "tag": "real-time-video",
+        "score": 0.9
+      },
+      {
+        "tag": "browser-ai-assistant",
+        "score": 0.9
+      },
+      {
+        "tag": "persistent-memory",
+        "score": 0.7
+      },
+      {
+        "tag": "robot-control",
+        "score": 0.75
+      },
+      {
+        "tag": "document-ai",
+        "score": 0.7
+      }
     ],
     "indicators": []
   },
   "soft_tags": {
     "themes": [
-      { "tag": "world-models", "score": 1 },
-      { "tag": "real-time-content", "score": 0.95 },
-      { "tag": "ai-capex", "score": 0.9 },
-      { "tag": "productization", "score": 0.9 },
-      { "tag": "browser-assistant", "score": 0.85 },
-      { "tag": "robotics-control", "score": 0.7 }
+      {
+        "tag": "world-models",
+        "score": 0.95
+      },
+      {
+        "tag": "realtime-content",
+        "score": 0.9
+      },
+      {
+        "tag": "big-capex-ai",
+        "score": 0.9
+      },
+      {
+        "tag": "browser-as-platform",
+        "score": 0.85
+      },
+      {
+        "tag": "ai-productization",
+        "score": 0.85
+      },
+      {
+        "tag": "multimodal-interaction",
+        "score": 0.8
+      }
     ],
     "market_phase": [
-      { "tag": "productization-phase", "score": 0.95 },
-      { "tag": "capex-expansion", "score": 0.9 },
-      { "tag": "ecosystem-expansion", "score": 0.85 }
+      {
+        "tag": "productization",
+        "score": 0.9
+      },
+      {
+        "tag": "capex-expansion",
+        "score": 0.9
+      },
+      {
+        "tag": "ecosystem-shift",
+        "score": 0.82
+      }
     ],
     "strategy_type": [
-      { "tag": "platform-integration", "score": 0.9 },
-      { "tag": "infrastructure-investment", "score": 0.9 },
-      { "tag": "ecosystem-lock-in", "score": 0.85 },
-      { "tag": "multimodal-integration", "score": 0.8 }
+      {
+        "tag": "platform-expansion",
+        "score": 0.9
+      },
+      {
+        "tag": "ecosystem-lock-in",
+        "score": 0.82
+      },
+      {
+        "tag": "ai-infra-investment",
+        "score": 0.85
+      }
     ],
     "sentiment": [
-      { "tag": "acceleration", "score": 0.95 },
-      { "tag": "commercialization", "score": 0.9 },
-      { "tag": "competitive-pressure", "score": 0.85 }
+      {
+        "tag": "innovation-acceleration",
+        "score": 0.9
+      },
+      {
+        "tag": "competitive-pressure",
+        "score": 0.85
+      },
+      {
+        "tag": "commercialization",
+        "score": 0.8
+      }
     ]
   },
   "core_tags": [
-    "Google",
-    "world-model",
-    "real-time-content",
-    "browser-ai",
-    "ai-capex",
-    "gaming",
-    "productization"
+    {
+      "tag": "Google",
+      "score": 0.95,
+      "aliases": [
+        "google-ai",
+        "google-genie"
+      ]
+    },
+    {
+      "tag": "world-model",
+      "score": 0.94,
+      "aliases": [
+        "world-models",
+        "3d-world-model"
+      ]
+    },
+    {
+      "tag": "browser-ai-assistant",
+      "score": 0.9,
+      "aliases": [
+        "browser-ai",
+        "ai-assistant-browser"
+      ]
+    },
+    {
+      "tag": "ai-infra",
+      "score": 0.9,
+      "aliases": [
+        "ai-infrastructure",
+        "infrastructure"
+      ]
+    },
+    {
+      "tag": "platform",
+      "score": 0.88,
+      "aliases": [
+        "platforms",
+        "tech-platform"
+      ]
+    },
+    {
+      "tag": "real-time-video",
+      "score": 0.88,
+      "aliases": [
+        "realtime-video",
+        "live-video"
+      ]
+    },
+    {
+      "tag": "big-capex-ai",
+      "score": 0.87,
+      "aliases": [
+        "ai-investment",
+        "capex-ai"
+      ]
+    }
   ]
 }

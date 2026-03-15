@@ -122,6 +122,19 @@ CORE_TAG_EXTRACTION: |
   - dominant industries
   - important themes
 
+  Each core_tag must include:
+
+  - tag
+  - score (importance from 0 to 1)
+  - aliases (2–3 short synonyms)
+
+  Aliases must:
+
+  - be short search-friendly variations
+  - follow the same formatting rules as tags
+  - remain in English
+  - not repeat the main tag
+
 STRICT_RULES: |
 
   Hard tags must be grounded in the text or classifications.
@@ -177,7 +190,10 @@ OUTPUT_SCHEMA:
       - tag: ""
         score: 0.0
 
-  core_tags: []
+  core_tags: 
+    - tag: ""
+      score: 0.0
+      aliases: []
 
 QUALITY_RULES: |
 

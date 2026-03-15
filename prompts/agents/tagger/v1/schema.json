@@ -58,8 +58,8 @@
     },
     "core_tags": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "5 to 8 core tags selected from hard_tags and soft_tags for indexing and search",
+      "description": "5 to 8 core tags selected from hard_tags and soft_tags for indexing and search, with optional aliases",
+      "items": { "$ref": "#/definitions/core_tag_entry" },
       "minItems": 5,
       "maxItems": 8
     }
@@ -73,6 +73,19 @@
         "score": { "type": "number", "minimum": 0, "maximum": 1 }
       },
       "required": ["tag", "score"]
+    },
+    "core_tag_entry": {
+      "type": "object",
+      "properties": {
+        "tag": { "type": "string" },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Alternative spellings or related tag names for search/indexing"
+        }
+      },
+      "required": ["tag", "score", "aliases"]
     }
   }
 }
