@@ -209,17 +209,34 @@ DIFFICULTY_POLICY: |
 --------------------------------------------------
 
 REGION_POLICY: |
-  Extract regions/countries explicitly mentioned or strongly implied.
+  Extract both countries and geographic regions mentioned or implied.
 
-  Use normalized values:
+  Countries examples:
+  - US
+  - CHINA
+  - JAPAN
+  - KOREA
+  - UK
+  - INDIA
+  - TAIWAN
+  - SINGAPORE
 
-  US
-  CHINA
-  JAPAN
-  KOREA
-  EUROPE
-  GLOBAL
-  UNKNOWN
+  Regions examples:
+  - GLOBAL
+  - APAC
+  - EMEA
+  - AMERICAS
+  - EUROPE
+  - ASIA
+  - LATAM
+  - MENA
+  - SEA
+  - ANZ
+
+  Rules:
+  - If a specific country is mentioned, add it to countries.
+  - If a broader region is mentioned, add it to regions.
+  - Both may appear simultaneously.
 
 --------------------------------------------------
 
@@ -252,6 +269,43 @@ ENTITY_POLICY: |
   products
   technologies
   indicators
+
+  Entity names must follow the ENTITY_LANGUAGE_RULES and be normalized to English.
+
+ENTITY_LANGUAGE_RULES: |
+  All entity names must be normalized to English.
+
+  Rules:
+
+  - Company names must use their common English name.
+    Example:
+      구글 → Google
+      아마존 → Amazon
+      엔비디아 → Nvidia
+      텐센트 → Tencent
+
+  - Product and technology names must use their official English name.
+    Example:
+      지니3 → Genie3
+      제미니 → Gemini
+      헬릭스 → Helix
+
+  - Country names must use standard English names.
+    Example:
+      미국 → US
+      중국 → China
+      日本 → Japan
+      韩国 → Korea
+
+  - Institutions must use their official English name.
+    Example:
+      유럽연합 → European Union
+      연방준비제도 → Federal Reserve
+
+  - If the original text already uses English, keep it unchanged.
+
+  - Do NOT translate or invent names that are unclear.
+    If normalization is uncertain, keep the closest known English form.
 
 --------------------------------------------------
 

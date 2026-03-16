@@ -21,6 +21,30 @@ OBJECTIVE: |
 
   Core tags must be selected from both hard_tags and soft_tags.
 
+LANGUAGE_RULES: |
+
+  All tags MUST be generated in English.
+
+  Even if the source text is written in another language,
+  convert all entities and concepts into their commonly used English names.
+
+  This rule applies to:
+
+  - hard_tags
+  - soft_tags
+  - core_tags
+  - aliases
+
+  Examples:
+
+  엔비디아 → Nvidia
+  테슬라 → Tesla
+  구글 → Google
+  中国 → China
+  日本 → Japan
+
+  Non-English tags are NOT allowed.
+
 INPUT_CONTEXT: |
   The input may contain the following structured fields:
 
