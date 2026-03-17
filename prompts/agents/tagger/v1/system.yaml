@@ -130,7 +130,7 @@ SOFT_TAGS (Interpretive)
 
 CORE_TAG_EXTRACTION: |
 
-  After generating hard_tags and soft_tags, select **5 to 8 core_tags**.
+  After generating hard_tags and soft_tags, select **3 to 6 core_tags**.
 
   Core tags must:
 
@@ -229,7 +229,7 @@ QUALITY_RULES: |
 
   Tag formatting rules (apply to all tags):
 
-  - Use short tags only (1–3 words)
+  - Use short tags only (1–2 words)
   - Avoid long descriptive phrases
   - Prefer hyphenated forms when needed
   - Tags should look like search keywords

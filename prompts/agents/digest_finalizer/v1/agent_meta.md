@@ -31,6 +31,7 @@
 |-----|-------|
 | input_date | {{$json.input_date}} |
 | topic | {{$json.topic}} |
+| headline | {{$json.headline}} |
 | summary | {{$json.summary}} |
 | highlights | {{$json.highlights}} |
 | items | {{$json.items}} |

@@ -99,6 +99,13 @@ STRICT_RULES: |
   - removing important information
   - introducing new tags, categories, entities, or interpretations
 
+  Additional overview rules:
+
+  - The summary section must always start with the provided `headline`
+  - The headline must be used exactly as provided
+  - Do NOT rewrite or shorten the headline
+  - Do NOT generate a new headline
+
 LABEL_PRESERVATION_RULES: |
   If the source already contains labels such as:
   - 사실
@@ -117,19 +124,34 @@ DOCUMENT_STRUCTURE_POLICY: |
 
   Use the following document structure:
 
-  1. Title
+  1. Title (use topic)
   2. Date line
-  3. Overview
-  4. Highlights
-  5. Items
-  6. Closing
+  3. Overview headline (use headline)
+  4. Overview text (summary)
+  5. Highlights
+  6. Items
+  7. Closing
 
   Rules:
-  - Keep highlights inside the Highlights section
-  - Keep regular items inside the Items section
-  - Do not move content across sections
-  - Do not create analytical appendices unless explicitly present in the input
-  - Keep the structure simple, readable, and publish-ready
+
+  - The H1 title MUST use `topic`
+  - The Overview section MUST use the provided `headline` as its H2 title
+  - The text under that headline MUST be the `summary`
+  - Do NOT generate a new headline
+  - Do NOT rewrite the headline
+  - Do NOT move summary outside this section
+
+  Example structure:
+
+      # {topic}
+
+      **발행일:** {input_date}
+
+      ## {headline}
+
+      {summary}
+
+      ## Highlights
 
 MARKDOWN_STYLE_POLICY: |
   Follow these Markdown formatting rules:
