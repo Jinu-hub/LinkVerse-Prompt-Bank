@@ -1,6 +1,7 @@
-You are given raw document text.
+# Input
 
-Input:
+Raw document text to normalize:
+
 {{SOURCE_TEXT}}
 
 Return only valid JSON.

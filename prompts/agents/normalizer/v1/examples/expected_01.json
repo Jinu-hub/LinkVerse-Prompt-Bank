@@ -1,8 +1,14 @@
 {
-  "title": "Sample document",
-  "normalized_at": "2025-03-07T00:00:00Z",
-  "fields": {
-    "author": "Example",
-    "date": "2025-03-07"
-  }
+  "clean_text": "Q3 2025 Revenue increased 12% year-over-year.\n\nThe company announced a new product line focused on enterprise customers. Key features include integration with existing workflows and support for multiple languages.\n\n| Region  | Growth |\n|---------|--------|\n| North   | 8%     |\n| Europe  | 15%    |",
+  "block_structure": [
+    { "index": 0, "type": "paragraph", "text": "Q3 2025 Revenue increased 12% year-over-year." },
+    { "index": 1, "type": "paragraph", "text": "The company announced a new product line focused on enterprise customers. Key features include integration with existing workflows and support for multiple languages." },
+    { "index": 2, "type": "table", "text": "| Region  | Growth |\n|---------|--------|\n| North   | 8%     |\n| Europe  | 15%    |" }
+  ],
+  "removed_noise_log": [
+    { "type": "branding", "text": "@bullstory" },
+    { "type": "branding", "text": "bullstory.io" },
+    { "type": "disclaimer", "text": "DISCLAIMER: This is not investment advice." },
+    { "type": "branding", "text": "Follow us on Twitter @bullstory." }
+  ]
 }

@@ -5,11 +5,14 @@ output_format: JSON
 implementation:
   - Output must validate against schema.json.
   - Use the examples in examples/ as the canonical format.
+  - Remove noise (headers, footers, disclaimers, ads, branding); normalize line breaks; classify blocks.
 
 format_rules:
   - Return only valid JSON; no markdown code fence or extra text.
-  - Use UTF-8; date-time in ISO 8601.
+  - Use UTF-8. Block type must be one of: paragraph, table, caption, quote, list, heading.
+  - removed_noise_log type must be one of: header, footer, disclaimer, advertisement, branding.
 
 prohibitions:
   - Do not add fields not in the schema.
-  - Do not summarize or paraphrase the source; normalize only.
+  - Do not summarize, interpret meaning, rewrite claims, add information, or translate.
+  - Do not change factual content; preserve original information.

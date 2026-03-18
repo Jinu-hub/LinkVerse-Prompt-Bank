@@ -2,12 +2,41 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "title": { "type": "string" },
-    "normalized_at": { "type": "string", "format": "date-time" },
-    "fields": {
-      "type": "object",
-      "additionalProperties": true
+    "clean_text": {
+      "type": "string",
+      "description": "Cleaned document text after noise removal and format normalization"
+    },
+    "block_structure": {
+      "type": "array",
+      "description": "Detected and classified blocks in order",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": { "type": "integer" },
+          "type": {
+            "type": "string",
+            "enum": ["paragraph", "table", "caption", "quote", "list", "heading"]
+          },
+          "text": { "type": "string" }
+        },
+        "required": ["index", "type", "text"]
+      }
+    },
+    "removed_noise_log": {
+      "type": "array",
+      "description": "Log of removed noise segments",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["header", "footer", "disclaimer", "advertisement", "branding"]
+          },
+          "text": { "type": "string" }
+        },
+        "required": ["type", "text"]
+      }
     }
   },
-  "required": ["title", "normalized_at"]
+  "required": ["clean_text", "block_structure", "removed_noise_log"]
 }
