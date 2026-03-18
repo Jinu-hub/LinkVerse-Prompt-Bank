@@ -1,0 +1,24 @@
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Generate exactly ONE headline from the provided summary.
+  - Preserve key wording from the summary as much as possible; compress rather than reinterpret.
+  - Keep the meaning unchanged; do not add new concepts or facts.
+  - Headline structure target: "[Core Event or Condition] — [Market Focus]" when possible.
+  - The headline language must match the input summary language (do not translate, do not mix languages).
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output must contain exactly one top-level field: output.
+  - output must be a single Markdown line in the form: "## <headline>".
+  - Do not include additional lines, sections, or commentary.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input summary.
+  - Do not replace key phrases with synonyms (prefer direct reuse from summary).
+  - Do not output explanations, reasoning, or multiple headline candidates.
