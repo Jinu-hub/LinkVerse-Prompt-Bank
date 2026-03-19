@@ -1,0 +1,31 @@
+# Summarizer agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/summarizer/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Generate exactly three top-level fields: summary_short, summary_structured, key_takeaways.
+  - summary_structured must include exactly five subfields: core_message, what_happened, why_it_matters, supporting_points, risks_and_constraints.
+  - Reflect source priority: confidence_result first, structured_analysis second, original_text third.
+  - Preserve uncertainty framing from input; use cautious wording when evidence is medium/low confidence.
+  - Prioritize primary claims over secondary claims and include only decision-relevant support.
+  - Keep output concise, readable, and logically ordered without losing core meaning.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output language must follow output_language when provided; default to Korean when missing.
+  - key_takeaways must contain 3 to 6 one-sentence items.
+  - summary_short should be compact paragraph-style text aligned with main storyline.
+  - Avoid duplicated points across fields.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not add new claims, numbers, causal links, forecasts, or external knowledge.
+  - Do not convert assumptions into facts or risks into confirmed outcomes.
+  - Do not alter calibrated confidence judgments.
+  - Do not include explanatory text outside the JSON object.
