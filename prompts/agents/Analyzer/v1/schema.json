@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "input_date": {
+      "type": "string",
+      "description": "Anchor date of the digest (e.g. YYYY-MM-DD)"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Topic or title of the digest"
+    },
+    "claims": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "type": { "type": "string" }
+            },
+            "required": ["text", "type"]
+          }
+        },
+        "secondary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "type": { "type": "string" }
+            },
+            "required": ["text", "type"]
+          }
+        }
+      },
+      "required": ["primary", "secondary"]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": ["string", "null"]
+          },
+          "linked_claim": {
+            "type": "string",
+            "pattern": "^(primary|secondary)_[1-9][0-9]*$"
+          },
+          "type": { "type": "string" },
+          "strength": { "type": "string" }
+        },
+        "required": ["text", "linked_claim", "type", "strength"]
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "type": { "type": "string" }
+        },
+        "required": ["text", "type"]
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "type": { "type": "string" }
+        },
+        "required": ["text", "type"]
+      }
+    },
+    "classifications": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": ["string", "null"]
+        },
+        "subcategories": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "difficulty": {
+          "type": "object",
+          "properties": {
+            "level": { "type": ["string", "null"] },
+            "target_reader": { "type": ["string", "null"] },
+            "reason": { "type": ["string", "null"] }
+          },
+          "required": ["level", "target_reader", "reason"]
+        },
+        "regions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "asset_classes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "main_entities": {
+          "type": "object",
+          "properties": {
+            "companies": { "type": "array", "items": { "type": "string" } },
+            "persons": { "type": "array", "items": { "type": "string" } },
+            "institutions": { "type": "array", "items": { "type": "string" } },
+            "countries": { "type": "array", "items": { "type": "string" } },
+            "industries": { "type": "array", "items": { "type": "string" } },
+            "products": { "type": "array", "items": { "type": "string" } },
+            "technologies": { "type": "array", "items": { "type": "string" } },
+            "indicators": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": [
+            "companies",
+            "persons",
+            "institutions",
+            "countries",
+            "industries",
+            "products",
+            "technologies",
+            "indicators"
+          ]
+        },
+        "numeric_data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "raw_text": { "type": "string" },
+              "value_type": { "type": "string" },
+              "context": { "type": "string" }
+            },
+            "required": ["raw_text", "value_type", "context"]
+          }
+        },
+        "time_data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "raw_text": { "type": "string" },
+              "time_type": { "type": "string" },
+              "context": { "type": "string" }
+            },
+            "required": ["raw_text", "time_type", "context"]
+          }
+        },
+        "confidence_note": {
+          "type": ["string", "null"]
+        }
+      },
+      "required": [
+        "category",
+        "subcategories",
+        "difficulty",
+        "regions",
+        "asset_classes",
+        "main_entities",
+        "numeric_data",
+        "time_data",
+        "confidence_note"
+      ]
+    }
+  },
+  "required": [
+    "input_date",
+    "topic",
+    "claims",
+    "evidence",
+    "risks",
+    "assumptions",
+    "classifications"
+  ]
+}

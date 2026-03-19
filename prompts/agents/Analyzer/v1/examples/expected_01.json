@@ -1,0 +1,529 @@
+
+{
+  "input_date": "2026-02-07",
+  "topic": "사상 최고 매출도 못 막은 'AI 투자 포비아'… 알파벳·MSFT·퀄컴이 마주한 차가운 현실",
+  "claims": {
+    "primary": [
+      {
+        "text": "사상 최고 매출도 못 막은 'AI 투자 포비아'… 알파벳·MSFT·퀄컴이 마주한 차가운 현실",
+        "type": "conclusion"
+      },
+      {
+        "text": "알파벳 주가는 2026년 자본 지출이 예상보다 훨씬 높을 것으로 전망하면서 시간 외 거래에서 하락했습니다.",
+        "type": "cause-effect"
+      },
+      {
+        "text": "퀄컴: 실적은 좋았는데, “글로벌 메모리 부족 + 약한 단기 가이던스”가 더 크게 가격에 반영되며 시간외 하락.",
+        "type": "cause-effect"
+      },
+      {
+        "text": "Arm Holdings: 로열티는 강했지만, 라이선스가 기대에 못 미치고(타이밍 이슈) + 퀄컴의 약한 전망이 스마트폰 노출 우려를 키워 시간외 하락.",
+        "type": "cause-effect"
+      },
+      {
+        "text": "마이크로소프트: 스티펠이 등급/목표가를 크게 내리며 '애저의 단기 가속이 어렵다'는 논리를 제시.",
+        "type": "cause-effect"
+      }
+    ],
+    "secondary": [
+      {
+        "text": "알파벳은 2026년 자본 지출이 총 1,750억~1,850억 달러(예상치 1,195억 달러)에 이를 것으로 예상 이는 매출과 성장을 견인하는 AI 투자 및 인프라를 이유로 들었고 지출은 고객 수요를 충족하고 성장 기회를 포착하는 것을 목표로 한다고 밝혔습니다.",
+        "type": "supporting-fact"
+      },
+      {
+        "text": "2025년 4분기 실적 주당순이익(EPS) 2.82달러(예상치 2.64달러) 매출 1,138억 3,000만 달러(예상치 1,114억 8,000만 달러) 영업이익 359억 달러(예상치 368억 달러).",
+        "type": "quantitative"
+      },
+      {
+        "text": "구글 클라우드 매출 176억 6,000만 달러(예상치 162억 달러)로 2025년 마감 시 연간 환산 매출액이 700억 달러를 상회했습니다.",
+        "type": "quantitative"
+      },
+      {
+        "text": "연간 매출은 사상 처음으로 4,000억 달러를 돌파했으며 유튜브의 광고 및 구독 부문 연간 매출은 600억 달러를 넘어섰고 소비자 서비스 전반의 유료 구독자 수는 3억 2,500만 명을 돌파했습니다.",
+        "type": "quantitative"
+      },
+      {
+        "text": "제미나이 앱은 월간 활성 사용자 수 7억 5,000만 명을 돌파했으며 유료 제미나이 엔터프라이즈는 800만 개 이상 판매되었습니다. 또한 12월 제미나이 3 출시 이후 사용자당 참여도가 눈에 띄게 증가했습니다.",
+        "type": "quantitative"
+      },
+      {
+        "text": "웨이모는 완전 자율 주행 2,000만 회를 돌파했으며 현재 주당 40만 회 이상의 탑승 서비스를 제공하고 있으며 4분기에는 웨이모의 가치 평가와 관련하여 21억 달러의 주식 기반 보상 비용이 인식되었습니다.",
+        "type": "quantitative"
+      },
+      {
+        "text": "퀄컴 실적(2026년 1분기, USD) EPS:3.50(예상 3.40 상회) 매출:122.5억 (예상 121.6억 상회) → 사상 최고치 코멘트: 개인/산업/물리적 AI 전반에서 모멘텀 언급.",
+        "type": "quantitative"
+      },
+      {
+        "text": "퀄컴 가이던스(2026년 2분기, USD) EPS: 2.45 ~ 2.65 (예상 2.87 하회) 매출: 102억 ~ 110억 (예상 110.2억 하회)",
+        "type": "quantitative"
+      },
+      {
+        "text": "BofA: 투자의견 매수 → 중립 하향 목표주가:215 → 155달러 근거: 약한 핸드셋 시장 + 퀄컴 점유율 하락 전망: QCT 매출(2026FY) -1.5% 예상",
+        "type": "analyst-opinion"
+      },
+      {
+        "text": "Arm 실적(2026년 3분기, USD) EPS: 0.43 (예상 0.41 상회) 매출: 12.4억 (예상 12.3억 상회)",
+        "type": "quantitative"
+      },
+      {
+        "text": "Arm 핵심 수익 구조 포인트 로열티 수익: 7.37억 (+27% YoY) 라이선스/기타: 5.05억 (+25% YoY) 연간 계약 가치(ACV): 16.2억 (+28% YoY) 잔여 이행 의무(RPO): 21.5억 (-8% YoY)",
+        "type": "quantitative"
+      },
+      {
+        "text": "스티펠(Stifel) 투자의견: 매수 → 보유 하향 목표주가: 540 → 392달러 하향 근거(요지) 이미 알려진 Azure(애저) 공급 이슈 경쟁 환경: 구글 클라우드 + Gemini 강세, Anthropic 성장 모멘텀",
+        "type": "analyst-opinion"
+      },
+      {
+        "text": "스티펠 추정 2027FY EPS 18.70달러 모델링 컨센서스를 '상당히 하회'한다고 평가",
+        "type": "quantitative"
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "text": "알파벳 주가는 2026년 자본 지출이 예상보다 훨씬 높을 것으로 전망하면서 시간 외 거래에서 하락했습니다.",
+      "linked_claim": "primary_2",
+      "type": "qualitative",
+      "strength": "medium"
+    },
+    {
+      "text": "알파벳은 2026년 자본 지출이 총 1,750억~1,850억 달러(예상치 1,195억 달러)에 이를 것으로 예상",
+      "linked_claim": "primary_2",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "2025년 4분기 실적 주당순이익(EPS) 2.82달러(예상치 2.64달러) 매출 1,138억 3,000만 달러(예상치 1,114억 8,000만 달러) 영업이익 359억 달러(예상치 368억 달러).",
+      "linked_claim": "primary_1",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "연간 매출은 사상 처음으로 4,000억 달러를 돌파했으며 유튜브의 광고 및 구독 부문 연간 매출은 600억 달러를 넘어섰고 소비자 서비스 전반의 유료 구독자 수는 3억 2,500만 명을 돌파했습니다.",
+      "linked_claim": "primary_1",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "퀄컴: 실적은 좋았는데, “글로벌 메모리 부족 + 약한 단기 가이던스”가 더 크게 가격에 반영되며 시간외 하락.",
+      "linked_claim": "primary_3",
+      "type": "qualitative",
+      "strength": "medium"
+    },
+    {
+      "text": "퀄컴 실적 EPS:3.50(예상 3.40 상회) 매출:122.5억 (예상 121.6억 상회)",
+      "linked_claim": "primary_3",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "퀄컴 가이던스(2026년 2분기, USD) EPS: 2.45 ~ 2.65 (예상 2.87 하회) 매출: 102억 ~ 110억 (예상 110.2억 하회)",
+      "linked_claim": "primary_3",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "BofA: 투자의견 매수 → 중립 하향 목표주가:215 → 155달러 근거: 약한 핸드셋 시장 + 퀄컴 점유율 하락 전망: QCT 매출(2026FY) -1.5% 예상",
+      "linked_claim": "secondary_9",
+      "type": "qualitative",
+      "strength": "medium"
+    },
+    {
+      "text": "Arm: 로열티는 강했지만, 라이선스가 기대에 못 미치고(타이밍 이슈) + 퀄컴의 약한 전망이 스마트폰 노출 우려를 키워 시간외 하락.",
+      "linked_claim": "primary_4",
+      "type": "qualitative",
+      "strength": "medium"
+    },
+    {
+      "text": "Arm 실적 EPS: 0.43 (예상 0.41 상회) 매출: 12.4억 (예상 12.3억 상회)",
+      "linked_claim": "secondary_10",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "로열티 수익: 7.37억 (+27% YoY) 라이선스/기타: 5.05억 (+25% YoY) 연간 계약 가치(ACV): 16.2억 (+28% YoY) 잔여 이행 의무(RPO): 21.5억 (-8% YoY)",
+      "linked_claim": "secondary_11",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "마이크로소프트: 스티펠이 등급/목표가를 크게 내림. 투자의견: 매수 → 보유 하향 목표주가: 540 → 392달러 하향",
+      "linked_claim": "primary_5",
+      "type": "qualitative",
+      "strength": "medium"
+    },
+    {
+      "text": "스티펠 추정 2027FY EPS 18.70달러 모델링 컨센서스를 '상당히 하회'한다고 평가",
+      "linked_claim": "secondary_13",
+      "type": "quantitative",
+      "strength": "medium"
+    },
+    {
+      "text": "제미나이 앱은 월간 활성 사용자 수 7억 5,000만 명을 돌파했으며 유료 제미나이 엔터프라이즈는 800만 개 이상 판매되었습니다.",
+      "linked_claim": "secondary_5",
+      "type": "quantitative",
+      "strength": "strong"
+    },
+    {
+      "text": "웨이모는 완전 자율 주행 2,000만 회를 돌파했으며 현재 주당 40만 회 이상의 탑승 서비스를 제공하고 있으며 4분기에는 웨이모의 가치 평가와 관련하여 21억 달러의 주식 기반 보상 비용이 인식되었습니다.",
+      "linked_claim": "secondary_6",
+      "type": "quantitative",
+      "strength": "strong"
+    }
+  ],
+  "risks": [
+    {
+      "text": "투자자들이 알파벳의 대규모 AI 관련 자본 지출에 대해 투자 회수에 대한 우려를 다시 불러일으키는 점",
+      "type": "market risk"
+    },
+    {
+      "text": "퀄컴: 글로벌 메모리 부족으로 인한 단기 핸드셋 수요 제약 및 가이던스 리스크",
+      "type": "operational"
+    },
+    {
+      "text": "애저(Azure) 공급 병목이 단기적 문제인지 구조적 문제인지 불확실하여 클라우드 성장 재가속 불투명",
+      "type": "execution risk"
+    },
+    {
+      "text": "퀄컴 전망 약화가 스마트폰 로열티 성장률에 미칠 영향(Arm 로열티/라이선스 가시성에 대한 불확실성)",
+      "type": "market risk"
+    },
+    {
+      "text": "단기 가이던스와 애널리스트 목표 하향(예: BofA, Stifel)에 따른 주가 변동성",
+      "type": "market risk"
+    }
+  ],
+  "assumptions": [
+    {
+      "text": "투자자들이 높은 AI 관련 자본 지출을 단기적 비용 증대로 해석하고 주가에 부정적으로 반응할 것이라는 전제",
+      "type": "behavioral"
+    },
+    {
+      "text": "AI 투자 및 인프라 지출이 장기적으로 매출과 성장을 견인할 것이라는 전제",
+      "type": "market"
+    },
+    {
+      "text": "메모리 공급 제약이 향후 완화될 수 있다는 전제(퀄컴의 프리미엄 수요가 보완할 수 있음)",
+      "type": "market"
+    },
+    {
+      "text": "애저의 공급 병목(용량/칩/데이터센터)이 일시적인지 구조적인지에 따라 클라우드 성장 경로가 달라진다는 전제",
+      "type": "operational"
+    },
+    {
+      "text": "Arm의 로열티 수익은 구조적 우상향이며 라이선스는 분기별 타이밍 이슈로 변동성이 크다는 전제",
+      "type": "other"
+    }
+  ],
+  "classifications": {
+    "category": "issue",
+    "subcategories": [
+      "ai",
+      "semiconductor",
+      "cloud",
+      "earnings",
+      "company-report"
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "target_reader": "domain-interested-reader",
+      "reason": "다수의 분기 실적 수치, 애널리스트 코멘트, 가이던스 및 업계 공급망 이슈를 전문 용어로 제시하여 금융/산업 배경 지식이 있는 독자가 이해하기 적합함"
+    },
+    "regions": [],
+    "asset_classes": [
+      "equity"
+    ],
+    "main_entities": {
+      "companies": [
+        "Alphabet",
+        "Google",
+        "Waymo",
+        "Gemini",
+        "Qualcomm",
+        "Arm Holdings",
+        "Microsoft",
+        "Stifel",
+        "Bank of America",
+        "SoftBank",
+        "Anthropic"
+      ],
+      "persons": [],
+      "institutions": [
+        "Stifel",
+        "Bank of America",
+        "SoftBank"
+      ],
+      "countries": [],
+      "industries": [
+        "cloud",
+        "advertising",
+        "autonomous driving",
+        "semiconductor",
+        "AI"
+      ],
+      "products": [
+        "Google Cloud",
+        "Google Services",
+        "YouTube",
+        "Gemini",
+        "Gemini Enterprise",
+        "Gemini 3",
+        "Azure",
+        "QCT"
+      ],
+      "technologies": [
+        "AI",
+        "autonomous driving",
+        "data center"
+      ],
+      "indicators": [
+        "EPS",
+        "매출",
+        "영업이익",
+        "ACV",
+        "RPO"
+      ]
+    },
+    "numeric_data": [
+      {
+        "raw_text": "1,750억~1,850억 달러(예상치 1,195억 달러)",
+        "value_type": "amount",
+        "context": "알파벳 2026년 자본 지출 예상"
+      },
+      {
+        "raw_text": "2.82달러(예상치 2.64달러)",
+        "value_type": "amount",
+        "context": "알파벳 2025년 4분기 EPS"
+      },
+      {
+        "raw_text": "1,138억 3,000만 달러(예상치 1,114억 8,000만 달러)",
+        "value_type": "amount",
+        "context": "알파벳 2025년 4분기 매출"
+      },
+      {
+        "raw_text": "359억 달러(예상치 368억 달러)",
+        "value_type": "amount",
+        "context": "알파벳 2025년 4분기 영업이익"
+      },
+      {
+        "raw_text": "959억 달러(예상치 950억 달러)",
+        "value_type": "amount",
+        "context": "구글 서비스 매출"
+      },
+      {
+        "raw_text": "176억 6,000만 달러(예상치 162억 달러)",
+        "value_type": "amount",
+        "context": "구글 클라우드 매출 (분기)"
+      },
+      {
+        "raw_text": "822억 8,000만 달러(전년 동기 대비 724억 6,000만 달러)",
+        "value_type": "amount",
+        "context": "광고 매출(연간 비교 포함)"
+      },
+      {
+        "raw_text": "630억 7,000만 달러(전년 동기 대비 540억 3,000만 달러)",
+        "value_type": "amount",
+        "context": "검색 및 기타 매출"
+      },
+      {
+        "raw_text": "113억 8,000만 달러(전년 동기 대비 104억 7,000만 달러)",
+        "value_type": "amount",
+        "context": "유튜브 광고 매출"
+      },
+      {
+        "raw_text": "700억 달러",
+        "value_type": "amount",
+        "context": "구글 클라우드 연간 환산 매출액 상회"
+      },
+      {
+        "raw_text": "4,000억 달러",
+        "value_type": "amount",
+        "context": "알파벳 연간 매출(사상 최초 돌파)"
+      },
+      {
+        "raw_text": "600억 달러",
+        "value_type": "amount",
+        "context": "유튜브 광고 및 구독 연간 매출"
+      },
+      {
+        "raw_text": "3억 2,500만 명",
+        "value_type": "count",
+        "context": "소비자 서비스 전반의 유료 구독자 수"
+      },
+      {
+        "raw_text": "월간 활성 사용자 수 7억 5,000만 명",
+        "value_type": "count",
+        "context": "제미나이 앱 MAU"
+      },
+      {
+        "raw_text": "800만 개 이상",
+        "value_type": "count",
+        "context": "유료 제미나이 엔터프라이즈 판매량"
+      },
+      {
+        "raw_text": "2,000만 회",
+        "value_type": "count",
+        "context": "웨이모 완전 자율 주행 횟수"
+      },
+      {
+        "raw_text": "주당 40만 회 이상의 탑승 서비스를 제공하고 있으며",
+        "value_type": "rate",
+        "context": "웨이모 주당 탑승 서비스"
+      },
+      {
+        "raw_text": "21억 달러의 주식 기반 보상 비용",
+        "value_type": "amount",
+        "context": "웨이모 4분기 주식 기반 보상 비용"
+      },
+      {
+        "raw_text": "주당 0.21달러의 분기 배당",
+        "value_type": "amount",
+        "context": "알파벳 분기 배당"
+      },
+      {
+        "raw_text": "EPS:3.50(예상 3.40 상회)",
+        "value_type": "amount",
+        "context": "퀄컴 2026년 1분기 EPS"
+      },
+      {
+        "raw_text": "매출:122.5억 (예상 121.6억 상회)",
+        "value_type": "amount",
+        "context": "퀄컴 2026년 1분기 매출"
+      },
+      {
+        "raw_text": "EPS: 2.45 ~ 2.65 (예상 2.87 하회)",
+        "value_type": "forecast_range",
+        "context": "퀄컴 2026년 2분기 EPS 가이던스"
+      },
+      {
+        "raw_text": "매출: 102억 ~ 110억 (예상 110.2억 하회)",
+        "value_type": "forecast_range",
+        "context": "퀄컴 2026년 2분기 매출 가이던스"
+      },
+      {
+        "raw_text": "215 → 155달러",
+        "value_type": "amount",
+        "context": "BofA 목표주가 하향"
+      },
+      {
+        "raw_text": "QCT 매출(2026FY) -1.5%",
+        "value_type": "percentage",
+        "context": "BofA 전망 QCT 매출(2026FY)"
+      },
+      {
+        "raw_text": "EPS: 0.43 (예상 0.41 상회)",
+        "value_type": "amount",
+        "context": "Arm 2026년 3분기 EPS"
+      },
+      {
+        "raw_text": "매출: 12.4억 (예상 12.3억 상회)",
+        "value_type": "amount",
+        "context": "Arm 2026년 3분기 매출"
+      },
+      {
+        "raw_text": "로열티 수익: 7.37억 (+27% YoY)",
+        "value_type": "amount",
+        "context": "Arm 로열티 수익 및 YoY"
+      },
+      {
+        "raw_text": "라이선스/기타: 5.05억 (+25% YoY) (예상 5.2억 하회)",
+        "value_type": "amount",
+        "context": "Arm 라이선스/기타 수익"
+      },
+      {
+        "raw_text": "연간 계약 가치(ACV): 16.2억 (+28% YoY)",
+        "value_type": "amount",
+        "context": "Arm ACV"
+      },
+      {
+        "raw_text": "잔여 이행 의무(RPO): 21.5억 (-8% YoY)",
+        "value_type": "amount",
+        "context": "Arm RPO"
+      },
+      {
+        "raw_text": "약 31%가 12개월 내 인식 예상",
+        "value_type": "percentage",
+        "context": "Arm RPO 인식 비중"
+      },
+      {
+        "raw_text": "EPS: 0.54 ~ 0.62 (예상 0.56)",
+        "value_type": "forecast_range",
+        "context": "Arm 4분기 가이던스 EPS"
+      },
+      {
+        "raw_text": "매출: 14.2억 ~ 15.2억 (예상 14.4억)",
+        "value_type": "forecast_range",
+        "context": "Arm 4분기 가이던스 매출"
+      },
+      {
+        "raw_text": "540 → 392달러",
+        "value_type": "amount",
+        "context": "Stifel 목표주가 하향 (Microsoft)"
+      },
+      {
+        "raw_text": "2027FY EPS 18.70달러",
+        "value_type": "forecast",
+        "context": "Stifel 2027FY EPS 추정 (Microsoft)"
+      }
+    ],
+    "time_data": [
+      {
+        "raw_text": "2026년",
+        "time_type": "year",
+        "context": "알파벳 2026년 자본 지출 예상 등 여러 언급"
+      },
+      {
+        "raw_text": "2025년 4분기",
+        "time_type": "quarter",
+        "context": "알파벳 2025년 4분기 실적"
+      },
+      {
+        "raw_text": "2025년 마감 시",
+        "time_type": "relative_period",
+        "context": "구글 클라우드 연간 환산 매출액 관련"
+      },
+      {
+        "raw_text": "2026년 1분기",
+        "time_type": "quarter",
+        "context": "퀄컴 실적(2026년 1분기)"
+      },
+      {
+        "raw_text": "2026년 2분기",
+        "time_type": "quarter",
+        "context": "퀄컴 2026년 2분기 가이던스"
+      },
+      {
+        "raw_text": "2026년 3분기",
+        "time_type": "quarter",
+        "context": "Arm 실적(2026년 3분기)"
+      },
+      {
+        "raw_text": "2029 회계연도",
+        "time_type": "year",
+        "context": "퀄컴 2029 회계연도 매출 목표 언급"
+      },
+      {
+        "raw_text": "4분기",
+        "time_type": "quarter",
+        "context": "웨이모 및 Arm의 4분기 관련 언급"
+      },
+      {
+        "raw_text": "12월",
+        "time_type": "month",
+        "context": "제미나이 3 출시 시점"
+      },
+      {
+        "raw_text": "2027FY",
+        "time_type": "forecast_horizon",
+        "context": "Stifel의 2027FY EPS 추정 (Microsoft)"
+      },
+      {
+        "raw_text": "2026FY",
+        "time_type": "forecast_horizon",
+        "context": "Stifel 가이던스 비교 문맥"
+      }
+    ],
+    "confidence_note": null
+  }
+}
