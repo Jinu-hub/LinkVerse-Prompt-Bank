@@ -1,0 +1,10 @@
+{
+  "confidence_score": "Medium",
+  "confidence_reason": "The structured analysis contains multiple strong quantitative items (Alphabet’s capex range, record annual revenue, cloud and Gemini user metrics; Qualcomm’s beat and weaker guide; Arm’s revenue/royalty figures) that consistently support the core narrative that fundamentals were strong. However, the causal linkage that investor reaction (the so-called 'AI investment phobia') — rather than other contemporaneous factors — was the primary driver of after-hours declines relies on qualitative evidence and analyst interpretation, and rests on behavioral assumptions. Analyst notes about Azure supply issues and handset/memory dynamics are medium-strength supports, leaving some interpretive gaps.",
+  "insight_note": "The material suggests markets gave greater weight to near-term cost/guidance and supply risks tied to large AI-related investments than to headline record revenues. Short-term price sensitivity appears more associated with capital-spend signalling and guidance uncertainty than with the reported quarterly outperformance itself.",
+  "what_to_verify": [
+    "Direct attribution of immediate after-hours share price moves to the announced AI-related capex (e.g., intraday trading drivers vs other news)",
+    "Whether Azure supply constraints cited by analysts are temporary or structural (capacity, timeline, and specific bottlenecks)",
+    "Depth and duration of the memory-supply impact on handset demand and how that feeds into Qualcomm/Arm revenue trajectories"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "confidence_score": {
+      "type": "string",
+      "enum": ["High", "Medium", "Low"],
+      "description": "Overall calibrated confidence level"
+    },
+    "confidence_reason": {
+      "type": "string",
+      "description": "Rationale based on evidence strength, consistency, and assumptions"
+    },
+    "insight_note": {
+      "type": "string",
+      "description": "2-4 lines of calibrated expert-style interpretation"
+    },
+    "what_to_verify": {
+      "type": "array",
+      "description": "Concise points that require further verification",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["confidence_score", "confidence_reason", "insight_note", "what_to_verify"]
+}

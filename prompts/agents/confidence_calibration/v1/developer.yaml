@@ -1,0 +1,30 @@
+# Confidence Calibration agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/confidence_calibration/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Evaluate only internal consistency between summary and structured_analysis.
+  - Assign exactly one confidence_score from High, Medium, Low.
+  - confidence_reason must explain evidence strength, claim-evidence linkage, and assumption reliance.
+  - insight_note should provide calibrated pattern-level interpretation in 2 to 4 lines.
+  - what_to_verify should list 1 to 3 concise verification priorities.
+  - Keep interpretation conservative and non-speculative.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output keys must be exactly: confidence_score, confidence_reason, insight_note, what_to_verify.
+  - confidence_score values are case-sensitive: High, Medium, Low.
+  - what_to_verify must be an array of short strings.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not perform external verification or introduce outside knowledge.
+  - Do not add new numerical data.
+  - Do not rewrite the provided summary.
+  - Do not overstate certainty beyond supported evidence.
