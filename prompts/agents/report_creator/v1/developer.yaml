@@ -1,0 +1,28 @@
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Preserve analytical meaning exactly; do not add or remove claims.
+  - Follow source priority: summary > structured_analysis > confidence (tone only) > source_text (reference only).
+  - Treat confidence as tone calibration only; never expose confidence diagnostics in output.
+  - Build report flow in this order: core message -> what happened -> why it matters -> supporting evidence -> risks and constraints.
+  - Keep assumptions implicit as constraints/monitoring points; do not output an explicit assumptions section.
+  - Ensure `key_points` contains exactly 3 concise points grounded in input content.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output keys must be exactly: headline, deck, report_body, key_points, risk_note.
+  - `deck` should be 1-2 sentences.
+  - `report_body` should be natural prose in 3-6 paragraphs with no bullets.
+  - Keep quantitative values and units consistent with source text.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not use external knowledge or unstated market context.
+  - Do not overstate causality or present assumptions as facts.
+  - Do not quote or paraphrase confidence_reason directly.
+  - Do not use source_text to create new claims or new interpretations.

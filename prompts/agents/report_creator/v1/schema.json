@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "headline": {
+      "type": "string",
+      "description": "Report headline based on topic"
+    },
+    "deck": {
+      "type": "string",
+      "description": "1-2 sentence deck summarizing core tension"
+    },
+    "report_body": {
+      "type": "string",
+      "description": "Natural prose body with 3-6 paragraphs"
+    },
+    "key_points": {
+      "type": "array",
+      "description": "Exactly three concise key points",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "risk_note": {
+      "type": "string",
+      "description": "Risk and constraint monitoring note"
+    }
+  },
+  "required": [
+    "headline",
+    "deck",
+    "report_body",
+    "key_points",
+    "risk_note"
+  ],
+  "additionalProperties": false
+}
