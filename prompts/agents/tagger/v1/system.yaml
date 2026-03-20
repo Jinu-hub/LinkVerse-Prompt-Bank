@@ -48,12 +48,26 @@ LANGUAGE_RULES: |
 INPUT_CONTEXT: |
   The input may contain the following structured fields:
 
+  Required:
+  - input_date
   - topic
   - summary
-  - highlights
-  - items
-  - ending
   - classifications
+
+  Optional:
+  - highlights
+  - ending
+
+  Notes:
+  - If optional fields are missing, generate tags using required fields only.
+  - Do not assume or hallucinate missing optional content.
+
+  Reference list:
+  - topic
+  - summary
+  - classifications
+  - highlights
+  - ending
 
   The classifications field already contains:
 

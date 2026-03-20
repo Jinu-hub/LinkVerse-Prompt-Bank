@@ -14,7 +14,7 @@
 
 | contract | detail |
 |----------|--------|
-| input_contract.required_fields | topic, summary, highlights, items, ending; classifications recommended when available |
+| input_contract.required_fields | input_date, topic, summary, classifications |
 | output_contract.type | json |
 | model_hints.temperature | 0.3 |
 
@@ -26,14 +26,14 @@
 
 
 # INPUT_DATA
-| key | value |
-|-----|-------|
-| input_date | {{$json.input_date}} |
-| topic | {{$json.topic}} |
-| summary | {{$json.summary}} |
-| highlights | {{$json.highlights}} |
-| ending | {{$json.ending}} |
-| classifications | {{$json.classifications}} |
+| key | value | required |
+|-----|-------|----------|
+| input_date | {{$json.input_date}} | required |
+| topic | {{$json.topic}} | required |
+| summary | {{$json.summary}} | required |
+| highlights | {{$json.highlights}} | optional |
+| ending | {{$json.ending}} | optional |
+| classifications | {{$json.classifications}} | required |
 
 ## 변경 이력
 
