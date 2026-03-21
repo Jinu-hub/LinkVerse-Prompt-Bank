@@ -1,0 +1,20 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+# 복사 후 해당 에이전트의 schema·예시에 맞게 수정하세요.
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - [에이전트별 구현 규칙 추가]
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - [날짜·숫자 등 포맷 규칙]
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - [에이전트별 금지 사항]
