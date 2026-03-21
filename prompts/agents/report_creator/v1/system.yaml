@@ -154,20 +154,19 @@ REPORT_STRUCTURE_RULES
 --------------------------------------------------
 
 REPORT_STRUCTURE_RULES: |
-  The report must follow a natural narrative flow:
+  The report_body must be structured using the following section headers:
 
-  1. Core message (clear and immediate)
-  2. What happened (facts)
-  3. Why it matters (interpretation)
-  4. Supporting evidence (key data only)
-  5. Risks and constraints (separate from facts)
+  -### Core message
+  -### What happened
+  -### Why it matters
+  -### Risks and constraints
 
   Requirements:
-  - no repetition
-  - no bullet overload in body
-  - use short paragraphs
-  - maintain logical progression
-  - keep density high but readable
+  - All four sections must be included
+  - Supporting evidence must NOT be a separate section
+  - Relevant data and evidence should be integrated naturally into
+    What Happened and Why It Matters
+  - Maintain clarity and avoid redundancy
 
 --------------------------------------------------
 CONTENT_MAPPING_GUIDE
@@ -212,12 +211,12 @@ FIELD_RULES: |
   report_body:
   - 3–6 paragraphs
   - natural prose (no bullets)
-  - must include:
-    - what happened
-    - why it matters
-    - key supporting facts
-    - interpreted implications
-    - risk awareness
+  - must include four sections:
+    Core Message, What Happened, Why It Matters, Risks & Constraints
+  - supporting evidence must be embedded naturally in the narrative
+  - no separate supporting section allowed
+  - avoid excessive data listing
+  - focus on clarity and insight
 
   key_points:
   - exactly 3 items
