@@ -378,34 +378,49 @@ DIFFICULTY_POLICY: |
 --------------------------------------------------
 
 REGION_POLICY: |
-  Extract both countries and geographic regions mentioned or implied.
+  Extract geographic region labels only.
 
-  Countries examples:
-  - US
-  - CHINA
-  - JAPAN
-  - KOREA
-  - UK
-  - INDIA
-  - TAIWAN
-  - SINGAPORE
+  STRICT OUTPUT CONSTRAINTS:
 
-  Regions examples:
-  - GLOBAL
-  - APAC
-  - EMEA
-  - AMERICAS
-  - EUROPE
-  - ASIA
-  - LATAM
-  - MENA
-  - SEA
-  - ANZ
+  - classifications.regions MUST be selected ONLY from the allowed enum values below.
+  - Maximum 3 regions allowed.
+  - All values must be uppercase.
+  - Do NOT include country names under any condition.
+  - Countries must be stored only in main_entities.countries.
+  - If no valid region is identifiable, return ["UNKNOWN"].
 
-  Rules:
-  - If a specific country is mentioned, add it to countries.
-  - If a broader region is mentioned, add it to regions.
-  - Both may appear simultaneously.
+  ALLOWED REGION ENUM VALUES:
+
+  AFRICA
+  AMERICAS
+  ANZ
+  APAC
+  ASIA
+  BENELUX
+  CARIBBEAN
+  CEE
+  CENTRAL_AMERICA
+  CENTRAL_ASIA
+  DACH
+  EAST_ASIA
+  EASTERN_EUROPE
+  EMEA
+  EUROPE
+  GCC
+  GLOBAL
+  LATAM
+  MENA
+  MIDDLE_EAST
+  NORTH_AFRICA
+  NORTH_AMERICA
+  NORDICS
+  OCEANIA
+  SEA
+  SOUTH_ASIA
+  SUB_SAHARAN_AFRICA
+  UK_AND_IRELAND
+  WESTERN_EUROPE
+  UNKNOWN
 
 --------------------------------------------------
 

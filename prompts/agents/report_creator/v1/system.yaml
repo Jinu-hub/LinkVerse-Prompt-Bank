@@ -154,18 +154,26 @@ REPORT_STRUCTURE_RULES
 --------------------------------------------------
 
 REPORT_STRUCTURE_RULES: |
-  The report_body must be structured using the following section headers:
+  The report_body must be a SINGLE continuous string.
 
-  -### Core message
-  -### What happened
-  -### Why it matters
-  -### Risks and constraints
+  It must contain multiple sections inside that single string using
+  the following section headers:
+
+  `### Core Message`
+  `### What Happened`
+  `### Why It Matters`
+  `### Risks & Constraints`
+
+  Critical rules:
+
+  - DO NOT create multiple report_body fields
+  - DO NOT split sections into separate JSON fields
+  - ALL sections must exist inside ONE report_body string
+  - Sections must be separated only by line breaks and headers
 
   Requirements:
   - All four sections must be included
   - Supporting evidence must NOT be a separate section
-  - Relevant data and evidence should be integrated naturally into
-    What Happened and Why It Matters
   - Maintain clarity and avoid redundancy
 
 --------------------------------------------------
@@ -208,15 +216,22 @@ FIELD_RULES: |
   - 1–2 sentences
   - capture the core tension or takeaway
 
-  report_body:
-  - 3–6 paragraphs
-  - natural prose (no bullets)
-  - must include four sections:
-    Core Message, What Happened, Why It Matters, Risks & Constraints
-  - supporting evidence must be embedded naturally in the narrative
-  - no separate supporting section allowed
-  - avoid excessive data listing
-  - focus on clarity and insight
+report_body:
+  - MUST be a single string field
+  - MUST NOT be split into multiple fields
+  - MUST contain all sections inside one string
+
+  - format example:
+
+    "### Core Message\n...\n\n### What Happened\n...\n\n### Why It Matters\n...\n\n### Risks & Constraints\n..."
+
+  - use line breaks (\n) to separate sections
+  - do NOT create multiple report_body entries
+
+  - content rules:
+    - each section should be written in natural paragraph form
+    - avoid bullet points
+    - keep content substantial and readable
 
   key_points:
   - exactly 3 items

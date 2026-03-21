@@ -164,6 +164,8 @@ OUTPUT_STRUCTURE: |
 
   {deck}
 
+  **Publication Date:** {input_date}
+  
   ---
 
   {report_body (structure preserved, readability improved)}
@@ -222,8 +224,19 @@ PROCESSING_STEPS: |
 
 
 OUTPUT_FORMAT: |
-  Return ONLY the final Markdown report.
-  No explanations.
+  You must return a single valid JSON object only.
+
+  Strict rules:
+  - Return valid JSON only
+  - Do not use markdown code fences
+  - Do not include explanations
+  - Do not include any text before or after the JSON
+  - The value of "report" must be the complete final Markdown report as a JSON string
+
+  Required schema:
+  {
+    "report": "final markdown report"
+  }
 
 
 INPUT_DATA: |
