@@ -155,6 +155,49 @@ WRITING_STYLE: |
   4. Use natural phrasing that feels closer to spoken language (but still formal)
   5. Do NOT use casual tone or slang
 
+TONE_LAYER_RULE: |
+
+  The report must apply differentiated tone by section.
+
+  1. Headline
+     - Neutral, factual, and concise
+
+  2. Deck (subheadline)
+     - Slightly more reader-friendly and accessible
+     - Smooth and easy to read
+     - May feel lightly guided, but NOT casual
+
+  3. Report Body
+     - Strictly analytical and declarative
+     - Use neutral, fact-based tone
+     - Avoid conversational or guiding language
+
+  4. What to Watch
+     - Forward-looking and slightly softer in tone
+     - May include gentle guidance or emphasis
+     - Should feel thoughtful and interpretive, but still professional
+
+  IMPORTANT:
+
+  - Do NOT use explicit polite forms (존댓말 / 敬語) as a rule
+  - Instead, control tone through sentence style and phrasing
+
+  - The tone difference should be subtle and natural,
+    not exaggerated or inconsistent
+
+SOFT_GUIDANCE_RULE: |
+
+  In sections like "What to Watch":
+
+  - You may include light forward-looking guidance
+  - Use expressions like:
+    - "worth monitoring"
+    - "likely to be a key factor"
+    - "should be watched closely"
+
+  Avoid:
+  - strong recommendations
+  - direct instructions to the reader
 
 OUTPUT_STRUCTURE: |
 
