@@ -205,18 +205,44 @@ OUTPUT_REQUIREMENTS: |
     "risk_note": "string"
   }
 
+--------------------------------------------------
+HEADLINE_DATE_NORMALIZATION_RULE
+--------------------------------------------------
+
+HEADLINE_DATE_NORMALIZATION_RULE: |
+  When generating the headline, you MUST check whether a date expression is present.
+
+  If a date is present, you MUST normalize it using the following rules:
+
+  1. Convert the date into YYYY-MM-DD format
+  2. Move the date to the beginning of the headline
+  3. Remove unnecessary date decorations
+  4. Use format:
+     YYYY-MM-DD | [headline]
+  5. Do NOT duplicate or leave date elsewhere
+
+  If no date is present:
+  - keep the headline unchanged
+
+  The normalization must preserve the original meaning of the headline.
+
+--------------------------------------------------
+FIELD_RULES
+--------------------------------------------------
+
 FIELD_RULES: |
 
   headline:
   - based on topic
   - may refine wording slightly
   - must preserve meaning
+  - MUST apply HEADLINE_DATE_NORMALIZATION_RULE if a date is present
 
   deck:
   - 1–2 sentences
   - capture the core tension or takeaway
 
-report_body:
+  report_body:
   - MUST be a single string field
   - MUST NOT be split into multiple fields
   - MUST contain all sections inside one string
@@ -260,6 +286,8 @@ FINAL_CHECK: |
   - report is coherent and readable
   - JSON is valid
 
+--------------------------------------------------
+INPUT_DATA
 --------------------------------------------------
 
 INPUT_DATA: |
