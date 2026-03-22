@@ -388,6 +388,7 @@ REGION_POLICY: |
   - Do NOT include country names under any condition.
   - Countries must be stored only in main_entities.countries.
   - If no valid region is identifiable, return ["UNKNOWN"].
+  - Prefer broader regions (GLOBAL, APAC, EMEA, AMERICAS, EUROPE, ASIA) unless the text clearly specifies a more granular region.
 
   ALLOWED REGION ENUM VALUES:
 

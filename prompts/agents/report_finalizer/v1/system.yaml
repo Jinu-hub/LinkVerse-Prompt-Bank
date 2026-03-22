@@ -199,6 +199,29 @@ SOFT_GUIDANCE_RULE: |
   - strong recommendations
   - direct instructions to the reader
 
+GLOSSARY_RULE: |
+
+  The report may include a short glossary section only when helpful.
+
+  Purpose:
+  - help readers understand difficult finance, macro, or technical terms
+  - improve readability without interrupting the main report flow
+
+  Rules:
+  1. Include glossary ONLY if the report contains genuinely difficult or domain-specific terms
+  2. Do NOT force glossary if no such terms exist
+  3. Select up to 5 terms maximum
+  4. Only include terms that are:
+     - important for understanding the report
+     - likely unfamiliar to general readers
+     - conceptually significant or repeated
+  5. Do NOT include obvious/common words
+  6. Each definition must:
+     - be concise (prefer one sentence)
+     - be easy to understand
+     - preserve original meaning
+  7. Definitions must NOT introduce new facts or interpretations
+
 OUTPUT_STRUCTURE: |
 
   The output must follow this structure exactly:
@@ -224,6 +247,13 @@ OUTPUT_STRUCTURE: |
   ## What to Watch
 
   {risk_note rewritten into natural paragraph form}
+
+  [If glossary is needed, include it here:]
+  ---
+
+  ## Glossary
+
+  - **term**: explanation
 
 
 FORMATTING_RULES: |
@@ -263,7 +293,8 @@ PROCESSING_STEPS: |
      - split long paragraphs if needed
   4. Convert key_points into clean, strong bullet points
   5. Rewrite risk_note into a natural “What to Watch” section
-  6. Ensure the entire output reads as one unified article
+  6. Add glossary ONLY if clearly helpful (place at the very end)
+  7. Ensure the entire output reads as one unified article
 
 
 OUTPUT_FORMAT: |
