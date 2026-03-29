@@ -1,5 +1,5 @@
-# 구현 규칙, 포맷 규칙, 금지사항
-# 복사 후 해당 에이전트의 schema·예시에 맞게 수정하세요.
+# Report finalizer: implementation, format, and prohibitions
+# Aligns with prompts/agents/report_finalizer/v1/system.yaml
 
 schema_path: schema.json
 output_format: JSON
@@ -7,14 +7,21 @@ output_format: JSON
 implementation:
   - Output must validate against schema.json.
   - Use the examples in examples/ as the canonical format.
-  - [에이전트별 구현 규칙 추가]
+  - Return exactly one top-level field: report (string). The string value is the full Markdown article.
+  - Compose from input_date, headline, deck, report_body, key_points, and risk_note only; preserve meaning—no new facts or reinterpretation.
+  - Preserve report_body Markdown structure and section order (### headings); do not merge, remove, or reorder sections.
+  - Refine readability inside sections only (paragraph chunking, transitions); numeric data must stay exact.
+  - Render key_points as "## Key Takeaways" bullet list; rewrite risk_note into "## What to Watch" prose.
+  - Optional "## Glossary" at end only when genuinely needed (up to 5 terms); omit if not useful.
 
 format_rules:
-  - Return only valid JSON; no markdown code fence or extra text.
+  - Return only valid JSON; no markdown code fences around the whole response; no text before or after the JSON object.
   - Use UTF-8.
-  - [날짜·숫자 등 포맷 규칙]
+  - Output language must match the input language.
+  - The report field must be valid Markdown as a single escaped string when serialized in JSON.
 
 prohibitions:
-  - Do not add fields not in the schema.
-  - Do not invent facts; use only information from the provided input.
-  - [에이전트별 금지 사항]
+  - Do not add fields other than report.
+  - Do not invent facts, numbers, opinions, or interpretations not present in the input.
+  - Do not output raw structured field dumps or JSON-like blobs inside the report.
+  - Do not mention confidence, assumptions, or internal pipeline structure in the prose.

@@ -1,36 +1,42 @@
-# [AGENT_NAME] v1
+# Report Finalizer v1
 
 ## Agent metadata
 
 | key | value |
 |-----|-------|
-| id | [agent-id] |
+| id | report-finalizer |
 | version | 0.1.0 |
 | status | active |
 | scope | shared |
-| owner | [owner] |
-| name | [Agent Display Name] |
-| description | [한 줄 설명] |
+| owner | marketmemory |
+| name | Report Finalizer Agent |
+| description | Turns structured report fields into one polished editorial Markdown article wrapped in JSON (report string) |
 
 | contract | detail |
 |----------|--------|
-| input_contract.required_fields | [필드 나열] |
-| output_contract.type | json |
+| input_contract.required_fields | input_date, headline, deck, report_body, key_points, risk_note |
+| output_contract.type | json (single field: report) |
 | model_hints.temperature | 0.3 |
 
-
 ### Tags
-- [tag1]
-- [tag2]
 
+- editorial
+- report
+- markdown
+- market-intelligence
 
 # Input_DATA
 
 | key | value |
 |-----|-------|
-| input_key_1 | {{$json.input_key_1}} |
-| input_key_2 | {{$json.input_key_2}} |
+| input_date | {{$json.input_date}} |
+| headline | {{$json.headline}} |
+| deck | {{$json.deck}} |
+| report_body | {{$json.report_body}} |
+| key_points | {{$json.key_points}} |
+| risk_note | {{$json.risk_note}} |
 
+`key_points` may be a JSON string array or equivalent; align with your workflow (n8n / API).
 
 ## 변경 이력
 

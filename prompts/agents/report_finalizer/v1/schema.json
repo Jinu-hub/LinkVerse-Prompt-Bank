@@ -2,10 +2,11 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "result": {
+    "report": {
       "type": "string",
-      "description": "Placeholder: replace with your output fields"
+      "description": "Complete final Markdown report as a single JSON string (headline, deck, publication date, refined report_body, Key Takeaways, What to Watch, optional Glossary)"
     }
   },
-  "required": ["result"]
+  "required": ["report"],
+  "additionalProperties": false
 }
