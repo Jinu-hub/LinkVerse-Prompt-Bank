@@ -597,6 +597,7 @@ OUTPUT_SCHEMA: |
       "type": "string"
     }
   ],
+  "classifications": {
     "category": {
       "category": "string or null",
       "reason": "string or null",
