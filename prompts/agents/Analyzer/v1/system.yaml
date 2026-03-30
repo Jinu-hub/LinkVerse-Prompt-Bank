@@ -597,9 +597,11 @@ OUTPUT_SCHEMA: |
       "type": "string"
     }
   ],
-  "classifications": {
-    "category": "string or null",
-    "subcategories": ["string"],
+    "category": {
+      "category": "string or null",
+      "reason": "string or null",
+      "subcategories": ["string"],
+    },
     "difficulty": {
       "level": "string or null",
       "target_reader": "string or null",

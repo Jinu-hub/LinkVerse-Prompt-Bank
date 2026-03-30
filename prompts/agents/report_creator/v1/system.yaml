@@ -287,8 +287,6 @@ FINAL_CHECK: |
   - JSON is valid
 
 --------------------------------------------------
-INPUT_DATA
---------------------------------------------------
 
 INPUT_DATA: |
   reference agent_meta.md for input data
