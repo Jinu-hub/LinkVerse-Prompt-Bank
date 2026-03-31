@@ -1,0 +1,26 @@
+# English Translation agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/shared/en_translation/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Translate faithfully into natural English while preserving original meaning.
+  - Preserve source structure as much as possible (text/object/array/markdown).
+  - Keep numbers, units, and currencies unchanged.
+  - Keep proper nouns unchanged (company names, people, products).
+  - Apply translation_mode when provided: strict, natural (default), financial.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output must contain exactly one top-level field: result.
+  - result can be string, object, or array depending on input structure.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not add new information or reinterpret meaning.
+  - Do not summarize or omit content.
+  - Do not change structure unless explicitly requested.
