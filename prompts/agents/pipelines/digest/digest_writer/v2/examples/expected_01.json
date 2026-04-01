@@ -1,0 +1,71 @@
+
+{
+  "input_date": "2026-02-08",
+  "summary": "Around 2026-02-08 the AI landscape shows rapid scale-up in both capital and capability: major tech firms report massive AI investment plans while a wave of world models, real-time video tools, humanoid OS advances, and integrated AI assistants are arriving. Announcements range from multi-hundred-billion-dollar budgets to products that let users generate, explore, and edit 3D and video content in real time, and established tools like Acrobat and Chrome are embedding AI workflows. Together these developments point to accelerating commercialization of immersive AI experiences, deeper integration of AI into everyday software, and growing competition across infrastructure, creative, and robotics sectors.",
+  "highlights": [
+    {
+      "title": "Big Tech ramps AI investment in 2026",
+      "summary": "Leading technology companies announced very large AI investment plans for 2026, with reported commitments including Amazon $200 billion (+60% YoY), Google $180 billion (+97% YoY), Meta $125 billion (+73% YoY), Microsoft $117.5 billion (+41% YoY), Tesla $20 billion (+135% YoY), and Apple $13 billion (+2% YoY).",
+      "why_it_matters": "These headline-scale budgets signal an arms race in capital allocation toward AI infrastructure, models, and products that will accelerate deployment across cloud, devices, and services; the concentration of spending also reshapes competitive dynamics for startups, partners, and regulators."
+    },
+    {
+      "title": "Google's Genie3 brings real-time 3D world generation to users",
+      "summary": "Genie3 (available initially to Google AI Ultra subscribers in the U.S.) enables users to generate, explore, and remix 3D worlds in real time from text and images, with features such as sketching via Nano Banana, knowledge and reasoning from Gemini, persistent world memory, and realistic physical interactions reported in early impressions.",
+      "why_it_matters": "Genie3's combination of world generation, exploration, and sharing touches core gaming and virtual-world experiences and has already affected market sentiment in gaming-related stocks; it could spur new ecosystems for user-created immersive worlds and intensify competition between AI-driven world models and traditional game platforms."
+    },
+    {
+      "title": "Gemini assistant integrated into Chrome",
+      "summary": "Google integrated Gemini into Chrome, offering features like Auto Browse for multi-step web tasks, a side-panel assistant that runs tasks while keeping the main tab active, and tighter ecosystem and shopping integrations with partners such as Shopify, initially available to AI Pro and Ultra users in the U.S.",
+      "why_it_matters": "Embedding a capable AI assistant directly into the browser reduces the need for separate AI browsers or tools, changes how users interact with web workflows, and brings AI-driven automation and commerce features into everyday browsing."
+    }
+  ],
+  "items": [
+    {
+      "title": "NVIDIA unveils Earth-2 weather digital twin",
+      "summary": "Earth-2 is a digital-twin weather simulation that claims computational speeds 1,000× faster than supercomputers, offering nowcasting for local heavy rain or typhoons within six hours and medium-range forecasts up to 15 days, with some use reported in Israel and Taiwan and quality said to surpass Google’s GenCast."
+    },
+    {
+      "title": "Odyssey-2 Pro releases world-model API",
+      "summary": "Odyssey-2 Pro is a video-based world model emphasizing 4D (3D+time) simulation, streaming at 720p/22fps with improved causal learning, and it has published a world-model API aimed at enabling continuous, consistent simulation and suggesting business models like World-as-a-Service."
+    },
+    {
+      "title": "Figure updates Helix02 OS for humanoids",
+      "summary": "Helix02 advances Figure’s humanoid OS with long-horizon loco-manipulation, a new three-layer architecture including high-frequency System0 control (~1 kHz) for balance and smoother human-like motion, and enhanced fine manipulation via palm cameras and fingertip tactile sensors enabling precise finger-level tasks."
+    },
+    {
+      "title": "Decart launches Lucy 2.0 for near-real-time video generation",
+      "summary": "Lucy 2.0 generates and edits video with near-zero latency at 1080p/30fps, supporting scene restyling and character replacement while addressing video degradation over time to enable more immediate, live-style video workflows."
+    },
+    {
+      "title": "Adobe adds AI features to Acrobat",
+      "summary": "Adobe is expanding Acrobat into an AI-driven document platform that can generate podcast-style audio summaries, create pitch-deck presentations from PDFs with per-slide editing, and support prompt-based PDF editing to reposition Acrobat as a more comprehensive content tool."
+    }
+  ],
+  "more_items": [
+    {
+      "summary": "Reports suggest Google’s Nano Banana Flash 2 (based on Gemini 3 Flash) may offer Pro-level quality with higher speed and lower cost, potentially narrowing the gap with Nano Banana Pro."
+    },
+    {
+      "summary": "Kling 3.0 is in early access with notable video-quality improvements, adding multi-shot continuity, multi-camera angle generation, up to 15-second high-quality voice segments, and enhanced emotional expression."
+    },
+    {
+      "summary": "Tencent released 'The Script is All You Need,' a generative video AI agent framework that converts scripts into cinematic outputs via Scripter, Director, and Critic agents."
+    },
+    {
+      "summary": "Chinese humanoid maker Fourier showcased GR-3, which reportedly uses brain-computer interface signals to train humanoid movements, producing more realistic robot motion."
+    },
+    {
+      "summary": "Eleven Labs released The Eleven Album, a project where human artists contributed vocals while AI generated instrumental and performance parts, with 100% of revenue reportedly going to the artists."
+    },
+    {
+      "summary": "Perplexity introduced 'Model Council,' returning multiple model answers for a single query, currently available to Perplexity Max Plan subscribers at the stated $167 tier."
+    },
+    {
+      "summary": "Figma added a 'vectorize' feature that converts low-resolution images into vectors, with Boost Resolution -> Rasterize improving results and pairing well with background removal and object erase tools."
+    },
+    {
+      "summary": "MiniMax released Music 2.5, improving music-generation quality with added vocal emotional expression and more natural mixing shortly after its 2.0 release."
+    }
+  ],
+  "ending": "The snapshot around 2026-02-08 shows AI moving from isolated models to integrated ecosystems: huge corporate funding, real-time world and video generation, embedded assistants in core apps, and robotics advances are converging to reshape creative, infrastructure, and consumer experiences in the near term."
+}

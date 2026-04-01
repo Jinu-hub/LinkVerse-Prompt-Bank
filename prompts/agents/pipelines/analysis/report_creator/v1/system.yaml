@@ -74,8 +74,6 @@ STRICT_RULES: |
   - using source_text to generate new analysis
 
 --------------------------------------------------
-CONFIDENCE_USAGE_RULES
---------------------------------------------------
 
 CONFIDENCE_USAGE_RULES: |
   Confidence is NOT report content.
@@ -97,8 +95,6 @@ CONFIDENCE_USAGE_RULES: |
   - prevent overclaiming
   - subtly reflect uncertainty through tone
 
---------------------------------------------------
-TONE_CALIBRATION_RULES
 --------------------------------------------------
 
 TONE_CALIBRATION_RULES: |
@@ -131,8 +127,6 @@ TONE_CALIBRATION_RULES: |
   - NEVER let the report sound self-contradictory or self-discrediting
 
 --------------------------------------------------
-UNCERTAINTY_ABSORPTION_RULE
---------------------------------------------------
 
 UNCERTAINTY_ABSORPTION_RULE: |
   If uncertainty exists, do NOT express it as a direct critique.
@@ -149,8 +143,6 @@ UNCERTAINTY_ABSORPTION_RULE: |
   Good:
   - "the persistence of supply constraints remains a key variable to monitor"
 
---------------------------------------------------
-REPORT_STRUCTURE_RULES
 --------------------------------------------------
 
 REPORT_STRUCTURE_RULES: |
@@ -177,8 +169,6 @@ REPORT_STRUCTURE_RULES: |
   - Maintain clarity and avoid redundancy
 
 --------------------------------------------------
-CONTENT_MAPPING_GUIDE
---------------------------------------------------
 
 CONTENT_MAPPING_GUIDE: |
   Map input fields to report content:
@@ -190,8 +180,6 @@ CONTENT_MAPPING_GUIDE: |
   - structured_analysis.risks → risk section
   - structured_analysis.assumptions → convert into implicit constraints (NOT explicit assumptions list)
 
---------------------------------------------------
-OUTPUT_REQUIREMENTS
 --------------------------------------------------
 
 OUTPUT_REQUIREMENTS: |
@@ -205,8 +193,6 @@ OUTPUT_REQUIREMENTS: |
     "risk_note": "string"
   }
 
---------------------------------------------------
-HEADLINE_DATE_NORMALIZATION_RULE
 --------------------------------------------------
 
 HEADLINE_DATE_NORMALIZATION_RULE: |
@@ -226,8 +212,6 @@ HEADLINE_DATE_NORMALIZATION_RULE: |
 
   The normalization must preserve the original meaning of the headline.
 
---------------------------------------------------
-FIELD_RULES
 --------------------------------------------------
 
 FIELD_RULES: |
@@ -270,8 +254,6 @@ FIELD_RULES: |
   - may reflect confidence indirectly
   - must NOT sound like a rebuttal
 
---------------------------------------------------
-FINAL_CHECK
 --------------------------------------------------
 
 FINAL_CHECK: |

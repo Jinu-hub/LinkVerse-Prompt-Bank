@@ -1,0 +1,19 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Preserve the given grouping of highlights and items; do not re-rank or move items between groups.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8; date-time in ISO 8601 (e.g. input_date).
+  - Write summary, highlight copy, item briefs, and ending within the schema field constraints.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not re-rank highlights or items or change their grouping.
+  - Do not invent facts; use only information from the provided input.
+  - Do not treat this as a translation task unless explicitly required.
