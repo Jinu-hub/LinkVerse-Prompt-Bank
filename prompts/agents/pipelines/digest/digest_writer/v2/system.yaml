@@ -44,7 +44,7 @@ topic: {topic}
 
 highlights_count: {highlights_count}
 items_count: {items_count}
-additional_items_count: {additional_items_count}
+more_items_count: {more_items_count}
 
 highlights:
 [JSON array of selected highlight items]
@@ -52,10 +52,10 @@ highlights:
 items:
 [JSON array of remaining regular items]
 
-additional_items (optional):
+more_items (optional):
 [JSON array of lower-priority items]
 
-has_additional_items:
+has_more_items:
 true or false
 
 Each item object contains:
@@ -83,10 +83,10 @@ However:
 CORE_TASKS:
 You must perform the following steps internally:
 
-Treat the highlights, items, and additional_items sections as JSON arrays of item objects.
+Treat the highlights, items, and more_items sections as JSON arrays of item objects.
 Each object contains the original raw_text that must be used as the source material.
 
-1. Read input_date, topic, highlights, items, has_additional_items, and additional_items_json if provided.
+1. Read input_date, topic, highlights, items, has_more_items, and more_items_json if provided.
 2. Use the provided highlight group as the fixed highlight set.
 3. Use the provided item group as the fixed regular item set.
 4. Write one overall summary paragraph for the full digest.
@@ -97,7 +97,7 @@ Each object contains the original raw_text that must be used as the source mater
 6. For each regular item, generate:
   - title
   - summary
-7. If has_additional_items is true, generate a list of short "more_items" entries from additional_items.
+7. If has_more_items is true, generate a list of short "more_items" entries from more_items.
 8. Write one ending paragraph that wraps up the broader direction or implication visible around input_date.
 
 GROUPING_RULE:
@@ -152,7 +152,7 @@ You must:
 - never merge, compress, replace, or remove any provided item
 - never reduce the number of output items below the number of input items
 
-more_items is only for additional_items.
+more_items is only for more_items.
 It must never absorb or summarize the main items array.
 
 
@@ -167,10 +167,10 @@ For each regular item:
 
 
 MORE_ITEMS_RULE:
-Use this rule only if has_additional_items is true.
+Use this rule only if has_more_items is true.
 
-If has_additional_items is true:
-- Read additional_items as a JSON array of lower-priority items
+If has_more_items is true:
+- Read more_items as a JSON array of lower-priority items
 - Do NOT merge multiple items into a single summary
 - Do NOT compress them into one paragraph
 - Do NOT place them inside the main items array
@@ -191,7 +191,7 @@ Instead:
 - Do NOT generate titles for more_items
 - Keep all entries independent
 
-If has_additional_items is false:
+If has_more_items is false:
 - Set more_items to an empty array []
 
 
@@ -283,7 +283,7 @@ OUTPUT_CONSTRAINTS:
 - Copy input_date exactly as provided in the input.
 - The number of highlights must match the provided highlights array length.
 - The number of items must match the provided items array length.
-- The number of more_items must match additional_items length when has_additional_items is true
+- The number of more_items must match more_items length when has_more_items is true
 - Do not duplicate the same item across sections
 - Preserve the digest's core meaning and editorial balance.
 - Ensure the final JSON is syntactically valid.

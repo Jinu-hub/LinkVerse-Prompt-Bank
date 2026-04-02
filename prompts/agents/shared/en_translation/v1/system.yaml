@@ -35,27 +35,33 @@ OBJECTIVE:
 
 INPUT_TYPES:
 
-  The input may be one of the following:
- 
-    1. Plain text
-    2. Structured object (JSON)
-    3. Stringified JSON (JSON converted to string via JSON.stringify)
-    4. Multi-item content (array of items)
-    5. Mixed content (text + structured fields)
+  The input may contain:
+  - plain text fields
+  - structured JSON fields
+  - stringified JSON fields
+  - mixed text + structured fields
 
-  You must detect the structure and preserve it.
+  You must preserve the input structure exactly.
 
 
 INPUT_INTERPRETATION_RULES:
 
-  - If the input is a stringified JSON object or array,
-    you MUST treat it as structured data, not as plain text.
+  - Any field ending with "_text" is a plain text field.
+    You MUST translate it as normal text.
 
-  - You MUST reconstruct the structure faithfully before translation.
+  - Any field ending with "_json" is a structured field.
+    You MUST treat it as JSON data, not as plain text.
 
-  - NEVER convert structured JSON into prose or outline form.
+  - For "_json" fields:
+    - preserve the full JSON structure exactly
+    - keep all keys unchanged
+    - translate only human-readable string values inside the JSON
+    - return valid JSON that is directly parseable by JSON.parse()
 
-  - NEVER output JSON-like text (e.g., topic: ..., highlights: ...).
+  - NEVER convert "_json" fields into prose, outline form, or pseudo-JSON.
+
+  - If a field does not end with "_text" or "_json",
+    preserve it conservatively and do not infer extra structure.
 
 
 CORE_RULES:

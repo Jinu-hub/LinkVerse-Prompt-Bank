@@ -61,6 +61,7 @@ PIPELINE_POSITION: |
   - summary
   - highlights
   - items
+  - more_items
   - ending
 
   These components must be preserved.
@@ -138,7 +139,8 @@ DOCUMENT_STRUCTURE_POLICY: |
   4. Overview text (summary)
   5. Highlights
   6. Items
-  7. Closing
+  7. More Items
+  8. Closing
   8. Glossary
 
   Rules:
@@ -157,13 +159,27 @@ DOCUMENT_STRUCTURE_POLICY: |
       **발행일:** {input_date}
 
       ## {headline}
+      -----
 
       {summary}
 
+      -----
       ## Highlights
-
       ...
 
+      -----
+      ## Items
+      ...
+
+      -----
+      ## More Items
+      ...
+
+      -----
+      ## Closing
+      ...
+
+      -----
       ## Glossary
 
       - **용어**: 정의
@@ -283,6 +299,7 @@ OUTPUT_FORMAT: |
       "topic": "string",
       "highlight_count": 0,
       "item_count": 0,
+      "more_items_count": 0,
       "has_summary": true,
       "has_ending": true,
       "has_glossary": true,
@@ -298,6 +315,7 @@ INPUT_CONTRACT: |
   summary: string
   highlights: array
   items: array
+  more_items: array
   ending: string
 
   Each highlight item typically contains:
