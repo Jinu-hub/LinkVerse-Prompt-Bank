@@ -100,15 +100,6 @@ TAG_TYPES:
 
   Each tag must include an **importance score from 0 to 1**.
 
-  Example:
-
-  - Google
-  - Nvidia
-  - robotics
-  - AI
-  - cloud
-  - US
-
 SOFT_TAGS (Interpretive)
   These represent higher-level themes inferred from the digest.
 
@@ -121,26 +112,8 @@ SOFT_TAGS (Interpretive)
 
   Each tag must include an **importance score from 0 to 1**.
 
-  Example soft tags:
-
-  themes:
-    - AI infrastructure race
-    - real-time AI systems
-    - world models
-    - AI platformization
-
-  market_phase:
-    - big tech capex expansion
-    - AI competition escalation
-
-  strategy_type:
-    - platform expansion
-    - ecosystem lock-in
-    - model capability race
-
-  sentiment:
-    - innovation acceleration
-    - competitive pressure
+  🔧 Soft tags should prioritize discoverability, but only when strongly supported by the digest.
+  🔧 Do not optimize for coverage at the cost of precision.
 
 CORE_TAG_EXTRACTION: |
 
@@ -173,15 +146,20 @@ CORE_TAG_EXTRACTION: |
   - remain in English
   - not repeat the main tag
 
+  🔧 Core tags must be selected ONLY from existing hard_tags or soft_tags.
+  🔧 Do NOT create new tags during core tag extraction.
+
 STRICT_RULES: |
 
   Hard tags must be grounded in the text or classifications.
 
-  Soft tags must be supported by multiple signals in the digest.
+  🔧 Soft tags must be supported by at least 2 independent signals from the input.
 
   Do NOT generate speculative trends.
 
   Do NOT create tags that are not clearly related to the content.
+
+  🔧 If evidence is weak, omit the tag instead of guessing.
 
 OUTPUT_FORMAT: |
   Return JSON with exactly three fields:
@@ -191,6 +169,18 @@ OUTPUT_FORMAT: |
     "soft_tags": {},
     "core_tags": []
   }
+
+🔧 OUTPUT_HARD_CONSTRAINTS: |
+
+  Return ONLY valid JSON.
+  Do not wrap JSON in markdown fences.
+  Do not return explanations, comments, or trailing text.
+
+  Every score MUST be a JSON number.
+  Valid: 0.8, 0.95
+  Invalid: "0.9", 0. nine, high
+
+  If uncertain, omit the tag instead of producing invalid output.
 
 OUTPUT_SCHEMA:
 
@@ -241,6 +231,9 @@ QUALITY_RULES: |
   - Keep company names in original form
   - All tags must be written in English
 
+  🔧 Use compact search-style tags.
+  🔧 Prefer 1–2 words, but allow short hyphenated forms when clearer.
+
   Tag formatting rules (apply to all tags):
 
   - Use short tags only (1–2 words)
@@ -248,22 +241,32 @@ QUALITY_RULES: |
   - Prefer hyphenated forms when needed
   - Tags should look like search keywords
 
-  Examples:
-
-  good:
-  - ai
-  - world-model
-  - browser-ai
-  - ai-investment
-  - robotics
-
-  bad:
-  - large-scale AI investment
-  - AI infrastructure race in big tech
-  - real time content generation technology
-
   Hard tags should prioritize precision.
   Soft tags should prioritize discoverability.
+
+🔧 TAG_EXCLUSION_RULES: |
+
+  Exclude weak or unstable tags.
+
+  Do NOT use:
+  - one-off product names unless clearly central
+  - slogans or marketing phrases
+  - vague abbreviations without strong context
+  - generic feature descriptions
+  - tags that appear only once without importance
+
+  Prefer stable, reusable search tags.
+
+🔧 SCORING_RULES: |
+
+  Scores represent importance within this digest.
+
+  - 0.90–1.00 → core / central
+  - 0.75–0.89 → important
+  - 0.60–0.74 → secondary
+  - below 0.60 → use sparingly
+
+  Avoid giving too many tags very high scores.
 
 INPUT_DATA: |
   reference user_template.md for input data
