@@ -1,11 +1,11 @@
-# report_creator v1
+# analysis_creator v1
 
 ## Agent metadata
 
 | key | value |
 |-----|-------|
-| id | report_creator |
-| version | 0.1.0 |
+| id | analysis_creator |
+| version | 1.0 |
 | status | active |
 | scope | shared |
 | owner | linkverse |

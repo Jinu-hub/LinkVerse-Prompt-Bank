@@ -38,7 +38,6 @@ INPUT_FIELDS: |
   - structured_analysis
   - summary
   - confidence
-  - source_lang 
   - source_text (optional)
 
 SOURCE_PRIORITY_RULES: |

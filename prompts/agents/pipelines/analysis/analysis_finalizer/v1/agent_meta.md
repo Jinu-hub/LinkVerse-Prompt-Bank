@@ -1,11 +1,11 @@
-# Report Finalizer v1
+# Analysis Finalizer v1
 
 ## Agent metadata
 
 | key | value |
 |-----|-------|
-| id | report-finalizer |
-| version | 0.1.0 |
+| id | analysis-finalizer |
+| version | 1.0 |
 | status | active |
 | scope | shared |
 | owner | marketmemory |
