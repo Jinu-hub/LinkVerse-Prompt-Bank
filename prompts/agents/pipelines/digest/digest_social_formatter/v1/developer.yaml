@@ -1,0 +1,22 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - The top-level JSON object must contain only the field `output` (string).
+  - The `output` string is plain SNS-ready text: strip Markdown syntax (headings, bold, list markers, etc.) while preserving meaning and section order.
+  - Apply visual hierarchy: box header (━), dashed section lines (---), emojis per section (e.g. 📍 Highlights, ✅ Items, • More Items, 📘 Glossary) as specified in system.yaml.
+  - Keep paragraphs short (about 2–4 lines); add line breaks between sections for mobile scanability.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or prose outside the JSON object.
+  - Use UTF-8.
+  - Do not nest another JSON object inside `output`; the value must be the final formatted text only (literal newlines as `\n` in JSON strings).
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not change meaning, add information, or remove key content; do not summarize whole sections away.
+  - Do not re-order sections (Header, Intro, Highlights, Items, More Items, Closing, Glossary).
+  - Do not use casual slang; tone stays clean and professional.
