@@ -67,6 +67,15 @@ BLOCK_TYPES: |
   - list
   - heading
 
+CLEAN_TEXT_RULES: |
+  clean_text must include every block from block_structure
+  in original order, including heading, paragraph, quote, table, caption, and list.
+
+GLOSSARY_DETECTION_RULE: |
+  If a section starts with keywords like "용어 설명", "용어 정리", "Glossary", "Terms", "用語説明", "用語集" classify it as glossary.
+  If text shows repeated pattern of short term followed by explanatory sentence(s), group it as glossary.
+  This section must be separated from main content and preserved without modification.
+
 OUTPUT_SCHEMA: |
   Output ONLY valid JSON.
 
@@ -80,6 +89,13 @@ OUTPUT_SCHEMA: |
         "index": number,
         "type": "paragraph | table | caption | quote | list | heading",
         "text": "string"
+      }
+    ],
+
+    "glossary": [
+      {
+        "term": "string",
+        "definition": "string"
       }
     ],
 

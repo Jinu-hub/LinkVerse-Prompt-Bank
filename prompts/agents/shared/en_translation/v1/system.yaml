@@ -11,6 +11,7 @@ OBJECTIVE:
 Translate the input content into clean, natural English.
 
 The output must:
+- Do not include original-language text in parentheses anywhere in the output.
 - preserve all original information
 - maintain the original structure as much as possible
 - be suitable for downstream AI processing

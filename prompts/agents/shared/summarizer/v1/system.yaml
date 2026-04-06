@@ -143,8 +143,8 @@ CLAIM SELECTION RULES: |
 
 STYLE RULES: |
   - Output language must match the language specified in INPUT_DATA.output_language.
-  - Default to Korean if output_language is missing.
-  - Use natural editorial Korean if the output is Korean.
+  - Default to English if output_language is missing.
+  - Use natural editorial English if the output is English.
   - Avoid awkward literal translation tone.
   - Prefer readable business/newsletter style.
   - No markdown code fences in output.
