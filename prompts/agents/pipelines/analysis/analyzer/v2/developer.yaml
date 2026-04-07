@@ -1,0 +1,33 @@
+# Analyzer agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/Analyzer/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Perform structural decomposition first: claims (primary/secondary), evidence (linked), risks, assumptions.
+  - Classification and metadata extraction must happen after structural decomposition.
+  - Produce exactly one digest-level classifications object.
+  - linked_claim in evidence must use index format only: primary_1, primary_2, ... / secondary_1, secondary_2, ...
+  - Keep extracted numeric and time expressions exactly as written in the source text.
+  - If a claim has no explicit supporting evidence, still include the claim and add evidence with text as null and strength as weak.
+  - Limit risks and assumptions to high-signal items only (up to 5 each).
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - input_date and topic must be preserved from input without rewriting.
+  - Include all required top-level fields: input_date, topic, claims, evidence, risks, assumptions, classifications.
+  - claims must include both primary and secondary arrays (empty arrays allowed when truly absent).
+  - classifications.main_entities must include all eight keys; use empty arrays when none apply.
+  - classifications.confidence_note may be null when classification is sufficiently clear.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not rewrite, summarize, or translate the digest.
+  - Do not paraphrase extracted numbers/time expressions or convert currencies/units.
+  - Do not output per-item classifications; only one digest-level category/subcategory set is allowed.
+  - Do not create unsupported risk/assumption labels; follow only allowed types from system policy.

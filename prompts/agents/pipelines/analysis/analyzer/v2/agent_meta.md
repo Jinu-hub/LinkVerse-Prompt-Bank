@@ -5,7 +5,7 @@
 | key | value |
 |-----|-------|
 | id | analyzer |
-| version | 1.0 |
+| version | 2.0 |
 | status | active |
 | scope | shared |
 | owner | marketmemory |
@@ -38,6 +38,4 @@
 
 ## 변경 이력
 
-- **왜 수정했는지**: (수정 시 여기에 기록)
-- **어떤 문제가 있었는지**: (이슈 발생 시 기록)
-- **어떤 예시에서 실패했는지**: (실패한 input/expected 있으면 기록)
+- **왜 수정했는지**: classifications를 분리
