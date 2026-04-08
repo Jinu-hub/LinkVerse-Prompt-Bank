@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnalysisSocialFormatterOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "sns_report": {
+      "type": "string",
+      "minLength": 1,
+      "description": "SNS-ready plain text market analysis report. Must be fully human-readable text, not nested JSON, and follow the structure constraints defined in system.yaml."
+    }
+  },
+  "required": ["sns_report"]
+}

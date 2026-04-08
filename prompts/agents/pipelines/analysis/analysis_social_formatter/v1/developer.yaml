@@ -1,0 +1,28 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - The top-level JSON object must contain only the field `sns_report` (string).
+  - The `sns_report` value must be plain SNS-ready text, not nested JSON.
+  - Preserve key facts and causal interpretation while compressing wording for readability.
+  - Follow the text structure in system.yaml:
+    header, publication date, context summary, key takeaways, market update, risks/watchpoints, glossary.
+  - Keep mobile readability high: short paragraphs (about 1–2 sentences per point), clear section breaks, and natural sentence flow.
+  - Enforce language with `output_lang`; all section titles and content must be in that language.
+  - Avoid semicolons; use periods or commas for natural flow.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or prose outside the JSON object.
+  - Use UTF-8.
+  - Do not nest another JSON object inside `sns_report`; the value must be the final formatted text only (literal newlines as `\n` in JSON strings).
+  - JSON must contain exactly one key: `sns_report`.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts, assumptions, or speculative claims not present in the input.
+  - Do not drop critical numerical data, historical comparisons, or market interpretation.
+  - Do not expose analytical labels/scaffolding such as "fact", "meaning", "implication", "conclusion".
+  - Do not output markdown or key-value structured report blocks inside `sns_report`.
