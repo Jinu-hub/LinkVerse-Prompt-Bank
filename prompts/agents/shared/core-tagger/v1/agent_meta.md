@@ -4,8 +4,8 @@
 
 | key | value |
 |-----|-------|
-| id | tagger |
-| version | 0.1.0 |
+| id | core-tagger |
+| version | 1.0 |
 | status | active |
 | scope | shared |
 | owner | marketmemory |

@@ -4,8 +4,8 @@
 
 | key | value |
 |-----|-------|
-| id | bundle_extractor |
-| version | 0.1.0 |
+| id | core-bundle-extractor |
+| version | 1.0 |
 | status | active |
 | scope | shared |
 | owner | marketmemory |
