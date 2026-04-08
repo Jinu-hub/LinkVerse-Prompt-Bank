@@ -4,7 +4,7 @@
 
 | key | value |
 |-----|-------|
-| id | analysis_creator |
+| id | analysis-report-creator |
 | version | 1.0 |
 | status | active |
 | scope | shared |
@@ -35,7 +35,7 @@
 | structured_analysis | {{$json.structured_analysis}} | required |
 | summary | {{$json.summary}} | required |
 | confidence | {{$json.confidence}} | required |
-| source_lang | {{$json.source_lang}} | required |
+| output_lang | {{$json.output_lang}} | required |
 | source_text | {{$json.source_text}} | optional |
 
 

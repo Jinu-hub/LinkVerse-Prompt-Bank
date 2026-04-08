@@ -4,7 +4,7 @@
 
 | key | value |
 |-----|-------|
-| id | analysis-finalizer |
+| id | analysis-report-finalizer |
 | version | 1.0 |
 | status | active |
 | scope | shared |
