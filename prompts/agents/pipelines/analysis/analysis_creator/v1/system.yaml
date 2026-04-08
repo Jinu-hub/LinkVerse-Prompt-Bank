@@ -38,6 +38,7 @@ INPUT_FIELDS: |
   - structured_analysis
   - summary
   - confidence
+  - output_lang
   - source_text (optional)
 
 SOURCE_PRIORITY_RULES: |
@@ -71,6 +72,7 @@ STRICT_RULES: |
   - overstating causality
   - presenting assumptions as facts
   - using source_text to generate new analysis
+  - DO NOT invent or assume missing date components
 
 --------------------------------------------------
 
@@ -179,6 +181,22 @@ CONTENT_MAPPING_GUIDE: |
   - structured_analysis.risks → risk section
   - structured_analysis.assumptions → convert into implicit constraints (NOT explicit assumptions list)
 
+OUTPUT_LANGUAGE_RULE: |
+  You MUST generate the entire output in the language specified by output_lang.
+
+  If output_lang is English:
+  - write as a professional native English financial editor
+
+  If output_lang is not English:
+  - write as if originally written in the target language
+  - do NOT preserve English sentence structure
+  - prioritize natural native phrasing
+
+  Critical:
+  - preserve meaning exactly
+  - do not introduce new claims
+  - do not alter evidence hierarchy or risk framing
+
 --------------------------------------------------
 
 OUTPUT_REQUIREMENTS: |
@@ -198,6 +216,18 @@ HEADLINE_DATE_NORMALIZATION_RULE: |
   When generating the headline, you MUST check whether a date expression is present.
 
   If a date is present, you MUST normalize it using the following rules:
+
+  IMPORTANT:
+  - Only normalize if an EXPLICIT full or partial date is present
+    (e.g., "2024-06-01", "June 2024", "Mar 5")
+
+  - DO NOT normalize:
+    - standalone years (e.g., "1990")
+    - historical references (e.g., "1990 Gulf War")
+    - vague time expressions
+
+  - If only a year is present:
+    → keep it as-is
 
   1. Convert the date into YYYY-MM-DD format
   2. Move the date to the beginning of the headline
