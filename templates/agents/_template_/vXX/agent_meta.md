@@ -5,7 +5,7 @@
 | key | value |
 |-----|-------|
 | id | [agent-id] |
-| version | 0.1.0 |
+| version | 1.0 |
 | status | active |
 | scope | shared |
 | owner | [owner] |

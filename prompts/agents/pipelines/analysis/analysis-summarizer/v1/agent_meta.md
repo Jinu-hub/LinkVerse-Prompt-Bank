@@ -4,8 +4,8 @@
 
 | key | value |
 |-----|-------|
-| id | summarizer |
-| version | 0.1.0 |
+| id | analysis-summarizer |
+| version | 1.0 |
 | status | active |
 | scope | shared |
 | owner | marketmemory |
