@@ -1,0 +1,26 @@
+{
+  "core_thesis_block": "Amazon's Trainium3 reveal is not a simple product launch; it signals the end of NVIDIA's solo dominance and the arrival of big tech building proprietary semiconductor ecosystems. Hyperscalers are abandoning general-purpose GPUs for purpose-built ASICs to cut TCO and reclaim efficiency. The real money will flow to the 'shadow' partners — design/IP firms, connectivity providers, and power/cooling specialists — who supply the weapons, networks, and energy that make these in-house chips viable. As projects like Amazon's 'Project Rainier' scale, those supply-chain gatekeepers will convert hyperscaler budgets into mechanical, recurring revenue streams.",
+  "supporting_points": [
+    "NVIDIA's GPUs are powerful but inefficient for specific workloads, driving hyperscalers to build custom ASICs to improve cost and efficiency.",
+    "Big tech will not go it alone; they rely on external partners for design/IP, interconnectivity, and thermal/power solutions.",
+    "Design/IP firms, connectivity specialists, and cooling/power vendors win regardless of which hyperscaler chip architecture prevails.",
+    "Large-scale deployments (e.g., Project Rainier) mechanically generate steady revenue for these supply-chain companies."
+  ],
+  "signature_framing": [
+    "Trainium3 is not a simple product launch",
+    "the end of NVIDIA's reign",
+    "'shadow' companies",
+    "arms dealers",
+    "The Architects",
+    "The Veins",
+    "The Energy",
+    "Project Rainier",
+    "Smart money buys the blueprint",
+    "the money game"
+  ],
+  "tone": [
+    "investment-oriented"
+  ],
+  "positioning": "Guides the reader to view the market as an infrastructure and supply-chain opportunity—prioritizing vendors that enable hyperscalers' custom chips over the hyperscalers themselves or a single chip incumbent.",
+  "hook_strength": "high"
+}

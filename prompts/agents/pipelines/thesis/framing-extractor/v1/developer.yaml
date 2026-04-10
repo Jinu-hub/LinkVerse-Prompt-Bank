@@ -1,0 +1,31 @@
+# Framing Extractor agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/pipelines/thesis/framing-extractor/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Preserve the original meaning and framing intent without scope expansion.
+  - core_thesis_block must be a concise, strong English opening of 3-5 sentences.
+  - Extract 2-5 embedded supporting ideas into supporting_points with no repetition.
+  - signature_framing must capture source-native memorable phrases or concepts only.
+  - tone must use allowed labels from schema and reflect narrative stance faithfully.
+  - positioning should explain the interpretation lens imposed on the reader.
+  - hook_strength should evaluate opening-anchor strength as high, medium, or low.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output must be in English only.
+  - Do not include fields beyond the schema.
+  - Keep language sharp, assertive, and report-opening ready.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not introduce new ideas, entities, companies, or arguments.
+  - Do not dilute tone into generic neutral language.
+  - Do not over-explain, summarize broadly, or expand beyond input scope.
+  - Do not fabricate signature phrases not grounded in the source text.

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "core_thesis_block": {
+      "type": "string",
+      "description": "Refined 3-5 sentence core thesis opening block in English"
+    },
+    "supporting_points": {
+      "type": "array",
+      "description": "Key supporting ideas embedded in the input introduction",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "string"
+      }
+    },
+    "signature_framing": {
+      "type": "array",
+      "description": "Memorable framing phrases or rhetorical anchors from the source",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tone": {
+      "type": "array",
+      "description": "Tone labels selected from allowed values",
+      "items": {
+        "type": "string",
+        "enum": [
+          "assertive",
+          "strategic",
+          "provocative",
+          "analytical",
+          "investment-oriented"
+        ]
+      }
+    },
+    "positioning": {
+      "type": "string",
+      "description": "How the reader is guided to interpret the market"
+    },
+    "hook_strength": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "Opening-hook strength as an attention anchor"
+    }
+  },
+  "required": [
+    "core_thesis_block",
+    "supporting_points",
+    "signature_framing",
+    "tone",
+    "positioning",
+    "hook_strength"
+  ]
+}
