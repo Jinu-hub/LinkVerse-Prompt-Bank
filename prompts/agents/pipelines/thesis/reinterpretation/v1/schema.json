@@ -1,0 +1,218 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ThesisReinterpretationOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "core_message": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_thesis": { "type": "string" },
+        "secondary_messages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reader_implication": { "type": "string" }
+      },
+      "required": ["primary_thesis", "secondary_messages", "reader_implication"]
+    },
+    "signature_framing": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "narrative_map": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "opening_frame": { "type": "string" },
+        "problem_definition": { "type": "string" },
+        "structural_shift": { "type": "string" },
+        "why_now": { "type": "string" },
+        "development_flow": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "closing_logic": { "type": "string" }
+      },
+      "required": [
+        "opening_frame",
+        "problem_definition",
+        "structural_shift",
+        "why_now",
+        "development_flow",
+        "closing_logic"
+      ]
+    },
+    "hierarchical_structure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "theme": { "type": "string" },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "companies": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["name", "companies"]
+          }
+        }
+      },
+      "required": ["theme", "sectors"]
+    },
+    "company_mapping": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "company": { "type": "string" },
+          "sector": { "type": "string" },
+          "role": { "type": "string" },
+          "value_driver": { "type": "string" },
+          "dependency_type": {
+            "type": "string",
+            "enum": ["direct", "indirect", "platform"]
+          },
+          "beta_type": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          }
+        },
+        "required": [
+          "company",
+          "sector",
+          "role",
+          "value_driver",
+          "dependency_type",
+          "beta_type"
+        ]
+      }
+    },
+    "case_studies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "strategic_role": { "type": "string" },
+          "linked_sectors": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "linked_companies": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "value_flow": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "strategic_role",
+          "linked_sectors",
+          "linked_companies",
+          "value_flow"
+        ]
+      }
+    },
+    "section_roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "section": { "type": "string" },
+          "role": { "type": "string" },
+          "core_function": { "type": "string" },
+          "importance": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "edit_guidance": {
+            "type": "string",
+            "enum": ["must_keep", "compress", "merge", "optional"]
+          }
+        },
+        "required": ["section", "role", "core_function", "importance", "edit_guidance"]
+      }
+    },
+    "rewrite_critical_takeaways": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "compression_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "must_keep": { "type": "array", "items": { "type": "string" } },
+        "compress": { "type": "array", "items": { "type": "string" } },
+        "merge": { "type": "array", "items": { "type": "string" } },
+        "optional": { "type": "array", "items": { "type": "string" } },
+        "repetition_notes": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["must_keep", "compress", "merge", "optional", "repetition_notes"]
+    },
+    "readability_notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "density_issues": { "type": "array", "items": { "type": "string" } },
+        "structure_improvements": { "type": "array", "items": { "type": "string" } },
+        "scannability_improvements": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["density_issues", "structure_improvements", "scannability_improvements"]
+    },
+    "tone_and_positioning": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tone": { "type": "array", "items": { "type": "string" } },
+        "target_reader_level": { "type": "string" },
+        "preserve_in_rewrite": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["tone", "target_reader_level", "preserve_in_rewrite"]
+    },
+    "action_framework": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "what_to_avoid": { "type": "array", "items": { "type": "string" } },
+        "what_to_focus": { "type": "array", "items": { "type": "string" } },
+        "selection_criteria": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["what_to_avoid", "what_to_focus", "selection_criteria"]
+    },
+    "risk_points": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": [
+    "core_message",
+    "signature_framing",
+    "narrative_map",
+    "hierarchical_structure",
+    "company_mapping",
+    "case_studies",
+    "section_roles",
+    "rewrite_critical_takeaways",
+    "compression_plan",
+    "readability_notes",
+    "tone_and_positioning",
+    "action_framework",
+    "risk_points"
+  ]
+}
