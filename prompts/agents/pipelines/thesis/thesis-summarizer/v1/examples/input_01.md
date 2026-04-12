@@ -1,0 +1,1333 @@
+# Sample input
+
+[
+  {
+    "input_date": "2025-12-03",
+    "core_data": {
+      "thesis": {
+        "core": "Amazon's Trainium3 reveal is not a simple product launch; it signals the end of NVIDIA's solo dominance and the arrival of big tech building proprietary semiconductor ecosystems. Hyperscalers are abandoning general-purpose GPUs for purpose-built ASICs to cut TCO and reclaim efficiency. The real money will flow to the 'shadow' partners — design/IP firms, connectivity providers, and power/cooling specialists — who supply the weapons, networks, and energy that make these in-house chips viable. As projects like Amazon's 'Project Rainier' scale, those supply-chain gatekeepers will convert hyperscaler budgets into mechanical, recurring revenue streams.",
+        "primary": "As hyperscalers build custom AI ASIC stacks to escape 'the Nvidia tax', a distinct class of specialist suppliers—the 'shadow winners' (design/IP houses, connectivity providers, power/cooling vendors, and advanced packagers/foundries)—will capture outsized, durable value.",
+        "positioning": "Guides the reader to view the market as an infrastructure and supply-chain opportunity—prioritizing vendors that enable hyperscalers' custom chips over the hyperscalers themselves or a single chip incumbent."
+      },
+      "messages": {
+        "supporting": [
+          "NVIDIA's GPUs are powerful but inefficient for specific workloads, driving hyperscalers to build custom ASICs to improve cost and efficiency.",
+          "Big tech will not go it alone; they rely on external partners for design/IP, interconnectivity, and thermal/power solutions.",
+          "Design/IP firms, connectivity specialists, and cooling/power vendors win regardless of which hyperscaler chip architecture prevails.",
+          "Large-scale deployments (e.g., Project Rainier) mechanically generate steady revenue for these supply-chain companies."
+        ],
+        "secondary": [
+          "The market is shifting from model training dominance to a much larger inference-driven economy, which favors purpose-built silicon and distributed specialist ecosystems.",
+          "'Structural independence' by hyperscalers does not eliminate third parties; it reallocates where and how value accrues—away from general-purpose GPU vendors toward firms that enable custom chip design, interconnect, power delivery, cooling, and packaging.",
+          "Hyperscalers will not do all hardware tasks in-house; the modern ASIC value chain is highly segmented, and the firms that provide IP blocks, physical design, retimers/CXL, optical interconnects, PMICs, liquid cooling, substrates and foundry capacity become essential beneficiaries.",
+          "Investor strategy should rotate from a singular focus on leading accelerator vendors to owners of the underlying blueprint and supply chain that scale with hyperscaler capex."
+        ],
+        "implication": "Investors should prioritize exposure to infrastructure suppliers that are causally linked to hyperscaler ASIC deployments (design/IP partners, connectivity vendors, power/cooling specialists, advanced packagers and TSMC) because these firms mechanically monetize hyperscaler moves to bespoke silicon and offer differentiated risk/reward profiles."
+      },
+      "framing": {
+        "signature": [
+          "Trainium3 is not a simple product launch",
+          "the end of NVIDIA's reign",
+          "'shadow' companies",
+          "arms dealers",
+          "The Architects",
+          "The Veins",
+          "The Energy",
+          "Project Rainier",
+          "Smart money buys the blueprint",
+          "the money game",
+          "Post-NVIDIA: The Hyperscaler Counterattack and the 'Shadow Winners'",
+          "Nvidia Tax → Structural Independence",
+          "Big tech refuse to remain mere customers—they become chip designers; who then profits from that transition?",
+          "Buy the blueprint, not the frontline soldier"
+        ],
+        "tone": [
+          "investment-oriented"
+        ],
+        "hook_strength": "high"
+      },
+      "narrative_map": {
+        "opening_frame": "NVIDIA’s dominance (H100, Blackwell) has defined AI infrastructure investment through 2023–H1 2024, but a deeper structural shift is underway as hyperscalers move to custom ASICs.",
+        "problem_definition": "NVIDIA-centric, general-purpose GPUs impose a high TCO ('Nvidia tax') for hyperscalers whose workloads are inference-heavy and highly repetitive.",
+        "structural_shift": "Hyperscalers are pursuing 'structural independence' by designing ASICs (TPU, Trainium, Inferentia, MTIA) to lower TCO, creating demand for specialized suppliers across a segmented value chain.",
+        "why_now": "Inference market growth, compiler/portability progress, hyperscaler scale economics, and mounting TCO pressure make ASIC adoption timely; hyperscalers have announced large capex cycles (2025–2026) and concrete programs (e.g., Project Rainier).",
+        "development_flow": [
+          "Define the inefficiency of general-purpose GPUs (Nvidia Tax) → show economics motivating ASICs",
+          "Explain the shift from training to inference and resulting demand dynamics",
+          "Map the segmented ecosystem required to realize bespoke ASIC deployments (design/IP, interconnect, power & cooling, packaging & foundry)",
+          "Profile companies in each segment that are positioned to capture value",
+          "Use Project Rainier and hyperscaler programs as connective tissue to show mechanical revenue flows",
+          "Conclude with investment guidance to rotate toward infrastructure suppliers"
+        ],
+        "closing_logic": "As hyperscalers scale custom ASIC deployments, value will reflow to a repeatable set of specialist vendors. The investment case is to own the suppliers of design IP, interconnect, power/thermal systems, and packaging/foundry capacity—i.e., the shadow winners that monetize every increment of hyperscaler ASIC adoption."
+      },
+      "structure": {
+        "theme": "Hyperscalers' move to custom AI ASICs creates enduring winners among specialist suppliers across the ASIC value chain.",
+        "sectors": [
+          {
+            "name": "Hyperscalers / Platform Builders",
+            "companies": [
+              "Amazon (AWS)",
+              "Google (Google Cloud / TPU)",
+              "Microsoft (Azure / Maia)",
+              "Meta",
+              "OpenAI"
+            ]
+          },
+          {
+            "name": "ASIC Design & IP (The Architects & Tailors)",
+            "companies": [
+              "Broadcom",
+              "Marvell Technology",
+              "Alchip Technologies",
+              "Socionext",
+              "Faraday Technology",
+              "Rambus",
+              "Synopsys",
+              "Cadence"
+            ]
+          },
+          {
+            "name": "Connectivity & Interconnect (The Veins)",
+            "companies": [
+              "Astera Labs",
+              "Credo Technology",
+              "Coherent",
+              "Lumentum",
+              "MACOM",
+              "Ayar Labs"
+            ]
+          },
+          {
+            "name": "Power & Thermal (The Energy)",
+            "companies": [
+              "Monolithic Power Systems",
+              "Vertiv Holdings",
+              "Vicor",
+              "nVent",
+              "Modine",
+              "Renesas",
+              "Infineon"
+            ]
+          },
+          {
+            "name": "Manufacturing & Advanced Packaging (The Builders)",
+            "companies": [
+              "TSMC",
+              "Amkor Technology",
+              "Ibiden",
+              "Unimicron",
+              "Onto Innovation",
+              "Camtek"
+            ]
+          },
+          {
+            "name": "Optics & Transceivers",
+            "companies": [
+              "Coherent",
+              "Lumentum"
+            ]
+          }
+        ]
+      },
+      "framework": {
+        "what_to_avoid": [
+          "Over-simplifying into a binary 'Nvidia vs hyperscalers' narrative—preserve nuance that hyperscalers still rely on third parties.",
+          "Diluting causal links by adding extraneous companies or unreferenced risks.",
+          "Eliminating technical terms that are necessary to justify sector-level investment theses."
+        ],
+        "what_to_focus": [
+          "Clear causal chains from hyperscaler decisions → technical requirements → supplier content growth → revenue/valuation impact.",
+          "Concise company profiles emphasizing role, moat, customer links, and hyperscaler sensitivity.",
+          "Concrete program-level examples (Project Rainier, TPU/Trainium lines, Astera warrant) to illustrate mechanical demand."
+        ],
+        "selection_criteria": [
+          "Direct revenue linkage to hyperscaler ASIC deployments (contractual commitments, strategic partnerships, warrants, NRE/turnkey roles).",
+          "Technology indispensability (SerDes leadership, CXL retimers, advanced packaging capacity, substrate leadership, PMIC performance).",
+          "Supply-side scarcity or chokepoint status (TSMC node capacity, CoWoS/2.5D packaging, substrate production)."
+        ]
+      },
+      "company_mapping": [
+        {
+          "company": "NVIDIA",
+          "sector": "Accelerator Platform",
+          "role": "Incumbent GPU platform provider and ecosystem anchor (CUDA)",
+          "value_driver": "Existing market dominance sets the baseline TCO and ecosystem lock-in; hyperscaler shifts determine share reallocation.",
+          "dependency_type": "platform",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Amazon (AWS)",
+          "sector": "Hyperscaler / Platform Builder",
+          "role": "Customer and developer of in-house ASICs (Trainium, Inferentia) and driver of large-scale demand (Project Rainier)",
+          "value_driver": "Directly generates demand across design partners, connectivity, power, and packaging as it scales Trainium/Inferentia deployments.",
+          "dependency_type": "platform",
+          "beta_type": "low"
+        },
+        {
+          "company": "Google",
+          "sector": "Hyperscaler / Platform Builder",
+          "role": "Developer and adopter of TPU series and potential external cloud offering; architectural leader for bespoke silicon",
+          "value_driver": "Continued TPU expansion drives demand for SerDes, IP, packaging and foundry services.",
+          "dependency_type": "platform",
+          "beta_type": "low"
+        },
+        {
+          "company": "Microsoft",
+          "sector": "Hyperscaler / Platform Builder",
+          "role": "Developer of custom chips (Maia, Cobalt) and a hyperscaler customer for ecosystem suppliers",
+          "value_driver": "Drive multi-cloud demand for design/IP partners and suppliers as Microsoft scales its ASIC strategy.",
+          "dependency_type": "platform",
+          "beta_type": "low"
+        },
+        {
+          "company": "Meta",
+          "sector": "Hyperscaler / Platform Builder",
+          "role": "Developer and adopter of in-house AI accelerators (MTIA) and customer of design/IP suppliers",
+          "value_driver": "Adds incremental demand for ASIC design partners and interconnect/power/cooling solutions.",
+          "dependency_type": "platform",
+          "beta_type": "low"
+        },
+        {
+          "company": "OpenAI",
+          "sector": "AI Platform / Developer",
+          "role": "Potential in-house chip developer or buyer (discussed as partnering with Broadcom); a demand generator for specialized suppliers",
+          "value_driver": "If it pursues custom silicon, it will create additional design and manufacturing demand for partners.",
+          "dependency_type": "platform",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Broadcom",
+          "sector": "ASIC Design & IP",
+          "role": "Provider of critical SerDes/IP and switch silicon; strategic design & production partner to hyperscalers",
+          "value_driver": "SerDes and switch IP are prerequisites for high-performance ASICs and data center networking—broad, high-margin content-per-chip growth as hyperscalers scale.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Marvell Technology",
+          "sector": "ASIC Design & IP / Connectivity",
+          "role": "Design/IP supplier and strategic partner to AWS/MS; provider of DSP, storage, security, and optical interconnect technology",
+          "value_driver": "Long-term contracts with hyperscalers and the Celestial AI acquisition position Marvell to capture content growth across optical interconnect and DSP domains.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Alchip Technologies",
+          "sector": "ASIC Design & IP / Physical Design",
+          "role": "Turnkey physical design, packaging management and production integration partner for AWS Trainium/Inferentia",
+          "value_driver": "Direct, high-sensitivity revenue to AWS ASIC volume (Project Rainier); handles physicalization of hyperscaler designs at advanced nodes.",
+          "dependency_type": "direct",
+          "beta_type": "high"
+        },
+        {
+          "company": "Socionext",
+          "sector": "ASIC Design & IP",
+          "role": "System semiconductor design partner for bespoke SoCs (data center and automotive)",
+          "value_driver": "Niche wins on bespoke 3nm data center chips position it as a targeted beneficiary for customers seeking 'bespoke' solutions.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Faraday Technology",
+          "sector": "ASIC Design & IP",
+          "role": "Design house focused on ARM-based infrastructure and edge SoCs; design partner with foundry services",
+          "value_driver": "Serves more general process and edge/IoT pockets, benefiting from diversified demand for custom SoCs.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Astera Labs",
+          "sector": "Connectivity & Interconnect",
+          "role": "Provider of PCIe/CXL retimers and CXL memory controllers/switches; strategic supplier to AWS (warrant relationship)",
+          "value_driver": "Essential signal integrity and CXL components are mechanically required as hyperscalers deploy denser ASIC servers—direct and high growth exposure.",
+          "dependency_type": "direct",
+          "beta_type": "high"
+        },
+        {
+          "company": "Credo Technology",
+          "sector": "Connectivity & Interconnect",
+          "role": "Developer of Active Electrical Cables (AEC) and high-speed link solutions for rack/within-rack connectivity",
+          "value_driver": "Cost- and power-efficient rack-level interconnects are adopted by hyperscalers, creating persistent demand for Credo's AEC products.",
+          "dependency_type": "direct",
+          "beta_type": "high"
+        },
+        {
+          "company": "Coherent",
+          "sector": "Optics & Transceivers",
+          "role": "Supplier of high-speed optical modules and transceivers for data center interconnect",
+          "value_driver": "As data rates scale to 800G/1.6T, demand for Coherent's transceivers grows materially, linking it to hyperscaler traffic increases.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Lumentum",
+          "sector": "Optics & Transceivers",
+          "role": "Laser and optical component supplier for high-speed data center optics",
+          "value_driver": "Provides laser chips and components that underpin transceiver performance as hyperscalers upgrade link speeds.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Monolithic Power Systems",
+          "sector": "Power & Thermal",
+          "role": "High-performance PMIC supplier used in AI accelerators and ASIC platforms",
+          "value_driver": "Precision power management is essential across GPUs and ASICs; widespread adoption across accelerator designs generates recurring content-per-chip sales.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Vertiv Holdings",
+          "sector": "Power & Thermal / Data Center Infrastructure",
+          "role": "Provider of integrated power, cooling and liquid-cooling distribution units for high-density AI data centers",
+          "value_driver": "Liquid cooling and high-density rack infrastructure are required as chip power densities rise, translating to structural demand for Vertiv systems.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Vicor",
+          "sector": "Power & Thermal",
+          "role": "48V power architecture and high-density power modules supplier",
+          "value_driver": "Adoption of 48V architectures for high-power processors increases Vicor content per rack and validates its patent-backed technical moat.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "TSMC",
+          "sector": "Manufacturing & Advanced Packaging",
+          "role": "Foundry provider and CoWoS/advanced packaging leader for leading-node AI chips",
+          "value_driver": "Unique process and advanced packaging capacity are prerequisite for modern AI ASICs; virtually all high-end designs require TSMC, creating platform-like demand.",
+          "dependency_type": "platform",
+          "beta_type": "low"
+        },
+        {
+          "company": "Amkor Technology",
+          "sector": "Manufacturing & Advanced Packaging",
+          "role": "OSAT and advanced packaging provider offering 2.5D/alternative packaging to relieve CoWoS bottlenecks",
+          "value_driver": "As packaging capacity becomes the constraining step, Amkor captures share by providing alternative advanced packaging and ramping local capacity.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Ibiden",
+          "sector": "Manufacturing & Advanced Packaging",
+          "role": "Supplier of ABF substrates (high-performance PCB substrates) for complex chip packages",
+          "value_driver": "Larger dies and complex packages require high-end substrates; growing package complexity increases Ibiden content per chip.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Unimicron",
+          "sector": "Manufacturing & Advanced Packaging",
+          "role": "ABF substrate provider and PCB/packaging material supplier",
+          "value_driver": "Similar to Ibiden, benefits from higher substrate demand as packages grow in size and layer count.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Rambus",
+          "sector": "ASIC Design & IP",
+          "role": "Memory IP provider and interface IP across the ASIC ecosystem",
+          "value_driver": "Memory and interface IP are necessary ingredients for bespoke ASICs—licensing and royalties scale as custom designs proliferate.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Synopsys",
+          "sector": "ASIC Design & IP / EDA",
+          "role": "EDA and software tool provider enabling chip design and compiler pipelines",
+          "value_driver": "Tooling that converts models to different architectures lowers switching cost to ASICs; as hyperscalers build chips, Synopsys benefits via licensing.",
+          "dependency_type": "indirect",
+          "beta_type": "low"
+        },
+        {
+          "company": "Cadence",
+          "sector": "ASIC Design & IP / EDA",
+          "role": "EDA and IP provider supporting chip development flows",
+          "value_driver": "Same as Synopsys—essential design tools and IP licensing for ASIC creation.",
+          "dependency_type": "indirect",
+          "beta_type": "low"
+        },
+        {
+          "company": "MACOM",
+          "sector": "Connectivity & Optics",
+          "role": "RF/analog and connectivity component supplier for high-speed links",
+          "value_driver": "Contributes components to optical and high-speed electrical links as data-center interconnect requirements rise.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Ayar Labs",
+          "sector": "Connectivity & Interconnect (Silicon Photonics)",
+          "role": "Silicon photonics innovator (unlisted; referenced as promising)",
+          "value_driver": "Provides a path to chip-to-chip optical links, which could materially reduce power and increase bandwidth if adopted by hyperscalers.",
+          "dependency_type": "indirect",
+          "beta_type": "high"
+        },
+        {
+          "company": "Renesas",
+          "sector": "Power & Thermal / Semiconductor",
+          "role": "Potential alternative PMIC/power supplier referenced as competitive substitute",
+          "value_driver": "Could capture share if hyperscalers dual-source PMICs or replace incumbents.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Infineon",
+          "sector": "Power & Thermal / Semiconductor",
+          "role": "Referenced as possible alternative supplier in power domain",
+          "value_driver": "May participate in dual-sourcing and benefit from general power module demand.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Coherent",
+          "sector": "Optics & Transceivers",
+          "role": "Data center optical transceiver market leader",
+          "value_driver": "High-speed transceiver demand from hyperscalers grows with data-rate upgrades.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Lumentum",
+          "sector": "Optics & Transceivers",
+          "role": "Laser and component supplier for optics",
+          "value_driver": "Benefits from transceiver and optics market recovery and hyperscaler upgrades.",
+          "dependency_type": "direct",
+          "beta_type": "medium"
+        },
+        {
+          "company": "nVent",
+          "sector": "Power & Thermal",
+          "role": "Thermal management and infrastructure components supplier",
+          "value_driver": "Participates in data center infrastructure upgrades tied to cooling and heat dissipation.",
+          "dependency_type": "indirect",
+          "beta_type": "low"
+        },
+        {
+          "company": "Modine",
+          "sector": "Power & Thermal",
+          "role": "Specialist in thermal management systems",
+          "value_driver": "Cooling solutions for high-density deployments create incremental demand.",
+          "dependency_type": "indirect",
+          "beta_type": "low"
+        },
+        {
+          "company": "Onto Innovation",
+          "sector": "Manufacturing & Test",
+          "role": "Equipment and test solutions provider in semiconductor assembly/test",
+          "value_driver": "Advanced test and inspection needs scale with complex packaging and wafer-level processes.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Camtek",
+          "sector": "Manufacturing & Test",
+          "role": "Inspection and metrology equipment supplier for packaging/test",
+          "value_driver": "As packaging complexity rises, demand for metrology and inspection increases.",
+          "dependency_type": "indirect",
+          "beta_type": "medium"
+        },
+        {
+          "company": "Apple",
+          "sector": "End-User / OEM",
+          "role": "Referenced as heavy user of advanced packaging and alternative supply strategies",
+          "value_driver": "Illustrative of major customers seeking second-source packaging and advanced assembly capability.",
+          "dependency_type": "indirect",
+          "beta_type": "low"
+        }
+      ],
+      "case_studies": [
+        {
+          "name": "Project Rainier",
+          "type": "Hyperscaler deployment program",
+          "strategic_role": "Concrete embodiment of AWS's strategy to build a large-scale Trainium-based supercluster to achieve Nvidia independence and dramatically lower TCO via bespoke ASIC scale",
+          "linked_sectors": [
+            "ASIC Design & IP",
+            "Connectivity & Interconnect",
+            "Manufacturing & Advanced Packaging",
+            "Power & Thermal"
+          ],
+          "linked_companies": [
+            "Alchip Technologies",
+            "Marvell Technology",
+            "Astera Labs",
+            "TSMC",
+            "Monolithic Power Systems",
+            "Credo Technology"
+          ],
+          "value_flow": [
+            "AWS increases Trainium server count → Alchip receives turnkey physical design and packaging revenue",
+            "AWS standardizes interconnect choices → Astera Labs retimer/CXL chips and Credo AEC see per-server content growth",
+            "Large-scale server deployment → TSMC and advanced packagers see wafer and CoWoS/2.5D demand",
+            "Higher power density per rack → MPS/Vicor/Vertiv see increased equipment and module sales"
+          ]
+        },
+        {
+          "name": "Google TPU Expansion",
+          "type": "Hyperscaler program / product line",
+          "strategic_role": "Example of a hyperscaler developing in-house accelerators that create sustained demand for SerDes, IP and packaging partners",
+          "linked_sectors": [
+            "ASIC Design & IP",
+            "Manufacturing & Advanced Packaging"
+          ],
+          "linked_companies": [
+            "Broadcom",
+            "TSMC"
+          ],
+          "value_flow": [
+            "Google scales TPU generations → Broadcom SerDes and switch IP content per chip rises",
+            "TPU fabrication requires leading-node capacity → TSMC utilization increases"
+          ]
+        },
+        {
+          "name": "Marvell → Celestial AI Acquisition",
+          "type": "Strategic M&A / technology bet",
+          "strategic_role": "Signal of Marvell's bet on photonic/optical interconnects as the next paradigm for chip-to-chip connectivity in data centers",
+          "linked_sectors": [
+            "ASIC Design & IP",
+            "Optics & Transceivers",
+            "Connectivity & Interconnect"
+          ],
+          "linked_companies": [
+            "Marvell Technology",
+            "Coherent",
+            "Lumentum"
+          ],
+          "value_flow": [
+            "Marvell acquires photonic IP/tech → integrates with DSP/IP offerings",
+            "Combined offering enables higher-bandwidth, lower-power links → increases Marvell content in hyperscaler racks",
+            "Optics partners and module vendors benefit from integrated DSP/optical solutions"
+          ]
+        },
+        {
+          "name": "Astera Labs Strategic Warrant with Amazon + CXL Adoption",
+          "type": "Commercial agreement / interface adoption",
+          "strategic_role": "Illustrates a commercial lock-in where a hyperscaler both invests and commits to long-term purchases, accelerating supplier scale and CXL ecosystem growth",
+          "linked_sectors": [
+            "Connectivity & Interconnect",
+            "ASIC Design & IP"
+          ],
+          "linked_companies": [
+            "Astera Labs",
+            "Amazon (AWS)"
+          ],
+          "value_flow": [
+            "AWS warrant + large purchase commitments → predictable revenue and scale for Astera",
+            "CXL adoption across servers → higher retimer/controller content per system"
+          ]
+        }
+      ],
+      "risk_points": [
+        "Concentration risk: several beneficiaries (e.g., Alchip) have high revenue exposure to a single hyperscaler (AWS) leading to client-concentration risk.",
+        "Geopolitical / supply-chain risk: Taiwan-based design and substrate firms and TSMC exposure create geopolitical vulnerability.",
+        "Dual-sourcing and competition: hyperscalers may adopt dual-sourcing (e.g., MPS replacement by Renesas/Infineon) which can cap pricing power.",
+        "Packaging/foundry bottlenecks: constrained CoWoS/advanced packaging capacity can delay revenue realization or shift share among OSATs.",
+        "Valuation risk: high-growth, high-beta names (Astera, Alchip) may be priced for perfection and are sensitive to execution or contract timing.",
+        "Technology adoption risk: emerging technologies (silicon photonics, CXL) depend on ecosystem adoption timelines and standards maturity."
+      ],
+      "narrative_meta": {
+        "narrative_map": {
+          "opening_frame": "NVIDIA’s dominance (H100, Blackwell) has defined AI infrastructure investment through 2023–H1 2024, but a deeper structural shift is underway as hyperscalers move to custom ASICs.",
+          "problem_definition": "NVIDIA-centric, general-purpose GPUs impose a high TCO ('Nvidia tax') for hyperscalers whose workloads are inference-heavy and highly repetitive.",
+          "structural_shift": "Hyperscalers are pursuing 'structural independence' by designing ASICs (TPU, Trainium, Inferentia, MTIA) to lower TCO, creating demand for specialized suppliers across a segmented value chain.",
+          "why_now": "Inference market growth, compiler/portability progress, hyperscaler scale economics, and mounting TCO pressure make ASIC adoption timely; hyperscalers have announced large capex cycles (2025–2026) and concrete programs (e.g., Project Rainier).",
+          "development_flow": [
+            "Define the inefficiency of general-purpose GPUs (Nvidia Tax) → show economics motivating ASICs",
+            "Explain the shift from training to inference and resulting demand dynamics",
+            "Map the segmented ecosystem required to realize bespoke ASIC deployments (design/IP, interconnect, power & cooling, packaging & foundry)",
+            "Profile companies in each segment that are positioned to capture value",
+            "Use Project Rainier and hyperscaler programs as connective tissue to show mechanical revenue flows",
+            "Conclude with investment guidance to rotate toward infrastructure suppliers"
+          ],
+          "closing_logic": "As hyperscalers scale custom ASIC deployments, value will reflow to a repeatable set of specialist vendors. The investment case is to own the suppliers of design IP, interconnect, power/thermal systems, and packaging/foundry capacity—i.e., the shadow winners that monetize every increment of hyperscaler ASIC adoption."
+        },
+        "section_roles": [
+          {
+            "section": "1. Introduction",
+            "role": "Frame the macro shift from Nvidia-dominated GPU era to hyperscaler-driven ASIC era and introduce 'shadow winners' thesis",
+            "core_function": "Set the strategic framing and investment question for the rest of the report",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "2. Structural change deep-dive (Why ASIC?)",
+            "role": "Explain economic and technical drivers for hyperscalers to adopt ASICs (Nvidia Tax, inference growth, ecosystem division of labor)",
+            "core_function": "Provide the causal rationale (why now) that underpins all subsequent sector plays",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "3. Sector I: ASIC design & IP (The Architects & Tailors)",
+            "role": "Profile design/IP partners who directly enable bespoke ASICs and capture high content-per-chip revenue",
+            "core_function": "Identify primary beneficiaries and their moats (Broadcom, Marvell, Alchip etc.)",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "4. Sector II: Connectivity (The Veins)",
+            "role": "Explain the interconnect bottleneck and vendors that will benefit as data rates and CXL adoption rise",
+            "core_function": "Show how retimers, CXL elements, AEC and optics are indispensable to ASIC performance",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "5. Sector III: Power & Thermal (The Energy)",
+            "role": "Explain power delivery and cooling as critical constraints and beneficiaries of AI density",
+            "core_function": "Make the case that PMICs, 48V architectures and liquid cooling are structural demand drivers",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "6. Sector IV: Manufacturing & Advanced Packaging (The Builders)",
+            "role": "Identify where physical manufacturing and packaging capacity create supply bottlenecks and who benefits",
+            "core_function": "Highlight TSMC, OSATs and substrate makers as chokepoints that monetize ASIC scale",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "7. Case study: Project Rainier (AWS)",
+            "role": "Translate thesis into a concrete hyperscaler program to show mechanical linkages to suppliers",
+            "core_function": "Provide a worked example that connects hyperscaler capex to specific supplier revenues",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "8. Complete list & investment guide",
+            "role": "Prioritize and categorize recommended names into Core, Growth/Alpha, and Watchlist buckets",
+            "core_function": "Operationalize the thesis into portfolio allocations and candidate equities",
+            "importance": "high",
+            "edit_guidance": "compress"
+          },
+          {
+            "section": "9. Conclusion & recommendation",
+            "role": "Reinforce thesis and provide final investment prescription ('buy the blueprint, not the soldier')",
+            "core_function": "Close the narrative arc and provide behavioral guidance for investors",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "Annex / Supporting detail (e.g., company deep-dives)",
+            "role": "Provide granular company-level analysis, financial projections and citations",
+            "core_function": "Substantiate sector claims and support due diligence",
+            "importance": "medium",
+            "edit_guidance": "compress"
+          }
+        ],
+        "compression_plan": {
+          "must_keep": [
+            "Introduction framing of 'shadow winners' and 'Nvidia tax'",
+            "Section 2 core causal logic (Nvidia Tax, inference growth, division of labour in ASIC ecosystem)",
+            "Sector-level mappings (ASIC design/IP; Connectivity; Power & Thermal; Manufacturing & Packaging)",
+            "Project Rainier case study and its supplier linkage table",
+            "Investment guidance summary (Core Picks, Growth, Watchlist) and high-level allocation rationale",
+            "Conclusion exhortation to rotate toward infrastructure suppliers"
+          ],
+          "compress": [
+            "Detailed company micro-profiles with long technical paragraphs (e.g., full Broadcom technical deep dives)",
+            "Repeated background context on GPU history and Nvidia dominance",
+            "Long lists of peripheral watchlist names with single-line descriptions"
+          ],
+          "merge": [
+            "Merge subsections on 'Inference market' and 'Compiler/portability' into one concise 'Why inference favors ASICs' block",
+            "Combine separate connectivity subsections (AEC, CXL, Optics) into a single 'Interconnect' section with clear subsections",
+            "Consolidate power-related vendor discussions (PMICs, 48V architectures, cooling) into a unified 'Power & Thermal' narrative"
+          ],
+          "optional": [
+            "Minor anecdotal items (e.g., short investor-bank projections citations unless critical)",
+            "Extended discussion of stock price volatility or transient PR events unless directly supporting structural claims"
+          ],
+          "repetition_notes": [
+            "The report reiterates the 'shadow winners' framing multiple times—retain one strong, early framing and remove repetitive restatements.",
+            "Company examples are frequently repeated across sections (e.g., Broadcom cited in both ASIC and TPU contexts)—consolidate each company profile into a single unified entry and cross-reference in sector discussions."
+          ]
+        },
+        "readability_notes": {
+          "density_issues": [
+            "Long, dense technical paragraphs (especially in company profiles) that mix strategic, technical and financial points without clear subheadings.",
+            "Redundant explanations of the same mechanisms (e.g., why inference favors ASICs) across multiple sections causing cognitive overload."
+          ],
+          "structure_improvements": [
+            "Adopt a strict top-down section template: framing → why it matters (economics/metrics) → what must exist to enable it → named beneficiary(s) → quantification/scale.",
+            "Consolidate company deep-dives into standardized short profiles (1–3 bullets each: role, why material, sensitivity to hyperscaler capex)."
+          ],
+          "scannability_improvements": [
+            "Use explicit signposting lines at the start of each major section (one-sentence takeaway).",
+            "Introduce a one-page visual/table that maps hyperscaler actions (e.g., add 1 Trainium server) to who gets revenue and why (content-per-server).",
+            "Bulletize technical mechanisms (SerDes, CXL, CoWoS, PMIC, liquid cooling) with concise one-line implications for investors."
+          ]
+        },
+        "rewrite_critical_takeaways": [
+          "Hyperscalers' shift to custom ASICs is driven by TCO incentives (inference-heavy workloads) and compiler/portability improvements that lower the barriers to move off GPUs.",
+          "The ASIC value chain is highly segmented; hyperscalers will outsource or license critical IP and physical design functions to specialist partners rather than vertically integrate every component.",
+          "Design/IP houses (Broadcom, Marvell, Alchip) capture content-per-chip and NRE fees as hyperscalers scale bespoke silicon.",
+          "Connectivity (Astera Labs, Credo, optical vendors) and advanced packaging/foundry (TSMC, Amkor, substrate makers) are structural chokepoints that translate hyperscaler capex into supplier revenue.",
+          "Power delivery and cooling (MPS, Vicor, Vertiv) are essential and durable demand pools as chip power densities rise.",
+          "Project Rainier (AWS Trainium scale-out) is a concrete example connecting hyperscaler announcements to mechanical revenue paths for specific suppliers."
+        ]
+      }
+    },
+    "core_raw": {
+      "framing_data": {
+        "core_thesis_block": "Amazon's Trainium3 reveal is not a simple product launch; it signals the end of NVIDIA's solo dominance and the arrival of big tech building proprietary semiconductor ecosystems. Hyperscalers are abandoning general-purpose GPUs for purpose-built ASICs to cut TCO and reclaim efficiency. The real money will flow to the 'shadow' partners — design/IP firms, connectivity providers, and power/cooling specialists — who supply the weapons, networks, and energy that make these in-house chips viable. As projects like Amazon's 'Project Rainier' scale, those supply-chain gatekeepers will convert hyperscaler budgets into mechanical, recurring revenue streams.",
+        "supporting_points": [
+          "NVIDIA's GPUs are powerful but inefficient for specific workloads, driving hyperscalers to build custom ASICs to improve cost and efficiency.",
+          "Big tech will not go it alone; they rely on external partners for design/IP, interconnectivity, and thermal/power solutions.",
+          "Design/IP firms, connectivity specialists, and cooling/power vendors win regardless of which hyperscaler chip architecture prevails.",
+          "Large-scale deployments (e.g., Project Rainier) mechanically generate steady revenue for these supply-chain companies."
+        ],
+        "signature_framing": [
+          "Trainium3 is not a simple product launch",
+          "the end of NVIDIA's reign",
+          "'shadow' companies",
+          "arms dealers",
+          "The Architects",
+          "The Veins",
+          "The Energy",
+          "Project Rainier",
+          "Smart money buys the blueprint",
+          "the money game"
+        ],
+        "tone": [
+          "investment-oriented"
+        ],
+        "positioning": "Guides the reader to view the market as an infrastructure and supply-chain opportunity—prioritizing vendors that enable hyperscalers' custom chips over the hyperscalers themselves or a single chip incumbent.",
+        "hook_strength": "high"
+      },
+      "analysis_data": {
+        "core_message": {
+          "primary_thesis": "As hyperscalers build custom AI ASIC stacks to escape 'the Nvidia tax', a distinct class of specialist suppliers—the 'shadow winners' (design/IP houses, connectivity providers, power/cooling vendors, and advanced packagers/foundries)—will capture outsized, durable value.",
+          "secondary_messages": [
+            "The market is shifting from model training dominance to a much larger inference-driven economy, which favors purpose-built silicon and distributed specialist ecosystems.",
+            "'Structural independence' by hyperscalers does not eliminate third parties; it reallocates where and how value accrues—away from general-purpose GPU vendors toward firms that enable custom chip design, interconnect, power delivery, cooling, and packaging.",
+            "Hyperscalers will not do all hardware tasks in-house; the modern ASIC value chain is highly segmented, and the firms that provide IP blocks, physical design, retimers/CXL, optical interconnects, PMICs, liquid cooling, substrates and foundry capacity become essential beneficiaries.",
+            "Investor strategy should rotate from a singular focus on leading accelerator vendors to owners of the underlying blueprint and supply chain that scale with hyperscaler capex."
+          ],
+          "reader_implication": "Investors should prioritize exposure to infrastructure suppliers that are causally linked to hyperscaler ASIC deployments (design/IP partners, connectivity vendors, power/cooling specialists, advanced packagers and TSMC) because these firms mechanically monetize hyperscaler moves to bespoke silicon and offer differentiated risk/reward profiles."
+        },
+        "signature_framing": [
+          "Post-NVIDIA: The Hyperscaler Counterattack and the 'Shadow Winners'",
+          "Nvidia Tax → Structural Independence",
+          "Big tech refuse to remain mere customers—they become chip designers; who then profits from that transition?",
+          "Buy the blueprint, not the frontline soldier"
+        ],
+        "narrative_map": {
+          "opening_frame": "NVIDIA’s dominance (H100, Blackwell) has defined AI infrastructure investment through 2023–H1 2024, but a deeper structural shift is underway as hyperscalers move to custom ASICs.",
+          "problem_definition": "NVIDIA-centric, general-purpose GPUs impose a high TCO ('Nvidia tax') for hyperscalers whose workloads are inference-heavy and highly repetitive.",
+          "structural_shift": "Hyperscalers are pursuing 'structural independence' by designing ASICs (TPU, Trainium, Inferentia, MTIA) to lower TCO, creating demand for specialized suppliers across a segmented value chain.",
+          "why_now": "Inference market growth, compiler/portability progress, hyperscaler scale economics, and mounting TCO pressure make ASIC adoption timely; hyperscalers have announced large capex cycles (2025–2026) and concrete programs (e.g., Project Rainier).",
+          "development_flow": [
+            "Define the inefficiency of general-purpose GPUs (Nvidia Tax) → show economics motivating ASICs",
+            "Explain the shift from training to inference and resulting demand dynamics",
+            "Map the segmented ecosystem required to realize bespoke ASIC deployments (design/IP, interconnect, power & cooling, packaging & foundry)",
+            "Profile companies in each segment that are positioned to capture value",
+            "Use Project Rainier and hyperscaler programs as connective tissue to show mechanical revenue flows",
+            "Conclude with investment guidance to rotate toward infrastructure suppliers"
+          ],
+          "closing_logic": "As hyperscalers scale custom ASIC deployments, value will reflow to a repeatable set of specialist vendors. The investment case is to own the suppliers of design IP, interconnect, power/thermal systems, and packaging/foundry capacity—i.e., the shadow winners that monetize every increment of hyperscaler ASIC adoption."
+        },
+        "hierarchical_structure": {
+          "theme": "Hyperscalers' move to custom AI ASICs creates enduring winners among specialist suppliers across the ASIC value chain.",
+          "sectors": [
+            {
+              "name": "Hyperscalers / Platform Builders",
+              "companies": [
+                "Amazon (AWS)",
+                "Google (Google Cloud / TPU)",
+                "Microsoft (Azure / Maia)",
+                "Meta",
+                "OpenAI"
+              ]
+            },
+            {
+              "name": "ASIC Design & IP (The Architects & Tailors)",
+              "companies": [
+                "Broadcom",
+                "Marvell Technology",
+                "Alchip Technologies",
+                "Socionext",
+                "Faraday Technology",
+                "Rambus",
+                "Synopsys",
+                "Cadence"
+              ]
+            },
+            {
+              "name": "Connectivity & Interconnect (The Veins)",
+              "companies": [
+                "Astera Labs",
+                "Credo Technology",
+                "Coherent",
+                "Lumentum",
+                "MACOM",
+                "Ayar Labs"
+              ]
+            },
+            {
+              "name": "Power & Thermal (The Energy)",
+              "companies": [
+                "Monolithic Power Systems",
+                "Vertiv Holdings",
+                "Vicor",
+                "nVent",
+                "Modine",
+                "Renesas",
+                "Infineon"
+              ]
+            },
+            {
+              "name": "Manufacturing & Advanced Packaging (The Builders)",
+              "companies": [
+                "TSMC",
+                "Amkor Technology",
+                "Ibiden",
+                "Unimicron",
+                "Onto Innovation",
+                "Camtek"
+              ]
+            },
+            {
+              "name": "Optics & Transceivers",
+              "companies": [
+                "Coherent",
+                "Lumentum"
+              ]
+            }
+          ]
+        },
+        "company_mapping": [
+          {
+            "company": "NVIDIA",
+            "sector": "Accelerator Platform",
+            "role": "Incumbent GPU platform provider and ecosystem anchor (CUDA)",
+            "value_driver": "Existing market dominance sets the baseline TCO and ecosystem lock-in; hyperscaler shifts determine share reallocation.",
+            "dependency_type": "platform",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Amazon (AWS)",
+            "sector": "Hyperscaler / Platform Builder",
+            "role": "Customer and developer of in-house ASICs (Trainium, Inferentia) and driver of large-scale demand (Project Rainier)",
+            "value_driver": "Directly generates demand across design partners, connectivity, power, and packaging as it scales Trainium/Inferentia deployments.",
+            "dependency_type": "platform",
+            "beta_type": "low"
+          },
+          {
+            "company": "Google",
+            "sector": "Hyperscaler / Platform Builder",
+            "role": "Developer and adopter of TPU series and potential external cloud offering; architectural leader for bespoke silicon",
+            "value_driver": "Continued TPU expansion drives demand for SerDes, IP, packaging and foundry services.",
+            "dependency_type": "platform",
+            "beta_type": "low"
+          },
+          {
+            "company": "Microsoft",
+            "sector": "Hyperscaler / Platform Builder",
+            "role": "Developer of custom chips (Maia, Cobalt) and a hyperscaler customer for ecosystem suppliers",
+            "value_driver": "Drive multi-cloud demand for design/IP partners and suppliers as Microsoft scales its ASIC strategy.",
+            "dependency_type": "platform",
+            "beta_type": "low"
+          },
+          {
+            "company": "Meta",
+            "sector": "Hyperscaler / Platform Builder",
+            "role": "Developer and adopter of in-house AI accelerators (MTIA) and customer of design/IP suppliers",
+            "value_driver": "Adds incremental demand for ASIC design partners and interconnect/power/cooling solutions.",
+            "dependency_type": "platform",
+            "beta_type": "low"
+          },
+          {
+            "company": "OpenAI",
+            "sector": "AI Platform / Developer",
+            "role": "Potential in-house chip developer or buyer (discussed as partnering with Broadcom); a demand generator for specialized suppliers",
+            "value_driver": "If it pursues custom silicon, it will create additional design and manufacturing demand for partners.",
+            "dependency_type": "platform",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Broadcom",
+            "sector": "ASIC Design & IP",
+            "role": "Provider of critical SerDes/IP and switch silicon; strategic design & production partner to hyperscalers",
+            "value_driver": "SerDes and switch IP are prerequisites for high-performance ASICs and data center networking—broad, high-margin content-per-chip growth as hyperscalers scale.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Marvell Technology",
+            "sector": "ASIC Design & IP / Connectivity",
+            "role": "Design/IP supplier and strategic partner to AWS/MS; provider of DSP, storage, security, and optical interconnect technology",
+            "value_driver": "Long-term contracts with hyperscalers and the Celestial AI acquisition position Marvell to capture content growth across optical interconnect and DSP domains.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Alchip Technologies",
+            "sector": "ASIC Design & IP / Physical Design",
+            "role": "Turnkey physical design, packaging management and production integration partner for AWS Trainium/Inferentia",
+            "value_driver": "Direct, high-sensitivity revenue to AWS ASIC volume (Project Rainier); handles physicalization of hyperscaler designs at advanced nodes.",
+            "dependency_type": "direct",
+            "beta_type": "high"
+          },
+          {
+            "company": "Socionext",
+            "sector": "ASIC Design & IP",
+            "role": "System semiconductor design partner for bespoke SoCs (data center and automotive)",
+            "value_driver": "Niche wins on bespoke 3nm data center chips position it as a targeted beneficiary for customers seeking 'bespoke' solutions.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Faraday Technology",
+            "sector": "ASIC Design & IP",
+            "role": "Design house focused on ARM-based infrastructure and edge SoCs; design partner with foundry services",
+            "value_driver": "Serves more general process and edge/IoT pockets, benefiting from diversified demand for custom SoCs.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Astera Labs",
+            "sector": "Connectivity & Interconnect",
+            "role": "Provider of PCIe/CXL retimers and CXL memory controllers/switches; strategic supplier to AWS (warrant relationship)",
+            "value_driver": "Essential signal integrity and CXL components are mechanically required as hyperscalers deploy denser ASIC servers—direct and high growth exposure.",
+            "dependency_type": "direct",
+            "beta_type": "high"
+          },
+          {
+            "company": "Credo Technology",
+            "sector": "Connectivity & Interconnect",
+            "role": "Developer of Active Electrical Cables (AEC) and high-speed link solutions for rack/within-rack connectivity",
+            "value_driver": "Cost- and power-efficient rack-level interconnects are adopted by hyperscalers, creating persistent demand for Credo's AEC products.",
+            "dependency_type": "direct",
+            "beta_type": "high"
+          },
+          {
+            "company": "Coherent",
+            "sector": "Optics & Transceivers",
+            "role": "Supplier of high-speed optical modules and transceivers for data center interconnect",
+            "value_driver": "As data rates scale to 800G/1.6T, demand for Coherent's transceivers grows materially, linking it to hyperscaler traffic increases.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Lumentum",
+            "sector": "Optics & Transceivers",
+            "role": "Laser and optical component supplier for high-speed data center optics",
+            "value_driver": "Provides laser chips and components that underpin transceiver performance as hyperscalers upgrade link speeds.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Monolithic Power Systems",
+            "sector": "Power & Thermal",
+            "role": "High-performance PMIC supplier used in AI accelerators and ASIC platforms",
+            "value_driver": "Precision power management is essential across GPUs and ASICs; widespread adoption across accelerator designs generates recurring content-per-chip sales.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Vertiv Holdings",
+            "sector": "Power & Thermal / Data Center Infrastructure",
+            "role": "Provider of integrated power, cooling and liquid-cooling distribution units for high-density AI data centers",
+            "value_driver": "Liquid cooling and high-density rack infrastructure are required as chip power densities rise, translating to structural demand for Vertiv systems.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Vicor",
+            "sector": "Power & Thermal",
+            "role": "48V power architecture and high-density power modules supplier",
+            "value_driver": "Adoption of 48V architectures for high-power processors increases Vicor content per rack and validates its patent-backed technical moat.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "TSMC",
+            "sector": "Manufacturing & Advanced Packaging",
+            "role": "Foundry provider and CoWoS/advanced packaging leader for leading-node AI chips",
+            "value_driver": "Unique process and advanced packaging capacity are prerequisite for modern AI ASICs; virtually all high-end designs require TSMC, creating platform-like demand.",
+            "dependency_type": "platform",
+            "beta_type": "low"
+          },
+          {
+            "company": "Amkor Technology",
+            "sector": "Manufacturing & Advanced Packaging",
+            "role": "OSAT and advanced packaging provider offering 2.5D/alternative packaging to relieve CoWoS bottlenecks",
+            "value_driver": "As packaging capacity becomes the constraining step, Amkor captures share by providing alternative advanced packaging and ramping local capacity.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Ibiden",
+            "sector": "Manufacturing & Advanced Packaging",
+            "role": "Supplier of ABF substrates (high-performance PCB substrates) for complex chip packages",
+            "value_driver": "Larger dies and complex packages require high-end substrates; growing package complexity increases Ibiden content per chip.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Unimicron",
+            "sector": "Manufacturing & Advanced Packaging",
+            "role": "ABF substrate provider and PCB/packaging material supplier",
+            "value_driver": "Similar to Ibiden, benefits from higher substrate demand as packages grow in size and layer count.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Rambus",
+            "sector": "ASIC Design & IP",
+            "role": "Memory IP provider and interface IP across the ASIC ecosystem",
+            "value_driver": "Memory and interface IP are necessary ingredients for bespoke ASICs—licensing and royalties scale as custom designs proliferate.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Synopsys",
+            "sector": "ASIC Design & IP / EDA",
+            "role": "EDA and software tool provider enabling chip design and compiler pipelines",
+            "value_driver": "Tooling that converts models to different architectures lowers switching cost to ASICs; as hyperscalers build chips, Synopsys benefits via licensing.",
+            "dependency_type": "indirect",
+            "beta_type": "low"
+          },
+          {
+            "company": "Cadence",
+            "sector": "ASIC Design & IP / EDA",
+            "role": "EDA and IP provider supporting chip development flows",
+            "value_driver": "Same as Synopsys—essential design tools and IP licensing for ASIC creation.",
+            "dependency_type": "indirect",
+            "beta_type": "low"
+          },
+          {
+            "company": "MACOM",
+            "sector": "Connectivity & Optics",
+            "role": "RF/analog and connectivity component supplier for high-speed links",
+            "value_driver": "Contributes components to optical and high-speed electrical links as data-center interconnect requirements rise.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Ayar Labs",
+            "sector": "Connectivity & Interconnect (Silicon Photonics)",
+            "role": "Silicon photonics innovator (unlisted; referenced as promising)",
+            "value_driver": "Provides a path to chip-to-chip optical links, which could materially reduce power and increase bandwidth if adopted by hyperscalers.",
+            "dependency_type": "indirect",
+            "beta_type": "high"
+          },
+          {
+            "company": "Renesas",
+            "sector": "Power & Thermal / Semiconductor",
+            "role": "Potential alternative PMIC/power supplier referenced as competitive substitute",
+            "value_driver": "Could capture share if hyperscalers dual-source PMICs or replace incumbents.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Infineon",
+            "sector": "Power & Thermal / Semiconductor",
+            "role": "Referenced as possible alternative supplier in power domain",
+            "value_driver": "May participate in dual-sourcing and benefit from general power module demand.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Coherent",
+            "sector": "Optics & Transceivers",
+            "role": "Data center optical transceiver market leader",
+            "value_driver": "High-speed transceiver demand from hyperscalers grows with data-rate upgrades.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Lumentum",
+            "sector": "Optics & Transceivers",
+            "role": "Laser and component supplier for optics",
+            "value_driver": "Benefits from transceiver and optics market recovery and hyperscaler upgrades.",
+            "dependency_type": "direct",
+            "beta_type": "medium"
+          },
+          {
+            "company": "nVent",
+            "sector": "Power & Thermal",
+            "role": "Thermal management and infrastructure components supplier",
+            "value_driver": "Participates in data center infrastructure upgrades tied to cooling and heat dissipation.",
+            "dependency_type": "indirect",
+            "beta_type": "low"
+          },
+          {
+            "company": "Modine",
+            "sector": "Power & Thermal",
+            "role": "Specialist in thermal management systems",
+            "value_driver": "Cooling solutions for high-density deployments create incremental demand.",
+            "dependency_type": "indirect",
+            "beta_type": "low"
+          },
+          {
+            "company": "Onto Innovation",
+            "sector": "Manufacturing & Test",
+            "role": "Equipment and test solutions provider in semiconductor assembly/test",
+            "value_driver": "Advanced test and inspection needs scale with complex packaging and wafer-level processes.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Camtek",
+            "sector": "Manufacturing & Test",
+            "role": "Inspection and metrology equipment supplier for packaging/test",
+            "value_driver": "As packaging complexity rises, demand for metrology and inspection increases.",
+            "dependency_type": "indirect",
+            "beta_type": "medium"
+          },
+          {
+            "company": "Apple",
+            "sector": "End-User / OEM",
+            "role": "Referenced as heavy user of advanced packaging and alternative supply strategies",
+            "value_driver": "Illustrative of major customers seeking second-source packaging and advanced assembly capability.",
+            "dependency_type": "indirect",
+            "beta_type": "low"
+          }
+        ],
+        "case_studies": [
+          {
+            "name": "Project Rainier",
+            "type": "Hyperscaler deployment program",
+            "strategic_role": "Concrete embodiment of AWS's strategy to build a large-scale Trainium-based supercluster to achieve Nvidia independence and dramatically lower TCO via bespoke ASIC scale",
+            "linked_sectors": [
+              "ASIC Design & IP",
+              "Connectivity & Interconnect",
+              "Manufacturing & Advanced Packaging",
+              "Power & Thermal"
+            ],
+            "linked_companies": [
+              "Alchip Technologies",
+              "Marvell Technology",
+              "Astera Labs",
+              "TSMC",
+              "Monolithic Power Systems",
+              "Credo Technology"
+            ],
+            "value_flow": [
+              "AWS increases Trainium server count → Alchip receives turnkey physical design and packaging revenue",
+              "AWS standardizes interconnect choices → Astera Labs retimer/CXL chips and Credo AEC see per-server content growth",
+              "Large-scale server deployment → TSMC and advanced packagers see wafer and CoWoS/2.5D demand",
+              "Higher power density per rack → MPS/Vicor/Vertiv see increased equipment and module sales"
+            ]
+          },
+          {
+            "name": "Google TPU Expansion",
+            "type": "Hyperscaler program / product line",
+            "strategic_role": "Example of a hyperscaler developing in-house accelerators that create sustained demand for SerDes, IP and packaging partners",
+            "linked_sectors": [
+              "ASIC Design & IP",
+              "Manufacturing & Advanced Packaging"
+            ],
+            "linked_companies": [
+              "Broadcom",
+              "TSMC"
+            ],
+            "value_flow": [
+              "Google scales TPU generations → Broadcom SerDes and switch IP content per chip rises",
+              "TPU fabrication requires leading-node capacity → TSMC utilization increases"
+            ]
+          },
+          {
+            "name": "Marvell → Celestial AI Acquisition",
+            "type": "Strategic M&A / technology bet",
+            "strategic_role": "Signal of Marvell's bet on photonic/optical interconnects as the next paradigm for chip-to-chip connectivity in data centers",
+            "linked_sectors": [
+              "ASIC Design & IP",
+              "Optics & Transceivers",
+              "Connectivity & Interconnect"
+            ],
+            "linked_companies": [
+              "Marvell Technology",
+              "Coherent",
+              "Lumentum"
+            ],
+            "value_flow": [
+              "Marvell acquires photonic IP/tech → integrates with DSP/IP offerings",
+              "Combined offering enables higher-bandwidth, lower-power links → increases Marvell content in hyperscaler racks",
+              "Optics partners and module vendors benefit from integrated DSP/optical solutions"
+            ]
+          },
+          {
+            "name": "Astera Labs Strategic Warrant with Amazon + CXL Adoption",
+            "type": "Commercial agreement / interface adoption",
+            "strategic_role": "Illustrates a commercial lock-in where a hyperscaler both invests and commits to long-term purchases, accelerating supplier scale and CXL ecosystem growth",
+            "linked_sectors": [
+              "Connectivity & Interconnect",
+              "ASIC Design & IP"
+            ],
+            "linked_companies": [
+              "Astera Labs",
+              "Amazon (AWS)"
+            ],
+            "value_flow": [
+              "AWS warrant + large purchase commitments → predictable revenue and scale for Astera",
+              "CXL adoption across servers → higher retimer/controller content per system"
+            ]
+          }
+        ],
+        "section_roles": [
+          {
+            "section": "1. Introduction",
+            "role": "Frame the macro shift from Nvidia-dominated GPU era to hyperscaler-driven ASIC era and introduce 'shadow winners' thesis",
+            "core_function": "Set the strategic framing and investment question for the rest of the report",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "2. Structural change deep-dive (Why ASIC?)",
+            "role": "Explain economic and technical drivers for hyperscalers to adopt ASICs (Nvidia Tax, inference growth, ecosystem division of labor)",
+            "core_function": "Provide the causal rationale (why now) that underpins all subsequent sector plays",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "3. Sector I: ASIC design & IP (The Architects & Tailors)",
+            "role": "Profile design/IP partners who directly enable bespoke ASICs and capture high content-per-chip revenue",
+            "core_function": "Identify primary beneficiaries and their moats (Broadcom, Marvell, Alchip etc.)",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "4. Sector II: Connectivity (The Veins)",
+            "role": "Explain the interconnect bottleneck and vendors that will benefit as data rates and CXL adoption rise",
+            "core_function": "Show how retimers, CXL elements, AEC and optics are indispensable to ASIC performance",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "5. Sector III: Power & Thermal (The Energy)",
+            "role": "Explain power delivery and cooling as critical constraints and beneficiaries of AI density",
+            "core_function": "Make the case that PMICs, 48V architectures and liquid cooling are structural demand drivers",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "6. Sector IV: Manufacturing & Advanced Packaging (The Builders)",
+            "role": "Identify where physical manufacturing and packaging capacity create supply bottlenecks and who benefits",
+            "core_function": "Highlight TSMC, OSATs and substrate makers as chokepoints that monetize ASIC scale",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "7. Case study: Project Rainier (AWS)",
+            "role": "Translate thesis into a concrete hyperscaler program to show mechanical linkages to suppliers",
+            "core_function": "Provide a worked example that connects hyperscaler capex to specific supplier revenues",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "8. Complete list & investment guide",
+            "role": "Prioritize and categorize recommended names into Core, Growth/Alpha, and Watchlist buckets",
+            "core_function": "Operationalize the thesis into portfolio allocations and candidate equities",
+            "importance": "high",
+            "edit_guidance": "compress"
+          },
+          {
+            "section": "9. Conclusion & recommendation",
+            "role": "Reinforce thesis and provide final investment prescription ('buy the blueprint, not the soldier')",
+            "core_function": "Close the narrative arc and provide behavioral guidance for investors",
+            "importance": "high",
+            "edit_guidance": "must_keep"
+          },
+          {
+            "section": "Annex / Supporting detail (e.g., company deep-dives)",
+            "role": "Provide granular company-level analysis, financial projections and citations",
+            "core_function": "Substantiate sector claims and support due diligence",
+            "importance": "medium",
+            "edit_guidance": "compress"
+          }
+        ],
+        "rewrite_critical_takeaways": [
+          "Hyperscalers' shift to custom ASICs is driven by TCO incentives (inference-heavy workloads) and compiler/portability improvements that lower the barriers to move off GPUs.",
+          "The ASIC value chain is highly segmented; hyperscalers will outsource or license critical IP and physical design functions to specialist partners rather than vertically integrate every component.",
+          "Design/IP houses (Broadcom, Marvell, Alchip) capture content-per-chip and NRE fees as hyperscalers scale bespoke silicon.",
+          "Connectivity (Astera Labs, Credo, optical vendors) and advanced packaging/foundry (TSMC, Amkor, substrate makers) are structural chokepoints that translate hyperscaler capex into supplier revenue.",
+          "Power delivery and cooling (MPS, Vicor, Vertiv) are essential and durable demand pools as chip power densities rise.",
+          "Project Rainier (AWS Trainium scale-out) is a concrete example connecting hyperscaler announcements to mechanical revenue paths for specific suppliers."
+        ],
+        "compression_plan": {
+          "must_keep": [
+            "Introduction framing of 'shadow winners' and 'Nvidia tax'",
+            "Section 2 core causal logic (Nvidia Tax, inference growth, division of labour in ASIC ecosystem)",
+            "Sector-level mappings (ASIC design/IP; Connectivity; Power & Thermal; Manufacturing & Packaging)",
+            "Project Rainier case study and its supplier linkage table",
+            "Investment guidance summary (Core Picks, Growth, Watchlist) and high-level allocation rationale",
+            "Conclusion exhortation to rotate toward infrastructure suppliers"
+          ],
+          "compress": [
+            "Detailed company micro-profiles with long technical paragraphs (e.g., full Broadcom technical deep dives)",
+            "Repeated background context on GPU history and Nvidia dominance",
+            "Long lists of peripheral watchlist names with single-line descriptions"
+          ],
+          "merge": [
+            "Merge subsections on 'Inference market' and 'Compiler/portability' into one concise 'Why inference favors ASICs' block",
+            "Combine separate connectivity subsections (AEC, CXL, Optics) into a single 'Interconnect' section with clear subsections",
+            "Consolidate power-related vendor discussions (PMICs, 48V architectures, cooling) into a unified 'Power & Thermal' narrative"
+          ],
+          "optional": [
+            "Minor anecdotal items (e.g., short investor-bank projections citations unless critical)",
+            "Extended discussion of stock price volatility or transient PR events unless directly supporting structural claims"
+          ],
+          "repetition_notes": [
+            "The report reiterates the 'shadow winners' framing multiple times—retain one strong, early framing and remove repetitive restatements.",
+            "Company examples are frequently repeated across sections (e.g., Broadcom cited in both ASIC and TPU contexts)—consolidate each company profile into a single unified entry and cross-reference in sector discussions."
+          ]
+        },
+        "readability_notes": {
+          "density_issues": [
+            "Long, dense technical paragraphs (especially in company profiles) that mix strategic, technical and financial points without clear subheadings.",
+            "Redundant explanations of the same mechanisms (e.g., why inference favors ASICs) across multiple sections causing cognitive overload."
+          ],
+          "structure_improvements": [
+            "Adopt a strict top-down section template: framing → why it matters (economics/metrics) → what must exist to enable it → named beneficiary(s) → quantification/scale.",
+            "Consolidate company deep-dives into standardized short profiles (1–3 bullets each: role, why material, sensitivity to hyperscaler capex)."
+          ],
+          "scannability_improvements": [
+            "Use explicit signposting lines at the start of each major section (one-sentence takeaway).",
+            "Introduce a one-page visual/table that maps hyperscaler actions (e.g., add 1 Trainium server) to who gets revenue and why (content-per-server).",
+            "Bulletize technical mechanisms (SerDes, CXL, CoWoS, PMIC, liquid cooling) with concise one-line implications for investors."
+          ]
+        },
+        "tone_and_positioning": {
+          "tone": [
+            "Strategic and confident",
+            "Analytical with investment orientation",
+            "Pro-market and opportunity-focused"
+          ],
+          "target_reader_level": "Institutional or sophisticated retail investors with knowledge of semiconductors and data‑center infrastructure",
+          "preserve_in_rewrite": [
+            "Maintain assertive, forward-looking investment stance (shadow winners thesis)",
+            "Preserve technical language where it supports causal investment claims (SerDes, CXL, CoWoS, PMIC, AEC)",
+            "Keep the pragmatic investor guidance (core vs. alpha vs. watchlist buckets)"
+          ]
+        },
+        "action_framework": {
+          "what_to_avoid": [
+            "Over-simplifying into a binary 'Nvidia vs hyperscalers' narrative—preserve nuance that hyperscalers still rely on third parties.",
+            "Diluting causal links by adding extraneous companies or unreferenced risks.",
+            "Eliminating technical terms that are necessary to justify sector-level investment theses."
+          ],
+          "what_to_focus": [
+            "Clear causal chains from hyperscaler decisions → technical requirements → supplier content growth → revenue/valuation impact.",
+            "Concise company profiles emphasizing role, moat, customer links, and hyperscaler sensitivity.",
+            "Concrete program-level examples (Project Rainier, TPU/Trainium lines, Astera warrant) to illustrate mechanical demand."
+          ],
+          "selection_criteria": [
+            "Direct revenue linkage to hyperscaler ASIC deployments (contractual commitments, strategic partnerships, warrants, NRE/turnkey roles).",
+            "Technology indispensability (SerDes leadership, CXL retimers, advanced packaging capacity, substrate leadership, PMIC performance).",
+            "Supply-side scarcity or chokepoint status (TSMC node capacity, CoWoS/2.5D packaging, substrate production)."
+          ]
+        },
+        "risk_points": [
+          "Concentration risk: several beneficiaries (e.g., Alchip) have high revenue exposure to a single hyperscaler (AWS) leading to client-concentration risk.",
+          "Geopolitical / supply-chain risk: Taiwan-based design and substrate firms and TSMC exposure create geopolitical vulnerability.",
+          "Dual-sourcing and competition: hyperscalers may adopt dual-sourcing (e.g., MPS replacement by Renesas/Infineon) which can cap pricing power.",
+          "Packaging/foundry bottlenecks: constrained CoWoS/advanced packaging capacity can delay revenue realization or shift share among OSATs.",
+          "Valuation risk: high-growth, high-beta names (Astera, Alchip) may be priced for perfection and are sensitive to execution or contract timing.",
+          "Technology adoption risk: emerging technologies (silicon photonics, CXL) depend on ecosystem adoption timelines and standards maturity."
+        ]
+      }
+    }
+  }
+]

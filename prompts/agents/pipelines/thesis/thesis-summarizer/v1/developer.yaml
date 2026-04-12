@@ -1,0 +1,29 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Generate six aligned summary layers from the provided `core_data`: headline_angle, summary_structured, key_takeaways, summary_short, summary_sns_short, summary_sns_post.
+  - Preserve the source thesis, causal logic, investor implication, and framing direction.
+  - Perform compression/reorganization only; do not conduct new analysis or research.
+  - Keep outputs concise, high-signal, and reusable for report/UI/SNS contexts.
+  - In `summary_structured`, keep only the most central case study.
+  - Select up to 4 beneficiary groups and keep representative companies (not exhaustive lists).
+  - Maintain consistent terminology across all fields.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output must be clear, natural English.
+  - `headline_angle` must be exactly one sentence.
+  - `summary_short` should be 2-4 sentences, `summary_sns_short` 1-2 sentences, `summary_sns_post` 2-4 sentences.
+  - `summary_structured.key_mechanism` max 4 items, `beneficiary_groups` max 4 items, `risks` 3-5 items, `key_takeaways` 4-6 items.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not dilute or neutralize the central market stance.
+  - Do not output generic macro commentary detached from input core_data.
+  - Do not use hashtags or promotional exaggeration in SNS fields.
