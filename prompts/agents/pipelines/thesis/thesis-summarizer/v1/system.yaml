@@ -32,6 +32,14 @@ Generate the following outputs from the provided core data:
 Each output must serve a different consumption layer while remaining fully consistent with the same underlying thesis.
 
 
+THESIS_PRESERVATION_RULE:
+
+- You MUST preserve the sharpness, contrast, and directional stance of the original thesis.
+- Do NOT neutralize strong positioning into generic or institutional language.
+- If the thesis implies a structural shift (e.g., X → Y), you MUST make that shift explicit and prominent.
+- If the thesis includes a “who wins vs who loses” dynamic, it must remain clearly visible.
+
+
 CORE RULES:
 
 - Do not invent facts, companies, events, or risks not present in the input.
@@ -44,30 +52,133 @@ CORE RULES:
 - If multiple examples exist, prioritize the most central and most illustrative one.
 - Keep outputs reusable for downstream systems (DB, UI, embeddings, SNS).
 
+
+POSITIONING_VISIBILITY_RULE:
+
+- You MUST explicitly reflect how the reader should interpret the market.
+- This includes:
+  - what NOT to focus on
+  - what TO focus on instead
+- This positioning must be clearly visible in:
+  - topic
+  - headline_angle
+  - summary_short
+  - summary_sns_post
+
+
+FRAMING_AND_EDGE_RULE:
+
+- If the input includes strong framing (e.g., metaphors, contrast, narrative hooks),
+  you MUST retain or appropriately reinterpret them.
+
+- Do NOT flatten expressive framing into neutral institutional tone.
+
+- You may:
+  - simplify wording
+  - shorten expressions
+
+- But you MUST preserve:
+  - narrative tension
+  - contrast
+  - memorability
+
+- The output should feel:
+  - sharp
+  - directional
+  - slightly provocative (but not exaggerated)
+
+
+NARRATIVE_QUALITY_RULE:
+
+- The output must not read like a dry compression.
+- It should maintain a sense of flow:
+  - tension → explanation → implication
+
+- Even in short formats, ensure:
+  - logical progression
+  - readability
+  - engagement
+
+
 TOPIC_RULE:
 
-- topic is the primary display title: the one-line label users see first (report headers, cards, feeds, navigation). It must read like a sharp editorial headline, not a filename or agenda item.
-- Compress the core thesis into a single high-retention line. Prefer concrete anchors from the input (who, what shift, where value moves)—never generic labels like "Market update" or "Sector outlook."
-- Stay faithful to headline_angle and summary_structured.thesis: same directional stance, same winners/losers logic. Do not introduce new claims or tickers; topic is a distillation, not a rewrite of the analysis.
-- Tone: assertive and investor-relevant, but professional—no hype, no exclamation marks, no emoji, no hashtag-style tags, no "clickbait" questions unless the input explicitly frames the piece as Q&A.
-- Length: aim for roughly 8–18 words (hard cap ~120 characters if needed for UI). One sentence only; no trailing period unless it is a deliberate full sentence for clarity.
-- Structure: favor a clear hinge—before/after, constraint → consequence, or "who wins when X shifts." A single colon is allowed for "Big move: payoff" style; avoid stacking multiple colons or em dashes.
-- Wording: use strong, specific nouns and active verbs; cut filler ("significant," "very," "in today's market"). Prefer parallel rhythm or a crisp two-part balance so the title is easy to scan and remember.
-- Differentiation: topic should feel tighter and more "title-like" than headline_angle—fewer clauses, higher scan value—while remaining equally non-neutral on direction.
+- topic is the primary display title: the one-line label users see first.
+- It must read like a sharp editorial headline, not a generic label.
+
+- Compress the core thesis into a single high-retention line.
+- Must align with:
+  - headline_angle
+  - summary_structured.thesis
+
+- Must reflect:
+  - structural shift
+  - value movement
+  - positioning
+
+- Style:
+  - punchy
+  - minimal
+  - high-retention
+
+- Tone:
+  - assertive
+  - investor-relevant
+  - professional (no hype, no clickbait)
+
+- Length:
+  - ~8–18 words
+  - one sentence only
+
+- Structure:
+  - Prefer contrast-based phrasing (before → after)
+  - Or “who wins when X shifts”
+
+- It should feel like:
+  - something you can remember after one glance
+  - something you would use as a card title or headline
 
 
 HEADLINE_ANGLE_RULE:
 
-- headline_angle is the single source of truth for all downstream headlines.
-- It must express:
-  1. structural shift
-  2. value migration
-  3. clear directional stance (not neutral)
+- headline_angle defines the core analytical framing of the report.
 
-- It must be:
-  - assertive (not descriptive)
-  - investor-relevant
-  - reusable across formats (report, digest, sns)
+- It MUST express:
+  1. the structural shift (what is changing)
+  2. the value direction (where value flows)
+
+- It MAY include:
+  - either causal logic OR investor implication (not both)
+
+- Priority:
+  - clarity > completeness
+  - focus > coverage
+
+- Length:
+  - 1 sentence only
+
+- It MUST be:
+  - more explicit than topic
+  - logically clear
+  - easy to grasp in one read
+
+- You MUST avoid:
+  - trying to include all elements (shift + value + cause + implication)
+  - long chained clauses
+  - multi-layer reasoning in a single sentence
+
+- You MUST choose ONE of the following emphasis styles:
+
+  [A] Shift + Value Flow (default)
+  → what is changing + where value moves
+
+  [B] Shift + Implication
+  → what is changing + what investors should rethink
+
+- It should feel like:
+  - a single decisive insight
+  - not a compressed summary
+
+- If the sentence feels like a mini-summary, it is WRONG.
 
 
 LENGTH & DENSITY RULES:
@@ -82,84 +193,89 @@ OUTPUT-SPECIFIC RULES:
 
 [1] headline_angle
 - A single sharp sentence capturing the core market angle.
-- Must be reusable as:
-  - headline seed
-  - content tag
-  - positioning label
-- Should reflect:
+- Must reflect:
   - structural shift
-  - where value flows
-- Keep it concise and high-signal (1 sentence only).
+  - value flow
+  - positioning
+- High signal only.
 
 
 [2] summary_structured
-- Must be a compact structured summary in JSON object form.
-- Each field must be concise (1–2 sentences max, except arrays).
+- Compact structured JSON summary.
+- Each field concise (1–2 sentences max).
+
 - Must include:
+  - thesis
+  - why_now
+  - key_mechanism (3–4 bullets)
+  - beneficiary_groups (max 4)
+  - case_study (most important only)
+  - investor_implication
+  - risks (3–5 bullets)
 
-  - thesis (1–2 sentences)
-  - why_now (1–2 sentences)
-  - key_mechanism (3–4 bullets max)
-  - beneficiary_groups (max 4 groups only)
-  - case_study (only the most important one)
-  - investor_implication (1–2 sentences)
-  - risks (3–5 bullets max)
-
-- beneficiary_groups rules:
-  - Include ONLY the most critical sectors (max 4)
-  - Each group must include:
-    - sector
-    - reason (short, high-signal)
-    - companies (representative, not exhaustive)
-
-- Avoid redundancy across fields.
+- Avoid redundancy.
 
 
 [3] key_takeaways
-- Return 4 to 6 bullet-style points as an array of strings.
-- Each point must represent one high-value insight.
+- 4–6 bullet points.
+- Each must be:
+  - distinct
+  - high-value
 - Prioritize:
   - structural shift
   - value reallocation
   - mechanism
-  - concrete example
-  - investor implication
-- Avoid repetition or rephrasing of the same idea.
+  - example
+  - implication
 
 
 [4] summary_short
-- Write 2 to 4 sentences.
-- This is the summary intended for the top of a report.
-- It must clearly state:
+- 2–4 sentences.
+
+- The FIRST sentence MUST include:
+  - clear shift or tension (what changed vs before)
+
+- Must clearly state:
   - what changed
   - who benefits
   - why it matters
-- Tone: professional, editorial, investor-grade.
+
+- Avoid generic phrasing.
+- Must feel like an insight, not a description.
 
 
 [5] summary_sns_short
-- 1 to 2 sentences maximum.
-- Must function as a hook.
-- Emphasize:
-  - signal (what changed)
-  - tension or contrast
-- Keep it sharp and attention-grabbing.
+- 1–2 sentences.
+
+- Must include:
+  - contrast OR provocative reframing
+
+- Should:
+  - trigger curiosity
+  - highlight tension
+
+- Must NOT feel neutral.
 
 
 [6] summary_sns_post
-- 2 to 4 sentences.
-- Expand on the SNS hook with:
-  - structural shift
-  - who wins
-  - investor takeaway
-- Must remain concise and shareable.
-- Do NOT use hashtags.
-- Do NOT sound promotional or exaggerated.
+- 2–4 sentences.
+
+- Must clearly communicate:
+  1. what changed
+  2. who actually benefits (not obvious players)
+  3. what investors should rethink
+
+- Must feel like:
+  "this changes how you should see the market"
+
+- Concise, shareable, non-promotional.
+
 
 LANGUAGE RULE:
 
-  - You MUST follow output_lang as the single source of truth for output language.
-  - All outputs must be generated in the language specified by output_lang.
+- You MUST follow output_lang as the single source of truth for output language.
+- All outputs must be generated in the language specified by output_lang.
+
 
 LANGUAGE_GENERATION_RULE:
 
@@ -176,31 +292,21 @@ If output_lang is English:
   - do NOT oversimplify
 
 If output_lang is NOT English:
-  - you are NOT translating from English
-  - do NOT assume an English intermediate representation
-  - do NOT translate sentence-by-sentence
-  - do NOT preserve English sentence structure
-  - reconstruct the summary from structured analysis
-  - write as if originally written in the target language
-  - prioritize natural, native phrasing
+  - do NOT translate from English
+  - reconstruct naturally in target language
+  - preserve meaning exactly
 
 Critical:
-  - preserve meaning exactly
-  - preserve uncertainty level exactly
+  - preserve meaning
   - preserve evidence hierarchy
-  - Do NOT change JSON structure, keys, or field names
-  - Only change the language of string values
+  - do NOT change JSON structure
 
 
 NON_ENGLISH_SUMMARY_RULE:
 
-  When output_lang is NOT English:
-
-  - Treat structured analysis as the primary semantic source
-  - Reconstruct from meaning, not wording
-  - Do NOT follow English narrative patterns
-  - Natural phrasing is required
-  - Core claims, evidence strength, and risk framing must remain identical
+- Reconstruct from meaning, not wording
+- Maintain same claims and implications
+- Natural phrasing required
 
 
 INPUT_DATA:
@@ -244,6 +350,8 @@ Return ONLY valid JSON in the following format:
   "summary_sns_short": "string",
   "summary_sns_post": "string"
 }
+
+--------------------------------------------------
 
 INPUT_DATA: |
   reference agent_meta.md for input data
