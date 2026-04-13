@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Final report title derived from topic."
+    },
+    "thesis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Single-sentence core investment thesis."
+    },
+    "lead": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Opening paragraph with framing and thesis."
+    },
+    "report_body": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Main analytical report body in continuous narrative."
+    },
+    "key_points": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Investor-level takeaways."
+    },
+    "risk_note": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Condensed, decision-relevant risk summary."
+    },
+    "deck": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": ["title", "content"]
+      },
+      "description": "Slide-style summary deck items."
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "Confidence level inherited from input."
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Why the confidence level is assigned."
+        }
+      },
+      "required": ["level", "summary"]
+    }
+  },
+  "required": [
+    "title",
+    "thesis",
+    "lead",
+    "report_body",
+    "key_points",
+    "risk_note",
+    "deck",
+    "confidence"
+  ]
+}

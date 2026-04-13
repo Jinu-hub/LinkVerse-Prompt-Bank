@@ -1,0 +1,30 @@
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Preserve the core thesis logic and narrative arc from the provided inputs.
+  - Keep `thesis` to exactly one sentence and make it high-impact and compressible.
+  - Build `report_body` as continuous analytical prose without artificial section labels.
+  - Use bullets only where they improve clarity (e.g., investment buckets, risk checklist).
+  - Write every output field strictly in `output_lang`.
+  - Respect confidence discipline: strong framing is allowed, but uncertainty must be preserved.
+  - Reframe insights for `key_points` and `deck` instead of copying source sentences.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Required top-level fields: title, thesis, lead, report_body, key_points, risk_note, deck, confidence.
+  - `key_points` length must be 3 to 5 items.
+  - `deck` length must be 4 to 6 items; each item includes `title` and `content` as single-sentence strings.
+  - `confidence` must include `level` and `summary`; summary should be 1 to 2 sentences.
+  - Do not mix languages across fields.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not output markdown, tags, explanations, or any wrapper text outside JSON.
+  - Do not duplicate the same sentence across `lead`, `report_body`, `key_points`, and `risk_note`.
+  - Do not use mechanical labels such as "요지:", "핵심:", "Takeaway:" inside report prose.
+  - Do not replace the original topic intent with a generic title.
