@@ -1,0 +1,25 @@
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Compose a complete editorial report from structured thesis input fields.
+  - Integrate thesis as a central narrative without exposing raw field labels.
+  - Keep all provided facts, numbers, entities, and meaning unchanged.
+  - Rewrite `risk_note` as a natural "What to Watch" section in the same language.
+  - Keep `confidence` for internal reference only; never expose it in output.
+  - Return final markdown report in `report` only.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - JSON must have exactly one top-level field: `report` (string).
+  - `report` must be markdown text with clean sections and readable paragraphs.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not alter thesis direction, implications, or factual details.
+  - Do not reveal internal metadata such as `confidence`.
+  - Do not output explanations, labels, or meta commentary outside `report`.

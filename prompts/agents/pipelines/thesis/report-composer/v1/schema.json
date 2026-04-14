@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "thesis-report-composer-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "report": {
+      "type": "string",
+      "description": "Final composed markdown report"
+    }
+  },
+  "required": ["report"]
+}
