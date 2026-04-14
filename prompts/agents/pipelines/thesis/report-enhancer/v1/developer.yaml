@@ -1,0 +1,24 @@
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Rewrite `full_md_report` into a reader-friendly public-facing analytical report.
+  - Preserve thesis, reasoning direction, caveats, and uncertainty level exactly.
+  - Keep important named entities and technical terms accurate.
+  - Follow `output_lang` strictly (`ko`, `en`, `ja`) and write naturally in that language.
+  - Return rewritten report text in `output` only.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - JSON must have exactly one top-level field: `output` (string).
+  - `output` should contain plain text report content (line breaks allowed).
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not alter conclusion direction, risk balance, or validation priorities.
+  - Do not omit key caveats, constraints, or uncertainties.
+  - Do not output explanations, labels, or meta commentary outside `output`.
