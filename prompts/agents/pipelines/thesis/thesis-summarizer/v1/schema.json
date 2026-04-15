@@ -4,7 +4,6 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "headline_angle": { "type": "string" },
     "summary_structured": {
       "type": "object",
       "additionalProperties": false,
@@ -66,16 +65,11 @@
       "minItems": 4,
       "maxItems": 6
     },
-    "summary_short": { "type": "string" },
-    "summary_sns_short": { "type": "string" },
-    "summary_sns_post": { "type": "string" }
+    "summary_short": { "type": "string" }
   },
   "required": [
-    "headline_angle",
     "summary_structured",
     "key_takeaways",
-    "summary_short",
-    "summary_sns_short",
-    "summary_sns_post"
+    "summary_short"
   ]
 }
