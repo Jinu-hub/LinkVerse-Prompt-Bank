@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReportSurfaceOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "headline_angle": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The strongest interpretive angle of the report. Should feel sharp, insight-led, and grounded in the source report."
+    },
+    "key_message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The single most important message the reader should retain from the report."
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A professional 2-4 sentence summary covering what happened, why it matters, and the emphasized implication."
+    },
+    "summary_sns_short": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A short, high-density, perspective-driven social summary line."
+    },
+    "summary_sns_post": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A 3-6 sentence SNS-ready post that reframes the report with a clear perspective while remaining factually grounded."
+    },
+    "hooks": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Three to five distinct, curiosity-triggering hooks based on hidden shifts, structural implications, or overlooked angles in the report."
+    },
+    "one_line_takeaway": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A single-line directional takeaway telling the reader what to focus on, rethink, or prioritize."
+    }
+  },
+  "required": [
+    "headline_angle",
+    "key_message",
+    "summary",
+    "summary_sns_short",
+    "summary_sns_post",
+    "hooks",
+    "one_line_takeaway"
+  ]
+}

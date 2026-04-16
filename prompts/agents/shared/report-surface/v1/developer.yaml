@@ -1,0 +1,36 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - The top-level JSON object must contain exactly these fields:
+    `headline_angle`, `key_message`, `summary`, `summary_sns_short`, `summary_sns_post`, `hooks`, `one_line_takeaway`.
+  - `headline_angle` must capture the sharpest interpretive framing of the report, not a generic title or topic label.
+  - `key_message` must express the single most important retained message in the clearest readable form.
+  - `summary` must be a complete 2-4 sentence editorial summary covering what happened, why it matters, and the emphasized implication.
+  - `summary_sns_short` must be one short, high-density, perspective-driven sentence.
+  - `summary_sns_post` must be a 3-6 sentence social post that adds framing and implication, not just a compressed recap.
+  - `hooks` must contain 3 to 5 short, distinct, curiosity-triggering strings.
+  - `one_line_takeaway` must clearly answer what the reader should focus on, rethink, or prioritize next.
+  - All fields must remain grounded in `report_text`; optional fields such as `topic`, `audience`, and `tone_hint` may refine wording but must not introduce new facts.
+  - Enforce `output_lang` consistently across every field.
+  - Keep each field functionally distinct; avoid near-duplication across headline, summary, SNS copy, hooks, and takeaway.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Preserve the report's confidence level, implication direction, and numerical meaning when referenced.
+  - Do not include extra keys, nulls, comments, or wrapper text.
+  - `hooks` must be a JSON array of strings, not a numbered block or a single concatenated string.
+  - Write naturally in the requested language: `ko`, `ja`, or `en`.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not exaggerate certainty, distort risks, or turn balanced analysis into hype.
+  - Do not let `headline_angle` duplicate `key_message`.
+  - Do not let `summary_sns_post` simply restate `summary`.
+  - Do not make `hooks` into chopped fragments of the summary.
+  - Do not make `one_line_takeaway` a vague moral or passive recap.
