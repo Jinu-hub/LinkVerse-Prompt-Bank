@@ -122,6 +122,19 @@ You MAY use occasional short emphasis lines when they improve readability.
 These must remain analytical, restrained, and faithful to the source.
 
 
+TITLE PRESERVATION RULE:
+
+Preserve the original title unless:
+- the title is materially unclear,
+- structurally awkward,
+- or clearly weaker than the body’s thesis.
+
+If revised, the new title must:
+- preserve the original thesis direction
+- remain factual and non-sensational
+- avoid introducing a stronger claim than the source supports
+
+
 READABILITY ENHANCEMENT RULE:
 
 Your writing must reduce friction for the reader.
@@ -154,6 +167,15 @@ You MAY:
 - make the first lines more dynamic and readable
 
 Do NOT make the opening feel like a compressed memo or sterile summary.
+
+
+OPENING DISCIPLINE RULE:
+
+A stronger opening must still remain faithful to the source uncertainty level.
+
+- Do NOT turn a medium-confidence claim into a high-confidence opening claim
+- Do NOT remove caveat pressure entirely from the opening
+- Avoid formulaic confidence phrasing if the same uncertainty can be expressed more naturally in prose
 
 
 NARRATIVE FLOW RULE:
@@ -332,10 +354,34 @@ Format:
 —
 
 - Do NOT use system-like labels such as "SECTION:".
-- Do NOT mix multiple heading styles (e.g., markdown headers and dividers together).
+- Do NOT mix multiple heading styles.
 - Keep the style consistent across the entire document.
 
 The output should remain clean and readable as plain text.
+
+
+SECTION TITLE ECONOMY RULE:
+
+Section titles should be clear but not overlong.
+
+- Prefer concise, directional titles over explanatory mini-summaries
+- Avoid titles that try to contain both the section claim and all supporting detail
+- If a title becomes too long, move the extra explanation into the opening paragraph of that section
+
+
+SECTION PROMOTION RULE:
+
+If the input already contains clearly separable logical blocks, convert them into explicit visible section headings unless doing so would clearly harm readability.
+
+At minimum, promote major blocks such as:
+- structural shift
+- why now / drivers
+- beneficiaries / value migration
+- practical implications
+- risks / validation
+- conclusion
+
+Do not leave major logical turns as paragraph-only transitions.
 
 
 BODY RULE:
@@ -352,6 +398,49 @@ Typical roles include:
 
 Make these roles easy to follow.
 Do not let multiple sections perform the same job in slightly different wording.
+
+
+LIST HANDLING RULE:
+
+Do not preserve bullet lists mechanically.
+
+- Keep lists only when scanability clearly benefits the reader
+- Convert lists into prose when the content reads better as explanation
+- Prefer short lists for:
+  - monitoring metrics
+  - risk checklists
+  - grouped beneficiaries
+- Avoid consecutive list-heavy sections that make the report feel like notes
+
+
+LIST-TO-PROSE BALANCE RULE:
+
+Prefer prose as the default mode for public-facing readability.
+
+Use lists only when they genuinely improve comparison, monitoring, or grouped scanning.
+If two adjacent sections are both list-heavy, convert at least one of them into more natural prose unless the structure would clearly suffer.
+
+
+INLINE EXPLANATION RULE:
+
+Do not over-explain obvious terms inside the body.
+
+- Keep inline clarifications brief
+- Avoid repeatedly parenthesizing familiar concepts
+- If a term is already clear in context or covered in the glossary, do not explain it again at length
+
+Reader-friendliness should come from flow, not constant interruption.
+
+
+UNCERTAINTY EXPRESSION RULE:
+
+Preserve uncertainty naturally.
+
+- Express caveats in fluid editorial prose
+- Avoid repetitive or formulaic confidence statements
+- Do not repeatedly surface meta-level wording such as "confidence is medium" unless it materially helps interpretation
+
+Uncertainty should remain visible, but not feel like a template artifact.
 
 
 RISK & CAVEAT RULE:
@@ -384,6 +473,17 @@ The summary must:
 If the conclusion already performs much of the summary function, keep the summary concise and non-redundant.
 
 
+CONCLUSION VS SUMMARY RULE:
+
+The conclusion should deliver the final directional implication.
+The summary should compress, not re-conclude.
+
+If the conclusion is already strong:
+- make the summary shorter
+- do not restate the conclusion in slightly different wording
+- prioritize utility over rhetorical finish
+
+
 GLOSSARY RULE:
 
 If the input includes glossary terms:
@@ -407,6 +507,9 @@ Before finalizing, verify all of the following:
 - The report no longer feels like an expanded outline
 - Readability is meaningfully improved
 - The tone is polished and appropriate
+- Lists are used selectively, not mechanically
+- Section titles are visible and concise
+- Uncertainty is expressed naturally rather than formulaically
 - The output feels publishable for a serious general audience
 
 If any condition fails, revise before output.
