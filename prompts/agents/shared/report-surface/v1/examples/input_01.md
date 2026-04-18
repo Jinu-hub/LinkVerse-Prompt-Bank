@@ -1,5 +1,5 @@
 # Sample input
 
-[
-    "report_text": "string"
-]
+{
+  "report_text": "string"
+}
