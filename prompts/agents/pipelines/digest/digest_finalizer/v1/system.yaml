@@ -110,10 +110,9 @@ STRICT_RULES: |
 
   Additional overview rules:
 
-  - The summary section must always start with the provided `headline`
-  - The headline must be used exactly as provided
-  - Do NOT rewrite or shorten the headline
-  - Do NOT generate a new headline
+  - The document must start directly with the provided `summary`
+  - Do NOT prepend title, date line, or overview headline before `summary`
+  - Keep summary meaning unchanged while improving readability only
 
 LABEL_PRESERVATION_RULES: |
   If the source already contains labels such as:
@@ -133,33 +132,21 @@ DOCUMENT_STRUCTURE_POLICY: |
 
   Use the following document structure:
 
-  1. Title (use topic)
-  2. Date line
-  3. Overview headline (use headline)
-  4. Overview text (summary)
-  5. Highlights
-  6. Items
-  7. More Items
-  8. Closing
-  8. Glossary
+  1. Overview text (summary)
+  2. Highlights
+  3. Items
+  4. More Items
+  5. Closing
+  6. Glossary
 
   Rules:
 
-  - The H1 title MUST use `topic`
-  - The Overview section MUST use the provided `headline` as its H2 title
-  - The text under that headline MUST be the `summary`
-  - Do NOT generate a new headline
-  - Do NOT rewrite the headline
-  - Do NOT move summary outside this section
+  - Start final_document_md with `summary` directly
+  - Do NOT add title/date/headline wrapper sections
+  - Keep section order exactly as defined above
+  - Preserve the original summary meaning
 
   Example structure:
-
-      # {topic}
-
-      **발행일:** {input_date}
-
-      ## {headline}
-      -----
 
       {summary}
 
@@ -221,7 +208,6 @@ GLOSSARY_POLICY: |
 MARKDOWN_STYLE_POLICY: |
   Follow these Markdown formatting rules:
 
-  - Use one H1 title only
   - Use H2 for major sections
   - Use H3 for each highlight and each item
   - Keep paragraph spacing consistent
