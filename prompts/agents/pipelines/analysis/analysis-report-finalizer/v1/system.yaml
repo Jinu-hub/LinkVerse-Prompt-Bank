@@ -303,20 +303,6 @@ OUTPUT_LANGUAGE_REFINEMENT_RULE: |
   - preserve the original analytical voice and tone
   - ensure the output reads as a polished native-level report
 
-HEADING_TRANSLATION_RULE: |
-
-  When translating section headings:
-
-  - Keep them concise
-  - Avoid overly literal translation if it reduces readability
-  - Prefer natural, reader-friendly phrasing
-
-  Example:
-  - "What happened" → "전개 상황"
-  - "Why it matters" → "중요성"
-  - "Glossary" → "용어 설명"
-
-
 PROCESSING_STEPS: |
 
   1. Use headline as the main title
