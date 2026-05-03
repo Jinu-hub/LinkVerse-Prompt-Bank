@@ -1,0 +1,149 @@
+{
+    "agents": [
+      {
+        "key": "agent-digest-item-selector",
+        "step": 1,
+        "model": "gpt-5-mini",
+        "api_mode": "responses",
+        "provider": "openai",
+        "prompt_id": "d9a36b5e-a1cc-475d-9beb-4d58340421a8",
+        "agent_name": "Item Selector Agent",
+        "temperature": "0.1000",
+        "prompt_version": 1
+      },
+      {
+        "key": "agent-digest-writer",
+        "step": 2,
+        "model": "gpt-5-mini",
+        "api_mode": "responses",
+        "provider": "openai",
+        "prompt_id": "3e8ea7c0-3945-470f-972d-06d5d3e1af51",
+        "agent_name": "Digest Writer Agent",
+        "temperature": "0.3000",
+        "prompt_version": 2
+      },
+      {
+        "key": "pipeline-core-p1",
+        "step": 3,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-en-translation",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "c2cb10dd-0d72-40d3-b3ad-230955c405db",
+              "agent_name": "English Translation Agent",
+              "temperature": "0.1000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-digest-writer",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "3e8ea7c0-3945-470f-972d-06d5d3e1af51",
+              "agent_name": "Digest Writer Agent",
+              "temperature": "0.3000",
+              "prompt_version": 2
+            }
+          ],
+          "pipeline_key": "core-p1",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Digest Report Process Core "
+      },
+      {
+        "key": "pipeline-core-enrichment",
+        "step": 4,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-core-classifier",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "e25ea104-3de1-476d-8313-2af5abc5f3df",
+              "agent_name": "Classifier Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-core-tagger",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "e53e9f53-95a9-4e82-ab3b-5a97ffc82966",
+              "agent_name": "Tagger Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-core-bundle-extractor",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "0b7fea5d-a256-409a-a71b-e1271a263c4e",
+              "agent_name": "Metric Bundle Extractor Agent",
+              "temperature": "0.0000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "core-enrichment",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Core Data Enrichment"
+      },
+      {
+        "key": "pipeline-digest-composition",
+        "step": 5,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-digest-report-headline",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "99392363-21c9-4805-8ddb-9a300230c047",
+              "agent_name": "Digest Headline Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-digest-report-finalizer",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "289567f1-2bab-4050-9b1e-35ae70bfa5d3",
+              "agent_name": "Digest Finalizer Agent",
+              "temperature": "0.3000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-digest-social-formatter",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "d374fc80-2b5d-47ef-b2a9-353d51e701e9",
+              "agent_name": "Dgest Social Formatter Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "digest-composition",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Digest Composition Flow"
+      }
+    ],
+    "pipeline_key": "digest-report",
+    "pipeline_version": "v1"
+  }

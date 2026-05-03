@@ -1,0 +1,182 @@
+{
+    "agents": [
+      {
+        "key": "agent-normalizer",
+        "step": 1,
+        "model": "gpt-5-mini",
+        "api_mode": "responses",
+        "provider": "openai",
+        "prompt_id": "1f603733-bc80-469d-a8be-3c2b8bb9ddde",
+        "agent_name": "Normalizer Agent",
+        "temperature": "0.1000",
+        "prompt_version": 1
+      },
+      {
+        "key": "pipeline-core-p2",
+        "step": 2,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-en-translation",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "c2cb10dd-0d72-40d3-b3ad-230955c405db",
+              "agent_name": "English Translation Agent",
+              "temperature": "0.1000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-analyzer",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "1ec9b34c-eb52-46f0-9373-3a6d6586c87c",
+              "agent_name": "Analyzer Agent",
+              "temperature": "0.3000",
+              "prompt_version": 2
+            },
+            {
+              "key": "agent-analysis-summarizer",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "b971a6ac-5d61-4d66-889e-afed5a7f8083",
+              "agent_name": "Summarizer Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-confidence",
+              "step": 4,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "756c47c4-f29a-4e16-a6b3-9ee8077eb3f5",
+              "agent_name": "Confidence Agent",
+              "temperature": "0.3000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "core-p2",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Analysis Report Process Core"
+      },
+      {
+        "key": "pipeline-core-enrichment",
+        "step": 3,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-core-classifier",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "e25ea104-3de1-476d-8313-2af5abc5f3df",
+              "agent_name": "Classifier Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-core-tagger",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "e53e9f53-95a9-4e82-ab3b-5a97ffc82966",
+              "agent_name": "Tagger Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-core-bundle-extractor",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "0b7fea5d-a256-409a-a71b-e1271a263c4e",
+              "agent_name": "Metric Bundle Extractor Agent",
+              "temperature": "0.0000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "core-enrichment",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Core Data Enrichment"
+      },
+      {
+        "key": "pipeline-analysis-composition",
+        "step": 4,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-analysis-summarizer",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "b971a6ac-5d61-4d66-889e-afed5a7f8083",
+              "agent_name": "Summarizer Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-analysis-report-creator",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "f7967421-7ce3-4cd0-8044-dbb4961a3246",
+              "agent_name": "Analysis Report Creator Agent",
+              "temperature": "0.3000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-analysis-report-finalizer",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "f19d5f8f-f56f-4232-a43f-d324369bc7d1",
+              "agent_name": "Analysis Report Finalizer Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-analysis-social-formatter",
+              "step": 4,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "bf801c6c-0cd6-4e7e-90a0-9c5f1c2a2485",
+              "agent_name": "Analysis Social Formatter Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-report-surface",
+              "step": 5,
+              "model": "gpt-4.1-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "4b0210a8-6328-4421-bb25-226e64371436",
+              "agent_name": "Report Surface Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "analysis-composition",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Analysis Composition Flow"
+      }
+    ],
+    "pipeline_key": "analysis-report",
+    "pipeline_version": "v1"
+  }

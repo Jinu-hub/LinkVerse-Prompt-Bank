@@ -1,0 +1,182 @@
+{
+    "agents": [
+      {
+        "key": "agent-normalizer",
+        "step": 1,
+        "model": "gpt-5-mini",
+        "api_mode": "responses",
+        "provider": "openai",
+        "prompt_id": "1f603733-bc80-469d-a8be-3c2b8bb9ddde",
+        "agent_name": "Normalizer Agent",
+        "temperature": "0.1000",
+        "prompt_version": 1
+      },
+      {
+        "key": "pipeline-core-p3",
+        "step": 2,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-thesis-framing-extractor",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "5f9a2d69-66f8-4966-8734-38f633baece5",
+              "agent_name": "Thesis Framing Extractor Agent",
+              "temperature": "0.1000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-thesis-reinterpretation",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "9b9ac42a-a67e-4ef2-a6ca-da2d0334c3c1",
+              "agent_name": "Thesis Reinterpretation Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-thesis-summarizer",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "ce0a872c-720f-4ce2-b1a0-9b723b5eb71e",
+              "agent_name": "Thesis Summarizer Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-confidence",
+              "step": 4,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "756c47c4-f29a-4e16-a6b3-9ee8077eb3f5",
+              "agent_name": "Confidence Agent",
+              "temperature": "0.3000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "core-p3",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Thesis Report Process Core"
+      },
+      {
+        "key": "pipeline-core-enrichment",
+        "step": 3,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-core-classifier",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "e25ea104-3de1-476d-8313-2af5abc5f3df",
+              "agent_name": "Classifier Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-core-tagger",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "e53e9f53-95a9-4e82-ab3b-5a97ffc82966",
+              "agent_name": "Tagger Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-core-bundle-extractor",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "0b7fea5d-a256-409a-a71b-e1271a263c4e",
+              "agent_name": "Metric Bundle Extractor Agent",
+              "temperature": "0.0000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "core-enrichment",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Core Data Enrichment"
+      },
+      {
+        "key": "pipeline-thesis-composition",
+        "step": 4,
+        "detail": {
+          "agents": [
+            {
+              "key": "agent-thesis-summarizer",
+              "step": 1,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "ce0a872c-720f-4ce2-b1a0-9b723b5eb71e",
+              "agent_name": "Thesis Summarizer Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-thesis-report-creator",
+              "step": 2,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "a16072cd-8ac7-46a9-88ce-448751450b0d",
+              "agent_name": "Thesis Report Creator Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-thesis-report-composer",
+              "step": 3,
+              "model": "gpt-5-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "04de4652-0adf-49c5-9d00-a89d361fd063",
+              "agent_name": "Thesis Report Composer Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-thesis-report-enhancer",
+              "step": 4,
+              "model": "gpt-4.1-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "f1d222eb-2850-46f1-b06e-4e852d3bf392",
+              "agent_name": "Thesis Report Enhancer Agent",
+              "temperature": "0.3000",
+              "prompt_version": 1
+            },
+            {
+              "key": "agent-report-surface",
+              "step": 5,
+              "model": "gpt-4.1-mini",
+              "api_mode": "responses",
+              "provider": "openai",
+              "prompt_id": "4b0210a8-6328-4421-bb25-226e64371436",
+              "agent_name": "Report Surface Agent",
+              "temperature": "0.2000",
+              "prompt_version": 1
+            }
+          ],
+          "pipeline_key": "thesis-composition",
+          "pipeline_version": "v1"
+        },
+        "agent_name": "Thesis Composition Flow"
+      }
+    ],
+    "pipeline_key": "thesis-report",
+    "pipeline_version": "v1"
+  }
