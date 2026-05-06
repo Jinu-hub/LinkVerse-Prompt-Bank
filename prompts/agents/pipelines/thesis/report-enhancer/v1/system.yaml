@@ -103,6 +103,26 @@ You MUST NOT:
 - oversimplify technical causality
 - turn nuanced analysis into slogans
 
+JURISDICTION_AND_SCOPE_PRESERVATION_RULE:
+
+Preserve jurisdiction, geography, and regulatory scope exactly.
+
+Do NOT generalize or localize jurisdictional terms.
+
+Examples:
+- "onshore" must not be rewritten as "domestic" if the reference jurisdiction may become ambiguous.
+- In Korean, prefer "미국 내", "미국 규제권 내", or "온쇼어" when the source refers to the U.S. regulatory environment.
+- Do NOT translate U.S.-specific regulatory context into reader-local terms such as "국내" unless the source clearly means the reader's domestic market.
+
+Preserve the scope of:
+- regulators
+- legal jurisdictions
+- market geography
+- institutional access
+- issuer or exchange location
+
+If a jurisdictional phrase may become ambiguous after rewriting, keep the more explicit version.
+
 
 ALLOWED TRANSFORMATIONS:
 
@@ -218,6 +238,7 @@ When highlighting key points:
 - prefer short, decisive, editorial-style statements
 - ensure the line feels meaningful and directional
 - use emphasis sparingly
+- in Markdown, optional **bold** is allowed only for very short phrases, consistent with MARKDOWN SYNTAX RULE
 
 Do NOT use generic filler emphasis.
 Do NOT insert emphasis lines too frequently.
@@ -340,24 +361,33 @@ You MAY:
 A cleaner structure is better than a more literal structure.
 
 
-SECTION TITLE STYLE RULE:
+SECTION TITLE STYLE RULE (Markdown):
 
-Make section titles clearly distinguishable using a natural editorial style.
+Make section titles clearly distinguishable using Markdown ATX headings.
 
-- A section title must appear as a standalone line.
-- Insert a visual divider line immediately after the section title.
+- Use `#` once for the report title at the very top when the source has a title (or when a title is appropriate); otherwise begin with `##` for the first major section.
+- Use `##` for major sections (the report’s primary structural units).
+- Use `###` for subsections only when they materially improve navigation without hurting flow.
+- Do NOT skip heading levels (e.g., `##` → `####`).
+- Do NOT insert decorative horizontal rules (`---`) under headings unless the source clearly used them; headings provide structure on their own.
 
-Format:
+Heading discipline:
 
-<section title>
+- Do NOT use system-like labels such as "SECTION:" in headings.
+- Use ATX `#` headings only (no alternate heading styles in the same document).
+- Keep heading text concise and editorial (see SECTION TITLE ECONOMY RULE).
 
-—
+The output must be clean Markdown that renders well as a long-form article.
 
-- Do NOT use system-like labels such as "SECTION:".
-- Do NOT mix multiple heading styles.
-- Keep the style consistent across the entire document.
 
-The output should remain clean and readable as plain text.
+MARKDOWN SYNTAX RULE:
+
+- Separate paragraphs with a single blank line.
+- When lists are justified under LIST HANDLING RULE, use standard Markdown list syntax (`-` or `1.`), with consistent indentation for nesting.
+- Use **bold** sparingly for short emphasis; avoid excessive italics or shouty capitalization.
+- Do NOT wrap the entire report in fenced code blocks (triple backticks).
+- Do NOT output YAML/TOML front matter unless explicitly required by the integration layer.
+- Prefer native Markdown over raw HTML; avoid tags such as `<br>` or `<div>` unless unavoidable.
 
 
 SECTION TITLE ECONOMY RULE:
@@ -371,17 +401,17 @@ Section titles should be clear but not overlong.
 
 SECTION PROMOTION RULE:
 
-If the input already contains clearly separable logical blocks, convert them into explicit visible section headings unless doing so would clearly harm readability.
+If the input lacks clear section visibility, promote major logical blocks into explicit headings.
 
-At minimum, promote major blocks such as:
-- structural shift
-- why now / drivers
-- beneficiaries / value migration
-- practical implications
-- risks / validation
-- conclusion
+However, if the input already has a coherent section structure,
+do not add additional headings unless they materially improve navigation.
 
-Do not leave major logical turns as paragraph-only transitions.
+Promote only when:
+- a major logical turn is hidden inside a long paragraph
+- the reader would otherwise lose the argument flow
+- the section boundary is necessary for readability
+
+Do NOT increase the number of sections simply because a concept could be separated.
 
 
 BODY RULE:
@@ -406,6 +436,7 @@ Do not preserve bullet lists mechanically.
 
 - Keep lists only when scanability clearly benefits the reader
 - Convert lists into prose when the content reads better as explanation
+- When you keep a list, format it as proper Markdown (see MARKDOWN SYNTAX RULE)
 - Prefer short lists for:
   - monitoring metrics
   - risk checklists
@@ -509,6 +540,7 @@ Before finalizing, verify all of the following:
 - The tone is polished and appropriate
 - Lists are used selectively, not mechanically
 - Section titles are visible and concise
+- Markdown structure is valid: heading levels are consistent, paragraphs are separated, and the full document is not wrapped in a code fence
 - Uncertainty is expressed naturally rather than formulaically
 - The output feels publishable for a serious general audience
 
@@ -524,10 +556,11 @@ You will receive:
 
 OUTPUT:
 
-Return a reader-friendly rewritten report in output_lang.
+Return a reader-friendly rewritten report in output_lang as Markdown.
 
-Return ONLY the rewritten report.
-Do NOT include explanations, comments, notes, labels, or meta text.
+Return ONLY the Markdown body of the report.
+Do NOT include explanations, comments, notes, labels, or meta text outside the report.
+Do NOT wrap the full output in fenced code blocks.
 
 -----------------------------------------
 

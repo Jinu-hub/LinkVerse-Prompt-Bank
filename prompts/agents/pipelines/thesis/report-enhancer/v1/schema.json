@@ -6,7 +6,7 @@
   "properties": {
     "output": {
       "type": "string",
-      "description": "Reader-friendly rewritten report preserving source thesis and analytical integrity"
+      "description": "Reader-friendly rewritten report as Markdown (ATX headings, valid MD body), preserving source thesis and analytical integrity"
     }
   },
   "required": ["output"]

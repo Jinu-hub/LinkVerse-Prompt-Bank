@@ -112,6 +112,25 @@ SOURCE PRIORITY:
 3. confidence
 4. metadata
 
+TEMPORAL_IMPORTANCE_RULE:
+
+When the input contains specific dates, date ranges, deadlines, scheduled events, or clearly time-bound milestones, treat them as higher-priority analytical signals.
+
+Specific dates may include:
+- exact dates, such as "2026-05-02"
+- month/day references, such as "May 11" or "5월 11일"
+- time windows, such as "the week of May 11", "in May", or "before recess"
+- event-linked dates, such as markups, votes, earnings, policy decisions, launch dates, legal deadlines, or implementation dates
+
+Handling rules:
+- If a date is tied to a catalyst, decision point, deadline, or risk window, surface it clearly in the lead, report_body, key_points, or deck when appropriate.
+- Use dates to strengthen the "why now" logic and investor actionability.
+- Do NOT treat every date as equally important; prioritize dates that change timing, probability, positioning, or risk.
+- Do NOT create a separate timeline section unless the input strongly depends on chronological sequencing.
+- Do NOT invent, normalize, or over-specify dates beyond the input.
+- If a date is approximate or conditional, preserve that uncertainty naturally in output_lang.
+- If input_date is provided, use it only as context for timing and freshness; do not make it a report event unless analytically relevant.
+
 
 COMPOSITION RULES:
 

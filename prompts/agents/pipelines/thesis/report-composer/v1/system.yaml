@@ -101,6 +101,24 @@ Do NOT allow multiple major roles to dissolve into one long continuous block.
 
 Each major section must do one primary job.
 
+RISK_SECTION_INTEGRATION_RULE:
+
+The input may contain both:
+- risk / validation content inside report_body
+- a separate risk_note field
+
+Do NOT create two separate sections from these if they cover the same uncertainty.
+
+Use risk_note as supporting material for the main risks / validation section.
+
+Preferred handling:
+- Create one integrated section for risks, uncertainties, and validation priorities.
+- Use the localized section title defined by risks_validation_section in LANGUAGE_MAPPING_RULE.
+- Explain the core uncertainty once.
+- List the monitoring items once.
+- Do NOT create a separate "What to Watch" section if it would repeat the same risk or validation content.
+
+Only create a separate watch section when it adds a clearly different function from the main risks / validation section.
 
 SECTION ROLE DISCIPLINE RULE:
 
@@ -298,17 +316,17 @@ LANGUAGE_MAPPING_RULE:
 
 If Korean:
 - key_takeaways_section → "핵심 요약"
-- what_to_watch_section → "주목할 사항"
+- risks_validation_section → "남은 변수와 검증 포인트"
 - glossary_section → "용어 설명"
 
 If English:
 - key_takeaways_section → "Key Takeaways"
-- what_to_watch_section → "What to Watch"
+- risks_validation_section → "Remaining Variables and Validation Points"
 - glossary_section → "Glossary"
 
 If Japanese:
 - key_takeaways_section → "要点まとめ"
-- what_to_watch_section → "注目ポイント"
+- risks_validation_section → "残る変数と検証ポイント"
 - glossary_section → "用語解説"
 
 
@@ -355,9 +373,9 @@ OUTPUT_STRUCTURE:
 
 ---
 
-{major section heading 5}
+{major section heading 5: integrated risks / uncertainties / validation priorities}
 
-{section body}
+{section body using both report_body risk content and risk_note if relevant}
 
 ---
 
@@ -370,14 +388,6 @@ OUTPUT_STRUCTURE:
 ## {key_takeaways_section}
 
 - bullet points
-
----
-
-## {what_to_watch_section}
-
-{risk_note rewritten naturally}
-
-[Optional]
 
 ---
 
@@ -414,7 +424,8 @@ PROCESSING_STEPS:
 3. Build a sectioned body from report_body
 4. Make major logical sections explicit
 5. Convert key_points into concise bullets
-6. Rewrite risk_note into a natural "What to Watch" section
+6. Integrate risk_note into the main risks / validation section.
+   Do not create a separate "What to Watch" section unless it adds a distinct reader function.
 7. Add glossary only if necessary
 8. Ensure conclusion returns to the thesis
 9. Ensure the major section skeleton is visible in plain text

@@ -142,9 +142,20 @@ CORE_TAG_EXTRACTION: |
   Aliases must:
 
   - be short search-friendly variations
-  - follow the same formatting rules as tags
   - remain in English
   - not repeat the main tag
+  - be equivalent to the main tag
+  - not add a new meaning, theme, or narrative angle
+
+  Good:
+    - Nvidia -> nvda, nvidia-corp
+    - Federal Reserve -> fed, frb
+    - ai-infrastructure -> ai-infra
+
+  Bad:
+    - SpaceX -> spacex-ipo
+    - ai-platform -> platform-expansion
+    - commercialization -> innovation-acceleration
 
   🔧 Core tags must be selected ONLY from existing hard_tags or soft_tags.
   🔧 Do NOT create new tags during core tag extraction.
@@ -234,12 +245,30 @@ QUALITY_RULES: |
   🔧 Use compact search-style tags.
   🔧 Prefer 1–2 words, but allow short hyphenated forms when clearer.
 
-  Tag formatting rules (apply to all tags):
+  Tag formatting rules apply to all tags:
 
-  - Use short tags only (1–2 words)
-  - Avoid long descriptive phrases
-  - Prefer hyphenated forms when needed
-  - Tags should look like search keywords
+  - Tags must be stable, reusable search keywords.
+  - Prefer canonical names over abbreviations or temporary variants.
+  - Use compact search-style tags.
+  - Prefer 1–2 words, but allow short hyphenated forms when clearer.
+  - Avoid long descriptive phrases.
+  - Do not create multiple tags that mean nearly the same thing.
+
+  Examples:
+
+  good:
+  - federal-reserve
+  - conference-board
+  - nvidia
+  - middle-east
+  - ai-infrastructure
+
+  bad:
+  - fed
+  - the-conference-board
+  - nvda
+  - mideast
+  - ai-infra
 
   Hard tags should prioritize precision.
   Soft tags should prioritize discoverability.
