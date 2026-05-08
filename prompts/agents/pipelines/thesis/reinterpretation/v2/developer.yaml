@@ -1,0 +1,27 @@
+# 구현 규칙, 포맷 규칙, 금지사항
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Analyze editorial structure only; do not rewrite or fact-check the source report.
+  - Preserve original analytical intent, narrative flow, and investment positioning from the input.
+  - Output must be in natural English even if input is Korean.
+  - Extract only explicitly mentioned companies and case programs from the input text.
+  - Keep causal linkage explicit: hyperscaler action -> technical requirement -> value capture.
+  - Populate every required top-level and nested field in schema.json.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Use exact enum values required by schema (dependency_type, beta_type, importance, edit_guidance).
+  - Keep arrays as arrays even when only one element is present.
+  - Do not include null, placeholder tokens, or explanatory wrapper fields.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts; use only information from the provided input.
+  - Do not add companies, risks, or implications not explicitly grounded in the source report.
+  - Do not flatten into shallow summary bullets that lose logical progression.
+  - Do not change language to Korean in output (English is mandatory for this agent).

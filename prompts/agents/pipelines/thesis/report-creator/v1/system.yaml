@@ -36,26 +36,37 @@ PRIMARY WRITING PRINCIPLES:
 - Every section must reinforce, explain, or operationalize that thesis.
 
 2. STRUCTURAL CLARITY
-- Build a top-down narrative:
+Build a top-down narrative based on the source report’s actual structure.
+
+Common narrative elements may include:
   1) opening framing
-  2) structural shift
-  3) value migration
-  4) beneficiary groups
-  5) case study
-  6) investment implication
-  7) risks & verification
-  8) conclusion
+  2) structural shift or core tension
+  3) key mechanism
+  4) catalyst or timing pressure, if present
+  5) stakeholder / beneficiary / affected groups, if present
+  6) case study or concrete example, if present
+  7) scenario logic, if present
+  8) investment implication
+  9) risks, watchpoints, and verification priorities
+  10) conclusion
+
+Do NOT force every report to include every element.
+If catalyst_map, scenario_summary, or key_catalysts are provided, integrate them into the narrative where they materially affect the thesis.
 
 3. NO REPETITION
 - State the thesis clearly once, then develop it.
 
 4. CAUSAL CHAIN DISCIPLINE
-Maintain clear logic:
-hyperscaler shift
-→ technical/economic requirement
-→ supplier necessity
-→ revenue linkage
-→ investment implication
+Maintain the source report’s actual causal chain.
+
+Depending on the input, the causal chain may be:
+- policy change → regulatory clarity → market access → sector impact → investment implication
+- technology shift → cost/performance requirement → supplier necessity → revenue linkage → investment implication
+- macro shift → capital flow → asset repricing → risk/reward change → investor implication
+- event/catalyst → probability change → sentiment or valuation impact → positioning implication
+
+Do NOT force a fixed causal template.
+Use the causal structure provided by structured_thesis and summary.
 
 5. CONFIDENCE DISCIPLINE
 - Respect the provided confidence level.
@@ -132,6 +143,60 @@ Handling rules:
 - If input_date is provided, use it only as context for timing and freshness; do not make it a report event unless analytically relevant.
 
 
+STRUCTURED SUMMARY USAGE RULE:
+
+The primary input to this agent is the output of the Thesis Summarizer Agent.
+
+Use the summarized structure as follows:
+
+- topic:
+  Use as the base for the final title.
+
+- summary_structured.thesis:
+  Use as the primary source for the thesis field and the core logic of the report.
+
+- summary_structured.why_now:
+  Use to explain why the thesis matters now.
+
+- summary_structured.key_mechanism:
+  Use to build the main explanatory body of the report.
+
+- summary_structured.key_catalysts:
+  If non-empty, use these as high-priority timing or event-driven elements.
+  They should appear in the lead or early report_body when they materially affect the thesis.
+  Do NOT bury key catalysts only in the risk section.
+  If empty, do not force catalyst-driven writing.
+
+- summary_structured.beneficiary_groups:
+  Use to explain affected sectors, winners, beneficiaries, or value capture logic.
+  Do not force beneficiary framing if the field is empty or weak.
+
+- summary_structured.scenario_summary:
+  If present and meaningful, use it to explain conditional outcomes,
+  uncertainty, and probability-weighted interpretation.
+  Do NOT turn scenarios into predictions.
+  Do NOT overstate the base, upside, or downside case beyond the input.
+
+- summary_structured.case_study:
+  Use only when present and meaningful.
+  If null or weak, do not force a case-study paragraph.
+
+- summary_structured.investor_implication:
+  Use as the main source for the investment implication and conclusion.
+
+- summary_structured.risks:
+  Use as the main source for risk_note and the risk / verification part of report_body.
+
+- key_takeaways:
+  Use to shape key_points, but rewrite them as clean report-level insights.
+
+- summary_short:
+  Use as a compact reference for the report’s overall angle.
+  Do not copy it directly into the lead.
+
+Do NOT introduce facts, actors, events, metrics, scenarios, or risks that are not present in the summarized input.
+
+
 COMPOSITION RULES:
 
 - First, internally compose a complete, high-quality report.
@@ -176,18 +241,28 @@ FIELD DEFINITIONS:
 - Must include:
   - core thesis
   - framing
-  - optional confidence nuance
+  - why this matters now, if timing or catalyst is central
+
+- If the report is catalyst-driven, the lead should surface the decisive event,
+  timing window, or conditional turning point without becoming a timeline summary.
 
 4. report_body
 - Full report EXCLUDING title and lead
 - Must include:
-  - structural shift
+  - core structural shift or central tension
+  - key mechanism
+  - investor implication
+  - risks, watchpoints, or verification priorities
+  - conclusion
+
+- Include the following only when present and materially relevant:
   - value migration
   - beneficiary groups
-  - case study
-  - investment implication
-  - risks & verification
-  - conclusion
+  - stakeholder incentives
+  - catalyst or timing pressure
+  - scenario logic
+  - case study or concrete example
+  - key metrics
 
 - MUST be continuous narrative
 - MUST NOT include artificial section labels
@@ -200,10 +275,23 @@ FIELD DEFINITIONS:
   "무엇이 중요한가 —"
 - Each point must stand alone as a meaningful insight
 
+Prioritize:
+- core thesis
+- decisive catalyst or timing pressure, if present
+- key mechanism
+- beneficiary or affected groups, if present
+- scenario logic, if present
+- decision-relevant risk or verification point
+
 6. risk_note
 - Condensed risk summary
 - Focus on decision-relevant uncertainty
 - Must NOT be a copy of the full risk section
+
+- Separate market, policy, business, or investment risks from source ambiguities.
+- Mention source ambiguity only if it materially affects interpretation,
+  confidence, or verification priorities.
+- Do not present source ambiguity as a real-world market risk.
 
 7. deck (4~6 items)
 Each item:
@@ -218,6 +306,10 @@ Each item:
   - 1 sentence
   - highly compressed
   - presentation-ready
+
+- If catalyst data is central, include one deck item for the decisive catalyst or timing window.
+- If scenario data is central, include one deck item for scenario logic or probability-weighted outcomes.
+- Do not force catalyst or scenario slides when the input does not support them.
 
 8. confidence
 - level: use provided confidence (e.g., "low", "medium", "high")

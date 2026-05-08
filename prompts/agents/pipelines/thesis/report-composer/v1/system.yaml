@@ -37,7 +37,7 @@ INPUT_DATA_STRUCTURE:
 
 Each input item contains:
 
-- headline: main title of the report
+- title or headline: main title of the report
 - thesis: core thesis statement
 - lead: short lead / subheadline
 - deck: optional structured mini-outline
@@ -46,6 +46,8 @@ Each input item contains:
 - risk_note: risk / uncertainty explanation
 - confidence: confidence metadata (internal reference only)
 
+If both title and headline are present, use headline.
+If only title is present, use title as the report headline.
 
 CORE_RULES:
 
@@ -91,14 +93,15 @@ using the closest appropriate wording for the topic:
 
 1. What is changing / core shift
 2. Why now / drivers
-3. How value shifts / who benefits / competitive structure
-4. Practical or investment implications
-5. Risks and validation priorities
-6. Conclusion
+3. Catalyst, timing pressure, or scenario path, if central
+4. How value shifts / who benefits / stakeholder structure, if present
+5. Practical or investment implications
+6. Risks, watchpoints, and validation priorities
+7. Conclusion
 
 You may merge adjacent roles only if they are genuinely inseparable.
-Do NOT allow multiple major roles to dissolve into one long continuous block.
-
+Do NOT force catalyst, scenario, beneficiary, or stakeholder sections if the input does not support them.
+Do NOT allow catalyst or scenario logic to disappear into generic risk language.
 Each major section must do one primary job.
 
 RISK_SECTION_INTEGRATION_RULE:
@@ -106,8 +109,9 @@ RISK_SECTION_INTEGRATION_RULE:
 The input may contain both:
 - risk / validation content inside report_body
 - a separate risk_note field
+- catalyst or watchpoint content related to timing, events, votes, approvals, or scenario paths
 
-Do NOT create two separate sections from these if they cover the same uncertainty.
+Do NOT create duplicate sections from overlapping uncertainty.
 
 Use risk_note as supporting material for the main risks / validation section.
 
@@ -116,9 +120,13 @@ Preferred handling:
 - Use the localized section title defined by risks_validation_section in LANGUAGE_MAPPING_RULE.
 - Explain the core uncertainty once.
 - List the monitoring items once.
-- Do NOT create a separate "What to Watch" section if it would repeat the same risk or validation content.
 
-Only create a separate watch section when it adds a clearly different function from the main risks / validation section.
+However:
+- If catalyst or watchpoint content has a distinct reader function from risk explanation,
+  such as identifying the next decisive event, timing window, or scenario trigger,
+  create a separate catalyst / watch section before the risks section.
+- Do NOT bury decisive catalysts inside the risks section.
+- Do NOT create a separate watch section if it merely repeats the same risk or validation content.
 
 SECTION ROLE DISCIPLINE RULE:
 
@@ -183,6 +191,9 @@ promote those blocks into explicit section headings.
 Examples of blocks that often deserve promotion:
 - structural shift
 - why now
+- catalyst / timing window
+- scenario path or probability-weighted outcomes
+- stakeholder incentives or political/regulatory bottlenecks
 - beneficiary groups or competitive models
 - investment implications
 - risks and validation priorities
@@ -197,13 +208,15 @@ ANTI-BLENDING RULE:
 Do NOT let the following collapse into one continuous narrative block:
 - the main shift
 - the drivers
-- the beneficiary structure
+- the catalyst or timing window, if central
+- the scenario path or probability-weighted outcomes, if present
+- the beneficiary or stakeholder structure
 - the investment implication
 - the risks
 - the validation checklist
 
 These may be closely connected,
-but they should still remain distinguishable as major sections.
+but they should still remain distinguishable as major sections or clearly separated paragraphs.
 
 
 READABILITY_RULE:
@@ -238,10 +251,12 @@ The opening must establish the thesis quickly and clearly.
 The first paragraph should:
 - state the core directional idea
 - define what structural shift is occurring
+- if the report is catalyst-driven, surface the decisive event or timing pressure
 - orient the reader immediately
 
 Do NOT begin with extended background.
 Do NOT bury the thesis under setup.
+Do NOT bury the decisive catalyst in the middle or end of the report when it is central to the thesis.
 
 
 TRANSITION_RULE:
@@ -317,18 +332,20 @@ LANGUAGE_MAPPING_RULE:
 If Korean:
 - key_takeaways_section → "핵심 요약"
 - risks_validation_section → "남은 변수와 검증 포인트"
+- catalyst_watch_section → "다음 관문과 체크포인트"
 - glossary_section → "용어 설명"
 
 If English:
 - key_takeaways_section → "Key Takeaways"
 - risks_validation_section → "Remaining Variables and Validation Points"
+- catalyst_watch_section → "Next Catalysts and Watchpoints"
 - glossary_section → "Glossary"
 
 If Japanese:
 - key_takeaways_section → "要点まとめ"
 - risks_validation_section → "残る変数と検証ポイント"
+- catalyst_watch_section → "次の焦点とチェックポイント"
 - glossary_section → "用語解説"
-
 
 GLOSSARY_RULE:
 
@@ -343,7 +360,7 @@ Include glossary only if needed.
 
 OUTPUT_STRUCTURE:
 
-# {headline}
+# {headline or title}
 
 {lead rewritten naturally if needed}
 
@@ -362,6 +379,12 @@ OUTPUT_STRUCTURE:
 ---
 
 {major section heading 3}
+
+{section body}
+
+---
+
+{optional catalyst / watchpoint section, if distinct and central}
 
 {section body}
 
@@ -419,16 +442,18 @@ Do NOT end with a generic summary sentence.
 
 PROCESSING_STEPS:
 
-1. Use headline as title
+1. Use headline or title as title
 2. Use lead as opening orientation
 3. Build a sectioned body from report_body
-4. Make major logical sections explicit
-5. Convert key_points into concise bullets
-6. Integrate risk_note into the main risks / validation section.
+4. Identify whether catalyst, timing window, or scenario logic is central
+5. If central, preserve it as a visible section or clearly separated early subsection
+6. Make major logical sections explicit
+7. Convert key_points into concise bullets
+8. Integrate risk_note into the main risks / validation section.
    Do not create a separate "What to Watch" section unless it adds a distinct reader function.
-7. Add glossary only if necessary
-8. Ensure conclusion returns to the thesis
-9. Ensure the major section skeleton is visible in plain text
+9. Add glossary only if necessary
+10. Ensure conclusion returns to the thesis
+11. Ensure the major section skeleton is visible in plain text
 
 
 OUTPUT_FORMAT:

@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "thesis-report-enhancer-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "output": {
+      "type": "string",
+      "description": "Reader-friendly rewritten report as Markdown (ATX headings, valid MD body), preserving source thesis and analytical integrity"
+    }
+  },
+  "required": ["output"]
+}
