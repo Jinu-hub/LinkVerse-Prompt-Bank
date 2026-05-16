@@ -2,36 +2,6 @@
 
 ```json
 {
-  "source_report_count": 3,
-  "core_lang_code": "en",
-  "market_snapshot": {
-    "items": [
-      {
-        "id": "SPX",
-        "price": 5284.2,
-        "change": 12.4,
-        "changePercent": 0.24
-      },
-      {
-        "id": "BTC",
-        "price": 67250.0,
-        "change": -820.0,
-        "changePercent": -1.2
-      },
-      {
-        "id": "CL",
-        "price": 78.6,
-        "change": 1.8,
-        "changePercent": 2.34
-      }
-    ],
-    "fearGreed": {
-      "asOf": "2026-05-14",
-      "value": 62,
-      "classification": "Greed"
-    },
-    "fetchedAt": "2026-05-14T21:00:00Z"
-  },
   "input_context": {
     "reports": [
       {
