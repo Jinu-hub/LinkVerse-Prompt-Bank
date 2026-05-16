@@ -1,0 +1,32 @@
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Write all user-facing strings in natural English only; this agent is the English source core for downstream localization.
+  - Synthesize `core_data` from `input_context.reports` (fallback: top-level `reports`) and `market_snapshot` when present.
+  - Merge `entitys` and `entities` when both exist; remove duplicates without over-normalizing distinct concepts.
+  - Prefer up to 3 `top_themes` when `source_report_count` is 3 or higher, but do not invent unsupported themes.
+  - Rank `top_tags` and each `top_entities` category by source report coverage, theme relevance, and specificity (up to 10 tags, up to 8 entities per category).
+  - Keep `risk_signals` separate from `core_data`; derive 2 to 5 practical monitoring strings from report and snapshot evidence only.
+  - Reflect limited confidence through cautious wording, not explicit confidence-score phrases.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, comments, or extra text.
+  - Use UTF-8.
+  - Top-level keys must be exactly: core_data, top_tags, top_entities, risk_signals.
+  - `core_data.source_lang_code` must be "en".
+  - `core_data.top_themes` length: 0 to 3; each theme uses trend_status in rising | steady | weakening.
+  - `core_data.market_mood.type` must be one of: Risk-On, Risk-Off, Mixed, Cautious.
+  - `top_entities` must include all seven category keys even when empty.
+  - `core_data.core_generation_notes.theme_count` must match `top_themes` length; `report_count` must match reports used.
+  - Do not use null values unless absolutely necessary.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts, themes, tags, entities, IDs, or risks beyond input evidence.
+  - Do not output markdown, localized (non-English) copy, full reports, or wrapper text outside JSON.
+  - Do not place `risk_signals` inside `core_data`.
+  - Do not cite external sources or add information not present in the input.
+  - Do not use alarmist risk wording or explicit confidence-score labels in user-facing copy.
