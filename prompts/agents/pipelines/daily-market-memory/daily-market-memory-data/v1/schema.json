@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "daily-market-memory-data-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "i18n_rows": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/definitions/i18nRow"
+      },
+      "description": "Exactly three dashboard i18n rows: ko, en, ja."
+    }
+  },
+  "required": ["i18n_rows"],
+  "definitions": {
+    "i18nRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang_code": {
+          "type": "string",
+          "enum": ["ko", "en", "ja"]
+        },
+        "display_title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short dashboard headline in the row language."
+        },
+        "display_subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Compact subtitle explaining the day's market setup or tension."
+        },
+        "core_summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "2 to 4 concise dashboard sentences in the row language."
+        },
+        "top_themes": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/definitions/theme"
+          },
+          "description": "Up to 3 dashboard themes; count must match input when input has 3 or fewer."
+        },
+        "market_mood_type": {
+          "type": "string",
+          "enum": ["Risk-On", "Risk-Off", "Mixed", "Cautious"],
+          "description": "Copied from input core_data.market_mood.type; not translated."
+        },
+        "market_mood_summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "1 to 2 concise sentences explaining the day's risk tone in the row language."
+        }
+      },
+      "required": [
+        "lang_code",
+        "display_title",
+        "display_subtitle",
+        "core_summary",
+        "top_themes",
+        "market_mood_type",
+        "market_mood_summary"
+      ]
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "theme_title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Localized short dashboard card title."
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Localized concise market-facing explanation."
+        },
+        "trend_status": {
+          "type": "string",
+          "enum": ["rising", "steady", "falling", "mixed"],
+          "description": "Copied from input without translation."
+        },
+        "trend_label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Localized trend label per TREND LABEL RULE."
+        },
+        "related_tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Copied from input without translation."
+        },
+        "related_report_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Copied from input."
+        },
+        "source_report_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Copied from input; UUID strings."
+        },
+        "source_item_content_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Copied from input; UUID strings."
+        }
+      },
+      "required": [
+        "theme_title",
+        "summary",
+        "trend_status",
+        "trend_label",
+        "related_tags",
+        "related_report_count",
+        "source_report_ids",
+        "source_item_content_ids"
+      ]
+    }
+  }
+}
