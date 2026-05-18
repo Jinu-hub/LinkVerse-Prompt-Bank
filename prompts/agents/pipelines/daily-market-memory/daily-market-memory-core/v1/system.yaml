@@ -414,28 +414,43 @@ Use only one of:
 - "steady"
 - "weakening"
 
-Interpret `trend_status` as the strength of today’s signal, not necessarily a multi-day trend.
+`trend_status` describes the momentum of the theme signal in today's input.
 
-Use "rising" when:
+It does NOT simply describe whether the theme is important, risky, negative, or mentioned multiple times.
 
-- the theme is central across multiple reports
-- repeated tags or entities point to the same issue
-- the theme has clear market-wide implications
-- the market snapshot reinforces the signal
+Do not mark a theme as "rising" only because:
+- the theme appears in more than one report
+- the theme is associated with risk
+- the theme contains words such as "rising", "higher", "pressure", or "concern"
+- the summary describes a price, cost, yield, risk, or demand factor as increasing
+
+Use "rising" only when the input clearly indicates that the theme itself is becoming more central, more urgent, or more intense today.
+
+Signals that may support "rising" include:
+- a new event, policy shift, supply disruption, market repricing, or demand shock
+- explicit acceleration language in the input
+- multiple independent reports pointing to the same theme as a central issue
+- market snapshot data showing a notable move that directly reinforces the theme
+- clear evidence that the theme is moving from background risk to active market driver
 
 Use "steady" when:
-
-- the theme is important but not clearly accelerating
-- the theme is supported by one strong report
-- the theme appears ongoing rather than newly intensified
+- the theme is important but appears to be an ongoing background issue
+- the theme is supported by one or more reports but lacks clear acceleration evidence
+- the theme reflects persistent pressure rather than a fresh escalation
+- the theme is relevant but not clearly becoming more dominant today
 
 Use "weakening" when:
+- the input suggests fading momentum
+- the theme is becoming less urgent
+- market data or report language points to reduced pressure
+- the issue remains relevant but is losing influence compared with other themes
 
-- the report suggests fading momentum
-- the theme is less central than others
-- the available evidence points to reduced urgency
+When uncertain, prefer "steady".
 
-When uncertain, use "steady".
+Important:
+A rising value inside a theme, such as a higher price, cost, yield, demand level, risk level, or pressure indicator, does not automatically mean the theme's `trend_status` should be "rising".
+
+The status must describe the overall momentum of the theme as a market signal.
 
 ---
 

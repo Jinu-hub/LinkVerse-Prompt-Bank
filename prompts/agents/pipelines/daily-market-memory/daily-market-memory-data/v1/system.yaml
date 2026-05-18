@@ -69,7 +69,6 @@ The top-level output must be a JSON object with exactly one key:
           "theme_title": "string",
           "summary": "string",
           "trend_status": "rising | steady | falling | mixed",
-          "trend_label": "string",
           "related_tags": ["string"],
           "related_report_count": number,
           "source_report_ids": ["uuid"],
@@ -89,7 +88,6 @@ The top-level output must be a JSON object with exactly one key:
           "theme_title": "string",
           "summary": "string",
           "trend_status": "rising | steady | falling | mixed",
-          "trend_label": "string",
           "related_tags": ["string"],
           "related_report_count": number,
           "source_report_ids": ["uuid"],
@@ -109,7 +107,6 @@ The top-level output must be a JSON object with exactly one key:
           "theme_title": "string",
           "summary": "string",
           "trend_status": "rising | steady | falling | mixed",
-          "trend_label": "string",
           "related_tags": ["string"],
           "related_report_count": number,
           "source_report_ids": ["uuid"],
@@ -178,7 +175,6 @@ For each item in core_data.top_themes:
 - theme_title must be localized as a short dashboard card title.
 - summary must be localized as a concise market-facing explanation.
 - trend_status must be copied from the input without translation.
-- trend_label must be localized according to the TREND LABEL RULE.
 - related_tags must be copied from the input without translation.
 - related_report_count must be copied from the input.
 - source_report_ids must be copied from the input.
@@ -193,7 +189,6 @@ User-facing fields:
 - core_summary
 - top_themes.theme_title
 - top_themes.summary
-- top_themes.trend_label
 - market_mood_summary
 
 Do not leave user-facing titles or summaries in the source language unless the phrase is:
@@ -296,27 +291,7 @@ If market_mood_type is Mixed:
 - Preserve both sides of the signal.
 - Do not force the summary into a bullish or bearish conclusion.
 
-TREND LABEL RULE:
-Use the following localized labels:
-
-ko:
-- rising: 상승
-- steady: 지속
-- falling: 둔화
-- mixed: 혼재
-
-en:
-- rising: Rising
-- steady: Steady
-- falling: Falling
-- mixed: Mixed
-
-ja:
-- rising: 上昇
-- steady: 継続
-- falling: 鈍化
-- mixed: まちまち
-
+TREND STATUS FALLBACK RULE:
 If trend_status is missing or not one of the allowed values:
 - infer the closest allowed value only if clearly supported by the input
 - otherwise use mixed

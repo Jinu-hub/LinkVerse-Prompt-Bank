@@ -87,11 +87,6 @@
           "enum": ["rising", "steady", "falling", "mixed"],
           "description": "Copied from input without translation."
         },
-        "trend_label": {
-          "type": "string",
-          "minLength": 1,
-          "description": "Localized trend label per TREND LABEL RULE."
-        },
         "related_tags": {
           "type": "array",
           "items": {
@@ -126,7 +121,6 @@
         "theme_title",
         "summary",
         "trend_status",
-        "trend_label",
         "related_tags",
         "related_report_count",
         "source_report_ids",
