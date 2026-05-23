@@ -423,13 +423,20 @@ Do not mark a theme as "rising" only because:
 - the theme is associated with risk
 - the theme contains words such as "rising", "higher", "pressure", or "concern"
 - the summary describes a price, cost, yield, risk, or demand factor as increasing
+- the summary contains structural risk phrases such as "concentration risk", "mean-reversion risk", "volatility risk", "valuation risk", "tail risk", "breadth risk", or "leverage risk"
+
+Standing structural risks are NOT acceleration evidence by themselves.
+A theme that only describes a persistent structural fragility, even if the fragility is severe, must be classified as "steady" unless today's input contains explicit evidence that the risk is actively triggering (e.g., a fresh price move, a new policy event, a shock data point, or a clear repricing in the market snapshot).
+
+The "multiple independent reports" signal is supportive but NOT sufficient on its own.
+If multiple reports cover the same theme but none of them describes a fresh event, new data point, or acceleration today, the theme is "steady", not "rising".
 
 Use "rising" only when the input clearly indicates that the theme itself is becoming more central, more urgent, or more intense today.
 
 Signals that may support "rising" include:
 - a new event, policy shift, supply disruption, market repricing, or demand shock
 - explicit acceleration language in the input
-- multiple independent reports pointing to the same theme as a central issue
+- multiple independent reports pointing to the same theme as a central issue AND at least one of them describes a fresh event or acceleration today
 - market snapshot data showing a notable move that directly reinforces the theme
 - clear evidence that the theme is moving from background risk to active market driver
 
@@ -438,6 +445,7 @@ Use "steady" when:
 - the theme is supported by one or more reports but lacks clear acceleration evidence
 - the theme reflects persistent pressure rather than a fresh escalation
 - the theme is relevant but not clearly becoming more dominant today
+- the theme is built on conditional/hypothetical risk language ("if", "could", "may", "would") without an observed trigger today
 
 Use "weakening" when:
 - the input suggests fading momentum
@@ -451,6 +459,29 @@ Important:
 A rising value inside a theme, such as a higher price, cost, yield, demand level, risk level, or pressure indicator, does not automatically mean the theme's `trend_status` should be "rising".
 
 The status must describe the overall momentum of the theme as a market signal.
+
+---
+
+## SUMMARY ↔ TREND_STATUS CONSISTENCY
+
+The `summary` and `trend_status` of the same theme must be self-consistent.
+After drafting both fields, verify that the language of the summary matches the chosen trend_status. If they do not match, adjust one of them before producing the final output.
+
+If `trend_status` is "rising":
+- The summary MUST contain at least one explicit acceleration signal grounded in today's input. Acceptable signals include words/phrases such as: "today", "this week", "new", "fresh", "surprise", "spike", "shock", "jump", "breakout", "accelerating", "escalating", "repricing", "just announced", "newly imposed", or a concrete observed move (e.g., "broke above", "fell sharply", "widened to a multi-month high").
+- Generic risk descriptions, conditional/hypothetical statements ("if leadership fades", "could trigger", "may lead to"), or steady-state structural commentary are NOT sufficient justification for "rising".
+- If the summary lacks such a signal, either rewrite the summary to surface the actual acceleration evidence present in the input, or downgrade `trend_status` to "steady".
+
+If `trend_status` is "weakening":
+- The summary MUST contain at least one signal of fading momentum, such as: "easing", "cooling", "fading", "declining", "softening", "reduced", "retreating", "rolling over", or an observed move in the opposite direction.
+- If the summary lacks such a signal, either rewrite the summary or change `trend_status` to "steady".
+
+If `trend_status` is "steady":
+- The summary should describe persistent, structural, or ongoing pressure without claiming a fresh today-driven escalation. Hedge language ("appears to be", "remains", "continues to", "may", "could") is acceptable here.
+- It is fine for the summary to mention risk; "steady" is the appropriate default whenever the input does not provide a clear today-level trigger.
+
+Tie-breaker:
+If after this consistency check you are still uncertain between "rising" and "steady", choose "steady".
 
 ---
 

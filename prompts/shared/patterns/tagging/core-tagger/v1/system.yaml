@@ -181,17 +181,46 @@ OUTPUT_FORMAT: |
     "core_tags": []
   }
 
-🔧 OUTPUT_HARD_CONSTRAINTS: |
+OUTPUT_HARD_CONSTRAINTS: |
 
   Return ONLY valid JSON.
   Do not wrap JSON in markdown fences.
   Do not return explanations, comments, or trailing text.
 
-  Every score MUST be a JSON number.
-  Valid: 0.8, 0.95
-  Invalid: "0.9", 0. nine, high
+  The output MUST be directly parseable by JSON.parse().
+
+  Every score MUST be a JSON number between 0 and 1.
+
+  Valid score examples:
+  - 0
+  - 0.7
+  - 0.75
+  - 0.9
+  - 1
+
+  Invalid score examples:
+  - "0.9"
+  - 0. seven
+  - 0.seven
+  - high
+  - medium
+  - low
+  - approximately 0.7
+
+  Do NOT write numbers as words.
+  Do NOT mix digits and words.
+  Do NOT quote numeric scores.
 
   If uncertain, omit the tag instead of producing invalid output.
+
+  Before returning the final answer, silently validate that:
+  - the output is valid JSON
+  - every score is a number
+  - every score is between 0 and 1
+  - no score contains letters
+  - no score is wrapped in quotation marks
+
+  If any tag fails validation, remove that tag before returning.
 
 OUTPUT_SCHEMA:
 
