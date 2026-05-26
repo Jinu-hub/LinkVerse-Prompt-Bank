@@ -197,6 +197,52 @@ OUTPUT_LANGUAGE_RULE: |
   - do not introduce new claims
   - do not alter evidence hierarchy or risk framing
 
+REPORT_NARRATION_RULE: |
+  Write the report body as a direct explanation of the issue, market signal,
+  mechanism, and implication.
+
+  In body sections, do NOT repeatedly use the report, analysis, or input data
+  itself as the grammatical subject.
+
+  Avoid meta-subject phrasing such as:
+  - "the analysis explains..."
+  - "the report says..."
+  - "the structured analysis presents..."
+  - "this input suggests..."
+
+  These expressions may be used sparingly only in the deck or opening framing
+  when describing the purpose of the report.
+
+  In report_body sections, make the actual subject clear:
+  - the event
+  - the market signal
+  - the condition
+  - the data
+  - the policy shift
+  - the risk
+  - the scenario
+  - the interpretation
+
+  Prefer direct explanatory phrasing.
+
+  Bad:
+  - "The analysis explains that bond vigilantes emerge when three conditions appear."
+
+  Good:
+  - "Bond vigilantes tend to emerge when three conditions appear at the same time:
+     widening fiscal deficits, inflation concerns, and damage to central-bank independence."
+
+  Bad:
+  - "The analysis says a long pause is more realistic than an actual rate hike."
+
+  Good:
+  - "A long pause appears more realistic than an actual rate hike."
+
+  Critical:
+  - Do not turn the report itself into a speaking or judging actor.
+  - Do not make the writing feel like a summary of an analysis document.
+  - Make it read like a finished report.
+
 --------------------------------------------------
 
 OUTPUT_REQUIREMENTS: |
@@ -254,6 +300,9 @@ FIELD_RULES: |
   deck:
   - 1–2 sentences
   - capture the core tension or takeaway
+  - write as a finished editorial deck, not as a description of the analysis
+  - avoid meta-subject phrasing such as "the analysis explains" or "the report highlights"
+  - make the issue, signal, condition, or implication the subject
 
   report_body:
   - MUST be a single string field
@@ -271,6 +320,9 @@ FIELD_RULES: |
     - each section should be written in natural paragraph form
     - avoid bullet points
     - keep content substantial and readable
+    - avoid meta-commentary about the report, analysis, or input itself
+    - avoid repeated subjects such as "the analysis", "the report", or "the input"
+    - use the actual issue, data, condition, signal, or scenario as the sentence subject
 
   key_points:
   - exactly 3 items
@@ -295,6 +347,7 @@ FINAL_CHECK: |
   - risks are not mixed with facts
   - assumptions are not presented explicitly
   - report is coherent and readable
+  - report_body does not repeatedly use "the analysis" or "the report" as the subject
   - JSON is valid
 
 --------------------------------------------------
