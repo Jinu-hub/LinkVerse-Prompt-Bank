@@ -56,52 +56,82 @@ OFFICIAL_CATEGORY_DEFINITIONS: |
   category meanings:
 
   foundation:
-  Content that systematically organizes core concepts, theories, and tools for financial, economic, and market analysis.
-  Serves as a reference for knowledge shared by beginners through intermediate users.
+  Reusable educational or reference content that explains core concepts,
+  frameworks, theories, tools, or analytical methods.
 
   issue:
-  Primary-source information centered on factual reporting.
-  News, breaking updates, articles, official announcements,
-  corporate disclosures, policy statements, etc.
+  Factual reporting centered on recent events, updates, announcements,
+  disclosures, policy statements, or primary-source news.
 
   research:
-  Survey and synthesis based on reports and data.
-  Broker reports, industry reports, white papers, statistics, etc.
+  Content based mainly on reports, surveys, datasets, statistics,
+  broker notes, white papers, or institutional research.
 
   market:
-  Material covering the current state and structure of the market as a whole.
-  Indices, sector flows, macro environment, liquidity, policy changes, etc.
+  Content describing the current condition, structure, or movement
+  of the overall market, including indices, sectors, liquidity,
+  positioning, macro conditions, rates, inflation, or policy environment.
 
   trend:
-  Material focused on medium-term directional themes.
-  Technology trends, industry structure shifts, capital flows,
-  formation or reinforcement of investment narratives.
+  Content focused on medium-term directional themes, industry shifts,
+  capital-flow patterns, technology adoption, or emerging investment narratives.
 
   deep-dive:
-  In-depth analysis of a specific topic, sector, or company.
+  In-depth analysis focused on one specific topic, company, sector,
+  technology, mechanism, or investment case.
 
   column:
-  Writing where the author’s interpretation, opinion,
-  and perspective are front and center.
+  Opinion-led or perspective-led writing where the author's interpretation,
+  judgment, or viewpoint is the central value.
 
   narrative-analysis:
-  Analysis of how narratives in the market form and change.
+  Analysis of how market narratives form, spread, weaken, reverse,
+  or reshape investor perception.
 
 --------------------------------------------------
 
 CATEGORY_SELECTION_POLICY: |
   Choose exactly one category for the digest.
 
-  Use this priority:
+  Select the category based on the digest's dominant editorial function,
+  not by the first matching condition.
 
-  - If the digest mainly reports recent events/items/facts → issue
-  - If it synthesizes direction across multiple events → trend
-  - If it describes current market state → market
-  - If it summarizes reports/statistics → research
-  - If it deeply analyzes one topic/company → deep-dive
-  - If it expresses personal viewpoint → column
-  - If it analyzes narrative psychology → narrative-analysis
-  - If it explains foundational concepts → foundation
+  Do NOT force category diversity.
+  It is acceptable for many digests to be classified as issue or trend
+  when that is truly the best fit.
+
+  However, do NOT choose issue or trend only because the digest contains
+  recent events, multiple updates, or market-related facts.
+
+  Before choosing issue or trend, check whether a more specific category
+  better describes what the digest is mainly doing.
+
+  Decision principles:
+
+  - Use foundation when the digest mainly teaches or organizes reusable knowledge.
+  - Use research when the digest mainly synthesizes reports, statistics, datasets,
+    surveys, broker notes, white papers, or institutional research.
+  - Use market when the digest mainly describes the current state or structure
+    of the overall market.
+  - Use deep-dive when the digest mainly analyzes one specific topic, company,
+    sector, technology, mechanism, or investment case in depth.
+  - Use column when the author's judgment, opinion, or perspective is central.
+  - Use narrative-analysis when the digest mainly analyzes how narratives form,
+    spread, weaken, reverse, or reshape perception.
+  - Use trend when the digest connects multiple events into a medium-term
+    directional theme, industry shift, capital-flow pattern, or investment narrative.
+  - Use issue when the digest mainly reports recent factual updates
+    without deeper synthesis, market-state framing, or opinion-led interpretation.
+
+  Tie-breakers:
+
+  - If the digest is primarily factual reporting → issue.
+  - If the digest is primarily directional synthesis across multiple events → trend.
+  - If the digest is primarily about current market conditions → market.
+  - If the digest is primarily report/data-based synthesis → research.
+  - If the digest is primarily one-topic intensive analysis → deep-dive.
+  - If multiple categories seem possible, prefer the category that describes
+    the main function of the digest, not the broadest category.
 
 --------------------------------------------------
 
@@ -256,6 +286,50 @@ REGION_POLICY: |
 
 --------------------------------------------------
 
+REGION_COUNTRY_CONSISTENCY_POLICY: |
+  regions and main_entities.countries must be logically consistent.
+
+  A country included in main_entities.countries should normally belong to one of the selected regions.
+
+  Do NOT output a country that conflicts with the selected region unless that country is a central subject of the digest.
+
+  If a country outside the selected region is truly central:
+  - add the corresponding region as well, OR
+  - use GLOBAL when the digest is clearly cross-regional.
+
+  Do NOT add an extra region only to justify a weak or incidental country mention.
+
+  Weak mentions are not enough to extract a country.
+
+  Do NOT include a country only because it appears once in:
+  - a risk note
+  - a parenthetical example
+  - a generic macro/regulatory watchpoint
+  - a possible external shock
+  - a secondary scenario that is not central to the digest
+
+  Examples:
+
+  Correct:
+  regions: ["AMERICAS"]
+  countries: ["US"]
+
+  Correct:
+  regions: ["AMERICAS"]
+  countries: []
+
+  Incorrect:
+  regions: ["AMERICAS"]
+  countries: ["China"]
+
+  Structurally valid, but only when China is central enough:
+  regions: ["AMERICAS", "ASIA"]
+  countries: ["China"]
+
+  If China is only a weak risk mention, do NOT output:
+  regions: ["AMERICAS", "ASIA"]
+  countries: ["China"]
+
 ASSET_CLASS_POLICY: |
   Assign digest-level asset classes when relevant.
 
@@ -293,6 +367,19 @@ ENTITY_POLICY: |
   - Prefer institutions for banks, brokers, and research firms.
   - Prefer products for named services, apps, and platforms.
   - Prefer companies only for corporate entities.
+  
+  Country extraction rules:
+
+  - main_entities.countries is for countries that are central to the digest.
+  - Do NOT treat every mentioned country as a main country entity.
+  - A country may be included when it is:
+    - the main market jurisdiction
+    - the main policy or regulatory actor
+    - the main geopolitical/economic driver
+    - clearly tied to the dominant products, indices, or market structure discussed in the digest
+
+  - If the digest mainly discusses US ETFs, US equities, US indices, US issuers, or US market products, countries may include "US".
+  - Do NOT include another country only because it appears in a weak risk phrase or external shock example.
 
   Entity names must follow the ENTITY_LANGUAGE_RULES and be normalized to English.
 
