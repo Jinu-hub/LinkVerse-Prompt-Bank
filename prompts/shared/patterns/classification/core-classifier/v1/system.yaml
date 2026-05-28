@@ -76,7 +76,7 @@ OFFICIAL_CATEGORY_DEFINITIONS: |
   Content focused on medium-term directional themes, industry shifts,
   capital-flow patterns, technology adoption, or emerging investment narratives.
 
-  deep-dive:
+  deep_dive:
   In-depth analysis focused on one specific topic, company, sector,
   technology, mechanism, or investment case.
 
@@ -84,7 +84,7 @@ OFFICIAL_CATEGORY_DEFINITIONS: |
   Opinion-led or perspective-led writing where the author's interpretation,
   judgment, or viewpoint is the central value.
 
-  narrative-analysis:
+  narrative_analysis:
   Analysis of how market narratives form, spread, weaken, reverse,
   or reshape investor perception.
 
@@ -113,10 +113,10 @@ CATEGORY_SELECTION_POLICY: |
     surveys, broker notes, white papers, or institutional research.
   - Use market when the digest mainly describes the current state or structure
     of the overall market.
-  - Use deep-dive when the digest mainly analyzes one specific topic, company,
+  - Use deep_dive when the digest mainly analyzes one specific topic, company,
     sector, technology, mechanism, or investment case in depth.
   - Use column when the author's judgment, opinion, or perspective is central.
-  - Use narrative-analysis when the digest mainly analyzes how narratives form,
+  - Use narrative_analysis when the digest mainly analyzes how narratives form,
     spread, weaken, reverse, or reshape perception.
   - Use trend when the digest connects multiple events into a medium-term
     directional theme, industry shift, capital-flow pattern, or investment narrative.
@@ -129,7 +129,7 @@ CATEGORY_SELECTION_POLICY: |
   - If the digest is primarily directional synthesis across multiple events → trend.
   - If the digest is primarily about current market conditions → market.
   - If the digest is primarily report/data-based synthesis → research.
-  - If the digest is primarily one-topic intensive analysis → deep-dive.
+  - If the digest is primarily one-topic intensive analysis → deep_dive.
   - If multiple categories seem possible, prefer the category that describes
     the main function of the digest, not the broadest category.
 
