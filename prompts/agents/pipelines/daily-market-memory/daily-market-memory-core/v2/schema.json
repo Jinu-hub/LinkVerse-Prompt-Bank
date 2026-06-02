@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "daily-market-memory-core-v2-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "core_data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_lang_code": {
+          "type": "string",
+          "const": "en",
+          "description": "English source language code for downstream localization."
+        },
+        "display_title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short dashboard title summarizing the day's market memory."
+        },
+        "display_subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Supporting subtitle explaining the day's key tension."
+        },
+        "core_summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "2 to 4 concise sentences synthesizing the day."
+        },
+        "top_themes": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/definitions/theme"
+          },
+          "description": "Up to 3 dominant market themes supported by input evidence."
+        },
+        "market_mood": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Risk-On", "Risk-Off", "Mixed", "Cautious"]
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": ["type", "label", "summary"]
+        },
+        "core_generation_notes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dominant_signal": {
+              "type": "string",
+              "minLength": 1
+            },
+            "market_snapshot_used": {
+              "type": "boolean"
+            },
+            "report_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "theme_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            }
+          },
+          "required": [
+            "dominant_signal",
+            "market_snapshot_used",
+            "report_count",
+            "theme_count"
+          ]
+        }
+      },
+      "required": [
+        "source_lang_code",
+        "display_title",
+        "display_subtitle",
+        "core_summary",
+        "top_themes",
+        "market_mood",
+        "core_generation_notes"
+      ]
+    },
+    "top_tags": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/definitions/rankedTag"
+      },
+      "description": "Up to 10 most important tags ranked by report coverage and relevance."
+    },
+    "top_entities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "companies": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/definitions/rankedEntity" }
+        },
+        "industries": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/definitions/rankedEntity" }
+        },
+        "technologies": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/definitions/rankedEntity" }
+        },
+        "indicators": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/definitions/rankedEntity" }
+        },
+        "countries": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/definitions/rankedEntity" }
+        },
+        "institutions": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/definitions/rankedEntity" }
+        },
+        "asset_classes": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/definitions/rankedEntity" }
+        }
+      },
+      "required": [
+        "companies",
+        "industries",
+        "technologies",
+        "indicators",
+        "countries",
+        "institutions",
+        "asset_classes"
+      ]
+    },
+    "risk_signals": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "2 to 5 concise, practical risk monitoring strings."
+    }
+  },
+  "required": ["core_data", "top_tags", "top_entities", "risk_signals"],
+  "definitions": {
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "theme_title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signal_strength": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Dashboard importance of the theme in today's input (not price direction)."
+        },
+        "related_tags": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "related_report_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_report_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "source_item_content_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "theme_title",
+        "summary",
+        "signal_strength",
+        "related_tags",
+        "related_report_count",
+        "source_report_ids",
+        "source_item_content_ids"
+      ]
+    },
+    "rankedTag": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_report_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": ["tag", "count", "source_report_count"]
+    },
+    "rankedEntity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_report_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": ["name", "count", "source_report_count"]
+    }
+  }
+}
