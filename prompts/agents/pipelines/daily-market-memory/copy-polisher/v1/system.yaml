@@ -32,8 +32,8 @@ Never change the following fields.
 Copy them exactly as they are.
 
 - lang_code
-- trend_status
-- trend_label
+- signal_strength
+- signal_strength_label
 - related_tags
 - related_report_count
 - source_report_ids

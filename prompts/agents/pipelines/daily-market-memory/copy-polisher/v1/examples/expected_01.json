@@ -8,8 +8,8 @@
       {
         "theme_title": "AI 인프라 병목",
         "summary": "HBM, 첨단 패키징, 전력, 냉각 부족이 어떤 공급업체가 AI 인프라 수익의 다음 층을 가져갈지 좌우할 수 있습니다.",
-        "trend_status": "rising",
-        "trend_label": "상승",
+        "signal_strength": "high",
+        "signal_strength_label": "높음",
         "related_tags": [
           "ai-infrastructure",
           "memory-hbm",
@@ -23,8 +23,8 @@
       {
         "theme_title": "인플레이션·에너지 압력",
         "summary": "에너지 가격 상승과 지속적인 인플레이션 기대는 Fed의 신중함을 유지하고 금리 민감 자산의 변동성을 키울 수 있습니다.",
-        "trend_status": "steady",
-        "trend_label": "지속",
+        "signal_strength": "medium",
+        "signal_strength_label": "중간",
         "related_tags": [
           "inflation-expectations",
           "energy-prices",
@@ -38,8 +38,8 @@
       {
         "theme_title": "지정학·공급망 리스크",
         "summary": "무역·해운·대만 해협 긴장이 반도체 흐름을 흔들고 인플레이션 꼬리 리스크를 강화할 수 있습니다.",
-        "trend_status": "steady",
-        "trend_label": "지속",
+        "signal_strength": "medium",
+        "signal_strength_label": "중간",
         "related_tags": [
           "geopolitical-risk",
           "supply-chain",
@@ -63,8 +63,8 @@
       {
         "theme_title": "AI Infrastructure Bottlenecks",
         "summary": "Scarcity in HBM, advanced packaging, power, and cooling may determine which suppliers capture the next layer of AI infrastructure returns.",
-        "trend_status": "rising",
-        "trend_label": "Rising",
+        "signal_strength": "high",
+        "signal_strength_label": "High",
         "related_tags": [
           "ai-infrastructure",
           "memory-hbm",
@@ -78,8 +78,8 @@
       {
         "theme_title": "Inflation and Energy Pressure",
         "summary": "Rising energy prices and persistent inflation expectations may keep the Fed patient and rates-sensitive assets volatile.",
-        "trend_status": "steady",
-        "trend_label": "Steady",
+        "signal_strength": "medium",
+        "signal_strength_label": "Medium",
         "related_tags": [
           "inflation-expectations",
           "energy-prices",
@@ -93,8 +93,8 @@
       {
         "theme_title": "Geopolitical Supply Risk",
         "summary": "Trade, shipping, and cross-strait tensions could disrupt semiconductor flows and reinforce inflation tail risks.",
-        "trend_status": "steady",
-        "trend_label": "Steady",
+        "signal_strength": "medium",
+        "signal_strength_label": "Medium",
         "related_tags": [
           "geopolitical-risk",
           "supply-chain",
@@ -118,8 +118,8 @@
       {
         "theme_title": "AIインフラのボトルネック",
         "summary": "HBM、先端パッケージング、電力、冷却の不足が、どのサプライヤーが次のAIインフラ収益層を獲得するかを左右する可能性があります。",
-        "trend_status": "rising",
-        "trend_label": "上昇",
+        "signal_strength": "high",
+        "signal_strength_label": "高",
         "related_tags": [
           "ai-infrastructure",
           "memory-hbm",
@@ -133,8 +133,8 @@
       {
         "theme_title": "インフレ・エネルギー圧力",
         "summary": "エネルギー価格の上昇と持続的なインフレ期待は、FRBの慎重姿勢を維持し、金利敏感資産のボラティリティを高める可能性があります。",
-        "trend_status": "steady",
-        "trend_label": "継続",
+        "signal_strength": "medium",
+        "signal_strength_label": "中",
         "related_tags": [
           "inflation-expectations",
           "energy-prices",
@@ -148,8 +148,8 @@
       {
         "theme_title": "地政学・サプライリスク",
         "summary": "貿易・海運・台湾海峡の緊張が半導体フローを乱し、インフレのテールリスクを強める可能性があります。",
-        "trend_status": "steady",
-        "trend_label": "継続",
+        "signal_strength": "medium",
+        "signal_strength_label": "中",
         "related_tags": [
           "geopolitical-risk",
           "supply-chain",

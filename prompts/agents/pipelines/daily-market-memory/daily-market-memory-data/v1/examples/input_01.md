@@ -13,7 +13,7 @@ Daily Market Memory core 객체 (`daily-market-memory-core` 출력). `core_data`
       {
         "theme_title": "AI Infrastructure Bottlenecks",
         "summary": "Scarcity in HBM, advanced packaging, power, and cooling may determine which suppliers capture the next layer of AI infrastructure returns.",
-        "trend_status": "rising",
+        "signal_strength": "high",
         "related_tags": [
           "ai-infrastructure",
           "memory-hbm",
@@ -27,7 +27,7 @@ Daily Market Memory core 객체 (`daily-market-memory-core` 출력). `core_data`
       {
         "theme_title": "Inflation and Energy Pressure",
         "summary": "Rising energy prices and persistent inflation expectations may keep the Fed patient and rates-sensitive assets volatile.",
-        "trend_status": "steady",
+        "signal_strength": "medium",
         "related_tags": [
           "inflation-expectations",
           "energy-prices",
@@ -41,7 +41,7 @@ Daily Market Memory core 객체 (`daily-market-memory-core` 출력). `core_data`
       {
         "theme_title": "Geopolitical Supply Risk",
         "summary": "Trade, shipping, and cross-strait tensions could disrupt semiconductor flows and reinforce inflation tail risks.",
-        "trend_status": "steady",
+        "signal_strength": "medium",
         "related_tags": [
           "geopolitical-risk",
           "supply-chain",

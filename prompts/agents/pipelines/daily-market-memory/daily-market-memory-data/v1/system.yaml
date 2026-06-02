@@ -68,7 +68,7 @@ The top-level output must be a JSON object with exactly one key:
         {
           "theme_title": "string",
           "summary": "string",
-          "trend_status": "rising | steady | falling | mixed",
+          "signal_strength": "high | medium | low",
           "related_tags": ["string"],
           "related_report_count": number,
           "source_report_ids": ["uuid"],
@@ -87,7 +87,7 @@ The top-level output must be a JSON object with exactly one key:
         {
           "theme_title": "string",
           "summary": "string",
-          "trend_status": "rising | steady | falling | mixed",
+          "signal_strength": "high | medium | low",
           "related_tags": ["string"],
           "related_report_count": number,
           "source_report_ids": ["uuid"],
@@ -106,7 +106,7 @@ The top-level output must be a JSON object with exactly one key:
         {
           "theme_title": "string",
           "summary": "string",
-          "trend_status": "rising | steady | falling | mixed",
+          "signal_strength": "high | medium | low",
           "related_tags": ["string"],
           "related_report_count": number,
           "source_report_ids": ["uuid"],
@@ -174,7 +174,7 @@ For each item in core_data.top_themes:
 - Preserve the original order unless reordering clearly improves dashboard readability.
 - theme_title must be localized as a short dashboard card title.
 - summary must be localized as a concise market-facing explanation.
-- trend_status must be copied from the input without translation.
+- signal_strength must be copied from the input without translation.
 - related_tags must be copied from the input without translation.
 - related_report_count must be copied from the input.
 - source_report_ids must be copied from the input.
@@ -200,7 +200,7 @@ Do not leave user-facing titles or summaries in the source language unless the p
 - a market term that is commonly used unchanged in that language
 
 Machine-readable fields must remain unchanged:
-- trend_status
+- signal_strength
 - related_tags
 - related_report_count
 - source_report_ids
@@ -291,10 +291,10 @@ If market_mood_type is Mixed:
 - Preserve both sides of the signal.
 - Do not force the summary into a bullish or bearish conclusion.
 
-TREND STATUS FALLBACK RULE:
-If trend_status is missing or not one of the allowed values:
+SIGNAL STRENGTH FALLBACK RULE:
+If signal_strength is missing or not one of the allowed values:
 - infer the closest allowed value only if clearly supported by the input
-- otherwise use mixed
+- otherwise use medium
 
 TONE RULES:
 1. Do not write direct investment advice.
@@ -387,7 +387,7 @@ Do not alter:
 - source_report_ids
 - source_item_content_ids
 - related_report_count
-- trend_status
+- signal_strength
 - market_mood_type
 
 Do not create new IDs.

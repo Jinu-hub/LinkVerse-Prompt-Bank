@@ -9,11 +9,11 @@ implementation:
   - Generate exactly 3 i18n rows with `lang_code` values: ko, en, ja (in that order). No other languages.
   - This version does not support `output_lang`, `target_langs`, single-language regeneration, or partial retry.
   - Localize user-facing fields per row language: display_title, display_subtitle, core_summary, top_themes.theme_title, top_themes.summary, market_mood_summary.
-  - Copy machine-readable fields unchanged from input: trend_status, related_tags, related_report_count, source_report_ids, source_item_content_ids, market_mood_type.
+  - Copy machine-readable fields unchanged from input: signal_strength, related_tags, related_report_count, source_report_ids, source_item_content_ids, market_mood_type.
   - `market_mood_type` must be copied from `core_data.market_mood.type` (Risk-On | Risk-Off | Mixed | Cautious).
   - Preserve signal direction (rising/falling/tightening/easing/etc.); do not reverse mixed or uncertain inputs into one-sided statements.
   - Keep `top_themes` count equal to input when input has 3 or fewer; if input has more than 3, select the 3 most important and preserve order unless reordering clearly improves readability.
-  - Map core `weakening` trend_status to `falling` when present in upstream core output, unless input already uses falling.
+  - If `signal_strength` is missing or invalid, infer the closest value only when strongly supported by input; otherwise default to `medium`.
   - Integrate risks from input naturally into core_summary or market_mood_summary; do not add a separate risk section.
   - Write dashboard copy, not long-form reports; avoid investment advice and recommendation language.
 
@@ -29,7 +29,7 @@ format_rules:
 prohibitions:
   - Do not add fields not in the schema.
   - Do not invent facts, numbers, events, companies, policies, risks, or themes beyond input evidence.
-  - Do not translate or alter related_tags, source_report_ids, source_item_content_ids, trend_status, or market_mood_type.
+  - Do not translate or alter related_tags, source_report_ids, source_item_content_ids, signal_strength, or market_mood_type.
   - Do not create new IDs or remove existing IDs.
   - Do not tell users to buy, sell, hold, overweight, underweight, enter, exit, hedge, or reduce exposure.
   - Do not use sensational terms (crash, panic, collapse, guaranteed, certain) unless explicitly supported by input.

@@ -10,7 +10,7 @@ implementation:
   - Polish only these user-facing fields per row (respecting each row's `lang_code`):
     display_title, display_subtitle, core_summary, top_themes.theme_title, top_themes.summary, market_mood_summary.
   - Copy locked fields exactly from input with no edits:
-    lang_code, trend_status, trend_label, related_tags, related_report_count, source_report_ids, source_item_content_ids, market_mood_type.
+    lang_code, signal_strength, signal_strength_label, related_tags, related_report_count, source_report_ids, source_item_content_ids, market_mood_type.
   - Do not change array lengths, object order, IDs, counts, tag values, status values, or type values.
   - `market_mood_summary` must remain consistent with the unchanged `market_mood_type`.
   - Preserve the original meaning, caution level, uncertainty, and relationships between themes.
@@ -28,7 +28,7 @@ prohibitions:
   - Do not add fields not in the schema.
   - Do not invent facts, risks, entities, themes, or conclusions.
   - Do not remove important information from polished copy.
-  - Do not change locked fields (including trend_label).
+  - Do not change locked fields (including signal_strength_label).
   - Do not reinterpret the market, change risk level, or strengthen/weaken claims beyond the input.
   - Do not add investment advice, predictions, or promotional/alarmist language.
   - Do not output markdown, emojis, or wrapper text outside JSON.

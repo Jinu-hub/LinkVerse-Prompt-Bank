@@ -76,12 +76,12 @@
           "minLength": 1,
           "description": "Polishable: concise theme explanation."
         },
-        "trend_status": {
+        "signal_strength": {
           "type": "string",
-          "enum": ["rising", "steady", "falling", "mixed"],
+          "enum": ["high", "medium", "low"],
           "description": "Locked: copied exactly from input."
         },
-        "trend_label": {
+        "signal_strength_label": {
           "type": "string",
           "minLength": 1,
           "description": "Locked: copied exactly from input."
@@ -119,8 +119,8 @@
       "required": [
         "theme_title",
         "summary",
-        "trend_status",
-        "trend_label",
+        "signal_strength",
+        "signal_strength_label",
         "related_tags",
         "related_report_count",
         "source_report_ids",

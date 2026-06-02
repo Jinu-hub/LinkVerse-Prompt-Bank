@@ -82,9 +82,9 @@
           "minLength": 1,
           "description": "Localized concise market-facing explanation."
         },
-        "trend_status": {
+        "signal_strength": {
           "type": "string",
-          "enum": ["rising", "steady", "falling", "mixed"],
+          "enum": ["high", "medium", "low"],
           "description": "Copied from input without translation."
         },
         "related_tags": {
@@ -120,7 +120,7 @@
       "required": [
         "theme_title",
         "summary",
-        "trend_status",
+        "signal_strength",
         "related_tags",
         "related_report_count",
         "source_report_ids",
