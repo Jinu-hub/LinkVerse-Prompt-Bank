@@ -49,8 +49,12 @@
           "source_item_content_ids": ["ic-mm-003"]
         }
       ],
+      "market_mood_label": "선택적 위험선호",
       "market_mood_type": "Mixed",
-      "market_mood_summary": "주식은 소폭 상승하고 심리는 탐욕에 가깝지만, 약한 암호화폐와 견조한 유가, 매크로·지정학 리스크가 투자자들을 광범위한 공격적 포지셔닝보다 선택적 접근으로 유지하고 있습니다."
+      "market_mood_bias": "risk_on",
+      "market_mood_shift": "stable",
+      "market_mood_shift_label": "큰 변화 없음",
+      "market_mood_summary": "전체 시장은 혼재되어 있지만 AI와 반도체를 중심으로 위험선호가 선택적으로 이어지고 있습니다. 약한 암호화폐와 견조한 유가, 매크로·지정학 리스크가 상승 흐름의 확산을 제한하고 있습니다."
     },
     {
       "lang_code": "en",
@@ -101,8 +105,12 @@
           "source_item_content_ids": ["ic-mm-003"]
         }
       ],
+      "market_mood_label": "Selective Risk Appetite",
       "market_mood_type": "Mixed",
-      "market_mood_summary": "Equities are slightly higher and sentiment looks greedy, but softer crypto, firmer oil, and macro plus geopolitical risks suggest investors are staying selective rather than broadly aggressive."
+      "market_mood_bias": "risk_on",
+      "market_mood_shift": "stable",
+      "market_mood_shift_label": "Little change",
+      "market_mood_summary": "The overall market remains mixed, but risk appetite is selectively concentrated in AI and semiconductors. Softer crypto, firmer oil, and macro plus geopolitical risks are limiting how broadly the rally can spread."
     },
     {
       "lang_code": "ja",
@@ -153,8 +161,12 @@
           "source_item_content_ids": ["ic-mm-003"]
         }
       ],
+      "market_mood_label": "選択的リスク選好",
       "market_mood_type": "Mixed",
-      "market_mood_summary": "株式は小幅に上昇しセンチメントは強気寄りですが、弱い暗号資産と堅調な原油、マクロ・地政学リスクが投資家を広範な攻撃的姿勢ではなく選択的なアプローチに留めているようです。"
+      "market_mood_bias": "risk_on",
+      "market_mood_shift": "stable",
+      "market_mood_shift_label": "大きな変化なし",
+      "market_mood_summary": "市場全体はまちまちですが、AIと半導体を中心にリスク選好が選択的に続いています。弱い暗号資産と堅調な原油、マクロ・地政学リスクが上昇の広がりを制限しています。"
     }
   ]
 }

@@ -44,6 +44,16 @@
               "type": "string",
               "enum": ["Risk-On", "Risk-Off", "Mixed", "Cautious"]
             },
+            "bias": {
+              "type": "string",
+              "enum": ["risk_on", "neutral", "risk_off"],
+              "description": "Current internal tilt within the selected market mood type."
+            },
+            "shift": {
+              "type": "string",
+              "enum": ["improving", "stable", "deteriorating", "unavailable"],
+              "description": "Change in overall risk appetite versus previous_market_context."
+            },
             "label": {
               "type": "string",
               "minLength": 1
@@ -53,7 +63,7 @@
               "minLength": 1
             }
           },
-          "required": ["type", "label", "summary"]
+          "required": ["type", "bias", "shift", "label", "summary"]
         },
         "core_generation_notes": {
           "type": "object",
@@ -74,11 +84,16 @@
               "type": "integer",
               "minimum": 0,
               "maximum": 3
+            },
+            "previous_market_context_used": {
+              "type": "boolean",
+              "description": "True only when previous_market_context was available and used to determine market_mood.shift."
             }
           },
           "required": [
             "dominant_signal",
             "market_snapshot_used",
+            "previous_market_context_used",
             "report_count",
             "theme_count"
           ]

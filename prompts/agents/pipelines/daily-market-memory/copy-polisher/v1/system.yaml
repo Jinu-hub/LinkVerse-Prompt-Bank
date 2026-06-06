@@ -25,6 +25,8 @@ Make the following fields more natural, readable, and friendly for dashboard dis
 - core_summary
 - top_themes.theme_title
 - top_themes.summary
+- market_mood_label
+- market_mood_shift_label
 - market_mood_summary
 
 ABSOLUTE LOCKED FIELDS:
@@ -39,6 +41,8 @@ Copy them exactly as they are.
 - source_report_ids
 - source_item_content_ids
 - market_mood_type
+- market_mood_bias
+- market_mood_shift
 
 Also do not change:
 - object order
@@ -133,9 +137,19 @@ FIELD-SPECIFIC GUIDANCE:
 - Keep it readable and concise.
 - Preserve the relationship between cause, risk, and implication.
 
-6. market_mood_summary
+6. market_mood_label
+- Should remain the primary interpretive mood headline.
+- Do not collapse it into the raw type value such as Mixed or Cautious.
+
+7. market_mood_shift_label
+- Should remain a short day-over-day phrase when shift is available.
+- Keep empty when market_mood_shift is unavailable.
+
+8. market_mood_summary
 - Should explain the current market tone in plain language.
 - Preserve whether the mood is cautious, risk-on, risk-off, neutral, or mixed.
+- Remain consistent with the unchanged market_mood_bias and market_mood_shift.
+- Complement market_mood_label and market_mood_shift_label rather than repeating them.
 - Do not exaggerate.
 
 OUTPUT RULE:

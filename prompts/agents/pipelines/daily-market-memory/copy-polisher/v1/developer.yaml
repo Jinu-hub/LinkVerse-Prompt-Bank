@@ -8,11 +8,12 @@ implementation:
   - Output is a polished JSON array with the same row count, row order, and theme order (ko, en, ja).
   - This agent polishes wording only. It does not analyze, localize from scratch, or change market interpretation.
   - Polish only these user-facing fields per row (respecting each row's `lang_code`):
-    display_title, display_subtitle, core_summary, top_themes.theme_title, top_themes.summary, market_mood_summary.
+    display_title, display_subtitle, core_summary, top_themes.theme_title, top_themes.summary, market_mood_label, market_mood_shift_label, market_mood_summary.
   - Copy locked fields exactly from input with no edits:
-    lang_code, signal_strength, signal_strength_label, related_tags, related_report_count, source_report_ids, source_item_content_ids, market_mood_type.
+    lang_code, signal_strength, signal_strength_label, related_tags, related_report_count, source_report_ids, source_item_content_ids, market_mood_type, market_mood_bias, market_mood_shift.
   - Do not change array lengths, object order, IDs, counts, tag values, status values, or type values.
-  - `market_mood_summary` must remain consistent with the unchanged `market_mood_type`.
+  - `market_mood_summary` must remain consistent with the unchanged `market_mood_type`, `market_mood_bias`, `market_mood_shift`, and the polished `market_mood_label`.
+  - Do not replace `market_mood_label` with the raw type value during polishing.
   - Preserve the original meaning, caution level, uncertainty, and relationships between themes.
   - Improve readability: smoother flow, less stiffness, clearer dashboard scanability; slight shortening allowed when meaning is preserved.
 

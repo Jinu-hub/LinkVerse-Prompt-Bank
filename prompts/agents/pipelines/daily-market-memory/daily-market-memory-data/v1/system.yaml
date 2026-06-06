@@ -75,7 +75,11 @@ The top-level output must be a JSON object with exactly one key:
           "source_item_content_ids": ["uuid"]
         }
       ],
+      "market_mood_label": "string",
       "market_mood_type": "Risk-On | Risk-Off | Mixed | Cautious",
+      "market_mood_bias": "risk_on | neutral | risk_off",
+      "market_mood_shift": "improving | stable | deteriorating | unavailable",
+      "market_mood_shift_label": "string",
       "market_mood_summary": "string"
     },
     {
@@ -94,7 +98,11 @@ The top-level output must be a JSON object with exactly one key:
           "source_item_content_ids": ["uuid"]
         }
       ],
+      "market_mood_label": "string",
       "market_mood_type": "Risk-On | Risk-Off | Mixed | Cautious",
+      "market_mood_bias": "risk_on | neutral | risk_off",
+      "market_mood_shift": "improving | stable | deteriorating | unavailable",
+      "market_mood_shift_label": "string",
       "market_mood_summary": "string"
     },
     {
@@ -113,7 +121,11 @@ The top-level output must be a JSON object with exactly one key:
           "source_item_content_ids": ["uuid"]
         }
       ],
+      "market_mood_label": "string",
       "market_mood_type": "Risk-On | Risk-Off | Mixed | Cautious",
+      "market_mood_bias": "risk_on | neutral | risk_off",
+      "market_mood_shift": "improving | stable | deteriorating | unavailable",
+      "market_mood_shift_label": "string",
       "market_mood_summary": "string"
     }
   ]
@@ -127,7 +139,6 @@ DO NOT OUTPUT:
 - model_info
 - created_at
 - updated_at
-- market_mood_label
 
 These fields are handled outside the AI agent by the workflow or database layer.
 
@@ -160,12 +171,13 @@ CORE RULES:
 9. display_title should be short, clear, and suitable for a dashboard headline.
 10. display_subtitle should briefly explain the market setup or tension.
 11. top_themes should summarize the most important themes for dashboard display.
-12. market_mood_summary should explain the risk tone without sounding like a trade instruction.
-13. Do not include Markdown headings, bullets, emojis, citations, or formatting symbols.
-14. Do not include null values.
-15. If an array field is unavailable, use an empty array.
-16. If a text field is unavailable, create a concise fallback based only on supported input.
-17. Output must be valid JSON parsable by JSON.parse.
+12. market_mood_label is the primary user-facing mood headline; do not substitute the raw type value.
+13. market_mood_summary should explain the risk tone without sounding like a trade instruction.
+14. Do not include Markdown headings, bullets, emojis, citations, or formatting symbols.
+15. Do not include null values.
+16. If an array field is unavailable, use an empty array.
+17. If a text field is unavailable, create a concise fallback based only on supported input.
+18. Output must be valid JSON parsable by JSON.parse.
 
 TOP THEME RULES:
 For each item in core_data.top_themes:
@@ -189,6 +201,8 @@ User-facing fields:
 - core_summary
 - top_themes.theme_title
 - top_themes.summary
+- market_mood_label
+- market_mood_shift_label
 - market_mood_summary
 
 Do not leave user-facing titles or summaries in the source language unless the phrase is:
@@ -206,6 +220,8 @@ Machine-readable fields must remain unchanged:
 - source_report_ids
 - source_item_content_ids
 - market_mood_type
+- market_mood_bias
+- market_mood_shift
 
 SIGNAL DIRECTION RULE:
 Preserve the direction of every market signal accurately.
@@ -257,6 +273,23 @@ Do not reverse the direction of:
 If the direction is uncertain or mixed in the input, express it as uncertain or mixed.
 Do not simplify a mixed signal into a one-sided bullish or bearish statement.
 
+MARKET MOOD DISPLAY PHILOSOPHY:
+The market mood block should feel alive, not like a static status badge.
+
+`market_mood_type` is an internal baseline for comparison and analytics.
+Do not use it as the primary headline shown to users.
+Users should see a richer mood story built from:
+1. market_mood_label — today's interpretive headline
+2. market_mood_type — secondary baseline state
+3. market_mood_bias — current tilt inside that baseline
+4. market_mood_shift — day-over-day change versus prior context
+5. market_mood_shift_label — localized phrase for the shift
+6. market_mood_summary — short explanation of what is happening and why
+
+Do not force more Risk-On or Risk-Off classifications.
+Mixed and Cautious are valid and common.
+Differentiate repeated Mixed/Cautious days through label, bias, shift, and summary.
+
 MARKET MOOD RULE:
 market_mood_type must be copied from input core_data.market_mood.type.
 It must remain one of the following English enum values:
@@ -265,15 +298,109 @@ It must remain one of the following English enum values:
 - Mixed
 - Cautious
 
-Do not translate market_mood_type.
+market_mood_bias must be copied from input core_data.market_mood.bias.
+It must remain one of the following enum values:
+- risk_on
+- neutral
+- risk_off
 
-market_mood_summary must be localized.
+market_mood_shift must be copied from input core_data.market_mood.shift.
+It must remain one of the following enum values:
+- improving
+- stable
+- deteriorating
+- unavailable
+
+Do not translate market_mood_type, market_mood_bias, or market_mood_shift.
+
+market_mood_label must be localized from input core_data.market_mood.label when available.
+This is the primary user-facing mood headline.
+
+Label rules:
+- Localize naturally for each row language.
+- Preserve the interpretive meaning of the source label.
+- Do not replace the label with the raw type value such as "Mixed" or "Cautious".
+- Do not mechanically append shift wording into the label.
+- If label is missing, derive a concise label from type + bias using supported input evidence.
+
+Useful label directions when deriving from type + bias:
+
+Mixed + risk_on:
+- Selective Risk Appetite
+- Rotation-Driven Market
+- Growth and Defense in Balance
+
+Mixed + neutral:
+- Directionless Mixed Trading
+- Rotation-Driven Market
+
+Mixed + risk_off:
+- Mixed Market With a Defensive Tilt
+- Fragile Market Balance
+
+Cautious + risk_on:
+- Cautious Risk Appetite
+- Risk-On With Macro Friction
+
+Cautious + neutral:
+- Waiting for a Major Catalyst
+- Fragile Market Balance
+
+Cautious + risk_off:
+- Defensive Wait-and-See
+- Rising Defensive Pressure
+
+These are examples, not mandatory mappings.
+
+market_mood_shift_label must be a short localized display phrase for market_mood_shift.
+
+SHIFT LABEL RULE:
+Use these default localized phrases unless the row language clearly needs a more natural equivalent:
+
+ko:
+- improving: 위험선호 강화
+- stable: 큰 변화 없음
+- deteriorating: 경계 심화
+- unavailable: ""
+
+en:
+- improving: Risk appetite strengthening
+- stable: Little change
+- deteriorating: Caution deepening
+- unavailable: ""
+
+ja:
+- improving: リスク選好の強化
+- stable: 大きな変化なし
+- deteriorating: 警戒感の拡大
+- unavailable: ""
+
+When market_mood_shift is "unavailable", market_mood_shift_label must be an empty string.
+Do not invent a prior-session comparison phrase.
+
+market_mood_summary must be localized from input core_data.market_mood.summary when available.
 
 The market_mood_summary must explain the overall tone of the day:
+- what the market is doing today, not merely restating the label
 - whether risk appetite is broad or selective
 - whether macro conditions are supportive or restrictive
 - whether investors appear optimistic, cautious, mixed, or defensive
-- whether the market tone is driven by broad indices, sector-specific strength, macro risk, policy risk, liquidity, earnings, or other input-supported factors
+- the internal tilt implied by market_mood_bias when supported by the input
+- key drivers visible in the input such as AI, rates, energy, policy, geopolitics, or sector leadership
+
+Bias-aware summary guidance:
+- risk_on: risk appetite is present, even if selective, narrow, or restrained
+- neutral: neither risk appetite nor defensive demand clearly dominates
+- risk_off: defensive pressure or stress has greater influence than risk-taking
+
+Shift-aware summary guidance:
+- improving: overall risk appetite has strengthened versus the prior market context
+- stable: the broader risk tone is broadly unchanged
+- deteriorating: overall risk appetite has weakened versus the prior market context
+- unavailable: do not mention a prior-session comparison or shift
+
+market_mood_summary should complement, not duplicate, market_mood_label and market_mood_shift_label.
+When shift is not unavailable, the summary may explain what changed, but the shift_label carries the compact day-over-day phrase.
 
 If market_mood_type is Cautious:
 - Do not make the tone sound broadly bullish.
@@ -295,6 +422,14 @@ SIGNAL STRENGTH FALLBACK RULE:
 If signal_strength is missing or not one of the allowed values:
 - infer the closest allowed value only if clearly supported by the input
 - otherwise use medium
+
+MARKET MOOD FALLBACK RULE:
+If market_mood.bias is missing or invalid:
+- infer the closest allowed value only if clearly supported by the input and market_mood.type
+- otherwise use neutral
+
+If market_mood.shift is missing or invalid:
+- use unavailable
 
 TONE RULES:
 1. Do not write direct investment advice.
@@ -318,6 +453,8 @@ Guidelines:
 - core_summary: 2–4 concise sentences
 - top_themes.theme_title: short card title
 - top_themes.summary: one concise explanatory sentence
+- market_mood_label: short interpretive headline
+- market_mood_shift_label: short day-over-day phrase when shift is available
 - market_mood_summary: 1–2 concise sentences
 
 Avoid:
@@ -389,6 +526,8 @@ Do not alter:
 - related_report_count
 - signal_strength
 - market_mood_type
+- market_mood_bias
+- market_mood_shift
 
 Do not create new IDs.
 Do not remove IDs.
@@ -443,7 +582,11 @@ Market meaning:
 - Are all signal directions preserved accurately?
 - Are mixed signals kept mixed?
 - Is market_mood_type copied correctly?
-- Does market_mood_summary match market_mood_type?
+- Are market_mood_bias and market_mood_shift copied correctly?
+- Is market_mood_label localized and more informative than the raw type alone?
+- Is market_mood_shift_label localized correctly and empty when shift is unavailable?
+- Does market_mood_summary match market_mood_type, market_mood_bias, and market_mood_label?
+- Does market_mood_summary avoid prior-session comparison when market_mood_shift is unavailable?
 - Does the tone avoid unsupported bullishness or bearishness?
 - Does the copy avoid direct investment advice?
 

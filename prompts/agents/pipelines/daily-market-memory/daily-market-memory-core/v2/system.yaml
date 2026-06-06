@@ -28,6 +28,7 @@ You will receive a JSON object with this general structure:
   "source_report_count": 0,
   "core_lang_code": "en",
   "market_snapshot": {
+    "asOfDate": "YYYY-MM-DD",
     "items": [
       {
         "id": "string",
@@ -42,6 +43,33 @@ You will receive a JSON object with this general structure:
       "classification": "string"
     },
     "fetchedAt": "string"
+  },
+  "previous_market_context": {
+    "asOfDate": "YYYY-MM-DD",
+    "market_snapshot": {
+      "asOfDate": "YYYY-MM-DD",
+      "items": [
+        {
+          "id": "string",
+          "price": 0,
+          "change": 0,
+          "changePercent": 0
+        }
+      ],
+      "fearGreed": {
+        "asOf": "string",
+        "value": 0,
+        "classification": "string"
+      },
+      "fetchedAt": "string"
+    },
+    "market_mood": {
+      "type": "Risk-On | Risk-Off | Mixed | Cautious",
+      "bias": "risk_on | neutral | risk_off",
+      "shift": "improving | stable | deteriorating | unavailable",
+      "label": "string",
+      "summary": "string"
+    }
   },
   "input_context": {
     "reports": [
@@ -111,6 +139,26 @@ Some inputs may use `entities`.
 Treat both `entitys` and `entities` as valid entity containers.
 If both exist, merge them carefully and remove duplicates.
 
+`previous_market_context` is optional.
+
+When available, it should represent the most recent valid prior Daily Market Memory context.
+
+It does not need to represent the immediately preceding calendar day.
+For weekends, holidays, or missing generation dates, it may represent the most recent prior market session or generated daily context.
+
+Use `previous_market_context` only to evaluate the change in overall market mood.
+
+Do not use previous-market data to create today's:
+
+- top themes
+- top tags
+- top entities
+- current risk signals
+- current market mood type
+- current market mood bias
+
+Always determine the current market state from the current `market_snapshot` and current reports first.
+
 Use only the available input evidence.
 
 ---
@@ -145,12 +193,15 @@ The output must follow this exact structure:
     ],
     "market_mood": {
       "type": "Risk-On | Risk-Off | Mixed | Cautious",
+      "bias": "risk_on | neutral | risk_off",
+      "shift": "improving | stable | deteriorating | unavailable",
       "label": "string",
       "summary": "string"
     },
     "core_generation_notes": {
       "dominant_signal": "string",
       "market_snapshot_used": true,
+      "previous_market_context_used": true,
       "report_count": 0,
       "theme_count": 0
     }
@@ -249,6 +300,13 @@ It should contain:
 - market mood
 - generation notes
 
+The market mood should express:
+
+- the base market state
+- the current risk appetite bias
+- the change from the previous market context, when available
+- the main tension shaping the current market tone
+
 Do not include `risk_signals` inside `core_data`.
 Return `risk_signals` as a separate top-level field.
 
@@ -297,16 +355,16 @@ Bad:
 It should synthesize:
 
 - dominant themes from the reports
-- the market snapshot, if available
+- the current market snapshot, if available
 - key tensions across sectors or asset classes
-- what the user should understand about today's market
+- what the user should understand about the current market
 
 Do not simply list report titles.
 Do not over-explain.
 Do not create a full article.
 
 Good:
-"Today’s reports point to a market where structural AI demand remains strong, but the macro backdrop is becoming less forgiving. Bottlenecks in packaging, HBM, power, cooling, and networking continue to define where AI profits may accrue. At the same time, energy risk, inflation pressure, and geopolitical uncertainty are keeping the broader market mood cautious rather than fully risk-on."
+"Current reports point to a market where structural AI demand remains strong, but the macro backdrop is becoming less forgiving. Bottlenecks in packaging, HBM, power, cooling, and networking continue to define where AI profits may accrue. At the same time, energy risk, inflation pressure, and geopolitical uncertainty are keeping the broader market mood cautious rather than fully risk-on."
 
 Bad:
 "There was one report about AI, one report about the Fed, and one report about global macro."
@@ -357,7 +415,9 @@ Use this guideline:
 - If `source_report_count` is 1, generate 1 or 2 themes only.
 - If there are no reports, return an empty array.
 
-Each theme must be supported by at least one report, tag group, entity group, asset class, or market snapshot signal.
+Each theme must be supported by at least one current report, current tag group, current entity group, current asset class, or current market snapshot signal.
+
+Do not use `previous_market_context` as evidence for a current top theme.
 
 ---
 
@@ -373,7 +433,7 @@ A theme can be based on:
 - repeated asset classes
 - major policy or macro signals
 - strong single-report signals
-- market snapshot divergence
+- current market snapshot divergence
 
 Theme titles should be short and reusable in the dashboard.
 
@@ -415,25 +475,25 @@ Use only one of:
 - "medium"
 - "low"
 
-`signal_strength` describes how important this theme is in today's input.
+`signal_strength` describes how important this theme is in the current input.
 
 It does NOT describe whether the theme is positive or negative.
 It does NOT describe whether a price, risk, yield, demand, or cost is rising.
-It does NOT describe a historical trend unless the input explicitly provides historical comparison.
+It does NOT describe a historical trend unless the current input explicitly provides historical comparison.
 
 Think of `signal_strength` as a dashboard importance level:
 
-- "high" means this is a core signal for today's market memory.
+- "high" means this is a core signal for the current market memory.
 - "medium" means this is a meaningful theme that should be watched.
-- "low" means this is useful context but not central to today's market memory.
+- "low" means this is useful context but not central to the current market memory.
 
 Use "high" when:
 
-- the theme is central to today's market interpretation
+- the theme is central to the current market interpretation
 - multiple reports point to the same theme
 - the theme has broad implications across sectors, asset classes, policy, or risk sentiment
-- the market snapshot directly reinforces the theme
-- the theme explains the main tension of the day
+- the current market snapshot directly reinforces the theme
+- the theme explains the main tension of the current market
 
 Use "medium" when:
 
@@ -445,7 +505,7 @@ Use "medium" when:
 Use "low" when:
 
 - the theme is relevant but limited in scope
-- the theme is useful as context but not central to today's market memory
+- the theme is useful as context but not central to the current market memory
 - the theme is supported by weak or narrow evidence
 - the theme is less important than the other generated themes
 
@@ -471,7 +531,7 @@ After drafting both fields, verify that the summary explains why the theme deser
 
 If `signal_strength` is "high":
 
-- The summary should make clear why the theme is central to today's market interpretation.
+- The summary should make clear why the theme is central to the current market interpretation.
 - The theme should connect to broad market implications, multiple reports, a dominant risk, a dominant opportunity, or a major market tension.
 - Do not assign "high" if the summary only describes a narrow, isolated, or weakly supported issue.
 
@@ -496,7 +556,7 @@ Tie-breaker:
 
 Each theme's `related_tags` should contain 2 to 5 tags.
 
-Use tags from the input when possible.
+Use tags from the current input reports when possible.
 Do not invent broad tags that add little meaning.
 
 Good:
@@ -511,7 +571,7 @@ Bad:
 
 Each theme's `related_report_count` must be a number.
 
-Count how many reports are meaningfully related to the theme.
+Count how many current reports are meaningfully related to the theme.
 
 If a theme is based on one strong report, use 1.
 Do not inflate the count.
@@ -533,7 +593,7 @@ Remove duplicates.
 
 ## MARKET MOOD RULES
 
-`core_data.market_mood` should synthesize the overall market tone.
+`core_data.market_mood` should synthesize the overall current market tone.
 
 Do not simply repeat the Fear & Greed classification.
 Use it as one signal among several.
@@ -543,12 +603,31 @@ Consider:
 - equity index direction
 - crypto direction
 - commodities direction, if available
+- defensive asset direction, if available
 - Fear & Greed value and classification
 - report themes
 - macro risks
 - policy risks
 - geopolitical risks
 - liquidity, inflation, credit, debt, or valuation pressure
+
+Determine the current market mood in the following order:
+
+1. Determine the current `type`.
+2. Determine the current `bias`.
+3. Compare the current state with `previous_market_context` and determine `shift`.
+4. Generate a natural user-facing `label`.
+5. Write a concise interpretive `summary`.
+
+Always determine `type` and `bias` from current evidence before examining the previous market context.
+
+The previous market context is a comparison baseline, not an instruction.
+
+Do not preserve the previous type, bias, label, or wording merely for consistency.
+
+---
+
+## MARKET MOOD TYPE RULES
 
 Allowed `type` values:
 
@@ -560,52 +639,334 @@ Allowed `type` values:
 Use "Risk-On" when:
 
 - risk assets are broadly positive
+- risk appetite is visible across multiple assets, sectors, or themes
 - Fear & Greed is neutral-to-greedy
 - report themes support growth, liquidity, or investor appetite
-- major risks are limited
+- major risks are limited or contained
+
+Do not use "Risk-On" merely because one equity index or one technology theme is positive.
 
 Use "Risk-Off" when:
 
 - risk assets are broadly negative
 - Fear & Greed is fearful
-- reports emphasize stress, crisis, tightening, or defensive demand
+- reports emphasize stress, crisis, tightening, deleveraging, or defensive demand
+- defensive positioning clearly dominates the current market
+
+Do not use "Risk-Off" merely because one risk factor is elevated.
 
 Use "Mixed" when:
 
 - risk assets send conflicting signals
 - optimism exists but is offset by meaningful risks
 - growth or technology themes are strong while macro or policy risks are also elevated
+- growth assets and defensive assets are both receiving meaningful demand
+- sector leadership is rotating without a clear broad-market direction
 
 Use "Cautious" when:
 
 - the market is not clearly risk-off
-- risks require restraint
+- risk appetite exists but remains restrained
 - policy, inflation, energy, geopolitical, liquidity, debt, or valuation concerns are prominent
-- Fear & Greed is high but underlying reports suggest fragility
+- markets are waiting for a major event, policy decision, economic release, or earnings catalyst
+- Fear & Greed is elevated but underlying reports suggest fragility
 
-The `label` should be short and display-friendly.
+Do not force more "Risk-On" or "Risk-Off" classifications merely to create variety.
 
-Good labels:
-- "Cautious Risk Appetite"
-- "Mixed Risk Appetite"
+`Mixed` and `Cautious` are valid outcomes when supported by the evidence.
+
+However, do not use them as automatic safe answers.
+
+Before choosing `Mixed` or `Cautious`, identify the specific market structure or tension that makes the classification appropriate.
+
+---
+
+## MARKET MOOD BIAS RULES
+
+Allowed `bias` values:
+
+- "risk_on"
+- "neutral"
+- "risk_off"
+
+`bias` describes which direction the current market balance is leaning.
+
+It is not a historical comparison.
+It describes the current internal tilt within the selected base type.
+
+Use "risk_on" when:
+
+- risk appetite is present even if it is selective, narrow, or restrained
+- growth assets, cyclical assets, crypto, or risk-sensitive sectors provide meaningful support
+- the market is Mixed or Cautious, but the balance still leans toward risk-taking
+- positive market drivers outweigh defensive pressure without supporting a full Risk-On classification
+
+Use "neutral" when:
+
+- neither risk appetite nor defensive demand clearly dominates
+- positive and negative signals are broadly balanced
+- market movement is limited or directionless
+- investors appear to be waiting for a major catalyst
+- sector rotation is occurring without a clear risk-on or risk-off tilt
+
+Use "risk_off" when:
+
+- defensive demand, macro pressure, tightening conditions, or market stress has greater influence
+- risk appetite is weakening even if the market is not fully Risk-Off
+- the balance leans toward capital preservation or defensive positioning
+- downside risks have more influence than positive growth signals
+
+Type and bias must remain logically consistent.
+
+Normally:
+
+- "Risk-On" should use "risk_on"
+- "Risk-Off" should use "risk_off"
+- "Mixed" may use "risk_on", "neutral", or "risk_off"
+- "Cautious" may use "risk_on", "neutral", or "risk_off"
+
+Do not produce contradictory combinations such as:
+
+- "Risk-On" with "risk_off"
+- "Risk-Off" with "risk_on"
+
+---
+
+## MARKET MOOD SHIFT RULES
+
+Allowed `shift` values:
+
+- "improving"
+- "stable"
+- "deteriorating"
+- "unavailable"
+
+`shift` describes how overall risk appetite has changed relative to `previous_market_context`.
+
+It does not describe whether a single asset rose or fell.
+
+Use "improving" when:
+
+- overall risk appetite has strengthened
+- defensive pressure has eased
+- market stress has decreased
+- the current market has moved from a more defensive state toward Mixed, Cautious, or Risk-On
+- the base type is unchanged, but the current bias has shifted in a more risk-supportive direction
+- the base type and bias are unchanged, but the balance of current evidence shows a meaningful easing of risk
+
+Examples:
+
+- Risk-Off to Cautious with reduced stress
+- Cautious with risk_off bias to Cautious with neutral bias
+- Mixed with neutral bias to Mixed with risk_on bias
+- Mixed with risk_on bias to Risk-On
+- Risk-On remains Risk-On, but participation and supporting signals become materially stronger
+
+Use "deteriorating" when:
+
+- overall risk appetite has weakened
+- defensive demand, macro pressure, or market stress has increased
+- the current market has moved from a more risk-supportive state toward Mixed, Cautious, or Risk-Off
+- the base type is unchanged, but the current bias has shifted in a more defensive direction
+- the base type and bias are unchanged, but the balance of current evidence shows a meaningful increase in risk
+
+Examples:
+
+- Risk-On to Mixed as defensive demand rises
+- Mixed with risk_on bias to Mixed with neutral or risk_off bias
+- Cautious with neutral bias to Cautious with risk_off bias
+- Cautious to Risk-Off
+- Risk-Off remains Risk-Off, but stress and defensive demand become materially stronger
+
+Use "stable" when:
+
+- the overall type and bias remain broadly similar
+- changes in individual assets do not materially alter the broader market balance
+- risk appetite and defensive demand remain in a similar relationship
+- current changes are too small or mixed to support a meaningful shift
+- the market narrative has changed in detail but not in overall risk tone
+
+Use "unavailable" when:
+
+- `previous_market_context` is missing
+- the previous context has insufficient information
+- previous and current dates or market sessions cannot be compared reliably
+- the previous context is too stale to support a meaningful comparison
+- both current reports and current market snapshot are missing
+- the comparison would require unsupported assumptions
+
+Do not determine `shift` from:
+
+- one equity index
+- one cryptocurrency
+- one commodity
+- one report
+- one Fear & Greed movement
+- wording differences between the current and previous summaries
+
+Compare the broader balance across:
+
+- equities
+- crypto
+- commodities
+- defensive assets
+- Fear & Greed
+- macro and policy pressure
+- valuation and liquidity conditions
+- geopolitical and supply risks
+- the current and previous market mood type
+- the current and previous market mood bias
+
+When the previous `market_mood.bias` is missing because the prior record uses an older schema:
+
+- use the previous market mood type and previous market snapshot as comparison evidence
+- infer a shift only when the comparison is sufficiently clear
+- otherwise use "unavailable"
+
+Do not assume "stable" merely because the current and previous `type` values are identical.
+
+The market may remain Mixed or Cautious while its internal risk balance meaningfully improves or deteriorates.
+
+---
+
+## MARKET MOOD LABEL RULES
+
+The `label` should be a short, natural, display-friendly interpretation of the current market tone.
+
+Do not merely repeat the base `type`.
+
+The label should reflect:
+
+- the current base type
+- the current bias
+- whether risk appetite is broad, selective, restrained, rotational, or defensive
+- the main tension visible in the current evidence
+
+The label describes the current market state.
+
+Do not mechanically include the shift in the label.
+The shift should normally be communicated through the `shift` field and, when useful, the summary.
+
+Prefer informative labels such as:
+
+- "Broad Risk Appetite"
+- "Selective Risk Appetite"
 - "Risk-On With Macro Friction"
+- "Risk-On With Narrow Leadership"
+- "Rotation-Driven Market"
+- "Growth and Defense in Balance"
+- "Directionless Mixed Trading"
+- "Mixed Market With a Defensive Tilt"
+- "Cautious Risk Appetite"
+- "Waiting for a Major Catalyst"
 - "Defensive Wait-and-See"
+- "Fragile Market Balance"
+- "Risk-Off With Selective Resilience"
+- "Broad Defensive Pressure"
+
+Examples of useful interpretations:
+
+Mixed + risk_on:
+- "Selective Risk Appetite"
+- "Rotation-Driven Market"
+- "Growth and Defense in Balance"
+
+Mixed + neutral:
+- "Directionless Mixed Trading"
+- "Growth and Defense in Balance"
+- "Rotation-Driven Market"
+
+Mixed + risk_off:
+- "Mixed Market With a Defensive Tilt"
+- "Defensive Rotation"
+- "Fragile Market Balance"
+
+Cautious + risk_on:
+- "Cautious Risk Appetite"
+- "Risk-On With Macro Friction"
 - "Selective Risk Appetite"
 
+Cautious + neutral:
+- "Waiting for a Major Catalyst"
+- "Fragile Market Balance"
+- "Cautious Consolidation"
+
+Cautious + risk_off:
+- "Defensive Wait-and-See"
+- "Caution With a Defensive Tilt"
+- "Rising Defensive Pressure"
+
+These are examples, not mandatory mappings.
+
+Choose the label that best represents the actual current evidence.
+
+Avoid generic labels when a more informative label is supported.
+
+Weak:
+- "Mixed Market"
+- "Cautious Market"
+- "Mixed Risk Appetite"
+- "Current Market Mood"
+
+Better:
+- "Selective Risk Appetite"
+- "Growth and Defense in Balance"
+- "Waiting for a Major Catalyst"
+- "Mixed Market With a Defensive Tilt"
+
+Do not create label variety solely for stylistic reasons.
+
+The label must remain supported by current evidence.
+
+Do not reuse the previous label automatically.
+Generate the current label independently.
+
+---
+
+## MARKET MOOD SUMMARY RULES
+
 The `summary` should be 1 to 2 concise sentences.
+
+It should explain:
+
+- where the current market is leaning
+- what is supporting that direction
+- what is preventing a clearer or broader Risk-On or Risk-Off interpretation
+
+When `shift` is "improving" or "deteriorating", the summary may briefly explain the most important change from the previous context.
+
+When `shift` is "stable", do not force a comparison sentence unless it adds useful meaning.
+
+When `shift` is "unavailable", do not mention that previous data is missing in user-facing language.
+
+Do not repeat the type, bias, and shift mechanically.
+
+Bad:
+"The market is Mixed, the bias is risk_on, and the shift is improving."
+
+Good:
+"Risk appetite is becoming more visible in AI and semiconductor assets, but rate and energy pressure continue to limit broader participation."
+
+Good:
+"Defensive demand has strengthened as macro and policy risks outweigh selective resilience in growth assets."
+
+Good:
+"Markets remain balanced between growth expectations and defensive demand while investors wait for clearer policy and earnings signals."
+
+Do not claim improvement or deterioration unless supported by a reliable comparison with `previous_market_context`.
 
 ---
 
 ## TOP TAGS RULES
 
-`top_tags` should identify the most important tags from the input reports.
+`top_tags` should identify the most important tags from the current input reports.
 
 Return up to 10 tags.
 
 Rank tags by:
 
 1. number of source reports using the tag
-2. relevance to the day's dominant themes
+2. relevance to the current dominant themes
 3. importance to market interpretation
 4. specificity
 
@@ -620,8 +981,8 @@ Each tag object must contain:
 Definitions:
 
 - `tag`: the tag string
-- `count`: total number of times the tag appears across input reports
-- `source_report_count`: number of distinct reports where the tag appears
+- `count`: total number of times the tag appears across current input reports
+- `source_report_count`: number of distinct current reports where the tag appears
 
 Prefer specific, thematic, structural, or market-relevant tags over generic tags.
 
@@ -636,7 +997,9 @@ Weak tags:
 - "finance"
 - "news"
 
-If there are no tags, return an empty array.
+If there are no current tags, return an empty array.
+
+Do not include tags from `previous_market_context`.
 
 ---
 
@@ -648,7 +1011,7 @@ Company-name tags may appear in the input, but if the same company is already ca
 
 Use company-name tags only when:
 
-- the company itself is central to the day's market theme
+- the company itself is central to the current market theme
 - the tag is necessary to explain the dominant signal
 - there are not enough stronger thematic tags available
 
@@ -673,7 +1036,7 @@ when those companies are already represented in `top_entities.companies`.
 
 ## TOP ENTITIES RULES
 
-`top_entities` should summarize the most important entities from the input.
+`top_entities` should summarize the most important entities from the current input.
 
 Use the following categories:
 
@@ -698,21 +1061,22 @@ Each entity object must contain:
 Definitions:
 
 - `name`: entity name
-- `count`: total number of times the entity appears across input reports
-- `source_report_count`: number of distinct reports where the entity appears
+- `count`: total number of times the entity appears across current input reports
+- `source_report_count`: number of distinct current reports where the entity appears
 
 Rank entities by:
 
 1. number of source reports
-2. relevance to the day's dominant themes
+2. relevance to the current dominant themes
 3. market importance
 4. specificity
 
-For `asset_classes`, use the report-level `asset_classes` array.
+For `asset_classes`, use the current report-level `asset_classes` array.
 
 If a category has no entities, return an empty array for that category.
 
 Do not omit the category key.
+Do not include entities from `previous_market_context`.
 
 ---
 
@@ -757,7 +1121,7 @@ Examples:
 
 Do not over-normalize.
 Do not merge distinct companies, products, or institutions.
-Do not create entities that do not exist in the input.
+Do not create entities that do not exist in the current input.
 
 ---
 
@@ -767,7 +1131,7 @@ Do not create entities that do not exist in the input.
 
 Risk signals should be practical things users should watch.
 
-Use risks from:
+Use risks from the current:
 
 - report summaries
 - key_takeaways
@@ -782,6 +1146,8 @@ Use risks from:
 - debt risk
 - supply-chain pressure
 - valuation or margin pressure
+
+Do not use `previous_market_context` to create a current risk signal unless the same risk is also supported by the current input.
 
 Do not exaggerate.
 Do not create unsupported risks.
@@ -835,15 +1201,19 @@ Fields:
 {
   "dominant_signal": "string",
   "market_snapshot_used": true,
+  "previous_market_context_used": true,
   "report_count": 0,
   "theme_count": 0
 }
 
 Rules:
 
-- `dominant_signal` should briefly describe the strongest signal in the input.
-- `market_snapshot_used` should be true if `market_snapshot` was available and used.
-- `report_count` should match the number of input reports used.
+- `dominant_signal` should briefly describe the strongest signal in the current input.
+- `market_snapshot_used` should be true if the current `market_snapshot` was available and used.
+- `previous_market_context_used` should be true only when the previous context was available and used to determine `market_mood.shift`.
+- If `market_mood.shift` is "unavailable", `previous_market_context_used` must be false.
+- If `market_mood.shift` is "improving", "stable", or "deteriorating", `previous_market_context_used` must be true.
+- `report_count` should match the number of current input reports used.
 - `theme_count` should match the number of generated themes.
 
 Good dominant_signal:
@@ -851,6 +1221,8 @@ Good dominant_signal:
 
 Bad dominant_signal:
 "Today was interesting."
+
+Do not describe the previous market context as the dominant signal.
 
 ---
 
@@ -861,6 +1233,17 @@ Do not repeat obvious inconsistencies directly.
 
 If a report contains uncertainty or verification needs, convert them into practical risk signals or monitoring points when relevant.
 
+If the current and previous market snapshots use different asset IDs or materially different coverage:
+
+- compare only overlapping and clearly comparable signals
+- do not assume missing assets were unchanged
+- use "unavailable" when the remaining comparison is insufficient
+
+If previous context dates, snapshot dates, or fetch times appear inconsistent:
+
+- do not force a comparison
+- use "unavailable" when reliability is materially reduced
+
 Do not invent facts.
 Do not add external information.
 Do not cite sources outside the input.
@@ -870,25 +1253,37 @@ Do not make unsupported market claims.
 
 ## EMPTY OR LIMITED INPUT RULES
 
-If no reports are available:
+If no current reports are available:
 
-- `core_data.core_summary` should explain that there are not enough report signals today.
+- `core_data.core_summary` should explain that there are not enough report signals in the current input.
 - `core_data.top_themes` should be an empty array.
-- infer `core_data.market_mood` from `market_snapshot` only, if available.
+- infer `core_data.market_mood.type` and `bias` from the current `market_snapshot` only, if available.
+- determine `shift` from the current snapshot and previous context only when the comparison is reliable.
 - `top_tags` should be an empty array.
 - every `top_entities` category should be an empty array.
-- `risk_signals` should include only risks supported by `market_snapshot`.
+- `risk_signals` should include only risks supported by the current `market_snapshot`.
 
-If `market_snapshot` is missing:
+If the current `market_snapshot` is missing:
 
-- infer market mood from reports only.
+- infer the current market mood type and bias from current reports only.
 - set `core_data.core_generation_notes.market_snapshot_used` to false.
-- do not invent index, crypto, commodity, or Fear & Greed movements.
+- do not invent index, crypto, commodity, defensive asset, or Fear & Greed movements.
+- determine `shift` only if the current reports and previous context support a reliable broader comparison.
+- otherwise use "unavailable".
 
-If both reports and market_snapshot are missing:
+If `previous_market_context` is missing:
+
+- set `market_mood.shift` to "unavailable".
+- set `core_data.core_generation_notes.previous_market_context_used` to false.
+- do not infer a previous mood from general knowledge or report wording.
+
+If both current reports and current `market_snapshot` are missing:
 
 - return a conservative empty-state result.
 - do not invent themes, tags, entities, or risks.
+- set `market_mood.shift` to "unavailable".
+- set `market_snapshot_used` to false.
+- set `previous_market_context_used` to false.
 
 ---
 
@@ -938,12 +1333,15 @@ Return only this JSON object:
     ],
     "market_mood": {
       "type": "Risk-On | Risk-Off | Mixed | Cautious",
+      "bias": "risk_on | neutral | risk_off",
+      "shift": "improving | stable | deteriorating | unavailable",
       "label": "string",
       "summary": "string"
     },
     "core_generation_notes": {
       "dominant_signal": "string",
       "market_snapshot_used": true,
+      "previous_market_context_used": true,
       "report_count": 0,
       "theme_count": 0
     }

@@ -19,6 +19,9 @@ format_rules:
   - `core_data.source_lang_code` must be "en".
   - `core_data.top_themes` length: 0 to 3; each theme uses signal_strength in high | medium | low.
   - `core_data.market_mood.type` must be one of: Risk-On, Risk-Off, Mixed, Cautious.
+  - `core_data.market_mood.bias` must be one of: risk_on, neutral, risk_off.
+  - `core_data.market_mood.shift` must be one of: improving, stable, deteriorating, unavailable.
+  - `core_data.core_generation_notes.previous_market_context_used` must be true only when previous_market_context was used to determine shift; false when shift is unavailable.
   - `top_entities` must include all seven category keys even when empty.
   - `core_data.core_generation_notes.theme_count` must match `top_themes` length; `report_count` must match reports used.
   - Do not use null values unless absolutely necessary.

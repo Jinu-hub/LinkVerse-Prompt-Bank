@@ -47,10 +47,29 @@
           },
           "description": "Up to 3 dashboard themes; count must match input when input has 3 or fewer."
         },
+        "market_mood_label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Localized primary mood headline from core_data.market_mood.label."
+        },
         "market_mood_type": {
           "type": "string",
           "enum": ["Risk-On", "Risk-Off", "Mixed", "Cautious"],
-          "description": "Copied from input core_data.market_mood.type; not translated."
+          "description": "Copied from input core_data.market_mood.type; internal baseline, not the primary headline."
+        },
+        "market_mood_bias": {
+          "type": "string",
+          "enum": ["risk_on", "neutral", "risk_off"],
+          "description": "Copied from input core_data.market_mood.bias; not translated."
+        },
+        "market_mood_shift": {
+          "type": "string",
+          "enum": ["improving", "stable", "deteriorating", "unavailable"],
+          "description": "Copied from input core_data.market_mood.shift; not translated."
+        },
+        "market_mood_shift_label": {
+          "type": "string",
+          "description": "Localized short phrase for market_mood_shift; empty string when shift is unavailable."
         },
         "market_mood_summary": {
           "type": "string",
@@ -64,7 +83,11 @@
         "display_subtitle",
         "core_summary",
         "top_themes",
+        "market_mood_label",
         "market_mood_type",
+        "market_mood_bias",
+        "market_mood_shift",
+        "market_mood_shift_label",
         "market_mood_summary"
       ]
     },

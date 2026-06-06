@@ -50,12 +50,15 @@
     ],
     "market_mood": {
       "type": "Mixed",
+      "bias": "risk_on",
+      "shift": "unavailable",
       "label": "Selective Risk Appetite",
       "summary": "Equities are slightly higher and sentiment looks greedy, but softer crypto, firmer oil, and macro plus geopolitical risks suggest investors are staying selective rather than broadly aggressive."
     },
     "core_generation_notes": {
       "dominant_signal": "AI infrastructure bottlenecks were the strongest growth signal, offset by inflation, energy, and geopolitical supply risks.",
-      "market_snapshot_used": true,
+      "market_snapshot_used": false,
+      "previous_market_context_used": false,
       "report_count": 3,
       "theme_count": 3
     }

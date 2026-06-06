@@ -128,7 +128,7 @@ v1의 `trend_status`(rising/steady/weakening)는 v2에서 사용하지 않음.
 
 ## 변경 이력
 
-- **v2**: `top_themes`의 `trend_status`를 `signal_strength`(`high` \| `medium` \| `low`)로 교체. schema, developer, examples, downstream data/copy-polisher 스키마와 동기화.
+- **v2**: `top_themes`의 `trend_status`를 `signal_strength`(`high` \| `medium` \| `low`)로 교체. `market_mood`에 `bias`, `shift` 추가 및 `core_generation_notes.previous_market_context_used` 반영. schema, developer, examples, downstream data/copy-polisher 스키마와 동기화.
 - **왜 수정했는지**: system.yaml 출력 계약 정의 및 n8n 실제 바인딩(`input_context` 단일 객체)에 맞춰 schema, developer, agent_meta, examples 정리.
 - **어떤 문제가 있었는지**: placeholder schema·meta·예시로 인해 파이프라인 검증 및 n8n 연동이 불가능했음.
 - **어떤 예시에서 실패했는지**: (추가 시 `examples/input_01.md` / `expected_01.json` 기준으로 기록)

@@ -42,7 +42,11 @@
           "source_item_content_ids": ["ic-mm-003"]
         }
       ],
+      "market_mood_label": "string",
       "market_mood_type": "Mixed",
+      "market_mood_bias": "risk_on",
+      "market_mood_shift": "stable",
+      "market_mood_shift_label": "string",
       "market_mood_summary": "주식은 소폭 상승하고 심리는 탐욕에 가까우나, 약한 암호화폐와 견조한 유가 및 매크로·지정학 리스크로 투자자들이 광범위한 공격적 포지셔닝보다는 선택적 접근을 유지하는 것으로 나타남"
     },
     {
@@ -82,7 +86,11 @@
           "source_item_content_ids": ["ic-mm-003"]
         }
       ],
+      "market_mood_label": "string",
       "market_mood_type": "Mixed",
+      "market_mood_bias": "risk_on",
+      "market_mood_shift": "stable",
+      "market_mood_shift_label": "string",
       "market_mood_summary": "Equities are slightly higher and sentiment is close to greed, but weaker crypto and firm oil and macro and geopolitical risks appear to show investors maintaining a selective approach rather than broad aggressive positioning"
     },
     {
@@ -122,7 +130,11 @@
           "source_item_content_ids": ["ic-mm-003"]
         }
       ],
+      "market_mood_label": "string",
       "market_mood_type": "Mixed",
+      "market_mood_bias": "risk_on",
+      "market_mood_shift": "stable",
+      "market_mood_shift_label": "string",
       "market_mood_summary": "株式は小幅に上昇しセンチメントは強気に近いが、弱い暗号資産と堅調な原油およびマクロ・地政学リスクにより、投資家は広範な攻撃的ポジションではなく選択的なアプローチを維持しているように見える"
     }
   ]

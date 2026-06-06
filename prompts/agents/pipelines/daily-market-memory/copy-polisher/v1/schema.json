@@ -41,10 +41,29 @@
           },
           "description": "Same length and order as input; only theme_title and summary are polishable per item."
         },
+        "market_mood_label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Polishable: localized primary mood headline."
+        },
         "market_mood_type": {
           "type": "string",
           "enum": ["Risk-On", "Risk-Off", "Mixed", "Cautious"],
           "description": "Locked: copied exactly from input."
+        },
+        "market_mood_bias": {
+          "type": "string",
+          "enum": ["risk_on", "neutral", "risk_off"],
+          "description": "Locked: copied exactly from input."
+        },
+        "market_mood_shift": {
+          "type": "string",
+          "enum": ["improving", "stable", "deteriorating", "unavailable"],
+          "description": "Locked: copied exactly from input."
+        },
+        "market_mood_shift_label": {
+          "type": "string",
+          "description": "Polishable: localized short phrase for shift; may be empty when shift is unavailable."
         },
         "market_mood_summary": {
           "type": "string",
@@ -58,7 +77,11 @@
         "display_subtitle",
         "core_summary",
         "top_themes",
+        "market_mood_label",
         "market_mood_type",
+        "market_mood_bias",
+        "market_mood_shift",
+        "market_mood_shift_label",
         "market_mood_summary"
       ]
     },
