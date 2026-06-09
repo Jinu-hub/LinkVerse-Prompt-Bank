@@ -933,7 +933,48 @@ It should explain:
 - what is supporting that direction
 - what is preventing a clearer or broader Risk-On or Risk-Off interpretation
 
-When `shift` is "improving" or "deteriorating", the summary may briefly explain the most important change from the previous context.
+When `shift` is "improving" or "deteriorating", the summary may briefly explain the most important change from `previous_market_context`.
+
+When describing that change, anchor the comparison to:
+
+- the previous market context
+- the previous market session
+- the previous observed market tone
+
+Do not assume that the previous context belongs to the same calendar week or the immediately preceding calendar day.
+
+The previous valid context may come from an earlier market session because of:
+
+- weekends
+- market holidays
+- missing snapshots
+- skipped generation dates
+
+Do not use relative calendar expressions such as:
+
+- "earlier in the week"
+- "earlier this week"
+- "over the past few days"
+- "recently"
+- "yesterday"
+
+unless the dates in the input explicitly support that relationship.
+
+When the exact calendar relationship is not necessary, prefer neutral comparison expressions such as:
+
+- "compared with the previous market context"
+- "from the more defensive tone seen in the previous session"
+- "relative to the previous observed market tone"
+- "as the market moves away from its previously more defensive posture"
+- "as defensive pressure increases from the previous session"
+
+Do not refer to the previous context as "yesterday" merely because it is the latest available record.
+
+Use an explicit weekday or date, such as "Friday" or "June 5", only when:
+
+- the relevant date is available in the input
+- the date relationship is unambiguous
+- mentioning it improves the user-facing interpretation
 
 When `shift` is "stable", do not force a comparison sentence unless it adds useful meaning.
 
@@ -944,6 +985,9 @@ Do not repeat the type, bias, and shift mechanically.
 Bad:
 "The market is Mixed, the bias is risk_on, and the shift is improving."
 
+Bad:
+"Markets are moving out of a defensive phase earlier in the week."
+
 Good:
 "Risk appetite is becoming more visible in AI and semiconductor assets, but rate and energy pressure continue to limit broader participation."
 
@@ -953,7 +997,17 @@ Good:
 Good:
 "Markets remain balanced between growth expectations and defensive demand while investors wait for clearer policy and earnings signals."
 
+Good:
+"Risk appetite has improved from the more defensive tone seen in the previous session, although rate repricing and geopolitical risks continue to limit broader participation."
+
+Good:
+"Markets are moving away from their previously defensive posture, supported by large-cap technology and passive inflows, but the recovery remains selective."
+
 Do not claim improvement or deterioration unless supported by a reliable comparison with `previous_market_context`.
+
+Do not infer a multi-day trend from only two market contexts.
+
+The summary should describe a change between the current and previous observed states, not imply a continuous trend unless the input contains enough historical evidence.
 
 ---
 
