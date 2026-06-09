@@ -56,9 +56,9 @@ Daily Market Memory core 객체 (`daily-market-memory-core` 출력). `core_data`
     "market_mood": {
       "type": "Mixed",
       "bias": "risk_on",
-      "shift": "stable",
+      "shift": "improving",
       "label": "Selective Risk Appetite",
-      "summary": "Equities are slightly higher and sentiment looks greedy, but softer crypto, firmer oil, and macro plus geopolitical risks suggest investors are staying selective rather than broadly aggressive."
+      "summary": "Risk appetite is visible in large-cap tech and passive inflows, supporting broad indices, but rate repricing, semiconductor-specific losses, and geopolitical/shipping risks are constraining broader participation and keeping volatility elevated as markets move out of a more defensive phase earlier in the week."
     }
   },
   "top_tags": [

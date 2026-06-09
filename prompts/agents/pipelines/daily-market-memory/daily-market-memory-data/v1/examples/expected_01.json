@@ -52,9 +52,9 @@
       "market_mood_label": "선택적 위험선호",
       "market_mood_type": "Mixed",
       "market_mood_bias": "risk_on",
-      "market_mood_shift": "stable",
-      "market_mood_shift_label": "큰 변화 없음",
-      "market_mood_summary": "전체 시장은 혼재되어 있지만 AI와 반도체를 중심으로 위험선호가 선택적으로 이어지고 있습니다. 약한 암호화폐와 견조한 유가, 매크로·지정학 리스크가 상승 흐름의 확산을 제한하고 있습니다."
+      "market_mood_shift": "improving",
+      "market_mood_shift_label": "위험선호 강화",
+      "market_mood_summary": "대형 기술주와 패시브 자금 유입이 지수를 지지하며 위험선호가 눈에 띄지만, 장기금리 부담·반도체 약세·지정학·해운 리스크가 참여 확산을 막고 변동성을 높이고 있습니다. 이번 주 초의 방어적 국면에서 벗어나는 흐름 속에서도 상승은 여전히 선택적입니다."
     },
     {
       "lang_code": "en",
@@ -108,9 +108,9 @@
       "market_mood_label": "Selective Risk Appetite",
       "market_mood_type": "Mixed",
       "market_mood_bias": "risk_on",
-      "market_mood_shift": "stable",
-      "market_mood_shift_label": "Little change",
-      "market_mood_summary": "The overall market remains mixed, but risk appetite is selectively concentrated in AI and semiconductors. Softer crypto, firmer oil, and macro plus geopolitical risks are limiting how broadly the rally can spread."
+      "market_mood_shift": "improving",
+      "market_mood_shift_label": "Risk appetite strengthening",
+      "market_mood_summary": "Risk appetite is visible in large-cap tech and passive inflows, supporting broad indices, but rate repricing, semiconductor-specific losses, and geopolitical/shipping risks are constraining broader participation and keeping volatility elevated. Markets are moving out of the more defensive tone seen earlier in the week, yet the advance remains selective rather than broad."
     },
     {
       "lang_code": "ja",
@@ -164,9 +164,9 @@
       "market_mood_label": "選択的リスク選好",
       "market_mood_type": "Mixed",
       "market_mood_bias": "risk_on",
-      "market_mood_shift": "stable",
-      "market_mood_shift_label": "大きな変化なし",
-      "market_mood_summary": "市場全体はまちまちですが、AIと半導体を中心にリスク選好が選択的に続いています。弱い暗号資産と堅調な原油、マクロ・地政学リスクが上昇の広がりを制限しています。"
+      "market_mood_shift": "improving",
+      "market_mood_shift_label": "リスク選好の強化",
+      "market_mood_summary": "大型テック株とパッシブ資金の流入が指数を支え、リスク選好が見えていますが、金利の再価格付け、半導体の局所的な下落、地政学・海運リスクが参加の広がりを抑え、ボラティリティを高めています。週初の防衛的な局面から離れつつあるものの、上昇は依然として選択的です。"
     }
   ]
 }

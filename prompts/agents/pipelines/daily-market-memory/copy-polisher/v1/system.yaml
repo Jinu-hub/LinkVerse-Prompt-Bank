@@ -149,7 +149,8 @@ FIELD-SPECIFIC GUIDANCE:
 - Should explain the current market tone in plain language.
 - Preserve whether the mood is cautious, risk-on, risk-off, neutral, or mixed.
 - Remain consistent with the unchanged market_mood_bias and market_mood_shift.
-- Complement market_mood_label and market_mood_shift_label rather than repeating them.
+- Preserve concrete drivers, tension, and shift narrative from the input; do not flatten into generic mood filler.
+- Complement market_mood_label and market_mood_shift_label rather than repeating them verbatim.
 - Do not exaggerate.
 
 OUTPUT RULE:

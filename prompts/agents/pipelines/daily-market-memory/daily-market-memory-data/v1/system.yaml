@@ -380,27 +380,69 @@ Do not invent a prior-session comparison phrase.
 
 market_mood_summary must be localized from input core_data.market_mood.summary when available.
 
+This is editorial mood copy, not a compressed status note.
+Preserve the interpretive energy, causal structure, and concrete drivers from the source summary.
+Do not flatten a rich input summary into generic dashboard filler.
+
 The market_mood_summary must explain the overall tone of the day:
-- what the market is doing today, not merely restating the label
-- whether risk appetite is broad or selective
-- whether macro conditions are supportive or restrictive
-- whether investors appear optimistic, cautious, mixed, or defensive
+- what is supporting risk appetite or index strength today
+- what is constraining broader participation or keeping volatility elevated
+- whether participation is broad or selective
 - the internal tilt implied by market_mood_bias when supported by the input
-- key drivers visible in the input such as AI, rates, energy, policy, geopolitics, or sector leadership
+- named drivers from the input such as large-cap tech, passive flows, rates, semiconductors, energy, policy, geopolitics, or shipping
+- when shift is not unavailable, how the mood compares with the prior context using input-supported wording
+
+Length:
+- normally 2 sentences
+- use 3 sentences when the input summary contains both a strong support/constrain tension and a shift narrative
 
 Bias-aware summary guidance:
-- risk_on: risk appetite is present, even if selective, narrow, or restrained
-- neutral: neither risk appetite nor defensive demand clearly dominates
-- risk_off: defensive pressure or stress has greater influence than risk-taking
+- risk_on: show where risk appetite is visible, even if selective, narrow, or restrained
+- neutral: show the balance or absence of clear leadership
+- risk_off: show what defensive pressure or stress is dominating
 
 Shift-aware summary guidance:
-- improving: overall risk appetite has strengthened versus the prior market context
-- stable: the broader risk tone is broadly unchanged
-- deteriorating: overall risk appetite has weakened versus the prior market context
+- improving: the summary must convey that risk appetite or market tone has strengthened versus the prior context, using input evidence such as moving out of a defensive phase, easing stress, or broadening participation
+- stable: explain today's balance without inventing a directional change
+- deteriorating: the summary must convey that caution, stress, or defensive demand has increased versus the prior context
 - unavailable: do not mention a prior-session comparison or shift
 
-market_mood_summary should complement, not duplicate, market_mood_label and market_mood_shift_label.
-When shift is not unavailable, the summary may explain what changed, but the shift_label carries the compact day-over-day phrase.
+shift_label vs summary:
+- market_mood_shift_label is only the compact badge phrase
+- market_mood_summary must still carry the substantive shift story when the input supports it
+- do not remove the shift narrative from the summary just because shift_label already exists
+- do not repeat the label verbatim, but do not sterilize the summary either
+
+MARKET MOOD VOICE RULE:
+Write mood copy that feels observed and specific, not bureaucratic.
+
+Apply this rule in the row's own language (ko, en, or ja).
+Do not use Korean-only phrasing patterns when writing English or Japanese rows.
+
+Preserve this structure when present in the input:
+1. what is supporting the market or risk appetite
+2. what is limiting broader participation or raising volatility
+3. how the mood has shifted versus the prior context, if shift is improving or deteriorating
+
+Bland pattern (avoid in every language):
+- names only a vague mood state
+- uses generic confirmation language instead of concrete drivers
+- drops the shift narrative when shift is improving or deteriorating
+- compresses a rich input summary into safe dashboard filler
+
+Strong pattern (prefer in every language):
+- names specific supporting drivers from the input
+- names specific constraining drivers from the input
+- keeps the tension between support and constraint visible
+- when shift is improving or deteriorating, conveys what changed versus the prior context
+
+Canonical mood voice examples live in `examples/expected_01.json`.
+Match the editorial density and structure of the example row for the same `lang_code`.
+
+Label voice:
+- localize labels into natural market language for each row language
+- preserve the interpretive punch of the source label
+- do not output the raw type value as the label
 
 If market_mood_type is Cautious:
 - Do not make the tone sound broadly bullish.
@@ -455,7 +497,7 @@ Guidelines:
 - top_themes.summary: one concise explanatory sentence
 - market_mood_label: short interpretive headline
 - market_mood_shift_label: short day-over-day phrase when shift is available
-- market_mood_summary: 1–2 concise sentences
+- market_mood_summary: 2 concise sentences; 3 when input mood summary includes both tension and shift
 
 Avoid:
 - overly long sentences
@@ -485,6 +527,8 @@ Korean:
   - “부각됩니다”
 - Use “지정학 리스크” for geopolitical risk when applicable.
 - Use “위험선호” or “Risk-On” naturally depending on context.
+- For `rate repricing`, prefer “장기금리 부담”, “금리 상승 압력”, or “금리 인상 기대”; avoid “금리 재가격”.
+- Avoid hollow mood filler such as “일부 위험선호가 확인됩니다”, “혼재된 분위기입니다”, or “선택적 흐름이 지속되고 있습니다” without naming concrete drivers.
 - Keep the writing clear and not overly dramatic.
 
 English:
@@ -501,6 +545,7 @@ English:
   - “weighs on sentiment”
   - “keeps the backdrop cautious”
 - Preserve nuance when the input contains both supportive and restrictive signals.
+- Avoid hollow mood filler such as “some risk appetite is visible”, “the mood remains mixed”, or “the tone stays selective” without naming concrete drivers.
 
 Japanese:
 - Use natural Japanese market commentary.
@@ -514,6 +559,7 @@ Japanese:
 - Avoid unnatural compound expressions.
 - Avoid overly stiff or machine-translated phrasing.
 - Preserve the direction of market signals carefully.
+- Avoid hollow mood filler such as “リスク選好が一部見られる”, “まちまちな地合い”, or “選択的な流れが続く” without naming concrete drivers.
 - Keep the writing calm, analytical, and not overly dramatic.
 
 DATA PRESERVATION RULE:
@@ -586,6 +632,8 @@ Market meaning:
 - Is market_mood_label localized and more informative than the raw type alone?
 - Is market_mood_shift_label localized correctly and empty when shift is unavailable?
 - Does market_mood_summary match market_mood_type, market_mood_bias, and market_mood_label?
+- Does market_mood_summary preserve the input's key drivers and tension, not generic filler?
+- When market_mood_shift is improving or deteriorating, does the summary convey the directional change using input evidence?
 - Does market_mood_summary avoid prior-session comparison when market_mood_shift is unavailable?
 - Does the tone avoid unsupported bullishness or bearishness?
 - Does the copy avoid direct investment advice?

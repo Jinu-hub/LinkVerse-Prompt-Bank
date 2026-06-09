@@ -74,7 +74,7 @@
         "market_mood_summary": {
           "type": "string",
           "minLength": 1,
-          "description": "1 to 2 concise sentences explaining the day's risk tone in the row language."
+          "description": "2 to 3 editorial sentences explaining support, constraint, and optional shift narrative in the row language."
         }
       },
       "required": [

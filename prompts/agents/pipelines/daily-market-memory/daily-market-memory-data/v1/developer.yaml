@@ -28,7 +28,8 @@ format_rules:
   - Do not include null values; use empty arrays when a list field is unavailable.
   - Do not output workflow/DB fields: id, daily_market_memory_id, localization_status, source_lang_code, model_info, created_at, updated_at.
   - Do not include Markdown headings, bullets, emojis, or formatting symbols in text fields.
-  - display_title: short headline; display_subtitle: one compact phrase; core_summary: 2–4 sentences; top_themes.summary: one concise sentence; market_mood_summary: 1–2 sentences.
+  - display_title: short headline; display_subtitle: one compact phrase; core_summary: 2–4 sentences; top_themes.summary: one concise sentence; market_mood_summary: 2 sentences normally, 3 when input mood summary includes both tension and shift.
+  - Preserve editorial richness from `core_data.market_mood.summary`; do not compress into bland status filler.
 
 prohibitions:
   - Do not add fields not in the schema.
