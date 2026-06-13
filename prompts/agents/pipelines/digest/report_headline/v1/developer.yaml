@@ -8,7 +8,9 @@ implementation:
   - Preserve key wording from the summary as much as possible; compress rather than reinterpret.
   - Keep the meaning unchanged; do not add new concepts or facts.
   - Headline structure target: "[Core Event or Condition] — [Market Focus]" when possible.
-  - The headline language must match the input summary language (do not translate, do not mix languages).
+  - Write the headline strictly in output_lang (ko, ja, en); output_lang is the source of truth for output language.
+  - Do not infer the output language from the summary language; do not mix languages.
+  - If the summary language differs from output_lang, preserve meaning and key wording but produce the headline in output_lang.
 
 format_rules:
   - Return only valid JSON; no markdown code fence or extra text.

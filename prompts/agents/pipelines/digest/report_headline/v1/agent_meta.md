@@ -14,7 +14,7 @@
 
 | contract | detail |
 |----------|--------|
-| input_contract.required_fields | summary |
+| input_contract.required_fields | summary, output_lang |
 | output_contract.type | json |
 | model_hints.temperature | 0.3 |
 
@@ -31,6 +31,7 @@
 | key | value |
 |-----|-------|
 | summary | {{$json.summary}} |
+| output_lang | {{$json.output_lang}} |
 
 
 ## 변경 이력

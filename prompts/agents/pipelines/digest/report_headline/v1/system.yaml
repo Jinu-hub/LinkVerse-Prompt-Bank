@@ -62,19 +62,24 @@ STRICT_RULES: |
 
 LANGUAGE_RULE: |
 
-  The headline must use the SAME language as the input summary.
+The headline must be written in the language specified by output_lang.
 
-  Language preservation is mandatory.
+output_lang is the source of truth for the output language.
 
-  Rules:
+Rules:
 
-  - If the summary is written in Korean, the headline must be Korean.
-  - If the summary is written in English, the headline must be English.
-  - Do NOT translate the headline into another language.
-  - Do NOT mix multiple languages.
+* If output_lang is "ko", write the headline in Korean.
+* If output_lang is "ja", write the headline in Japanese.
+* If output_lang is "en", write the headline in English.
+* Do NOT decide the output language based on the summary language.
+* Do NOT translate into any language other than output_lang.
+* Do NOT mix multiple languages.
 
-  The output language must exactly match the language of the source summary.
+The output language must exactly match output_lang.
 
+If the summary is written in a different language from output_lang,
+preserve the meaning and key wording as much as possible,
+but produce the headline in output_lang.
 
 
 INPUT_DATA: |
