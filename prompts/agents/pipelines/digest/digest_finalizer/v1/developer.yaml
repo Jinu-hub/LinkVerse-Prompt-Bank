@@ -1,5 +1,5 @@
 # Digest Finalizer agent: implementation, format, and prohibitions
-# Aligns with prompts/agents/digest_finalizer/v1/system.yaml
+# Aligns with prompts/agents/pipelines/digest/digest_finalizer/v1/system.yaml
 
 schema_path: schema.json
 output_format: JSON
@@ -8,18 +8,25 @@ implementation:
   - Output must validate against schema.json.
   - Use the examples in examples/ as the canonical output format.
   - Preserve all factual content, insights, and section boundaries from the input digest.
-  - Normalize structure into: Title, Date line, Overview, Highlights, Items, Closing.
+  - Start final_document_md directly with the summary text; do not prepend title, date line, or headline wrappers.
+  - Normalize structure into: Overview (summary), Highlights, Items, More Items, Closing, Glossary.
+  - Write all reader-facing text strictly in output_lang (ko, ja, en); output_lang is the source of truth.
+  - Use section heading labels defined for output_lang in system.yaml LANGUAGE_OUTPUT_POLICY.
+  - Translate reader-facing text into output_lang when the source language differs; preserve meaning, certainty, and emphasis.
+  - Copy output_lang from the input into final_metadata.
   - Improve readability, flow, and Markdown consistency without changing meaning.
 
 format_rules:
   - Return only valid JSON; no markdown code fence or extra text before or after.
-  - final_document_md must be a single Markdown string.
-  - Use one H1 for the title, H2 for major sections, H3 for each highlight and each item.
+  - final_document_md must be a single Markdown string written in output_lang.
+  - Use H2 for major sections and H3 for each highlight and each item.
   - Keep paragraphs short and spacing consistent.
+  - final_metadata must include output_lang, highlight_count, item_count, more_items_count, has_summary, has_ending, has_glossary, and formatting_version.
 
 prohibitions:
   - Do not add new claims, facts, or examples beyond the input.
   - Do not change the meaning, confidence, or emphasis of any statement.
   - Do not re-rank, drop, or merge highlights or items.
+  - Do not decide the output language based on the source language instead of output_lang.
   - Do not introduce new tags, categories, or analytical metadata.
   - Do not output fields that are not defined in schema.json.

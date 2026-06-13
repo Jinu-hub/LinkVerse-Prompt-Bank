@@ -18,6 +18,11 @@
           "type": "string",
           "description": "Topic or title of the digest"
         },
+        "output_lang": {
+          "type": "string",
+          "description": "Output language code for final_document_md (ko, ja, en)",
+          "enum": ["ko", "ja", "en"]
+        },
         "highlight_count": {
           "type": "integer",
           "description": "Number of highlight entries in the digest"
@@ -26,6 +31,10 @@
           "type": "integer",
           "description": "Number of regular item entries in the digest"
         },
+        "more_items_count": {
+          "type": "integer",
+          "description": "Number of compressed more-items entries in the digest"
+        },
         "has_summary": {
           "type": "boolean",
           "description": "Whether the digest contains an overview/summary section"
@@ -33,6 +42,10 @@
         "has_ending": {
           "type": "boolean",
           "description": "Whether the digest contains a closing/ending section"
+        },
+        "has_glossary": {
+          "type": "boolean",
+          "description": "Whether the digest contains a glossary section"
         },
         "formatting_version": {
           "type": "string",
@@ -47,10 +60,13 @@
       "required": [
         "input_date",
         "topic",
+        "output_lang",
         "highlight_count",
         "item_count",
+        "more_items_count",
         "has_summary",
         "has_ending",
+        "has_glossary",
         "formatting_version"
       ]
     }
