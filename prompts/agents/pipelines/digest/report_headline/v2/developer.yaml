@@ -1,0 +1,34 @@
+# Digest Summary & Headline agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/pipelines/digest/report_headline/v2/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - The input summary is already finalized in meaning; do not add, reinterpret, expand, or re-summarize it.
+  - Produce exactly ONE summary and ONE headline, both written in output_lang (ko, ja, en).
+  - If the input summary is already in output_lang, preserve it as much as possible and only lightly polish readability if needed.
+  - If the input summary differs from output_lang, translate it faithfully into output_lang while preserving meaning, certainty, emphasis, and market focus.
+  - Generate the headline from the output summary, not directly from the raw input summary when translation occurred.
+  - Preserve key wording from the output summary as much as possible; compress rather than reinterpret.
+  - Headline structure target: "[Core Event or Condition] — [Market Focus]" when possible.
+  - output_lang is the source of truth for output language; do not infer language from the input summary.
+  - Do not mix languages except for proper nouns, company names, product names, tickers, acronyms, quoted terms, or terms commonly used in their original form.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence or extra text.
+  - Use UTF-8.
+  - Output must contain exactly two top-level fields: summary and headline.
+  - summary must be plain text in output_lang with no Markdown heading prefix.
+  - headline must be a single Markdown line in the form: "## <headline>".
+  - Do not include additional lines, sections, or commentary.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts, claims, or examples beyond the input summary.
+  - Do not change meaning, certainty, emphasis, or market focus.
+  - Do not aggressively shorten or expand the summary with new interpretation.
+  - Do not replace key phrases with synonyms in the headline; prefer direct reuse from the output summary.
+  - Do not output explanations, reasoning, or multiple headline candidates.

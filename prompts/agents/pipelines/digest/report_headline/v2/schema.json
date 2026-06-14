@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "Finalized digest summary written in output_lang"
+    },
+    "headline": {
+      "type": "string",
+      "description": "Exactly one Markdown headline line in the form: '## <headline>', written in output_lang",
+      "pattern": "^##\\s+\\S[\\s\\S]*$"
+    }
+  },
+  "required": ["summary", "headline"],
+  "additionalProperties": false
+}
