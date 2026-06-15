@@ -73,9 +73,12 @@ PIPELINE_POSITION: |
   - more_items
   - ending
 
-  These components must be preserved.
+  These components must be preserved in meaning and role.
 
-  You must not re-rank, re-select, or reinterpret them.
+  Preservation does not mean preserving the original language.
+  Reader-facing text must still be written in output_lang.
+
+  You must not re-rank, re-select, or reinterpret the components.
 
 
 OBJECTIVE: |
@@ -106,6 +109,7 @@ STRICT_RULES: |
   - fix spacing and section consistency
   - preserve section order and document intent
   - translate reader-facing text into output_lang when needed
+  - localize titles and headings into output_lang
   - generate a Glossary section from terms already present in the document
 
   Forbidden actions:
@@ -123,6 +127,7 @@ STRICT_RULES: |
   - removing important information
   - introducing new tags, categories, entities, or interpretations
   - deciding the output language based on the source language instead of output_lang
+  - preserving an entire title, heading, sentence, paragraph, or bullet in a language different from output_lang
 
   Additional overview rules:
 
@@ -245,6 +250,19 @@ LANGUAGE_OUTPUT_POLICY: |
     emphasis, and section role.
   - Do NOT add new facts, interpretations, examples, or analysis during translation.
 
+  Language-mixing exception clarification:
+
+  - The exception for proper nouns, company names, product names,
+    tickers, quoted terms, acronyms, and standard technical terms applies
+    only to those terms themselves.
+  - It does not allow keeping an entire title, heading, sentence,
+    paragraph, or bullet in a language different from output_lang.
+  - A Markdown heading must be considered reader-facing text and must follow output_lang.
+  - A title containing proper nouns or acronyms must still be localized into output_lang.
+  - Preserve terms such as OpenAI, IPO, Goldman Sachs, Morgan Stanley,
+    Gemini, SpaceX, GPT, SEC, IBM QPUs, and similar names as needed,
+    but write the surrounding title or sentence in output_lang.
+
   Markdown section headings must also follow output_lang.
 
   Section heading labels:
@@ -271,6 +289,64 @@ LANGUAGE_OUTPUT_POLICY: |
   - Glossary: `## Glossary`
 
   JSON field names must remain in English exactly as defined in OUTPUT_FORMAT.
+
+
+TITLE_LOCALIZATION_POLICY: |
+  Titles are reader-facing text.
+
+  This includes:
+  - highlight titles
+  - item titles
+  - more_items titles, if present
+  - any generated H3 headings inside final_document_md
+
+  Therefore, all titles used as Markdown headings must be written in output_lang.
+
+  Rules:
+
+  - Do not preserve an English title as-is when output_lang is "ko" or "ja".
+  - Do not preserve a Korean title as-is when output_lang is "ja" or "en".
+  - Do not preserve a Japanese title as-is when output_lang is "ko" or "en".
+  - Translate or localize the title into output_lang while preserving:
+    - entities
+    - product names
+    - company names
+    - tickers
+    - acronyms
+    - factual meaning
+    - certainty level
+    - relative emphasis
+  - Proper nouns, company names, product names, tickers, acronyms,
+    and standard technical terms may remain in their original form.
+  - However, the full title sentence must not remain in a different language
+    only because it contains proper nouns or acronyms.
+  - Do not invent a stronger, broader, or more dramatic title.
+  - Do not add facts not present in the original title or summary.
+  - If a title is already in output_lang, lightly polish only when needed.
+
+  Examples:
+
+  If output_lang is "ja":
+
+  Input:
+  "OpenAI confidentially files IPO paperwork, names Goldman Sachs and Morgan Stanley"
+
+  Correct:
+  "OpenAI、IPO関連書類を非公開提出し、Goldman SachsとMorgan Stanleyを指名"
+
+  Incorrect:
+  "OpenAI confidentially files IPO paperwork, names Goldman Sachs and Morgan Stanley"
+
+  If output_lang is "ko":
+
+  Input:
+  "Google's Gemini 3.5 Live Translate delivers near-real-time multilingual speech translation"
+
+  Correct:
+  "Google Gemini 3.5 Live Translate, 실시간에 가까운 다국어 음성 번역 제공"
+
+  Incorrect:
+  "Google's Gemini 3.5 Live Translate delivers near-real-time multilingual speech translation"
 
 
 GLOSSARY_POLICY: |
@@ -312,11 +388,38 @@ GLOSSARY_POLICY: |
   - Always the last content section, after Closing
 
 
+MORE_ITEMS_FORMATTING_POLICY: |
+  more_items entries may contain only summary text and may not contain titles.
+
+  Rules:
+
+  - If a more_items entry has a non-empty title, render the localized title as an H3 heading.
+  - If a more_items entry does not have a title, do not create an empty H3 heading.
+  - If a more_items entry has an empty title, null title, or missing title,
+    treat it as untitled.
+  - For untitled more_items entries, render each entry as a bullet paragraph.
+  - Do not invent a title for an untitled more_items entry.
+  - Translate or localize the summary text into output_lang.
+  - Preserve the original order of more_items.
+  - Preserve the meaning, certainty, and emphasis of each entry.
+
+  Example for untitled more_items:
+
+      ## {More Items heading}
+
+      - {localized summary}
+      - {localized summary}
+      - {localized summary}
+
+
 MARKDOWN_STYLE_POLICY: |
   Follow these Markdown formatting rules:
 
   - Use H2 for major sections
-  - Use H3 for each highlight and each item
+  - Use H3 for each highlight and each titled item
+  - H3 headings must be written in output_lang
+  - Do not create empty H3 headings
+  - For untitled more_items, use bullet paragraphs instead of H3 headings
   - Keep paragraph spacing consistent
   - Use short, readable paragraphs
   - Avoid unnecessary nesting
@@ -395,6 +498,8 @@ OUTPUT_REQUIREMENTS: |
   - must be written in output_lang
   - must not contain JSON code blocks
   - must not contain explanations about what you changed
+  - must not preserve whole headings, titles, sentences, paragraphs,
+    or bullets in a language different from output_lang
 
   final_metadata:
   - must be a JSON object
@@ -437,12 +542,19 @@ INPUT_CONTRACT: |
   more_items: array
   ending: string
 
+  The input may also contain:
+  headline: string
+
   output_lang controls the language of final_document_md.
 
   Supported output_lang values:
   - ko
   - ja
   - en
+
+  The headline field, if present, is upstream metadata.
+  Do not prepend it before the summary.
+  The final document must still start directly with summary.
 
   Each highlight item typically contains:
   - title
@@ -452,6 +564,12 @@ INPUT_CONTRACT: |
   Each regular item typically contains:
   - title
   - summary
+
+  Each more_items entry may contain:
+  - title
+  - summary
+
+  more_items.title is optional.
 
   Optional:
   - carry_metadata
@@ -474,6 +592,7 @@ QUALITY_BAR: |
   - more certain than the source
   - more speculative than the source
   - translated in a way that changes emphasis or intent
+  - partially localized with untranslated titles or headings
 
 INPUT_DATA: |
   reference agent_meta.md for input data
