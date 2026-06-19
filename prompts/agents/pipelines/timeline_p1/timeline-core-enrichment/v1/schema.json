@@ -1,0 +1,362 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "timeline-core-enrichment-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "agent_name": {
+      "type": "string",
+      "const": "timeline-core-enrichment-agent"
+    },
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "source_report": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "market_date": { "type": ["string", "null"] },
+        "topic": { "type": ["string", "null"] },
+        "from": { "type": ["string", "null"] },
+        "to": { "type": ["string", "null"] }
+      },
+      "required": ["market_date", "topic", "from", "to"]
+    },
+    "timeline_overview": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "main_narrative": { "type": "string", "minLength": 1 },
+        "narrative_arc": { "type": "string", "minLength": 1 },
+        "dominant_theme": { "$ref": "#/definitions/primaryTheme" },
+        "dominant_continuity_groups": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "secondary_continuity_groups": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "period_start": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "period_end": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+      },
+      "required": [
+        "main_narrative",
+        "narrative_arc",
+        "dominant_theme",
+        "dominant_continuity_groups",
+        "secondary_continuity_groups",
+        "period_start",
+        "period_end"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/enrichedItem" }
+    },
+    "daily_groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/dailyGroup" }
+    },
+    "continuity_groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/continuityGroup" }
+    },
+    "report_planning_hints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "suggested_title_angle": { "type": "string", "minLength": 1 },
+        "suggested_summary_angle": { "type": "string", "minLength": 1 },
+        "main_timeline_order": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "parallel_themes_to_mention": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "possible_closing_comment_angle": { "type": "string", "minLength": 1 },
+        "avoid_overemphasis": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "required": [
+        "suggested_title_angle",
+        "suggested_summary_angle",
+        "main_timeline_order",
+        "parallel_themes_to_mention",
+        "possible_closing_comment_angle",
+        "avoid_overemphasis"
+      ]
+    }
+  },
+  "required": [
+    "agent_name",
+    "version",
+    "source_report",
+    "timeline_overview",
+    "items",
+    "daily_groups",
+    "continuity_groups",
+    "report_planning_hints"
+  ],
+  "definitions": {
+    "primaryTheme": {
+      "type": "string",
+      "enum": [
+        "geopolitical_risk",
+        "energy_supply",
+        "monetary_policy",
+        "fiscal_policy",
+        "macro_data",
+        "earnings",
+        "ai_infrastructure",
+        "semiconductor_supply_chain",
+        "technology_product",
+        "corporate_finance",
+        "market_structure",
+        "financial_conditions",
+        "regulation_policy",
+        "trade_supply_chain",
+        "crypto_digital_assets",
+        "commodities",
+        "defense_security",
+        "other"
+      ]
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "military_escalation",
+        "diplomacy_negotiation",
+        "policy_signal",
+        "regulatory_action",
+        "corporate_action",
+        "product_announcement",
+        "financing_investment",
+        "supply_chain_shift",
+        "market_stress",
+        "macro_release",
+        "earnings_update",
+        "liquidity_funding",
+        "trade_restriction",
+        "infrastructure_expansion",
+        "other"
+      ]
+    },
+    "timelineRole": {
+      "type": "string",
+      "enum": [
+        "trigger",
+        "escalation",
+        "peak_risk",
+        "pivot",
+        "resolution_hint",
+        "aftershock",
+        "policy_signal",
+        "market_reaction",
+        "context",
+        "parallel_theme",
+        "structural_signal"
+      ]
+    },
+    "narrativePriority": {
+      "type": "string",
+      "enum": ["main", "supporting", "parallel", "minor"]
+    },
+    "relationToPrevious": {
+      "type": "string",
+      "enum": [
+        "starts_new_thread",
+        "continues_previous",
+        "escalates_previous",
+        "softens_previous",
+        "shifts_previous",
+        "contrasts_previous",
+        "parallel_to_previous",
+        "no_direct_relation"
+      ]
+    },
+    "signalStrength": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "marketChannel": {
+      "type": "string",
+      "enum": [
+        "risk_sentiment",
+        "energy",
+        "rates",
+        "fx",
+        "equities",
+        "credit",
+        "commodities",
+        "shipping",
+        "semiconductors",
+        "ai_compute",
+        "defense",
+        "liquidity",
+        "regulation",
+        "ipo_market",
+        "supply_chain",
+        "financial_conditions",
+        "consumer_technology",
+        "other"
+      ]
+    },
+    "assetClass": {
+      "type": "string",
+      "enum": [
+        "equities",
+        "bonds",
+        "fx",
+        "commodities",
+        "energy",
+        "credit",
+        "crypto",
+        "rates",
+        "private_markets",
+        "none",
+        "other"
+      ]
+    },
+    "groupImportance": {
+      "type": "string",
+      "enum": ["main", "supporting", "parallel", "minor"]
+    },
+    "enrichedItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_index": { "type": "integer", "minimum": 0 },
+        "market_date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "title": { "type": "string", "minLength": 1 },
+        "primary_theme": { "$ref": "#/definitions/primaryTheme" },
+        "secondary_themes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/primaryTheme" }
+        },
+        "event_type": { "$ref": "#/definitions/eventType" },
+        "timeline_role": { "$ref": "#/definitions/timelineRole" },
+        "narrative_priority": { "$ref": "#/definitions/narrativePriority" },
+        "relation_to_previous": { "$ref": "#/definitions/relationToPrevious" },
+        "continuity_group": { "type": "string", "minLength": 1 },
+        "continuity_group_label": { "type": "string", "minLength": 1 },
+        "market_channels": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/marketChannel" }
+        },
+        "asset_classes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/assetClass" }
+        },
+        "affected_regions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "canonical_entities": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "canonical_tags": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "signal_strength": { "$ref": "#/definitions/signalStrength" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "timeline_usage_hint": { "type": "string", "minLength": 1 },
+        "classification_reason": { "type": "string", "minLength": 1 }
+      },
+      "required": [
+        "source_index",
+        "market_date",
+        "title",
+        "primary_theme",
+        "secondary_themes",
+        "event_type",
+        "timeline_role",
+        "narrative_priority",
+        "relation_to_previous",
+        "continuity_group",
+        "continuity_group_label",
+        "market_channels",
+        "asset_classes",
+        "affected_regions",
+        "canonical_entities",
+        "canonical_tags",
+        "signal_strength",
+        "confidence",
+        "timeline_usage_hint",
+        "classification_reason"
+      ]
+    },
+    "dailyGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "market_date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "day_role": { "type": "string", "minLength": 1 },
+        "main_item_indexes": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 }
+        },
+        "supporting_item_indexes": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 }
+        },
+        "parallel_item_indexes": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 }
+        },
+        "day_narrative_hint": { "type": "string", "minLength": 1 }
+      },
+      "required": [
+        "market_date",
+        "day_role",
+        "main_item_indexes",
+        "supporting_item_indexes",
+        "parallel_item_indexes",
+        "day_narrative_hint"
+      ]
+    },
+    "continuityGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "group_id": { "type": "string", "minLength": 1 },
+        "group_label": { "type": "string", "minLength": 1 },
+        "primary_theme": { "$ref": "#/definitions/primaryTheme" },
+        "source_indexes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "integer", "minimum": 0 }
+        },
+        "first_date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "last_date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "group_importance": { "$ref": "#/definitions/groupImportance" },
+        "group_arc": { "type": "string", "minLength": 1 },
+        "report_usage": { "type": "string", "minLength": 1 }
+      },
+      "required": [
+        "group_id",
+        "group_label",
+        "primary_theme",
+        "source_indexes",
+        "first_date",
+        "last_date",
+        "group_importance",
+        "group_arc",
+        "report_usage"
+      ]
+    }
+  }
+}

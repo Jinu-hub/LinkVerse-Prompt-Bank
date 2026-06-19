@@ -1,0 +1,45 @@
+# Timeline Core Enrichment agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/pipelines/timeline_p1/timeline-core-enrichment/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Preserve every input core_data item exactly once in items; do not drop, merge, or reorder source_index.
+  - Echo source_report fields from input (market_date, topic, from, to); use null when absent.
+  - Set agent_name to "timeline-core-enrichment-agent" and version to "1.0".
+  - Classify each item using controlled vocabularies defined in system.yaml; enum values must match exactly.
+  - Assign continuity_group in lowercase snake_case with a human-readable continuity_group_label in English.
+  - Group related events under shared continuity groups; avoid one-item fragmentation unless genuinely standalone.
+  - Separate main geopolitical or dominant storylines from parallel technology, corporate, or financial themes.
+  - Create one daily_groups entry per distinct market_date in core_data, sorted ascending.
+  - Assign each source_index on a date to exactly one of main_item_indexes, supporting_item_indexes, or parallel_item_indexes.
+  - List every continuity_group used in items exactly once in continuity_groups with complete source_indexes.
+  - Derive first_date and last_date per continuity group from member items.
+  - Write all generated metadata in English only; preserve input title strings exactly.
+  - Use confidence between 0.0 and 1.0; prefer broader labels when confidence is below 0.50.
+  - Infer classifications only from title, summary, or why_it_matters; do not add external facts.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, comments, or extra text.
+  - Use UTF-8.
+  - Top-level keys must match schema.json: agent_name, version, source_report, timeline_overview, items, daily_groups, continuity_groups, report_planning_hints.
+  - source_index is zero-based and follows original core_data order.
+  - market_date fields use YYYY-MM-DD when present in input.
+  - canonical_tags use lowercase snake_case.
+  - affected_regions and canonical_entities use normalized English names.
+  - daily_groups sorted by market_date ascending.
+  - relation_to_previous compares items in date order, not only adjacent source_index.
+  - Do not use null for enum fields; use allowed vocabulary values or "other" where appropriate.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent events, price movements, reactions, policy details, dates, actors, or outcomes beyond the input.
+  - Do not write final report prose, localized copy, or reader-facing article text.
+  - Do not browse or use external knowledge to enrich facts.
+  - Do not create continuity groups with no items.
+  - Do not omit any input item from items or its date group.
+  - Do not wrap output in markdown or code fences.
+  - Do not output Korean, Japanese, or other non-English generated metadata.
