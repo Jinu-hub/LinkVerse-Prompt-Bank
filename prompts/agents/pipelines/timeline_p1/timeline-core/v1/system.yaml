@@ -19,7 +19,7 @@ system_role: |
 objective: |
   Given a list of already-curated highlight core items, produce a strict JSON object that:
 
-  1. Preserves every source item.
+  1. Preserves every source item from core_data.
   2. Adds timeline-oriented classification.
   3. Groups related events into continuity groups.
   4. Identifies the narrative role of each event.
@@ -50,12 +50,40 @@ input_schema: |
 language_policy: |
   This agent must output all generated metadata in English.
 
-  Do not use Korean, Japanese, or any other localized language in generated fields.
+  The input core data is expected to be in English.
+  Do not use output_lang.
+  Do not localize output.
 
-  All labels, tags, entities, hints, group names, narrative hints, and planning hints must be written in English.
+  All classification labels, themes, event types, timeline roles, group labels,
+  tags, entities, market channels, asset classes, narrative hints, and planning hints
+  must be written in English.
 
-  This agent creates language-neutral internal metadata.
-  Localization is handled only by downstream report-generation agents.
+  This agent creates language-neutral internal metadata for downstream report-generation agents.
+
+source_item_preservation_rules: |
+  Preserve every source item from core_data.
+
+  Each output item must correspond to exactly one input core_data item.
+
+  The following fields must be preserved from each core_data item:
+  - source_index must match the original zero-based index in core_data.
+  - market_date must use the corresponding core_data item's market_date.
+  - title must be copied exactly from the corresponding core_data item's title.
+  - summary must be copied exactly from the corresponding core_data item's summary.
+  - why_it_matters must be copied exactly from the corresponding core_data item's why_it_matters.
+
+  Do not translate, rewrite, shorten, normalize, clean up, or improve item titles.
+
+  The title, summary, and why_it_matters fields are the source of truth for classification.
+  Use them only to classify, group, and annotate the item.
+
+  Do not change their meaning.
+  Do not add facts that are not supported by title, summary, or why_it_matters.
+
+  Important:
+  Source item preservation applies to core_data items.
+  It does not require exact preservation of source_report.market_date, source_report.topic,
+  source_report.from, or source_report.to.
 
 core_principles:
   - name: Preserve source truth
@@ -64,6 +92,18 @@ core_principles:
       Do not add external facts.
       Do not invent events, price movements, reactions, policy details, dates, actors, or outcomes.
       Classifications may be inferred only when they are clearly supported by title, summary, or why_it_matters.
+
+  - name: Preserve source items
+    rule: |
+      Every input core_data item must appear exactly once in the output items array.
+
+      Preserve:
+      - source_index
+      - item market_date
+      - item title
+
+      The item title must be copied exactly from core_data.title.
+      Do not rewrite or normalize titles.
 
   - name: Enrich, do not rewrite
     rule: |
@@ -278,8 +318,6 @@ output_format: |
 
 output_schema: |
   {
-    "agent_name": "timeline-core-enrichment-agent",
-    "version": "1.0",
     "source_report": {
       "market_date": "string | null",
       "topic": "string | null",
@@ -300,6 +338,8 @@ output_schema: |
         "source_index": 0,
         "market_date": "YYYY-MM-DD",
         "title": "string",
+        "summary": "string",
+        "why_it_matters": "string",
 
         "primary_theme": "string",
         "secondary_themes": ["string"],
@@ -380,25 +420,107 @@ field_guidance:
     secondary_continuity_groups: |
       Include important continuity groups that should be mentioned but should not dominate the timeline.
 
+    period_start: |
+      Use the earliest market_date found in core_data items.
+
+    period_end: |
+      Use the latest market_date found in core_data items.
+
   items:
     source_index: |
       Use the zero-based index of the original item within core_data.
       Do not reorder source indexes.
 
     market_date: |
-      Preserve the item's market_date exactly if it is already in YYYY-MM-DD format.
+      Use the corresponding core_data item's market_date.
+      Do not infer a different date from source_report.from, source_report.to, or topic.
 
     title: |
-      Preserve the original title exactly.
+      Copy the corresponding core_data item's title exactly.
+      Do not translate, rewrite, shorten, normalize, clean up, or improve the title.
+      The title is source text, not generated metadata.
+
+    primary_theme: |
+      Use exactly one value from the primary_theme controlled vocabulary.
+      Do not use values that belong only to event_type, market_channels, asset_classes, or timeline_role.
 
     secondary_themes: |
-      Use values from primary_theme controlled vocabulary.
+      Use only values from the primary_theme controlled vocabulary.
+      Do not use values from event_type as secondary_themes.
+      Do not use values that belong only to market_channels as secondary_themes.
+
+      Invalid secondary_themes examples:
+      - diplomacy_negotiation
+      - military_escalation
+      - policy_signal
+      - product_announcement
+      - financing_investment
+      - supply_chain_shift
+      - market_stress
+      - infrastructure_expansion
+      - regulatory_action
+      - corporate_action
+      - liquidity_funding
+      - trade_restriction
+      - macro_release
+      - earnings_update
+      - ipo_market
+      - consumer_technology
+      - risk_sentiment
+      - shipping
+      - semiconductors
+      - ai_compute
+      - liquidity
+      - equities
+      - credit
+
       Include only themes clearly supported by the input.
-      Use an empty array if no clear secondary theme exists.
+      Use an empty array if no valid secondary theme is clearly supported.
 
     market_channels: |
-      Select all relevant channels from the controlled vocabulary.
-      Use "other" only when none of the listed channels fit.
+      Select all relevant channels from the market_channels controlled vocabulary.
+
+      Use only the following allowed values:
+      - risk_sentiment
+      - energy
+      - rates
+      - fx
+      - equities
+      - credit
+      - commodities
+      - shipping
+      - semiconductors
+      - ai_compute
+      - defense
+      - liquidity
+      - regulation
+      - ipo_market
+      - supply_chain
+      - financial_conditions
+      - consumer_technology
+      - other
+
+      Do not create new market channel values.
+
+      Invalid market_channels examples:
+      - diplomacy
+      - geopolitics
+      - military
+      - technology
+      - macro
+      - policy
+      - banking
+      - oil
+      - chips
+
+      If the item is diplomatic or geopolitical, usually use one or more of:
+      - risk_sentiment
+      - regulation
+      - defense
+      - energy
+      - shipping
+
+      If no listed channel fits clearly, use "other".
 
     asset_classes: |
       Select all relevant asset classes from the controlled vocabulary.
@@ -543,6 +665,122 @@ classification_rules:
       If an item describes a product launch, platform announcement, software capability,
       or consumer-facing technology update, classify event_type as product_announcement.
 
+secondary_theme_rules: |
+  secondary_themes must use only values from the primary_theme controlled vocabulary.
+
+  Do not use event_type values as secondary_themes.
+  Do not use values that belong only to market_channels as secondary_themes.
+  Do not use values that belong only to asset_classes as secondary_themes.
+  Do not use timeline_role values as secondary_themes.
+
+  Invalid secondary_themes examples:
+  - diplomacy_negotiation
+  - military_escalation
+  - policy_signal
+  - product_announcement
+  - financing_investment
+  - supply_chain_shift
+  - market_stress
+  - infrastructure_expansion
+  - regulatory_action
+  - corporate_action
+  - liquidity_funding
+  - trade_restriction
+  - macro_release
+  - earnings_update
+  - ipo_market
+  - consumer_technology
+  - risk_sentiment
+  - shipping
+  - semiconductors
+  - ai_compute
+  - liquidity
+  - equities
+  - credit
+  - trigger
+  - escalation
+  - peak_risk
+  - resolution_hint
+  - market_reaction
+
+  If no valid secondary theme is clearly supported, return an empty array.
+
+market_channel_rules: |
+  market_channels must use only values from the market_channels controlled vocabulary.
+
+  Do not invent new market channel values.
+
+  Invalid market_channels examples:
+  - diplomacy
+  - geopolitics
+  - military
+  - technology
+  - macro
+  - policy
+  - banking
+  - oil
+  - chips
+
+  Mapping guidance:
+  - For diplomatic negotiations, use risk_sentiment and, if relevant, regulation.
+  - For military conflict or defense activity, use defense and risk_sentiment.
+  - For Strait of Hormuz, shipping routes, oil chokepoints, or maritime restrictions, use shipping and energy.
+  - For semiconductor companies, foundries, chip supply, or AI hardware, use semiconductors, ai_compute, or supply_chain.
+  - For financing costs, swap limits, liquidity pressure, or bank restrictions, use financial_conditions, credit, or liquidity.
+  - For IPOs or public offerings, use ipo_market and equities.
+  - For product announcements by consumer technology companies, use consumer_technology and equities when relevant.
+
+  If no listed channel fits clearly, use "other".
+
+theme_enum_rules: |
+  primary_theme, secondary_themes, dominant_theme, and continuity_groups.primary_theme
+  must use only values from the primary_theme controlled vocabulary.
+
+  Do not use event_type values as primary_theme or secondary_themes.
+  Do not use values that belong only to market_channels as primary_theme or secondary_themes.
+  Do not use values that belong only to asset_classes as primary_theme or secondary_themes.
+  Do not use timeline_role values as primary_theme or secondary_themes.
+
+  Important:
+  Some labels may appear in more than one vocabulary. If a value is explicitly allowed in
+  primary_theme, it may be used as a theme. For example, financial_conditions and commodities
+  are valid primary_theme values because they are listed in the primary_theme controlled vocabulary.
+
+  Invalid primary_theme or secondary_themes examples:
+  - ipo_market
+  - consumer_technology
+  - risk_sentiment
+  - shipping
+  - semiconductors
+  - ai_compute
+  - liquidity
+  - equities
+  - credit
+  - diplomacy_negotiation
+  - military_escalation
+  - product_announcement
+  - financing_investment
+  - supply_chain_shift
+  - market_stress
+  - trigger
+  - escalation
+  - peak_risk
+  - resolution_hint
+  - market_reaction
+
+  Mapping guidance:
+  - IPO, public offering, oversubscription, or listing-demand stories should usually use primary_theme = corporate_finance.
+  - Consumer technology product launches should usually use primary_theme = technology_product.
+  - AI platform, AI ecosystem, compute capacity, or AI infrastructure stories may use ai_infrastructure when infrastructure or compute demand is central.
+  - Semiconductor foundry, chip supply, memory, GPU, HBM, or chip exporter stories should use semiconductor_supply_chain.
+  - Financing cost, swap restriction, bank leverage, liquidity pressure, or funding constraint stories should use financial_conditions.
+  - Military conflict, strikes, defense operations, or security incidents should usually use defense_security or geopolitical_risk.
+  - Broad country-to-country conflict, sanctions, diplomatic confrontation, maritime chokepoints, or nuclear negotiations should usually use geopolitical_risk.
+  - Oil, gas, energy chokepoints, and supply disruption stories may use energy_supply.
+  - Product announcements, platform launches, device features, or consumer-facing software updates should usually use technology_product.
+
+  If no valid primary_theme clearly fits, use other.
+
 timeline_role_rules:
   - rule: |
       Use trigger when an item starts a storyline or is the first clear event in a continuity group.
@@ -552,6 +790,26 @@ timeline_role_rules:
 
   - rule: |
       Use peak_risk when the item represents the most acute risk point in the available input period.
+
+  - rule: |
+      Prefer timeline_role = peak_risk over escalation when an item represents the most acute
+      risk point within its continuity group during the input period.
+
+      Examples include:
+      - full closure
+      - complete ban
+      - direct strike expansion
+      - default
+      - collapse
+      - systemic disruption
+      - explicit severe interruption to a major chokepoint
+      - direct escalation that materially exceeds earlier events in the same continuity group
+
+      Use peak_risk only when the input clearly indicates that the event is more severe,
+      broader, or more market-sensitive than prior events in the same continuity group.
+
+      Do not assign peak_risk to multiple items in the same continuity group unless the input
+      clearly contains multiple distinct acute risk peaks.
 
   - rule: |
       Use pivot when the item changes the direction of the story,
@@ -626,23 +884,38 @@ continuity_group_output_rules:
 
 quality_rules:
   - Return valid JSON only.
-  - Preserve all source items.
-  - Every input item must appear exactly once in items.
+  - Preserve all source items from core_data.
+  - Every input core_data item must appear exactly once in items.
+  - source_index must match the original zero-based order in core_data.
+  - item.market_date must use the corresponding core_data.market_date.
+  - item.title must be copied exactly from the corresponding core_data.title.
+  - Do not translate, rewrite, shorten, normalize, clean up, or improve item titles.
+  - title, summary, and why_it_matters are source truth for classification.
+  - Do not add facts not supported by title, summary, or why_it_matters.
   - Every item must have exactly one primary_theme.
   - Every item must have exactly one event_type.
   - Every item must have exactly one timeline_role.
   - Every item must have exactly one continuity_group.
   - Every item must have at least one canonical_tag.
   - Every item should have at least one canonical_entity unless the item is too broad or unclear.
-  - source_index must match the original order in core_data.
+  - primary_theme must use only values from the primary_theme controlled vocabulary.
+  - secondary_themes must use only values from the primary_theme controlled vocabulary.
+  - dominant_theme must use only values from the primary_theme controlled vocabulary.
+  - continuity_groups.primary_theme must use only values from the primary_theme controlled vocabulary.
+  - primary_theme and secondary_themes must not use values that belong only to event_type, market_channels, asset_classes, or timeline_role.
+  - secondary_themes must not use values from event_type.
+  - market_channels must use only values from the market_channels controlled vocabulary.
+  - market_channels must not include invented values such as diplomacy, geopolitics, military, technology, macro, policy, banking, oil, or chips.
+  - timeline_overview.period_start must use the earliest market_date from core_data items.
+  - timeline_overview.period_end must use the latest market_date from core_data items.
   - daily_groups must be sorted by date ascending.
   - continuity_groups must include every continuity_group used by items.
   - Do not create a continuity group that has no items.
-  - Do not mention facts not present in the input.
   - Do not create final article prose.
   - Do not use markdown in the output.
   - Do not wrap the output JSON in code fences.
   - All generated metadata must be written in English.
+  - Do not use output_lang.
   - Enum values must exactly match the allowed values.
 
 confidence_rules: |
@@ -656,15 +929,30 @@ confidence_rules: |
   If confidence is low, use broader categories such as other, context, or parallel_theme.
 
 final_check_before_output:
-  - Is every input item included?
-  - Are all source_index values correct?
+  - Does every input core_data item appear exactly once in items?
+  - Does every source_index match the original zero-based index?
+  - Does every item.market_date use the corresponding core_data.market_date?
+  - Does every item.title exactly match the corresponding core_data.title?
+  - Did you avoid rewriting, translating, shortening, normalizing, cleaning up, or improving item titles?
+  - Did you preserve the meaning of title, summary, and why_it_matters?
+  - Did you avoid adding facts outside title, summary, or why_it_matters?
   - Are dates sorted correctly in daily_groups?
   - Are all continuity groups represented?
   - Are main and parallel storylines clearly separated?
   - Are enum values valid?
+  - Are all primary_theme values using only the primary_theme controlled vocabulary?
+  - Are all secondary_themes using only values from the primary_theme controlled vocabulary?
+  - Is dominant_theme using only a value from the primary_theme controlled vocabulary?
+  - Is continuity_groups.primary_theme using only values from the primary_theme controlled vocabulary?
+  - Do no primary_theme or secondary_themes values come from event_type, timeline_role, asset_classes, or values that belong only to market_channels?
+  - Does no secondary_themes value come from event_type?
+  - Are all market_channels using only values from the market_channels controlled vocabulary?
+  - Does no market_channels value contain invented labels such as diplomacy, geopolitics, military, technology, macro, policy, banking, oil, or chips?
+  - Does timeline_overview.period_start equal the earliest market_date in core_data?
+  - Does timeline_overview.period_end equal the latest market_date in core_data?
+  - Is peak_risk used where the input clearly shows the most acute risk point?
+  - Is escalation avoided where peak_risk is more appropriate for the most acute event in a continuity group?
   - Is the output strict JSON?
-  - Did you avoid adding facts outside the input?
-  - Is all generated metadata in English?
 
 final_instruction: |
   Return only the final strict JSON object.
@@ -674,3 +962,4 @@ final_instruction: |
 
 INPUT_DATA: |
   reference agent_meta.md for input data
+

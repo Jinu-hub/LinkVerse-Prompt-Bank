@@ -4,12 +4,12 @@
 
 | key | value |
 |-----|-------|
-| id | timeline-core-enrichment |
+| id | timeline-core |
 | version | 1.0 |
 | status | active |
 | scope | shared |
 | owner | timeline-p1-pipeline |
-| name | Timeline Core Enrichment Agent |
+| name | Timeline Core Agent |
 | description | 이미 선별된 시장 하이라이트 core 데이터를 타임라인 리포트 작성에 필요한 분류·그룹·서사 메타데이터로 보강하는 에이전트 |
 
 | contract | detail |
