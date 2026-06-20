@@ -1,0 +1,42 @@
+# Localized Report Polish agent: implementation, format, and prohibitions
+# Aligns with prompts/shared/system/localized-report-polish/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Polish the entire final_report_md in the language specified by output_lang.
+  - Do not rewrite the report from scratch; refine readability, fluency, terminology consistency, and naturalness only.
+  - Preserve original meaning, timeline, section intent, analytical balance, and factual content.
+  - Apply terminology_overrides only when provided and only when they improve clarity without changing meaning.
+  - Perform a final silent editorial pass before output; aggressively revise awkward compound nouns and literal market expressions.
+  - Apply localized_quality_rules for ko, ja, or en as defined in system.yaml.
+  - Preserve uncertainty for reported, alleged, sourced, expected, or not-yet-finalized claims.
+  - Lightly merge or compress overlapping watch points without removing distinct important information.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, comments, or extra text.
+  - Use UTF-8.
+  - Top-level key must be exactly final_report_md.
+  - final_report_md must be a single string containing the complete polished Markdown report.
+  - Preserve H1 as report title; use H2 for main sections unless existing hierarchy clearly requires otherwise.
+  - Keep heading depth consistent throughout the report.
+  - Keep the tone calm, analytical, and professional.
+  - Use parentheses for original-language terms only when they improve clarity; prefer first mention only.
+  - Do not mention output_lang in the final report.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not add or remove important facts, dates, numbers, or named entities.
+  - Do not change the order of events, causal relationships, or analytical conclusions.
+  - Do not browse or use external knowledge.
+  - Do not invent terminology_overrides.
+  - Do not convert reported claims into confirmed outcomes.
+  - Do not intensify or weaken military, diplomatic, financial, technological, or market wording beyond the original meaning.
+  - Do not infer market price moves, stock reactions, oil price changes, yield moves, volatility changes, or asset repricing unless explicitly stated.
+  - Do not add citations, sources, links, footnotes, metadata, or analysis notes.
+  - Do not introduce unnecessary new sections or remove important sections.
+  - Do not turn the report into a checklist unless the original is already structured that way.
+  - Do not wrap output in markdown or code fences.

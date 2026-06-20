@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "localized-report-polish-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "final_report_md": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Complete polished market report in Markdown, edited in output_lang"
+    }
+  },
+  "required": ["final_report_md"]
+}
