@@ -1,0 +1,39 @@
+# Weekly Market Report Writer agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/pipelines/timeline_p1/weekly-market-report-writer/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Read output_lang and write the entire final_report_md in that language only.
+  - Use core_data.timeline_overview for the overall story and intro framing.
+  - Use core_data.daily_groups to build chronological flow by date.
+  - Use core_data.continuity_groups to organize major themes.
+  - Use core_data.items as the factual source for individual events; do not invent facts beyond them.
+  - Use core_data.report_planning_hints for title angle, emphasis, closing direction, and avoid_overemphasis.
+  - Follow report_planning_hints.avoid_overemphasis strictly.
+  - Produce Markdown with H1 title, intro, five semantic sections, and closing summary as defined in system.yaml report_structure.
+  - Create section headings naturally in output_lang; do not copy English semantic labels literally unless output_lang is "en".
+  - Do not output agent_name, version, items, groups, tags, scores, or planning hints.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, comments, or extra text.
+  - Use UTF-8.
+  - Top-level key must be exactly final_report_md.
+  - final_report_md must be a single string containing complete Markdown.
+  - Use short paragraphs and report-like headings.
+  - Preserve important proper nouns when translating would reduce clarity.
+  - Use dates only where they help the timeline.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not browse or use external knowledge.
+  - Do not invent market prices, index moves, oil prices, yields, stock reactions, or exact asset repricing.
+  - Do not claim a final settlement when the input only describes a framework, negotiation, or potential agreement.
+  - Do not infer exact market reactions unless explicitly included in items.
+  - Do not rewrite the input into another structured dataset.
+  - Do not mention internal fields such as continuity_group, signal_strength, timeline_role, source_index, or output_lang.
+  - Do not include analysis notes, metadata, citations, or checklists in the output.
+  - Do not wrap output in markdown or code fences.

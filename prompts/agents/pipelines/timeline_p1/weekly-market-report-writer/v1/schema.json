@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "weekly-market-report-writer-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "final_report_md": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Complete weekly market report in Markdown, written in output_lang"
+    }
+  },
+  "required": ["final_report_md"]
+}

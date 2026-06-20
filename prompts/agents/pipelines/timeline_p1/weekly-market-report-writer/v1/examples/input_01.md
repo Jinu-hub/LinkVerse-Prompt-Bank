@@ -1,0 +1,481 @@
+# Sample input
+
+timeline-core 출력(`timeline-core/v1/examples/expected_01.json`)을 downstream 입력으로 전달하는 형태.
+
+```json
+{
+  "output_lang": "ko",
+  "core_data": {
+    "source_report": {
+      "market_date": "2026-06-13",
+      "topic": "Middle East escalation and parallel technology themes",
+      "from": "2026-06-10",
+      "to": "2026-06-13"
+    },
+    "timeline_overview": {
+      "main_narrative": "A Middle East security confrontation escalated from warnings and shipping risk into direct military action before diplomatic contacts outlined a possible implementation-first framework.",
+      "narrative_arc": "Trigger -> escalation -> direct military involvement -> peak risk -> negotiation framework",
+      "dominant_theme": "geopolitical_risk",
+      "dominant_continuity_groups": [
+        "iran_us_israel_hormuz_crisis"
+      ],
+      "secondary_continuity_groups": [
+        "ai_compute_infrastructure_expansion",
+        "apple_ai_ecosystem_push"
+      ],
+      "period_start": "2026-06-10",
+      "period_end": "2026-06-13"
+    },
+    "items": [
+      {
+        "source_index": 0,
+        "market_date": "2026-06-10",
+        "title": "Iran issues retaliatory strike warning after regional tensions",
+        "primary_theme": "geopolitical_risk",
+        "secondary_themes": [
+          "energy_supply"
+        ],
+        "event_type": "policy_signal",
+        "timeline_role": "trigger",
+        "narrative_priority": "main",
+        "relation_to_previous": "starts_new_thread",
+        "continuity_group": "iran_us_israel_hormuz_crisis",
+        "continuity_group_label": "Iran-U.S.-Israel tensions and Hormuz risk",
+        "market_channels": [
+          "risk_sentiment",
+          "energy",
+          "shipping",
+          "defense"
+        ],
+        "asset_classes": [
+          "energy",
+          "commodities",
+          "equities"
+        ],
+        "affected_regions": [
+          "Iran",
+          "Middle East",
+          "Global"
+        ],
+        "canonical_entities": [
+          "Iran",
+          "Strait of Hormuz"
+        ],
+        "canonical_tags": [
+          "middle_east",
+          "retaliatory_warning",
+          "geopolitical_risk"
+        ],
+        "signal_strength": "high",
+        "confidence": 0.93,
+        "timeline_usage_hint": "Use this as the trigger event for the main geopolitical timeline.",
+        "classification_reason": "The item explicitly describes a retaliatory strike warning tied to regional security deterioration."
+      },
+      {
+        "source_index": 1,
+        "market_date": "2026-06-10",
+        "title": "Shipping insurers flag elevated risk in Strait of Hormuz corridor",
+        "primary_theme": "energy_supply",
+        "secondary_themes": [
+          "geopolitical_risk"
+        ],
+        "event_type": "market_stress",
+        "timeline_role": "escalation",
+        "narrative_priority": "supporting",
+        "relation_to_previous": "escalates_previous",
+        "continuity_group": "iran_us_israel_hormuz_crisis",
+        "continuity_group_label": "Iran-U.S.-Israel tensions and Hormuz risk",
+        "market_channels": [
+          "energy",
+          "shipping",
+          "commodities",
+          "risk_sentiment"
+        ],
+        "asset_classes": [
+          "energy",
+          "commodities"
+        ],
+        "affected_regions": [
+          "Strait of Hormuz",
+          "Middle East",
+          "Global"
+        ],
+        "canonical_entities": [
+          "Strait of Hormuz"
+        ],
+        "canonical_tags": [
+          "hormuz",
+          "shipping_risk",
+          "energy_supply"
+        ],
+        "signal_strength": "high",
+        "confidence": 0.91,
+        "timeline_usage_hint": "Use this as an escalation point that expands the story into energy shipping risk.",
+        "classification_reason": "Insurers raised Hormuz transit risk, linking geopolitical tension to energy supply channels."
+      },
+      {
+        "source_index": 2,
+        "market_date": "2026-06-11",
+        "title": "US and Israel coordinate military positioning in the region",
+        "primary_theme": "geopolitical_risk",
+        "secondary_themes": [
+          "defense_security"
+        ],
+        "event_type": "military_escalation",
+        "timeline_role": "escalation",
+        "narrative_priority": "main",
+        "relation_to_previous": "escalates_previous",
+        "continuity_group": "iran_us_israel_hormuz_crisis",
+        "continuity_group_label": "Iran-U.S.-Israel tensions and Hormuz risk",
+        "market_channels": [
+          "risk_sentiment",
+          "defense",
+          "energy"
+        ],
+        "asset_classes": [
+          "equities",
+          "energy",
+          "commodities"
+        ],
+        "affected_regions": [
+          "United States",
+          "Israel",
+          "Middle East"
+        ],
+        "canonical_entities": [
+          "United States",
+          "Israel"
+        ],
+        "canonical_tags": [
+          "military_coordination",
+          "defense_posture",
+          "middle_east"
+        ],
+        "signal_strength": "high",
+        "confidence": 0.92,
+        "timeline_usage_hint": "Use this to show military escalation deepening after initial warnings and shipping risk.",
+        "classification_reason": "Coordinated US-Israel military positioning directly intensifies the regional confrontation storyline."
+      },
+      {
+        "source_index": 3,
+        "market_date": "2026-06-11",
+        "title": "Diplomatic channels propose nuclear implementation-first framework",
+        "primary_theme": "geopolitical_risk",
+        "secondary_themes": [
+          "defense_security"
+        ],
+        "event_type": "diplomacy_negotiation",
+        "timeline_role": "pivot",
+        "narrative_priority": "main",
+        "relation_to_previous": "shifts_previous",
+        "continuity_group": "iran_us_israel_hormuz_crisis",
+        "continuity_group_label": "Iran-U.S.-Israel tensions and Hormuz risk",
+        "market_channels": [
+          "risk_sentiment",
+          "energy",
+          "defense"
+        ],
+        "asset_classes": [
+          "energy",
+          "commodities",
+          "equities"
+        ],
+        "affected_regions": [
+          "Middle East",
+          "Global"
+        ],
+        "canonical_entities": [
+          "Iran"
+        ],
+        "canonical_tags": [
+          "nuclear_negotiations",
+          "diplomacy",
+          "implementation_framework"
+        ],
+        "signal_strength": "high",
+        "confidence": 0.88,
+        "timeline_usage_hint": "Use this as a pivot from pure escalation toward a possible negotiation path.",
+        "classification_reason": "The item describes a proposed implementation-first framework for nuclear-related talks amid ongoing tension."
+      },
+      {
+        "source_index": 4,
+        "market_date": "2026-06-12",
+        "title": "Reported direct strike intensifies regional confrontation",
+        "primary_theme": "geopolitical_risk",
+        "secondary_themes": [
+          "energy_supply",
+          "defense_security"
+        ],
+        "event_type": "military_escalation",
+        "timeline_role": "peak_risk",
+        "narrative_priority": "main",
+        "relation_to_previous": "escalates_previous",
+        "continuity_group": "iran_us_israel_hormuz_crisis",
+        "continuity_group_label": "Iran-U.S.-Israel tensions and Hormuz risk",
+        "market_channels": [
+          "risk_sentiment",
+          "energy",
+          "defense",
+          "shipping"
+        ],
+        "asset_classes": [
+          "energy",
+          "commodities",
+          "equities"
+        ],
+        "affected_regions": [
+          "Middle East",
+          "Global"
+        ],
+        "canonical_entities": [
+          "Iran",
+          "Israel",
+          "United States"
+        ],
+        "canonical_tags": [
+          "direct_strike",
+          "military_escalation",
+          "peak_risk"
+        ],
+        "signal_strength": "critical",
+        "confidence": 0.94,
+        "timeline_usage_hint": "Use this as the peak-risk event in the main geopolitical arc.",
+        "classification_reason": "A reported direct strike is the most acute military escalation in the available input period."
+      },
+      {
+        "source_index": 5,
+        "market_date": "2026-06-12",
+        "title": "NVIDIA outlines expanded AI compute capacity deployment timeline",
+        "primary_theme": "ai_infrastructure",
+        "secondary_themes": [
+          "semiconductor_supply_chain"
+        ],
+        "event_type": "infrastructure_expansion",
+        "timeline_role": "parallel_theme",
+        "narrative_priority": "parallel",
+        "relation_to_previous": "parallel_to_previous",
+        "continuity_group": "ai_compute_infrastructure_expansion",
+        "continuity_group_label": "AI compute infrastructure expansion",
+        "market_channels": [
+          "ai_compute",
+          "semiconductors",
+          "equities"
+        ],
+        "asset_classes": [
+          "equities"
+        ],
+        "affected_regions": [
+          "United States",
+          "Global"
+        ],
+        "canonical_entities": [
+          "NVIDIA"
+        ],
+        "canonical_tags": [
+          "ai_compute",
+          "data_center",
+          "infrastructure_expansion"
+        ],
+        "signal_strength": "medium",
+        "confidence": 0.9,
+        "timeline_usage_hint": "Mention this as a parallel AI infrastructure theme rather than part of the main geopolitical arc.",
+        "classification_reason": "The item focuses on AI compute deployment plans with no direct link to the Middle East storyline."
+      },
+      {
+        "source_index": 6,
+        "market_date": "2026-06-13",
+        "title": "Parties outline implementation-first agreement framework without final settlement",
+        "primary_theme": "geopolitical_risk",
+        "secondary_themes": [
+          "defense_security"
+        ],
+        "event_type": "diplomacy_negotiation",
+        "timeline_role": "resolution_hint",
+        "narrative_priority": "main",
+        "relation_to_previous": "softens_previous",
+        "continuity_group": "iran_us_israel_hormuz_crisis",
+        "continuity_group_label": "Iran-U.S.-Israel tensions and Hormuz risk",
+        "market_channels": [
+          "risk_sentiment",
+          "energy",
+          "defense"
+        ],
+        "asset_classes": [
+          "energy",
+          "commodities",
+          "equities"
+        ],
+        "affected_regions": [
+          "Middle East",
+          "Global"
+        ],
+        "canonical_entities": [
+          "Iran",
+          "United States",
+          "Israel"
+        ],
+        "canonical_tags": [
+          "implementation_framework",
+          "diplomacy",
+          "de_escalation_hint"
+        ],
+        "signal_strength": "high",
+        "confidence": 0.89,
+        "timeline_usage_hint": "Use this as a possible de-escalation signal, but do not present it as a finalized agreement.",
+        "classification_reason": "The input describes a framework without a final settlement, suggesting stabilization rather than confirmed resolution."
+      },
+      {
+        "source_index": 7,
+        "market_date": "2026-06-13",
+        "title": "Apple announces on-device AI feature rollout across product line",
+        "primary_theme": "technology_product",
+        "secondary_themes": [
+          "ai_infrastructure"
+        ],
+        "event_type": "product_announcement",
+        "timeline_role": "parallel_theme",
+        "narrative_priority": "parallel",
+        "relation_to_previous": "parallel_to_previous",
+        "continuity_group": "apple_ai_ecosystem_push",
+        "continuity_group_label": "Apple's AI ecosystem push",
+        "market_channels": [
+          "consumer_technology",
+          "ai_compute",
+          "equities"
+        ],
+        "asset_classes": [
+          "equities"
+        ],
+        "affected_regions": [
+          "United States",
+          "Global"
+        ],
+        "canonical_entities": [
+          "Apple"
+        ],
+        "canonical_tags": [
+          "on_device_ai",
+          "product_rollout",
+          "consumer_technology"
+        ],
+        "signal_strength": "medium",
+        "confidence": 0.91,
+        "timeline_usage_hint": "Mention briefly as a parallel consumer-technology storyline on the final day.",
+        "classification_reason": "The item is a product announcement with no connection to the geopolitical escalation arc."
+      }
+    ],
+    "daily_groups": [
+      {
+        "market_date": "2026-06-10",
+        "day_role": "Opening trigger day",
+        "main_item_indexes": [
+          0
+        ],
+        "supporting_item_indexes": [
+          1
+        ],
+        "parallel_item_indexes": [],
+        "day_narrative_hint": "Frame the period as beginning with an Iranian warning that quickly links to Hormuz shipping risk."
+      },
+      {
+        "market_date": "2026-06-11",
+        "day_role": "Pivot between diplomacy and military pressure",
+        "main_item_indexes": [
+          2,
+          3
+        ],
+        "supporting_item_indexes": [],
+        "parallel_item_indexes": [],
+        "day_narrative_hint": "Present military coordination and a proposed negotiation framework as competing signals on the same day."
+      },
+      {
+        "market_date": "2026-06-12",
+        "day_role": "Peak-risk day",
+        "main_item_indexes": [
+          4
+        ],
+        "supporting_item_indexes": [],
+        "parallel_item_indexes": [
+          5
+        ],
+        "day_narrative_hint": "Lead with the direct strike as peak risk while noting NVIDIA's AI expansion as a parallel theme."
+      },
+      {
+        "market_date": "2026-06-13",
+        "day_role": "Negotiation-framework day",
+        "main_item_indexes": [
+          6
+        ],
+        "supporting_item_indexes": [],
+        "parallel_item_indexes": [
+          7
+        ],
+        "day_narrative_hint": "Close the geopolitical arc with a framework hint and mention Apple's AI rollout as a separate parallel item."
+      }
+    ],
+    "continuity_groups": [
+      {
+        "group_id": "iran_us_israel_hormuz_crisis",
+        "group_label": "Iran-U.S.-Israel tensions and Hormuz risk",
+        "primary_theme": "geopolitical_risk",
+        "source_indexes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "first_date": "2026-06-10",
+        "last_date": "2026-06-13",
+        "group_importance": "main",
+        "group_arc": "Warning and shipping risk escalate into coordinated military positioning and a direct strike, then shift toward a possible implementation-first framework.",
+        "report_usage": "Use as the main timeline spine across all four days."
+      },
+      {
+        "group_id": "ai_compute_infrastructure_expansion",
+        "group_label": "AI compute infrastructure expansion",
+        "primary_theme": "ai_infrastructure",
+        "source_indexes": [
+          5
+        ],
+        "first_date": "2026-06-12",
+        "last_date": "2026-06-12",
+        "group_importance": "parallel",
+        "group_arc": "A single structural signal on expanded AI compute deployment.",
+        "report_usage": "Mention as a parallel infrastructure theme without displacing the geopolitical storyline."
+      },
+      {
+        "group_id": "apple_ai_ecosystem_push",
+        "group_label": "Apple's AI ecosystem push",
+        "primary_theme": "technology_product",
+        "source_indexes": [
+          7
+        ],
+        "first_date": "2026-06-13",
+        "last_date": "2026-06-13",
+        "group_importance": "parallel",
+        "group_arc": "A product rollout signal for on-device AI across Apple's consumer line.",
+        "report_usage": "Briefly note as a separate consumer-technology parallel on the final day."
+      }
+    ],
+    "report_planning_hints": {
+      "suggested_title_angle": "From Hormuz warnings to direct strike and a tentative negotiation framework",
+      "suggested_summary_angle": "Open with the Middle East escalation arc, then acknowledge parallel AI infrastructure and consumer-technology developments without overstating their dominance.",
+      "main_timeline_order": [
+        "iran_us_israel_hormuz_crisis"
+      ],
+      "parallel_themes_to_mention": [
+        "AI compute infrastructure expansion",
+        "Apple's on-device AI rollout"
+      ],
+      "possible_closing_comment_angle": "The period may be closing with a diplomatic framework hint, but final settlement remains unconfirmed and geopolitical risk is not fully resolved.",
+      "avoid_overemphasis": [
+        "Do not claim that a final agreement was reached if the input only describes a framework.",
+        "Do not describe price movements unless they are explicitly included in the input.",
+        "Do not overstate parallel technology items as the dominant storyline if geopolitical risk clearly dominates."
+      ]
+    }
+  }
+}
+```
