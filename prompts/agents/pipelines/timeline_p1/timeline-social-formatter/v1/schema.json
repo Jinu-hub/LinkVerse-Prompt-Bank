@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "timeline-social-formatter-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Complete SNS-formatted market report text with Markdown removed and layout symbols applied, in the same language as the input"
+    }
+  },
+  "required": ["text"]
+}

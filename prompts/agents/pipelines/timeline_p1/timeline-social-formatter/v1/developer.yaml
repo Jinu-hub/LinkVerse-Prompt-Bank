@@ -1,0 +1,41 @@
+# Timeline Social Formatter agent: implementation, format, and prohibitions
+# Aligns with prompts/agents/pipelines/timeline_p1/timeline-social-formatter/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Convert the entire final_report_md into SNS-ready plain text inside the text field.
+  - Do not rewrite, translate, or reinterpret the report; format only.
+  - Remove all Markdown syntax (#, **, -, etc.) while preserving meaning and section order.
+  - Maintain the exact section order from the report:
+    Title Header, Core Summary / Intro, Chronological Timeline, Major Themes / Analysis,
+    Critical Risk Factors / Points to Watch, Closing / Conclusion.
+  - Apply formatting symbols strictly as defined in system.yaml CORE_RULES:
+    box header (━, 📢, 📅), section dividers (─, ■), timeline (▶, •, ▪),
+    themes (📌, ✅), risks (⚠️), closing (📝).
+  - Keep the original language of the input; do not translate.
+  - You MAY shorten repetitive phrasing, simplify dense sentences slightly, and trim paragraphs into scannable chunks.
+  - Add double line breaks between major sections; keep blocks to 2–4 lines maximum.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, comments, or extra text.
+  - Use UTF-8.
+  - Top-level key must be exactly text.
+  - text must be a single string containing the complete formatted SNS text with escaped newline characters (\n) where appropriate.
+  - Do not use output, content, sns_report, or any other top-level key.
+  - Preserve chronological and thematic structure in a linear, mobile-scannable layout.
+  - Tone must be clean, professional, institutional, concise, and objective.
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not change meaning or omit critical market events.
+  - Do not add new information or external analysis.
+  - Do not translate the input text.
+  - Do not summarize entire sections into single sentences.
+  - Do not browse or use external knowledge.
+  - Do not invent facts beyond the provided final_report_md.
+  - Do not wrap output in markdown or code fences.
+  - Do not use casual slang or overly emotional expressions.
