@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "thesis-summarizer-v2-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "topic": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Sharp one-line display title (~8-18 words) aligned with thesis and summary_short"
+    },
+    "summary_structured": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "thesis": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Core strategic claim with tension, shift, or directional stance"
+        },
+        "why_now": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Why the report matters now; timing, catalysts, or current relevance"
+        },
+        "key_mechanism": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 3,
+          "maxItems": 4,
+          "description": "Causal engine bullets explaining mechanisms, not topic labels"
+        },
+        "key_catalysts": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "maxItems": 3,
+          "description": "0-3 timing or adoption catalysts; empty array if none"
+        },
+        "beneficiary_groups": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "sector": { "type": "string", "minLength": 1 },
+              "reason": { "type": "string", "minLength": 1 },
+              "companies": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              }
+            },
+            "required": ["sector", "reason", "companies"]
+          },
+          "description": "Up to 4 beneficiary groups; empty array if unsupported"
+        },
+        "scenario_summary": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "base_view": { "type": "string", "minLength": 1 },
+                "upside_case": { "type": "string", "minLength": 1 },
+                "downside_case": { "type": "string", "minLength": 1 }
+              },
+              "required": ["base_view", "upside_case", "downside_case"]
+            }
+          ],
+          "description": "Conditional paths or null when no scenario logic exists"
+        },
+        "case_study": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "meaning": { "type": "string", "minLength": 1 }
+              },
+              "required": ["name", "meaning"]
+            }
+          ],
+          "description": "Single illustrative case study or null"
+        },
+        "table_candidates_summary": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "table_id": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "table_type": { "type": "string", "minLength": 1 },
+              "recommended_use": {
+                "type": "string",
+                "enum": ["must_keep", "keep_compressed", "merge", "optional"]
+              },
+              "summary_role": { "type": "string", "minLength": 1 },
+              "downstream_use": { "type": "string", "minLength": 1 },
+              "caution": { "type": "string" }
+            },
+            "required": [
+              "table_id",
+              "title",
+              "table_type",
+              "recommended_use",
+              "summary_role",
+              "downstream_use",
+              "caution"
+            ]
+          },
+          "description": "0-3 table role summaries; empty array if none"
+        },
+        "investor_implication": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Reader-facing interpretation, positioning, or what to watch"
+        },
+        "risks": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 3,
+          "maxItems": 5,
+          "description": "Thesis-invalidating or weakening risks"
+        }
+      },
+      "required": [
+        "thesis",
+        "why_now",
+        "key_mechanism",
+        "key_catalysts",
+        "beneficiary_groups",
+        "scenario_summary",
+        "case_study",
+        "table_candidates_summary",
+        "investor_implication",
+        "risks"
+      ]
+    },
+    "key_takeaways": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 4,
+      "maxItems": 6,
+      "description": "Distinct high-value strategic bullets"
+    },
+    "summary_short": {
+      "type": "string",
+      "minLength": 1,
+      "description": "2-4 sentence narrative summary for cards, previews, and SNS"
+    }
+  },
+  "required": ["topic", "summary_structured", "key_takeaways", "summary_short"]
+}

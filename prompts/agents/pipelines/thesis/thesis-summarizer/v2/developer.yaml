@@ -1,0 +1,44 @@
+# Thesis Summarizer v2: implementation, format, and prohibitions
+# Aligns with prompts/agents/pipelines/thesis/thesis-summarizer/v2/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Transform core_data into four aligned outputs: topic, summary_structured, key_takeaways, summary_short.
+  - Perform compression, prioritization, and reformulation only; do not conduct new analysis or external research.
+  - Follow CORE_DATA_PRIORITY_RULE field precedence when multiple core_data sections exist.
+  - Generate all string values in output_lang; keep JSON field names exactly as in OUTPUT_FORMAT.
+  - Preserve thesis sharpness, contrast, directional stance, and investor implication from core_data.
+  - In summary_structured, keep key_mechanism to 3–4 bullets, key_catalysts to 0–3, beneficiary_groups to max 4, risks to 3–5.
+  - Select one illustrative case_study when case_studies exist; otherwise output null.
+  - Select 0–3 table_candidates_summary items when table_candidates exist; otherwise output [].
+  - Use scenario_summary only when scenario_framework or table-backed scenario logic exists; otherwise null.
+  - Avoid redundancy across topic, summary_structured, key_takeaways, and summary_short.
+  - Reflect claim_integrity and source_ambiguities with cautious wording when materially relevant.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, comments, or extra text.
+  - Use UTF-8.
+  - Top-level keys must be exactly topic, summary_structured, key_takeaways, summary_short.
+  - topic must be one punchy sentence (~8–18 words), assertive and investor-relevant.
+  - summary_short must be 2–4 sentences; first sentence must include shift, tension, catalyst, contrast, scenario hinge, or misinterpretation.
+  - key_takeaways must contain 4–6 distinct, high-value bullets.
+  - summary_structured string fields: 1–2 sentences max unless a list item needs detail.
+  - table_candidates_summary.recommended_use must be one of must_keep, keep_compressed, merge, optional.
+  - Use [] for empty arrays and null only where schema allows (scenario_summary, case_study).
+
+prohibitions:
+  - Do not add fields not in the schema.
+  - Do not invent facts, companies, catalysts, scenarios, risks, or beneficiaries not in core_data.
+  - Do not browse or use external knowledge.
+  - Do not translate JSON field names.
+  - Do not neutralize strong thesis positioning into generic institutional language.
+  - Do not add investment advice beyond reader_implication / action_framework in core_data.
+  - Do not resolve source_ambiguities unless core_data itself resolves them.
+  - Do not transform conditional claims into confirmed facts.
+  - Do not mention table_id in topic or summary_short.
+  - Do not reproduce full tables or overload outputs with raw metrics.
+  - Do not wrap output in markdown or code fences.
