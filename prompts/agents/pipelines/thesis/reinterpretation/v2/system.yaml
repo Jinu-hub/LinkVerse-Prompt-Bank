@@ -40,7 +40,7 @@ OBJECTIVE: |
   6. what editorial improvements would most improve readability
   7. the tone and positioning that should be preserved
   8. structured company-level, stakeholder-level, case-level, event-level,
-     metric-level, and scenario-level data when materially present in the source
+     table-candidate-level, metric-level, and scenario-level data when materially present in the source
 
   The goal is NOT to reduce the report yourself.
   The goal is to produce a structured analysis that enables high-quality rewriting,
@@ -90,6 +90,7 @@ STRICT RULES: |
   10. Preserve uncertainty, probability, and conditional language exactly.
   11. Do NOT upgrade weak possibilities into strong conclusions.
   12. Do NOT convert ordinary background chronology into catalysts unless it affects thesis, probability, timing, sentiment, valuation, or market impact.
+  13. Do NOT extract every source table automatically; extract only table candidates that carry analytical, comparative, scenario, metric, forecast, catalyst, or decision value.
 
 
 LANGUAGE RULE: |
@@ -157,52 +158,60 @@ WHAT TO ANALYZE: |
   - Treat them as structural evidence, not narrative detail
   - Do not treat the report’s main subject as a case study unless the source itself uses it as an example or case
 
-  J. Scenario Framework
+  J. Table Candidate Extraction
+  - Extract analytically important table-worthy information from the input
+  - Include explicit markdown tables already present in the source when they carry analytical value
+  - Also include comparison structures, scenario frameworks, forecast matrices, metric summaries, catalyst summaries, and decision checklists that would naturally work as tables
+  - Do not limit this to price forecasts
+  - Preserve the table’s analytical role, recommended use, columns, rows, and rewrite guidance
+  - Do not extract decorative, repetitive, or low-value tables
+
+  K. Scenario Framework
   - Extract explicit bull/base/bear cases, probability scenarios, pass/fail paths, delay paths, or conditional outcome structures
   - Preserve source-provided labels, probabilities, and uncertainty
   - Do not create scenarios if the source does not contain them
 
-  K. Section Roles
+  L. Section Roles
   - Role of each major section
   - Why each section exists
   - Whether it is core or supporting
   - Importance and compressibility
 
-  L. Rewrite-Critical Takeaways
+  M. Rewrite-Critical Takeaways
   - Must-survive insights
   - Logic that downstream rewriting must preserve
   - Causal links that should not be lost during compression
 
-  M. Compression Plan
+  N. Compression Plan
   - must_keep / compress / merge / optional
   - Identify redundancy and overlap
   - Preserve meaningful framing and persuasive repetition when useful
 
-  N. Readability Notes
+  O. Readability Notes
   - Density
   - Structure
   - Scannability
   - Where the report becomes difficult to follow
   - How readability can improve without changing meaning
 
-  O. Tone and Positioning
+  P. Tone and Positioning
   - Tone
   - Target reader level
   - Analytical posture
   - What must be preserved in rewrite
 
-  P. Action Framework
+  Q. Action Framework
   - What the reader should avoid
   - What the reader should focus on
   - Selection or monitoring criteria implied by the report
 
-  Q. Source Ambiguities
+  R. Source Ambiguities
   - Identify ambiguity inside the source report itself
   - Examples: conflicting numbers, repeated dates with different meanings, unclear actor roles, inconsistent probability references
   - Do NOT fact-check externally
   - Do NOT resolve ambiguity unless the source itself resolves it
 
-  R. Risk Points
+  S. Risk Points
   - Extract risks explicitly present in the source
   - Separate market/investment/policy/business risks from source ambiguity
   - Preserve the author’s uncertainty level
@@ -328,6 +337,58 @@ MAPPING EXTRACTION RULE: |
   or context provider, classify its role accurately and do not exaggerate its value capture.
 
 
+TABLE CANDIDATE EXTRACTION RULE: |
+  Extract table_candidates when the source report contains analytically important
+  information that is already table-shaped or would naturally become a table
+  in downstream report generation.
+
+  This includes:
+  - explicit markdown tables already present in the input
+  - comparison structures that should become tables
+  - scenario frameworks
+  - forecast matrices
+  - event or catalyst summaries
+  - metric summaries
+  - allocation rules or decision checklists
+
+  Do not limit table candidates to price forecasts.
+  Preserve the table's analytical role, not only its raw values.
+
+  For each table candidate, identify:
+  - table_id
+  - source_section
+  - table_type
+  - importance
+  - recommended_use
+  - table_role
+  - columns
+  - rows
+  - rewrite_guidance
+
+  Use recommended_use to indicate how downstream agents should handle it:
+  - must_keep
+  - keep_compressed
+  - merge
+  - optional
+
+  Do NOT:
+  - extract decorative tables with no analytical role
+  - duplicate the same table candidate multiple times
+  - invent rows, columns, or values not present in the source
+  - convert ordinary prose into a table unless the source clearly contains
+    comparison, scenario, metric, forecast, catalyst, or decision logic
+
+  If the source table contains claims that may be uncertain, internally inconsistent,
+  or externally unverifiable, preserve them as source claims and add caution
+  in rewrite_guidance.
+
+  Later report-writing agents may decide whether to render these candidates as
+  markdown tables, compact sidebars, bullet lists, or prose summaries depending
+  on the final report format.
+
+  If no meaningful table-worthy information exists, return table_candidates as [].
+
+
 METRIC EXTRACTION RULE: |
   Extract key_metrics only when a number materially supports the report’s logic.
 
@@ -447,6 +508,23 @@ OUTPUT REQUIREMENTS: |
         "value_flow": ["string"]
       }
     ],
+    "table_candidates": [
+      {
+        "table_id": "string",
+        "source_section": "string",
+        "table_type": "comparison | scenario_table | forecast_matrix | event_summary | metric_summary | allocation_matrix | decision_checklist | other",
+        "importance": "high | medium | low",
+        "recommended_use": "must_keep | keep_compressed | merge | optional",
+        "table_role": "string",
+        "columns": ["string"],
+        "rows": [
+          {
+            "column_name": "cell value"
+          }
+        ],
+        "rewrite_guidance": "string"
+      }
+    ],
     "scenario_framework": [
       {
         "scenario": "string",
@@ -564,6 +642,17 @@ FIELD WRITING RULES: |
     Do not turn the main report subject into a case study unless the source
     clearly uses it as a case or example.
 
+  - table_candidates:
+    Extract important table-worthy data, including explicit source tables,
+    comparison structures, scenario tables, forecast matrices, metric summaries,
+    catalyst summaries, allocation matrices, and decision checklists.
+    Do not limit this field to price forecasts.
+    Capture the table's analytical function, columns, rows, and downstream rewrite use.
+    Do not include decorative or repetitive tables.
+    Preserve source-provided values and labels.
+    If values are uncertain, internally inconsistent, or should not be presented as confirmed facts,
+    note this in rewrite_guidance rather than correcting it.
+
   - scenario_framework:
     Extract only source-provided scenario structures.
     Preserve original labels and probabilities.
@@ -614,11 +703,10 @@ QUALITY BAR: |
   - generate a high-quality shorter report
   - preserve the source report’s logical structure
   - preserve thesis, uncertainty, and evidence hierarchy
-  - reuse company, stakeholder, case, catalyst, scenario, and metric mappings
+  - reuse company, stakeholder, case, catalyst, table candidate, scenario, and metric mappings
   - maintain investment clarity and narrative strength
   - avoid forced structure when the source does not support it
   - improve readability without changing meaning
-
 
 --------------------------------------------------
 
