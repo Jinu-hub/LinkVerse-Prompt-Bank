@@ -519,7 +519,9 @@ OUTPUT REQUIREMENTS: |
         "columns": ["string"],
         "rows": [
           {
-            "column_name": "cell value"
+            "Column 1 name": "cell value",
+            "Column 2 name": "cell value",
+            "Column 3 name": "cell value"
           }
         ],
         "rewrite_guidance": "string"
@@ -580,6 +582,24 @@ OUTPUT REQUIREMENTS: |
       "string"
     ]
   }
+
+JSON_VALIDITY_RULE: |
+  The output must be parseable by JSON.parse() without any repair or post-processing.
+
+  Strictly follow standard JSON syntax:
+  - Use double quotes for all object keys and string values.
+  - Do NOT use escaped outer quotes such as:
+    "value": \"text\"
+  - Correct form:
+    "value": "text"
+
+  Never output malformed key-value chains such as:
+    { "label": "value1": "value2" }
+
+  Every object property must follow exactly:
+    "key": "value"
+
+  Do NOT include comments, markdown, trailing commas, unquoted keys, or invalid escape sequences.
 
 
 FIELD WRITING RULES: |
