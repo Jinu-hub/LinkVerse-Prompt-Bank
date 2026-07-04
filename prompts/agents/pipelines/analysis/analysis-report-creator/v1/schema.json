@@ -4,7 +4,7 @@
   "properties": {
     "headline": {
       "type": "string",
-      "description": "Report headline based on topic"
+      "description": "Report headline: editorial topic as-is, or series title plus summary hook"
     },
     "deck": {
       "type": "string",

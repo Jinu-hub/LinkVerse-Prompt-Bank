@@ -258,10 +258,73 @@ OUTPUT_REQUIREMENTS: |
 
 --------------------------------------------------
 
+HEADLINE_COMPOSITION_RULE: |
+  Determine headline strategy from topic type.
+
+  A) Series / generic title topic
+     A topic is series/generic when it is a recurring report label with little
+     editorial substance, often ending in a compact date code such as (260703)
+     or (20260703).
+
+     Examples:
+     - "글로벌 시장 시황 (260703)"
+     - "국내 증시 브리핑 (260704)"
+     - "Global market conditions (260703)"
+     - "US equities briefing (260704)"
+
+     For series/generic topics, build the headline in two parts:
+
+     Part A — Series title (from topic):
+     - Preserve the topic's base title (e.g., "글로벌 시장 시황", "Global market conditions")
+     - Preserve the compact date in parentheses if present (e.g., "(260703)")
+     - Do NOT convert (YYMMDD) to YYYY-MM-DD | prefix format
+
+     Part B — Hook (from summary):
+     - Derive ONE concise hook from summary.summary_structured.core_message
+       or, if unavailable, summary.summary
+     - Capture the core tension, contrast, or key takeaway
+     - Keep it short and readable (roughly 15–30 characters in Korean,
+       or roughly 8–15 words in English, or equivalent length in output_lang)
+     - Must NOT introduce new claims
+     - Write Part B in output_lang
+
+     Final format:
+     [Part A] - [Part B]
+
+     Examples:
+     - "글로벌 시장 시황 (260703) - AI·반도체 급락 속 다우 사상 최고치 경신"
+     - "Global market conditions (260703) - Dow hits record high as AI, chips slide"
+
+  B) Editorial title topic
+     A topic is editorial when it already reads as a finished headline with
+     narrative substance — contrast, cause-effect, quoted phrases, or a colon
+     structure — and is NOT merely a series label plus date.
+
+     Examples:
+     - "사상 최고 매출도 못 막은 'AI 투자 포비아'… 알파벳·MSFT·퀄컴이 마주한 차가운 현실"
+     - "워시의 매파적 본색과 대법원의 반전: '14년 임기' 지켜낸 연준"
+
+     For editorial topics:
+     - Use the topic as the headline
+     - You MAY refine wording slightly for clarity
+     - Do NOT prepend a series prefix
+     - Do NOT append " - [hook]" if the topic is already complete
+     - Do NOT flatten or shorten into a generic label
+
+--------------------------------------------------
+
 HEADLINE_DATE_NORMALIZATION_RULE: |
   When generating the headline, you MUST check whether a date expression is present.
 
-  If a date is present, you MUST normalize it using the following rules:
+  EXCEPTION — Series title with compact date in topic:
+  - If HEADLINE_COMPOSITION_RULE classifies the topic as series/generic
+    and the topic contains a compact date code such as (260703) or (20260703):
+    → keep the compact date in parentheses after the title
+    → do NOT use the YYYY-MM-DD | prefix format
+    → skip this rule entirely for that headline
+
+  If a date is present and the exception above does NOT apply,
+  you MUST normalize it using the following rules:
 
   IMPORTANT:
   - Only normalize if an EXPLICIT full or partial date is present
@@ -271,6 +334,7 @@ HEADLINE_DATE_NORMALIZATION_RULE: |
     - standalone years (e.g., "1990")
     - historical references (e.g., "1990 Gulf War")
     - vague time expressions
+    - compact date codes in series titles (e.g., "(260703)")
 
   - If only a year is present:
     → keep it as-is
@@ -292,10 +356,12 @@ HEADLINE_DATE_NORMALIZATION_RULE: |
 FIELD_RULES: |
 
   headline:
-  - based on topic
-  - may refine wording slightly
-  - must preserve meaning
-  - MUST apply HEADLINE_DATE_NORMALIZATION_RULE if a date is present
+  - MUST follow HEADLINE_COMPOSITION_RULE
+  - for series/generic topics: "[topic base + date] - [core hook from summary]"
+  - for editorial topics: use topic as headline (may refine slightly)
+  - hook MUST come from summary; do not invent new claims
+  - MUST apply HEADLINE_DATE_NORMALIZATION_RULE only when its exception does not apply
+  - must preserve analytical meaning
 
   deck:
   - 1–2 sentences
@@ -348,6 +414,9 @@ FINAL_CHECK: |
   - assumptions are not presented explicitly
   - report is coherent and readable
   - report_body does not repeatedly use "the analysis" or "the report" as the subject
+  - headline follows HEADLINE_COMPOSITION_RULE for the correct topic type
+  - series/generic topics include a summary-derived hook after " - "
+  - editorial topics are not flattened into generic labels
   - JSON is valid
 
 --------------------------------------------------
