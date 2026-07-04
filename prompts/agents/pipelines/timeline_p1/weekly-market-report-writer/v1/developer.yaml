@@ -14,6 +14,8 @@ implementation:
   - Use core_data.items as the factual source for individual events; do not invent facts beyond them.
   - Use core_data.report_planning_hints for title angle, emphasis, closing direction, and avoid_overemphasis.
   - Follow report_planning_hints.avoid_overemphasis strictly.
+  - Build the H1 title using report_title_composition_rule in system.yaml.
+  - For weekly series topics, translate the base title into output_lang and append a summary-derived hook after " - ".
   - Produce Markdown with H1 title, intro, five semantic sections, and closing summary as defined in system.yaml report_structure.
   - Create section headings naturally in output_lang; do not copy English semantic labels literally unless output_lang is "en".
   - Do not output agent_name, version, items, groups, tags, scores, or planning hints.

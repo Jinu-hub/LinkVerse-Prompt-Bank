@@ -54,13 +54,70 @@ writing_style:
   - Explain why events matter, not just what happened.
 
 report_structure:
-  - Markdown H1 report title.
+  - Markdown H1 report title (MUST follow report_title_composition_rule).
   - Intro paragraph summarizing the week’s core market story.
   - Section 1: Core weekly flow.
   - Section 2: Chronological flow by date.
   - Section 3: Major themes.
   - Section 4: Points to watch.
   - Section 5: Closing summary.
+
+report_title_composition_rule:
+  - Determine title strategy from core_data.source_report.topic.
+
+  weekly_series_topic:
+    definition: >
+      A topic is a weekly series title when it is a recurring report label with a
+      compact date range, typically ending in a pattern such as
+      ( 260621 ~ 260627 ) or (260621~260627).
+
+    examples:
+      - "Weekly global market issues ( 260621 ~ 260627 )"
+      - "Weekly global market issues (260621~260627)"
+
+    part_a_series_title:
+      - Use core_data.source_report.topic as the base.
+      - Translate the base title into output_lang.
+      - Preserve the compact date range from topic exactly as written, including
+        parentheses and spacing (e.g., "( 260621 ~ 260627 )").
+      - Do NOT convert the date range to YYYY-MM-DD, ISO dates, or a different format.
+      - Do NOT drop the date range from the title.
+
+    localized_base_title_examples:
+      en: "Weekly global market issues ( 260621 ~ 260627 )"
+      ko: "주간 글로벌 마켓 주요 이슈 ( 260621 ~ 260627 )"
+      ja: "週間グローバル市場イシュー ( 260621 ~ 260627 )"
+
+    part_b_weekly_hook:
+      - Derive ONE concise hook from, in order:
+        1. core_data.report_planning_hints.suggested_title_angle
+        2. core_data.timeline_overview.main_narrative
+      - Capture the week's core tension, arc, or dominant storyline.
+      - Keep it short and readable (roughly 15–35 characters in Korean,
+        roughly 8–15 words in English, or equivalent length in output_lang).
+      - Must NOT introduce new claims, facts, or market moves.
+
+    final_format: "[Part A] - [Part B]"
+
+    full_examples:
+      en: "Weekly global market issues ( 260621 ~ 260627 ) - Middle East escalation dominates as AI themes run in parallel"
+      ko: "주간 글로벌 마켓 주요 이슈 ( 260621 ~ 260627 ) - 중동 긴장 확대 속 AI·기술 이슈 병행"
+      ja: "週間グローバルマーケット主要イシュー ( 260621 ~ 260627 ) - 中東緊張の拡大、AIテーマは並行"
+
+  editorial_topic:
+    definition: >
+      A topic is editorial when it already reads as a finished headline with narrative
+      substance and does NOT follow the weekly series label plus compact date range pattern.
+
+    examples:
+      - "Middle East escalation and parallel technology themes"
+
+    rules:
+      - Write a concise narrative H1 title in output_lang.
+      - You MAY use report_planning_hints.suggested_title_angle as guidance.
+      - Do NOT prepend a weekly series prefix.
+      - Do NOT append " - [hook]" if the title is already complete.
+      - Do NOT flatten into a generic weekly label.
 
 heading_rule:
   - Create all section headings naturally in output_lang.
@@ -74,7 +131,8 @@ heading_rule:
 
 quality_polish_rules:
   - Avoid duplicated translated terms such as repeating the same term in parentheses.
-  - Prefer concise report titles over titles that include every major theme.
+  - For weekly series topics, use "[localized series title + date range] - [weekly hook]" rather than a standalone narrative title.
+  - For editorial topics, prefer concise narrative report titles over titles that include every major theme.
   - When translating military, diplomatic, financial, or technical terms, do not intensify the meaning beyond the source item.
   - If the input describes a framework, negotiation, or potential agreement, avoid wording that sounds like a final settlement.
   - Avoid overly literal English loanword repetition when a natural expression in output_lang is sufficient.
