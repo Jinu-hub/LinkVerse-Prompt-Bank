@@ -15,7 +15,7 @@ implementation:
   - Keep the tone conversational, thoughtful, lightly editorial, and SNS-native — not like a report outline or news article.
   - Each numbered point should be 2–5 short sentences in natural paragraphs, not bullet sub-labels.
   - Localize market_mood labels naturally; do not translate them literally.
-  - End with a memorable 1–2 sentence daily market memo in the target language.
+  - End with a memorable 1–2 sentence daily market memo in the target language; this is the final section — no brand or product CTA after it.
   - Recommended length: ko/ja 700–1,200 characters; en 180–300 words.
 
 format_rules:
@@ -35,3 +35,4 @@ prohibitions:
   - Do not use overly forceful, deterministic, or news-article tone.
   - Do not use absolute or exaggerated expressions (guaranteed, must, game over, etc.).
   - Do not browse or use external knowledge beyond the provided input.
+  - Do not append a brand, product, or service call-to-action (e.g. "Market Memory에서 … 기록합니다").
