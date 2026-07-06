@@ -271,19 +271,22 @@ HEADLINE_COMPOSITION_RULE: |
      - "국내 증시 브리핑 (260704)"
      - "Global market conditions (260703)"
      - "US equities briefing (260704)"
+     - "グローバル市場概況 (260703)"
 
      For series/generic topics, build the headline in two parts:
 
      Part A — Series title (from topic):
-     - Preserve the topic's base title (e.g., "글로벌 시장 시황", "Global market conditions")
+     - Preserve the topic's base title (e.g., "글로벌 시장 시황", "Global market conditions", "グローバル市場概況")
      - Preserve the compact date in parentheses if present (e.g., "(260703)")
      - Do NOT convert (YYMMDD) to YYYY-MM-DD | prefix format
+     - If output_lang differs from the topic language, translate the base title into output_lang
+       while preserving the compact date code unchanged
 
      Part B — Hook (from summary):
      - Derive ONE concise hook from summary.summary_structured.core_message
        or, if unavailable, summary.summary
      - Capture the core tension, contrast, or key takeaway
-     - Keep it short and readable (roughly 15–30 characters in Korean,
+     - Keep it short and readable (roughly 15–30 characters in Korean or Japanese,
        or roughly 8–15 words in English, or equivalent length in output_lang)
      - Must NOT introduce new claims
      - Write Part B in output_lang
@@ -294,6 +297,7 @@ HEADLINE_COMPOSITION_RULE: |
      Examples:
      - "글로벌 시장 시황 (260703) - AI·반도체 급락 속 다우 사상 최고치 경신"
      - "Global market conditions (260703) - Dow hits record high as AI, chips slide"
+     - "グローバル市場概況 (260703) - AI・半導体急落のなかダウ最高値更新"
 
   B) Editorial title topic
      A topic is editorial when it already reads as a finished headline with
