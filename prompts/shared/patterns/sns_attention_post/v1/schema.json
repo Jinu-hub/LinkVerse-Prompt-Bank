@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "sns-attention-post-writer-v1-output",
+  "type": "string",
+  "minLength": 1,
+  "description": "Complete attention-grabbing SNS post text in the language specified by lang_code. Plain text only — not JSON, not markdown-wrapped, with no editorial labels or commentary."
+}

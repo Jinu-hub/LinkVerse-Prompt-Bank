@@ -1,0 +1,40 @@
+# SNS Attention Post Writer: implementation, format, and prohibitions
+# Aligns with prompts/shared/patterns/sns_attention_post/v1/system.yaml
+
+schema_path: schema.json
+output_format: TEXT
+
+implementation:
+  - Output must validate against schema.json (a single plain-text SNS post string).
+  - Use the examples in examples/ as the canonical format.
+  - Reconstruct source_text into one standalone SNS post; do not merely shorten or summarize.
+  - Identify the strongest contrast, unexpected signal, or unresolved tension and build the post around it.
+  - Present the strongest fact or contrast within the first 2 to 3 lines.
+  - Write entirely in the language specified by lang_code (ko, ja, or en).
+  - Preserve core facts, numbers, named entities, causal relationships, uncertainties, and conclusions from source_text.
+  - Follow recommended_flow as a guide, not a rigid template: opening fact → contrast → optional question → supporting signals → incomplete surface read → watch variables → specific close.
+  - Keep paragraphs short (one or two sentences) with frequent line breaks for mobile readability.
+  - End with a specific interpretation, unresolved tension, concrete watch variable, or clear focus point — not a vague "watch the future" line.
+
+format_rules:
+  - Return only the final SNS post as plain text; no JSON, markdown code fence, metadata, or notes to the user.
+  - Use UTF-8.
+  - Do not include labels such as Title, Hook, Body, Key Points, or Conclusion.
+  - Do not use Markdown bold or italic formatting.
+  - Do not use tables or section headings.
+  - Bullets are optional and limited to 5 when comparing signals.
+  - Emojis are optional and limited to 2.
+  - Do not use hashtags.
+  - Do not include a separate title unless explicitly required by the input.
+  - Keep proper nouns, tickers, and established abbreviations in commonly used form.
+
+prohibitions:
+  - Do not invent facts, background knowledge, predictions, quotations, or unsupported interpretations.
+  - Do not change the meaning of numerical data.
+  - Do not convert a possibility, indication, or interpretation into a confirmed fact.
+  - Do not exaggerate the strength, scale, or certainty of the original analysis.
+  - Do not erase conflicting or mixed signals when the source contains them.
+  - Do not mention source_text, lang_code, or the editing process.
+  - Do not use overly dramatic, sensational, clickbait, or promotional language.
+  - Do not force the same opening formula for every post.
+  - Do not browse or use external knowledge beyond the provided input.
