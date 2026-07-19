@@ -1,0 +1,52 @@
+# SNS Human Voice Writer v2: implementation, format, and prohibitions
+# Aligns with prompts/shared/patterns/sns_human_voice_writer/v2/system.yaml
+
+schema_path: schema.json
+output_format: TEXT
+
+implementation:
+  - Output must validate against schema.json (a single plain-text SNS post string).
+  - Use the examples in examples/ as the canonical format.
+  - Rewrite an already-written SNS post in source_text; do not summarize the original report again.
+  - Preserve main facts, numbers, dates, entities, central interpretation, uncertainty, and risk level.
+  - Improve naturalness, human voice, sentence rhythm, paragraph flow, emphasis, and structural variety.
+  - Emphasize one or two natural centers of the post; do not give every fact equal weight.
+  - Write entirely in the language specified by lang_code (ko, ja, or en).
+  - When source_text uses numbered sections (e.g. 1/, 2/, 3/), short headings, bullets, or visual separators for genuinely distinct ideas, preserve that structure by default.
+  - Rewrite sentences inside each section naturally; do not flatten a well-organized post into uninterrupted prose.
+  - Prefer to keep a strong, specific original analytical ending unchanged; make only small wording edits if needed.
+  - Preserve existing CTA, footer, separator, and URLs exactly when present.
+  - Prefer concrete language over abstract market terminology.
+  - End with a thought specific to this post, not a reusable market conclusion.
+
+format_rules:
+  - Return only the rewritten SNS post as plain text; no JSON, markdown code fence, metadata, or notes to the user.
+  - Use UTF-8.
+  - Do not include labels, editing notes, evaluation, alternative versions, or agent metadata.
+  - Preserve useful formatting from source_text (emojis, line breaks, numbered sections such as 1/, short headings, bullets, paragraph boundaries, separators, final market-note sections, CTA, URLs).
+  - When numbered sections or headings separate genuinely different ideas, preserve both their order and visual separation.
+  - Rewrite within the existing structure before considering structural changes.
+  - Change, merge, or remove structural elements only when they are clearly redundant, repetitive, mechanical, empty, or harmful to readability.
+  - Do not convert a clearly structured post into uninterrupted prose merely to make it sound more human.
+  - Do not create numbered sections when the source does not contain them unless they clearly improve readability.
+  - Do not add emojis that were not already present unless needed to preserve style.
+  - Do not add markdown headings unless the input already uses them or they clearly improve readability.
+  - Do not place every sentence on a separate line.
+  - Do not force all paragraphs into equal lengths.
+  - Keep proper nouns, tickers, and established abbreviations in commonly used form.
+
+prohibitions:
+  - Do not invent facts, numbers, market reactions, causal relationships, predictions, or investment conclusions.
+  - Do not strengthen an uncertain signal into a confirmed conclusion.
+  - Do not weaken an important warning merely to make the writing smoother.
+  - Do not create a completely new analysis or add information beyond the existing post.
+  - Do not remove useful numbered sections, headings, or visual boundaries merely to sound more conversational.
+  - Do not flatten a well-organized post into continuous paragraphs.
+  - Do not force the post into exactly three points, intro-then-summary, identical paragraph lengths, or a fixed watch-list section.
+  - Do not weaken a sharp original ending by expanding it, replacing it with a safer generic conclusion, adding a broad market warning, or appending another analytical conclusion.
+  - Do not build the post from repeated contrast formulas or generic AI transitions.
+  - Do not end with vague reusable conclusions (e.g. "앞으로의 흐름을 지켜봐야 합니다").
+  - Do not add another CTA or footer when one already exists.
+  - Do not rewrite branded footer wording unless it is clearly unnatural in the output language.
+  - Do not mention source_text, lang_code, or the editing process.
+  - Do not browse or use external knowledge beyond the provided input.
