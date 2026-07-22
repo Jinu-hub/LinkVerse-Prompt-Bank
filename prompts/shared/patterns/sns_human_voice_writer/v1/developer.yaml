@@ -9,8 +9,12 @@ implementation:
   - Use the examples in examples/ as the canonical format.
   - Rewrite an already-written SNS post in source_text; do not summarize the original report again.
   - Preserve main facts, numbers, dates, entities, central interpretation, uncertainty, and risk level.
-  - Improve naturalness, human voice, sentence rhythm, paragraph flow, emphasis, and structural variety.
+  - Improve headline impact, opening pull, naturalness, human voice, sentence rhythm, paragraph flow, emphasis, and structural variety.
+  - Treat the headline as a separate editorial decision, not passive formatting.
+  - When an existing headline is weak, generic, repetitive, or merely descriptive, rewrite it into a more specific headline grounded in the post.
+  - When the source clearly expects a headline but lacks a distinct one, create one from the strongest supported angle already in the post.
   - Emphasize one or two natural centers of the post; do not give every fact equal weight.
+  - Advance the opening with context, evidence, interpretation, or consequence — do not paraphrase the headline.
   - Write entirely in the language specified by lang_code (ko, ja, or en).
   - Preserve existing CTA, footer, separator, and URLs exactly when present.
   - Prefer concrete language over abstract market terminology.
@@ -20,16 +24,23 @@ format_rules:
   - Return only the rewritten SNS post as plain text; no JSON, markdown code fence, metadata, or notes to the user.
   - Use UTF-8.
   - Do not include labels, editing notes, evaluation, alternative versions, or agent metadata.
-  - Preserve useful formatting from source_text (emojis, line breaks, headings, bullets, separators, CTA, URLs).
+  - Preserve useful formatting from source_text (emojis, line breaks, headline placement and visual markers, bullets, separators, CTA, URLs).
+  - Preserve the presence and visual format of an existing headline, but rewrite its wording when a stronger specific headline is possible without changing substance.
   - You may change body structure when it improves naturalness.
   - Do not add emojis that were not already present unless needed to preserve style.
   - Do not add markdown headings unless the input already uses them or they clearly improve readability.
   - Do not place every sentence on a separate line.
   - Do not force all paragraphs into equal lengths.
   - Keep proper nouns, tickers, and established abbreviations in commonly used form.
+  - Keep the headline concise enough to scan on mobile; prefer one clear clause or two closely connected clauses.
 
 prohibitions:
   - Do not invent facts, numbers, market reactions, causal relationships, predictions, or investment conclusions.
+  - Do not introduce a new claim in the headline merely to make it stronger.
+  - Do not preserve a weak headline merely because it already exists or for formatting consistency.
+  - Do not create impact through exaggeration, unsupported certainty, artificial urgency, or sensational vocabulary.
+  - Do not default to familiar headline skeletons (symmetrical contrast, abstract concept-only titles, reusable curiosity questions).
+  - Do not repeat the headline in slightly different words in the opening paragraph.
   - Do not strengthen an uncertain signal into a confirmed conclusion.
   - Do not weaken an important warning merely to make the writing smoother.
   - Do not create a completely new analysis or add information beyond the existing post.
