@@ -1,0 +1,43 @@
+# SNS Market Memory Footer: implementation, format, and prohibitions
+# Aligns with prompts/shared/patterns/sns_market_memory_footer/v1/system.yaml
+
+schema_path: schema.json
+output_format: TEXT
+
+implementation:
+  - Output must validate against schema.json (a single plain-text footer string).
+  - Use the examples in examples/ as the canonical format.
+  - Read source_text as a finished SNS post from upstream (e.g. sns-human-voice-writer).
+  - Generate only the CTA footer; do not rewrite or repeat the post body.
+  - Tailor the invitation ment to the topic of source_text.
+  - Always include the brand name exactly as `Market Memory` once.
+  - Always include discovery guidance with:
+      - 🔗 profile link or pinned-post link
+      - 🔍 Google search for exactly `marketmemory app`
+  - Write entirely in the language specified by lang_code (ko, ja, or en),
+    except for the fixed brand name and search query.
+  - Keep the footer compact and append-ready under the finished post.
+
+format_rules:
+  - Return only the footer text as plain text; no JSON, markdown code fence, metadata, or notes to the user.
+  - Use UTF-8.
+  - Follow this block order:
+      1. invitation ment (1–2 lines)
+      2. blank line
+      3. 🔗 profile / pinned-post guidance
+      4. 🔍 Google search guidance
+  - Do not include labels, editing notes, evaluation, alternative versions, or agent metadata.
+  - Do not include raw URLs or trailing separators such as `-----` / `-------`.
+  - Do not include hashtags or markdown headings.
+  - Keep `Market Memory` and `marketmemory app` in their exact forms.
+
+prohibitions:
+  - Do not translate, abbreviate, or stylize `Market Memory`.
+  - Do not change the search query away from `marketmemory app`.
+  - Do not invent facts, numbers, or claims not supported by source_text.
+  - Do not invent product features beyond fuller analysis / broader market context.
+  - Do not write hype, urgency, or hard-sell CTA language.
+  - Do not add subscribe / follow / join / discount CTAs.
+  - Do not output the SNS post body.
+  - Do not mention source_text, lang_code, or the generation process.
+  - Do not browse or use external knowledge beyond the provided input.
