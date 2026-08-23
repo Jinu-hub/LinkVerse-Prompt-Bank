@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "today-in-30-seconds-representation-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "pulse": {
+      "type": "string",
+      "minLength": 1,
+      "description": "1–2 short sentences describing the overall market environment, primarily derived from core_data.summary."
+    },
+    "highlights": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One concise sentence: what happened and why it matters to the market."
+          }
+        },
+        "required": ["title", "summary"]
+      },
+      "description": "Same count and order as core_data.highlights (max 3). Do not add or remove entries."
+    },
+    "market_reaction": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Asset, index, rate, commodity, or market identifier."
+          },
+          "value": {
+            "oneOf": [
+              { "type": "string", "minLength": 1 },
+              { "type": "null" }
+            ],
+            "description": "Explicitly supported value when useful; null otherwise."
+          },
+          "direction": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": ["up", "down", "mixed", "unchanged"]
+              },
+              { "type": "null" }
+            ],
+            "description": "Direction supported by source data only."
+          }
+        },
+        "required": ["label", "value", "direction"]
+      },
+      "description": "Up to 3 observable market reactions from core_data.items; may be empty."
+    },
+    "takeaway": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Exactly one sentence expressing the key market relationship or implication, primarily derived from core_data.ending."
+    }
+  },
+  "required": ["pulse", "highlights", "market_reaction", "takeaway"]
+}

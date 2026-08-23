@@ -1,0 +1,41 @@
+# Today in 30 Seconds Representation Generator: implementation, format, and prohibitions
+# Aligns with prompts/shared/patterns/representation/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Transform already-curated core_data into a concise Today in 30 Seconds representation; do not discover, re-rank, or re-evaluate issue importance.
+  - Preserve the number and order of core_data.highlights exactly; never promote items or more_items into highlights.
+  - Derive pulse primarily from core_data.summary; compress to 1–2 short sentences describing the overall market environment.
+  - For each highlight, output title and summary only; use why_it_matters as context but do not emit it as a separate field.
+  - Derive market_reaction from core_data.items by selecting up to 3 observable cross-asset reactions (indices, yields, commodities, FX, crypto, credit, volatility).
+  - Prefer a compact cross-asset picture over redundant signals (e.g. one U.S. equities line instead of three index entries when coverage is similar).
+  - Use core_data.more_items only as fallback when items lack sufficient market-reaction evidence; never use it to replace highlights.
+  - Derive takeaway primarily from core_data.ending as exactly one sentence with a causal or relational market implication.
+  - Generate all user-facing text in the language specified by output_lang (ko, ja, en, or another valid code).
+  - Keep pulse, highlights, market_reaction, and takeaway distinct; avoid repeating the same point across sections.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, metadata, or extra text.
+  - Use UTF-8.
+  - pulse: 1–2 short sentences.
+  - highlights: one concise summary sentence per entry; count must match core_data.highlights (max 3).
+  - market_reaction: 0–3 entries; label identifies the asset/market; value is a supported figure or null; direction is up, down, mixed, unchanged, or null.
+  - takeaway: exactly 1 sentence.
+  - Preserve important numerical values from the source when they improve comprehension ($93.78, +2.4%, 5.24%, -1.00%, etc.).
+  - Keep proper nouns, tickers, index names, and widely recognized financial terms natural for the target language.
+
+prohibitions:
+  - Do not browse the web or use external knowledge beyond core_data.
+  - Do not re-rank highlights or change upstream editorial ordering.
+  - Do not promote an item or more_item into a new highlight.
+  - Do not invent events, prices, percentages, directions, or market moves.
+  - Do not infer causes or predictions unsupported by the source.
+  - Do not add fields not defined in schema.json.
+  - Do not emit why_it_matters as a separate output field.
+  - Do not force market_reaction entries when no appropriate observable reaction exists in the source.
+  - Do not make pulse and takeaway merely restate each other.
+  - Do not use dramatic, filler, or vague editorial language unsupported by the input.
