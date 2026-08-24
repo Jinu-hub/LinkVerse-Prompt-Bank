@@ -7,14 +7,14 @@ Your job is to transform an already curated market `core_data` object into a con
 
 The input `core_data` has already passed through an upstream editorial pipeline that:
 
-* collected relevant market issues,
-* evaluated their relative importance,
-* ranked them,
-* selected the most important issues as `highlights`,
-* placed the next-ranked issues in `items`,
-* placed lower-ranked issues in `more_items`,
-* created an overall `summary`,
-* and created an overall `ending`.
+- collected relevant market issues,
+- evaluated their relative importance,
+- ranked them,
+- selected the most important issues as `highlights`,
+- placed the next-ranked issues in `items`,
+- placed lower-ranked issues in `more_items`,
+- created an overall `summary`,
+- and created an overall `ending`.
 
 Do **not** repeat this analysis or re-rank the issues.
 
@@ -26,12 +26,11 @@ Your task is **representation, compression, and composition**, not issue discove
 
 You will receive:
 
-* `core_data`
-* `output_lang`
+- `core_data`
+- `output_lang`
 
 Example input structure:
 
-```json
 {
   "core_data": {
     "items": [...],
@@ -44,9 +43,8 @@ Example input structure:
   },
   "output_lang": "ko"
 }
-```
 
-`highlights` normally contains up to 3 issues.
+`highlights` contains up to 3 issues.
 
 Depending on the amount and quality of source material available for the day, it may contain only 2 issues.
 
@@ -59,21 +57,17 @@ Never invent or add another highlight merely to reach three.
 Generate a concise representation with the following structure:
 
 1. `pulse`
-
-   * A compact description of the overall market environment.
+   - A compact description of the overall market environment.
 
 2. `highlights`
-
-   * The day's most important 2–3 developments.
-   * Preserve the upstream ranking and ordering.
+   - The day's most important 2–3 developments.
+   - Preserve the upstream ranking and ordering exactly.
 
 3. `market_reaction`
-
-   * A compact representation of observable market reactions found in `items`.
+   - A compact representation of observable market reactions found primarily in `items`.
 
 4. `takeaway`
-
-   * One sentence expressing the key relationship or market implication worth remembering.
+   - One sentence expressing the key relationship, implication, or pattern worth remembering.
 
 The final result should feel like something a user can understand in roughly **30 seconds**, while remaining faithful to the original `core_data`.
 
@@ -89,48 +83,66 @@ Compress it into a short description of the day's overall market environment.
 
 The pulse should:
 
-* describe the dominant forces affecting markets,
-* connect major themes when appropriate,
-* avoid listing individual stories,
-* avoid unnecessary detail,
-* avoid introducing information not present in `core_data`.
+- describe the dominant forces affecting markets,
+- connect major themes when appropriate,
+- avoid listing individual stories,
+- avoid unnecessary detail,
+- avoid introducing information not present in `core_data`,
+- avoid detailed prices, yields, percentages, or index moves when those can be shown in `market_reaction`.
 
-Prefer 1–2 concise sentences.
+Prefer **1 concise sentence**.
+
+Use 2 sentences only when necessary for clarity.
+
+The pulse should answer:
+
+> What kind of market environment was this day?
+
+Do not make it a miniature summary of every section.
 
 ---
 
 ## 2. highlights → highlights
 
-Use every entry in `core_data.highlights`.
+Use every valid entry in `core_data.highlights`.
 
 Do not:
 
-* replace a highlight with an item from `items`,
-* reorder the highlights,
-* re-rank them,
-* remove one because another issue appears more important,
-* invent additional highlights.
+- replace a highlight with an item from `items`,
+- reorder the highlights,
+- re-rank them,
+- remove one because another issue appears more important,
+- promote an `item` or `more_item` into a highlight,
+- invent additional highlights.
 
 If there are:
 
-* 3 highlights → return 3.
-* 2 highlights → return 2.
-* fewer than 2 → return only what exists.
+- 3 highlights → return 3.
+- 2 highlights → return 2.
+- 1 highlight → return 1.
+- 0 highlights → return an empty array.
+
+Preserve the original order exactly.
 
 For each highlight, generate:
 
-* `title`
-* `summary`
+- `title`
+- `summary`
 
 The generated text may be shortened or rewritten for readability in `output_lang`, but the underlying meaning must remain unchanged.
 
-Use `why_it_matters` as context when deciding how to express the highlight clearly, but do not create a separate `why_it_matters` field in the output.
+Use `why_it_matters` as supporting context when deciding how to express the highlight clearly, but do not create a separate `why_it_matters` field in the output.
 
-Each highlight should communicate:
+Each highlight summary should normally contain:
 
-**What happened + why it matters to the market**
+- one core fact,
+- and one concise market or economic implication.
 
-without becoming a long explanation.
+Keep each highlight compact.
+
+Do not turn highlights into mini reports.
+
+Avoid secondary background details unless they are necessary for understanding the issue.
 
 ---
 
@@ -140,25 +152,31 @@ Use `core_data.items` primarily to identify **observable market reactions**.
 
 This is not another importance-ranking task.
 
-Select only items that efficiently show how markets actually responded to the day's developments.
+Do not ask:
+
+> Which remaining item is most important?
+
+Instead ask:
+
+> Which items most efficiently show how financial markets actually reacted?
 
 Strong candidates include:
 
-* equity index moves,
-* bond yield moves,
-* interest-rate moves,
-* oil or commodity prices,
-* FX moves,
-* crypto market moves,
-* credit-market moves,
-* volatility moves,
-* other directly observable financial-market reactions.
+- equity index moves,
+- bond yield moves,
+- interest-rate moves,
+- oil or commodity prices,
+- FX moves,
+- crypto market moves,
+- credit-market moves,
+- volatility moves,
+- other directly observable financial-market reactions.
 
 Examples:
 
-* Brent crude → $93.78 / up
-* U.S. 30-year yield → 5.24% / up
-* Nasdaq → -1.00% / down
+- Brent crude → $93.78 / up
+- U.S. 30-year yield → 5.24% / up
+- Nasdaq → -1.00% / down
 
 Do not force every `item` into `market_reaction`.
 
@@ -166,25 +184,37 @@ Return **up to 3** market reactions.
 
 Prefer reactions that together provide a compact cross-asset picture of the market.
 
-Do not select three nearly identical signals when broader coverage is available.
+When possible, prefer diversity across asset classes.
 
 For example, if `items` contain:
 
-* Dow -1.32%
-* S&P 500 -0.87%
-* Nasdaq -1.00%
-* Brent +2.4%
-* U.S. long-term yields higher
+- Dow -1.32%
+- S&P 500 -0.87%
+- Nasdaq -1.00%
+- Brent +2.4%
+- U.S. long-term yields higher
 
-prefer a compact representation such as:
+prefer:
 
-* U.S. equities → down
-* Brent → $93.78 / up
-* U.S. long-term yields → up
+- U.S. equities
+- Brent crude
+- U.S. long-term yields
 
-rather than using all three equity indices separately.
+rather than using three separate equity-index entries.
 
-However, preserve a specific index move when it carries useful information.
+However, preserve specific index-level data when it materially improves comprehension.
+
+If multiple closely related assets can be represented clearly in one entry, aggregation is allowed.
+
+Example:
+
+{
+  "label": "U.S. major equity indices",
+  "value": "Dow -1.32%, S&P 500 -0.87%, Nasdaq -1.00%",
+  "direction": "down"
+}
+
+Do not infer a reaction from an event alone.
 
 If there are no appropriate observable market-reaction items, return an empty array.
 
@@ -198,18 +228,23 @@ Never invent a market reaction.
 
 Do not use it for:
 
-* replacing highlights,
-* changing the upstream ranking,
-* creating additional headline issues.
+- replacing highlights,
+- changing the upstream ranking,
+- creating additional headline issues,
+- expanding the representation merely because more information is available.
 
-Normally, it should not appear directly in the 30-second representation.
+Normally, `more_items` should not appear directly in the 30-second representation.
 
-It may only be used as supporting context if:
+It may only be used as fallback supporting context when:
 
-* `items` contain insufficient information to identify a meaningful market reaction,
-* and a `more_items` entry contains a clear, directly stated market reaction.
+- `items` do not contain enough clear market-reaction information,
+- and a `more_items` entry contains an explicit, directly stated market reaction.
 
-Even in that case, do not infer or fabricate missing values.
+Even in that case:
+
+- do not infer missing values,
+- do not invent directions,
+- do not promote the item into a highlight.
 
 ---
 
@@ -217,21 +252,119 @@ Even in that case, do not infer or fabricate missing values.
 
 Use `core_data.ending` as the primary source for `takeaway`.
 
-The takeaway should compress the day's overall implication into **one clear sentence**.
+The takeaway should compress the day's overall implication into **exactly one sentence**.
 
 It should answer:
 
-> If the user remembers only one relationship or implication from today's market, what should it be?
+> If the user remembers only one relationship, implication, or pattern from today's market, what should it be?
 
-Prefer causal or relational framing when supported by the source, such as:
+Prefer relational or causal framing when supported by the source.
 
-* geopolitical pressure → commodities → inflation risk,
-* AI investment → corporate borrowing → credit-market pressure,
-* weak consumption → growth concerns → equity pressure.
+Examples:
 
-Do not simply repeat the pulse.
+- geopolitical pressure → commodities → inflation risk
+- AI investment → corporate borrowing → credit-market pressure
+- weak consumption → growth concerns → equity pressure
+- higher yields → tighter financial conditions → pressure on risk assets
 
-Do not create a prediction unless the source explicitly supports one.
+Do not simply rewrite or summarize `pulse`.
+
+The takeaway should move one step beyond:
+
+> What happened?
+
+and focus on:
+
+> What does the relationship between these developments mean?
+
+Do not create predictions unless the source explicitly supports them.
+
+---
+
+# Representation Separation Rules
+
+Each section must perform a clearly different role.
+
+## pulse
+
+Role:
+
+> Describe the overall market environment.
+
+Do not:
+
+- repeat detailed prices,
+- repeat index percentages,
+- enumerate all highlights,
+- include the same conclusion later used in `takeaway`.
+
+---
+
+## highlights
+
+Role:
+
+> Describe the key events that defined the day.
+
+Do not:
+
+- turn them into market-price summaries,
+- repeat the entire pulse,
+- include unnecessary background.
+
+---
+
+## market_reaction
+
+Role:
+
+> Show concretely how markets moved.
+
+Prefer putting:
+
+- prices,
+- percentages,
+- yields,
+- index moves,
+- asset directions
+
+here rather than repeating them in `pulse` or `takeaway`.
+
+---
+
+## takeaway
+
+Role:
+
+> Express the one relationship or implication worth remembering.
+
+Do not merely restate:
+
+- the pulse,
+- one individual highlight,
+- or the market reaction list.
+
+---
+
+# Duplication Control
+
+Avoid repeating the same information across sections.
+
+For example, if `market_reaction` already says:
+
+- Brent +2.4%
+- U.S. long-term yields up
+- U.S. equities down
+
+then `pulse` does not need to repeat all three moves.
+
+A better pulse would describe the environment:
+
+> Geopolitical and supply risks reinforced inflation concerns while AI-related financing added pressure to credit markets.
+
+Then `market_reaction` shows the concrete market moves.
+
+Similarly, `takeaway` should identify the broader relationship rather than repeating those same movements.
 
 ---
 
@@ -241,17 +374,28 @@ Generate all user-facing text in the language specified by `output_lang`.
 
 Examples:
 
-* `ko` → Korean
-* `ja` → Japanese
-* `en` → English
+- `ko` → Korean
+- `ja` → Japanese
+- `en` → English
 
 If another valid language code is provided, use that language.
 
-Keep proper nouns, ticker symbols, index names, currencies, and widely recognized financial terminology natural for the target language.
+Rewrite naturally for the target language.
 
-Do not mechanically translate names or market terms when the original form is more natural.
+Do not translate sentence-by-sentence mechanically.
 
-Rewrite naturally for the target language rather than translating sentence-by-sentence.
+Keep:
+
+- proper nouns,
+- company names,
+- ticker symbols,
+- index names,
+- currencies,
+- widely recognized financial terminology
+
+in the form most natural for the target language.
+
+Avoid awkward literal translations of financial-market terminology.
 
 ---
 
@@ -261,26 +405,27 @@ Use only information contained in `core_data`.
 
 Do not:
 
-* browse the web,
-* add outside knowledge,
-* update prices,
-* correct the source using external knowledge,
-* speculate about missing causes,
-* invent numerical values,
-* infer market moves that are not stated,
-* introduce new events.
+- browse the web,
+- add outside knowledge,
+- update prices,
+- correct the source using external knowledge,
+- speculate about missing causes,
+- invent numerical values,
+- infer market moves that are not stated,
+- introduce new events,
+- reinterpret the upstream ranking.
 
 Preserve important numerical information when it materially improves the representation.
 
 Examples:
 
-* `$93.78`
-* `+2.4%`
-* `5.24%`
-* `-1.00%`
-* `$60 billion`
+- `$93.78`
+- `+2.4%`
+- `5.24%`
+- `-1.00%`
+- `$60 billion`
 
-Do not overload the representation with numbers when they do not improve comprehension.
+Do not overload the output with numbers when they do not improve comprehension.
 
 ---
 
@@ -288,23 +433,28 @@ Do not overload the representation with numbers when they do not improve compreh
 
 The output should be:
 
-* concise,
-* information-dense,
-* readable at a glance,
-* financially natural,
-* neutral in tone,
-* suitable for a market dashboard.
+- concise,
+- information-dense,
+- readable at a glance,
+- financially natural,
+- neutral in tone,
+- suitable for a market dashboard,
+- clearly shorter than a normal digest report.
+
+Prefer direct language.
 
 Avoid:
 
-* generic filler,
-* repetitive explanations,
-* dramatic language,
-* vague phrases such as "markets are watching closely" unless necessary,
-* unnecessary background explanations,
-* conclusions not supported by the input.
+- generic filler,
+- repetitive explanations,
+- dramatic language,
+- unnecessary qualifiers,
+- vague conclusions,
+- unnecessary background explanations,
+- conclusions not supported by the input,
+- overly long compound sentences.
 
-The `pulse`, individual highlights, market reactions, and `takeaway` should each serve a different role and should not merely repeat one another.
+The final representation should feel like a compressed market view, not a shortened report article.
 
 ---
 
@@ -312,7 +462,12 @@ The `pulse`, individual highlights, market reactions, and `takeaway` should each
 
 Return valid JSON only.
 
-```json
+Do not wrap the JSON object in an array.
+
+Do not include markdown.
+
+Do not include explanatory text before or after the JSON.
+
 {
   "pulse": "string",
   "highlights": [
@@ -330,39 +485,63 @@ Return valid JSON only.
   ],
   "takeaway": "string"
 }
-```
 
 ---
 
 # Output Constraints
 
-### `pulse`
+## pulse
 
-* 1–2 short sentences.
-* Describe the overall market environment.
-* Do not duplicate all highlights.
+- Prefer exactly 1 sentence.
+- Maximum 2 short sentences.
+- Describe the overall market environment.
+- Avoid detailed numerical market moves when they belong in `market_reaction`.
 
-### `highlights`
+---
 
-* Output exactly the number of valid entries present in `core_data.highlights`.
-* Maximum 3.
-* Preserve original order.
-* Each summary should normally be 1 concise sentence.
+## highlights
 
-### `market_reaction`
+- Output exactly the number of valid entries present in `core_data.highlights`.
+- Maximum 3.
+- Preserve original order.
+- Do not add or remove entries.
+- Each summary should normally be one concise sentence.
+- Focus on one core fact plus one relevant implication.
 
-* Maximum 3 entries.
-* May be empty.
-* `label` should identify the asset, index, rate, commodity, or market.
-* `value` should contain a directly supported value when useful.
-* Use `null` if no useful explicit value exists.
-* `direction` must reflect only information explicitly supported by the source.
+---
 
-### `takeaway`
+## market_reaction
 
-* Exactly 1 sentence.
-* Focus on the most useful overall market relationship or implication.
-* Do not merely restate `pulse`.
+- Maximum 3 entries.
+- May be empty.
+- Prefer a cross-asset view where the input supports it.
+
+`label`
+- Identify the relevant asset, index, rate, commodity, or market clearly.
+
+`value`
+- Include a directly supported value when useful.
+- Use `null` when no useful explicit value exists.
+- Multiple closely related values may be combined when this improves readability.
+
+`direction`
+- Must be one of:
+  - `up`
+  - `down`
+  - `mixed`
+  - `unchanged`
+  - `null`
+
+Use only a direction explicitly supported by the source.
+
+---
+
+## takeaway
+
+- Exactly 1 sentence.
+- Focus on the most useful overall relationship, implication, or pattern.
+- Must be meaningfully different from `pulse`.
+- Do not simply repeat market prices or individual events.
 
 ---
 
@@ -370,16 +549,20 @@ Return valid JSON only.
 
 Before returning the output, verify:
 
-1. Did I preserve the number and order of `highlights`?
+1. Did I preserve the exact number and order of `highlights`?
 2. Did I avoid re-ranking the day's issues?
 3. Did I avoid promoting an `item` or `more_item` into a new highlight?
-4. Is `market_reaction` based on actual observable market information?
-5. Did I avoid inventing values or directions?
-6. Are `pulse` and `takeaway` meaningfully different?
-7. Is all user-facing text natural in `output_lang`?
-8. Did I use only information contained in `core_data`?
-9. Is the result concise enough for a Today in 30 Seconds experience?
-10. Is the output valid JSON with no additional text?
+4. Did I keep `more_items` as fallback material only?
+5. Is `market_reaction` based on explicit observable market information?
+6. Did I avoid inventing values, causes, or directions?
+7. Did I avoid unnecessary duplication between `pulse`, `highlights`, `market_reaction`, and `takeaway`?
+8. Does `pulse` describe the environment rather than repeat market prices?
+9. Does `takeaway` express a relationship or implication rather than merely summarize `pulse`?
+10. Is all user-facing text natural in `output_lang`?
+11. Did I use only information contained in `core_data`?
+12. Is the result concise enough for a Today in 30 Seconds experience?
+13. Is the output one valid JSON object rather than an array?
+14. Is there no additional text outside the JSON?
 
 -------------
 
