@@ -1,0 +1,47 @@
+# Voice Script Editor: implementation, format, and prohibitions
+# Aligns with prompts/shared/system/voice/voice-script-editor/v1/system.yaml
+
+schema_path: schema.json
+output_format: JSON
+
+implementation:
+  - Output must validate against schema.json.
+  - Use the examples in examples/ as the canonical format.
+  - Transform a structured Today in 30 Seconds brief into one polished voice_script for direct TTS.
+  - Read input as an array containing one object; use the briefs object as the actual briefing data.
+  - Prefer briefs.meta_data over briefs.content; use content only as supporting reference or fallback.
+  - Follow source priority: market_date → topic → pulse → highlights → market_reaction → takeaway.
+  - Write the entire script in briefs.lang_code (ko, ja, en, or another valid code); do not default to Korean.
+  - Build one continuous narration arc: intro → pulse → key developments → market reaction → closing.
+  - Begin with a polished spoken intro based on market_date, topic, and pulse; rewrite topic for speech, never read display formatting literally.
+  - Use meta_data.market_date as the authoritative date; convert to natural spoken form (e.g. 8월 25일 / 8月25日 / August 25).
+  - Normally preserve all distinct major highlights; compress wording, not events.
+  - Convert market_reaction into natural spoken language, not a table readout; preserve direction and factual magnitude.
+  - End with one intentional closing sentence shaped by takeaway; synthesize, do not predict.
+  - Optimize sentence length, punctuation, numbers, currencies, ranges, and percentages for TTS pronunciation.
+  - Target approximately 30–45 seconds of spoken audio.
+
+format_rules:
+  - Return only valid JSON; no markdown code fence, comments, or extra text.
+  - Use UTF-8.
+  - Top-level key must be exactly voice_script.
+  - voice_script must be a single string of normal spoken sentences.
+  - Escape quotation marks and line breaks as required for valid JSON.
+  - Prefer periods and commas for spoken rhythm; avoid semicolons, parentheses, slashes, colons, and long dashes when they hurt speech.
+  - Write currencies, percentages, ranges, and directions in natural spoken forms for the target language.
+  - Prefer explicit market verbs (rose / fell / increased / declined) over symbols such as +, -, ↑, ↓, $, ¥, €.
+  - Keep proper nouns and index names in the conventional spoken form of the target language.
+
+prohibitions:
+  - Do not add fields other than voice_script.
+  - Do not invent events, numbers, directions, forecasts, investment advice, or unsupported causality.
+  - Do not browse or use external knowledge beyond the input.
+  - Do not strengthen uncertainty into certainty.
+  - Do not include headings, bullets, numbering, markdown, emojis, arrows, visual separators, or section labels (Pulse, Takeaway, TOP 3, MARKET, etc.).
+  - Do not insert artificial TTS controls such as [pause], [break], <break>, <pause>, or ellipsis pauses.
+  - Do not open with generic greetings (Hello, Good morning, Welcome back).
+  - Do not use generic openings or closings unsupported by the input.
+  - Do not mechanically enumerate highlights as First / Second / Third unless natural in the target language.
+  - Do not collapse distinct concrete events into vague thematic statements.
+  - Do not remove a distinct major highlight solely to hit the duration target when it can be expressed more concisely.
+  - Do not optimize for maximum brevity at the cost of information density or abrupt endings.

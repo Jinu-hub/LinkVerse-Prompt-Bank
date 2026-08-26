@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "voice-script-editor-v1-output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "voice_script": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Single-narrator spoken market briefing optimized for direct TTS. Plain spoken sentences only — no markdown, headings, bullets, labels, or TTS control tags."
+    }
+  },
+  "required": ["voice_script"]
+}
